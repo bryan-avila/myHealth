@@ -87,6 +87,11 @@ public class SignUpActivity extends AppCompatActivity {
             passwordEntered.setError("MINIMUM 6 CHARACTER REQUIRED");
             return false;
         }
+        else if (!passwordSignUp.equals(passwordSignUpConfirm)) {
+            passwordConfirm.requestFocus();
+            passwordConfirm.setError("PASSWORDS DON'T MATCH");
+            return false;
+        }
         else {
             return true;
         }
