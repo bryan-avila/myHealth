@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // This is the code to switch screens
+        // Test test test for Github
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -14,7 +14,8 @@ public class SignUpActivity extends AppCompatActivity {
     EditText fullName, email, username, passwordEntered, passwordConfirm, phoneNumber;
     Button signupButton;
 
-   // @Override
+    //Test test test for github
+    // Need to implement Firebase to store this registration information
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
