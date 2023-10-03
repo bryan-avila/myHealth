@@ -12,8 +12,8 @@ This application aims to bridge the gaps between patient, doctor and pharmacist.
 
 # Project Members
 
-Ana Castillo
-Tum Jomkhanthiphol
-Rahi Misra
-Renzo Pereyra
-Bryan Avila
+Ana Castillo 
+Tum Jomkhanthiphol 
+Rahi Misra 
+Renzo Pereyra 
+Bryan Avila 
