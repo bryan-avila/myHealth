@@ -1,10 +1,15 @@
 package com.example.myHealth;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.app.AlertDialog.Builder;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +17,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText firstName, lastName, email, username, passwordEntered, passwordConfirm, phoneNumber;
     Button signupButton;
+    AlertDialog.Builder builder;
 
     // @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +33,11 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.signupButton);
         phoneNumber = findViewById(R.id.phoneNumber);
 
-        //Test commit here!:)
-        firstName.setHorizontallyScrolling(true);
-        lastName.setHorizontallyScrolling(true);
-        username.setHorizontallyScrolling(true);
+        firstName.setHorizontallyScrolling(true); // Fixes line break issue
+        lastName.setHorizontallyScrolling(true); // "
+        username.setHorizontallyScrolling(true); // "
+
+        builder = new AlertDialog.Builder(this);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,9 +52,18 @@ public class SignUpActivity extends AppCompatActivity {
                 //Function for validation of inputted data
                 boolean check = validateInfo (firstNameSignUp, lastNameSignUp, emailSignUp, passwordSignUp, passwordSignUpConfirm, phoneSignUp);
 
-                if (check == true) {
-                    Toast.makeText(SignUpActivity.this, "SIGN UP SUCCESSFUL", Toast.LENGTH_SHORT).show(); //WE WOULD NEED TO ADVANCE USER TO HOME PAGE HERE
-
+                if (check) {
+                    // ADD ACCOUNT DETAILS TO DATABASE HERE !!!!!!!!!!!!!
+                    builder.setTitle("Registration Complete! ✅")
+                            .setMessage("You may now login using your account credentials.")
+                            .setCancelable(true)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            })
+                            .show();
                 } else {
                     Toast.makeText(SignUpActivity.this, "SIGN UP FAILED. TRY AGAIN", Toast.LENGTH_SHORT).show();
                 }
