@@ -1,7 +1,5 @@
 # myHealth Android App
 
-This is our app README file! Test, test!
-
 # About
 
 This application aims to bridge the gaps between patient, doctor and pharmacist. 
