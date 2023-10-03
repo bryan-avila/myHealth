@@ -38,15 +38,28 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/fullName"
+                android:id="@+id/firstName"
                 android:inputType="text"
                 android:maxLines="1"
                 android:background="@drawable/custom_edittext"
-                android:hint="Full Name"
+                android:hint="First Name"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/lastName"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/custom_edittext"
+                android:hint="Last Name"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="5dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -58,7 +71,7 @@
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="5dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -71,7 +84,19 @@
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="5dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/phoneNumber"
+                android:background="@drawable/custom_edittext"
+                android:hint="Mobile Number"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="5dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -99,19 +124,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="20dp"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/phoneNumber"
-                android:background="@drawable/custom_edittext"
-                android:hint="Mobile Number"
-                android:inputType="number"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="5dp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -119,7 +132,7 @@
                 android:id="@+id/signupButton"
                 android:text="Sign Up"
                 android:textSize="18sp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="14dp"
                 android:backgroundTint="@color/purple"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
