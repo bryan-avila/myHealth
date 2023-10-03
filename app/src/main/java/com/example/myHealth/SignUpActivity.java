@@ -27,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.signupButton);
         phoneNumber = findViewById(R.id.phoneNumber);
 
+        //Test commit here!:)
         firstName.setHorizontallyScrolling(true);
         lastName.setHorizontallyScrolling(true);
         username.setHorizontallyScrolling(true);
