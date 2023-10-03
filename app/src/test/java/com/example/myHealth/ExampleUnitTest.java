@@ -1,4 +1,4 @@
-package com.example.loginscreen;
+package com.example.myHealth;
 
 import org.junit.Test;
 

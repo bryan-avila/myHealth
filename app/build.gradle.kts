@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.loginscreen"
+    namespace = "com.example.myHealth"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.loginscreen"
+        applicationId = "com.example.myHealth"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
