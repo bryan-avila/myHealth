@@ -2,15 +2,17 @@ package com.example.myHealth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CustomNavBar extends AppCompatActivity {
 
-    //Number of selected tab. We have 5 so value should lie between 1-5
+    //Number of selected tab. We have 5 so value should lie between 1-5 Home page is selected by default
     private int selectedTab = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
