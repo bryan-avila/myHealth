@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (username.getText().toString().equals("username") && password.getText().toString().equals("1234")) {
                     Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
+                    setContentView(R.layout.activity_custom_nav_bar);
                 } else {
                     Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_SHORT).show();
                 }

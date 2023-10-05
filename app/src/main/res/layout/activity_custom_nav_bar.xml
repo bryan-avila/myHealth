@@ -141,7 +141,7 @@
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/support"
+                android:src="@drawable/chat_icon"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"/>
 
