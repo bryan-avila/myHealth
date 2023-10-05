@@ -217,7 +217,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/support"
+                    android:src="@drawable/chat_icon"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
