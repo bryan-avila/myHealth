@@ -60,7 +60,7 @@ public class CustomNavBar extends AppCompatActivity {
 
                     //might need to change the icons around here
                     appointmentImage.setImageResource(R.drawable.make_appoint);
-                    chatImage.setImageResource(R.drawable.support);
+                    chatImage.setImageResource(R.drawable.chat_icon);
                     notificationImage.setImageResource(R.drawable.notifications);
                     profileImage.setImageResource(R.drawable.account);
 
@@ -98,7 +98,7 @@ public class CustomNavBar extends AppCompatActivity {
 
                     //might need to change the icons around here
                     homeImage.setImageResource(R.drawable.home_icon);
-                    chatImage.setImageResource(R.drawable.support);
+                    chatImage.setImageResource(R.drawable.chat_icon);
                     notificationImage.setImageResource(R.drawable.notifications);
                     profileImage.setImageResource(R.drawable.account);
 
