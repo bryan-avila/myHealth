@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,8 +32,6 @@ public class SignUpActivity extends AppCompatActivity {
         passwordConfirm = findViewById(R.id.passwordConfirm);
         signupButton = findViewById(R.id.signupButton);
         phoneNumber = findViewById(R.id.phoneNumber);
-
-        phoneNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher()); // Phone number auto-format while inputting
 
         firstName.setHorizontallyScrolling(true); // Fixes line break issue
         lastName.setHorizontallyScrolling(true); // "
@@ -74,7 +71,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
     private Boolean validateInfo (String firstNameSignUp, String lastNameSignUp, String emailSignUp, String passwordSignUp, String passwordSignUpConfirm, String phoneSignUp) {
-        phoneSignUp = phoneSignUp.replaceAll("\\D+", ""); // Removes (character != number) from phoneSignUp
         if (firstNameSignUp.length() == 0) {
             firstName.requestFocus();
             firstName.setError("FIELD CANNOT BE EMPTY");
@@ -110,9 +106,9 @@ public class SignUpActivity extends AppCompatActivity {
             phoneNumber.setError("FIELD CANNOT BE EMPTY");
             return false;
         }
-        else if (phoneSignUp.length() != 10) {
+        else  if (!phoneSignUp.matches("^[+]?[0-9]{10}$")) { //WOULD THIS MESS WITH FORMATING OF PHONE NUMBER WE WANT
             phoneNumber.requestFocus();
-            phoneNumber.setError("INVALID NUMBER");
+            phoneNumber.setError("INVALID PHONE NUMBER");
             return false;
         }
         else if (passwordSignUp.length() < 5) {
