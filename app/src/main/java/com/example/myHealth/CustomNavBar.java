@@ -2,20 +2,31 @@ package com.example.myHealth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CustomNavBar extends AppCompatActivity {
 
-    //Number of selected tab. We have 5 so value should lie between 1-5
+    //Number of selected tab. We have 5 so value should lie between 1-5 Home page is selected by default
     private int selectedTab = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_nav_bar);
+
+
+        //Add intent here to start application
+            Intent intent2 = new Intent(CustomNavBar.this, SplashScreen.class);
+            startActivity(intent2);
+
 
         final LinearLayout homeLayout = findViewById(R.id.homeLayout);
         final LinearLayout appointmentLayout = findViewById(R.id.appointmentLayout);
@@ -39,12 +50,75 @@ public class CustomNavBar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //check if home is already selected
+                if (selectedTab != 1) {
+                    //unselect other tabs expect home tab
+                    appointmenttxt.setVisibility(View.GONE);
+                    chattxt.setText(View.GONE);
+                    notificationtxt.setVisibility(View.GONE);
+                    profiletxt.setVisibility(View.GONE);
+
+                    //might need to change the icons around here
+                    appointmentImage.setImageResource(R.drawable.make_appoint);
+                    chatImage.setImageResource(R.drawable.support);
+                    notificationImage.setImageResource(R.drawable.notifications);
+                    profileImage.setImageResource(R.drawable.account);
+
+                    //Deprecated thing here
+                    //appointmentLayout.setBackgroundColor(getResources().getColor(ContextCompat.getColor(this, R.color.transparent));
+
+                    //Select home tab
+                    hometxt.setVisibility(View.VISIBLE);
+                    homeImage.setImageResource(R.drawable.home_icon_selected);
+                    homeLayout.setBackgroundResource(R.drawable.home_button_back);
+
+                    //Create animation
+                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f, 1.0f,1f, 1f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+                    scaleAnimation.setDuration(200);
+                    scaleAnimation.setFillAfter(true);
+                    homeLayout.startAnimation(scaleAnimation);
+
+                    //Set 1st tab as selected
+                    selectedTab = 1;
+                }
+
             }
         });
 
         appointmentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //check if appointment is already selected
+                if (selectedTab != 1) {
+                    //unselect other tabs expect appointment tab
+                    hometxt.setVisibility(View.GONE);
+                    chattxt.setText(View.GONE);
+                    notificationtxt.setVisibility(View.GONE);
+                    profiletxt.setVisibility(View.GONE);
+
+                    //might need to change the icons around here
+                    homeImage.setImageResource(R.drawable.home_icon);
+                    chatImage.setImageResource(R.drawable.support);
+                    notificationImage.setImageResource(R.drawable.notifications);
+                    profileImage.setImageResource(R.drawable.account);
+
+                    //Deprecated thing here
+                    //appointmentLayout.setBackgroundColor(getResources().getColor(ContextCompat.getColor(this, R.color.transparent));
+
+                    //Select appointment tab
+                    appointmenttxt.setVisibility(View.VISIBLE);
+                    appointmentImage.setImageResource(R.drawable.make_appoint_selected);
+                    appointmentLayout.setBackgroundResource(R.drawable.appointment_button_back);
+
+                    //Create animation
+                    ScaleAnimation scaleAnimation = new ScaleAnimation(0.8f, 1.0f,1f, 1f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+                    scaleAnimation.setDuration(200);
+                    scaleAnimation.setFillAfter(true);
+                    homeLayout.startAnimation(scaleAnimation);
+
+                    //Set 1st tab as selected
+                    selectedTab = 1;
+                }
 
             }
         });
