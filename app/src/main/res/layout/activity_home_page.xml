@@ -52,7 +52,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Appointments"
+                    android:text="myAppointments"
                     android:layout_gravity="center_horizontal"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -86,7 +86,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Appointments"
+                    android:text="myMedication"
                     android:layout_gravity="center_horizontal"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -114,13 +114,13 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/make_appoint"
+                    android:src="@drawable/medi_hist"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Appointments"
+                    android:text="Medical History"
                     android:layout_gravity="center_horizontal"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -148,13 +148,13 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/make_appoint"
+                    android:src="@drawable/search"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Appointments"
+                    android:text="Search"
                     android:layout_gravity="center_horizontal"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -182,13 +182,13 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/make_appoint"
+                    android:src="@drawable/settings"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Appointments"
+                    android:text="Settings"
                     android:layout_gravity="center_horizontal"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -216,13 +216,13 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/make_appoint"
+                    android:src="@drawable/support"
                     android:layout_gravity="center_horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Appointments"
+                    android:text="Chat with a Doctor"
                     android:layout_gravity="center_horizontal"
                     android:textSize="18sp"
                     android:textStyle="bold"
