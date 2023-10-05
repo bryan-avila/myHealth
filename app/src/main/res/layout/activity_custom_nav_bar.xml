@@ -5,7 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightblue"
     tools:context=".CustomNavBar">
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_view"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Welcome to myHealth!"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +84,7 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/make_appoint"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"/>
+                android:layout_marginStart="10dp"/>
 
             <TextView
                 android:visibility="gone"
@@ -97,7 +114,7 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/support"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"/>
+                android:layout_marginStart="10dp"/>
 
             <TextView
                 android:visibility="gone"
@@ -127,7 +144,7 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/notifications"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"/>
+                android:layout_marginStart="10dp"/>
 
             <TextView
                 android:visibility="gone"
@@ -157,7 +174,7 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/account"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"/>
+                android:layout_marginStart="10dp"/>
 
             <TextView
                 android:visibility="gone"
