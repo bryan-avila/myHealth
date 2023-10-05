@@ -76,19 +76,6 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/username"
-                android:inputType="text"
-                android:maxLines="1"
-                android:background="@drawable/custom_edittext"
-                android:hint="Username"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="5dp"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
                 android:id="@+id/phoneNumber"
                 android:background="@drawable/custom_edittext"
                 android:hint="Mobile Number"
@@ -97,6 +84,21 @@
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="5dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/username"
+                android:inputType="text"
+                android:maxLines="1"
+                android:background="@drawable/custom_edittext"
+                android:hint="Username"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/baseline_person_24"
+                android:drawablePadding="8dp"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -110,7 +112,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="5dp"/>
 
             <EditText
                 android:layout_width="match_parent"
