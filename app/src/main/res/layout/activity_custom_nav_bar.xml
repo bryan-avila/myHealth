@@ -14,6 +14,27 @@
         android:layout_height="100dp"
         android:background="@drawable/bg_view"/>
 
+
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/searchbar_custom_text"
+        android:drawableEnd="@drawable/search"
+        android:ems="10"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:elevation="30dp"
+        android:padding="20dp"
+        android:textSize="18sp"
+        android:textColor="#7a7a7a"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:hint="Searching for..."
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -40,6 +61,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/homeLayout"
             android:background="@drawable/home_button_back"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -50,6 +72,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/homeImage"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -58,6 +81,7 @@
                 android:layout_marginStart="20dp"/>
 
             <TextView
+                android:id="@+id/hometxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -69,6 +93,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/appointmentLayout"
             android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -79,6 +104,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/appointmentImage"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -87,6 +113,7 @@
                 android:layout_marginStart="10dp"/>
 
             <TextView
+                android:id="@+id/appointmenttxt"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,6 +126,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/chatLayout"
             android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -109,6 +137,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/chatImage"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -117,6 +146,7 @@
                 android:layout_marginStart="10dp"/>
 
             <TextView
+                android:id="@+id/chattxt"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,6 +159,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/notificationLayout"
             android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -139,6 +170,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/notificatioImage"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -147,6 +179,7 @@
                 android:layout_marginStart="10dp"/>
 
             <TextView
+                android:id="@+id/notificationtxt"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,6 +192,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/profileLayout"
             android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -169,6 +203,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/profileImage"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -177,6 +212,7 @@
                 android:layout_marginStart="10dp"/>
 
             <TextView
+                android:id="@+id/profiletxt"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
