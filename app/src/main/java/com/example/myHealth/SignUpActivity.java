@@ -1,10 +1,12 @@
 package com.example.myHealth;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +14,16 @@ import android.widget.Toast;
 import android.app.AlertDialog.Builder;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -25,6 +36,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
 
+        FirebaseFirestore db = myFirestore.getInstance();
+
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         email = findViewById(R.id.email);
@@ -33,8 +46,6 @@ public class SignUpActivity extends AppCompatActivity {
         passwordConfirm = findViewById(R.id.passwordConfirm);
         signupButton = findViewById(R.id.signupButton);
         phoneNumber = findViewById(R.id.phoneNumber);
-
-        phoneNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher()); // Phone number auto-format while inputting
 
         firstName.setHorizontallyScrolling(true); // Fixes line break issue
         lastName.setHorizontallyScrolling(true); // "
@@ -48,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String firstNameSignUp = firstName.getText().toString();
                 String lastNameSignUp = lastName.getText().toString();
                 String emailSignUp = email.getText().toString();
+                String usernameSignUp = username.getText().toString();
                 String passwordSignUp = passwordEntered.getText().toString();
                 String passwordSignUpConfirm = passwordConfirm.getText().toString();
                 String phoneSignUp = phoneNumber.getText().toString();
@@ -67,6 +79,30 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                             })
                             .show();
+                    // Create a new user with a first and last name
+                    Map<String, Object> user = new HashMap<>();
+                        user.put("firstName", firstNameSignUp);
+                        user.put("lastName", lastNameSignUp);
+                        user.put("Email", emailSignUp);
+                        user.put("Username", usernameSignUp);
+                        user.put("password", passwordSignUp);
+                        user.put("phone", phoneSignUp);
+
+                    // Add a new document with a generated ID
+                    db.collection("users")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                }
+                            });
                 } else {
                     Toast.makeText(SignUpActivity.this, "SIGN UP FAILED. TRY AGAIN", Toast.LENGTH_SHORT).show();
                 }
@@ -74,7 +110,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
     private Boolean validateInfo (String firstNameSignUp, String lastNameSignUp, String emailSignUp, String passwordSignUp, String passwordSignUpConfirm, String phoneSignUp) {
-        phoneSignUp = phoneSignUp.replaceAll("\\D+", ""); // Removes (character != number) from phoneSignUp
         if (firstNameSignUp.length() == 0) {
             firstName.requestFocus();
             firstName.setError("FIELD CANNOT BE EMPTY");
@@ -110,9 +145,9 @@ public class SignUpActivity extends AppCompatActivity {
             phoneNumber.setError("FIELD CANNOT BE EMPTY");
             return false;
         }
-        else if (phoneSignUp.length() != 10) {
+        else  if (!phoneSignUp.matches("^[+]?[0-9]{10}$")) { //WOULD THIS MESS WITH FORMATING OF PHONE NUMBER WE WANT
             phoneNumber.requestFocus();
-            phoneNumber.setError("INVALID NUMBER");
+            phoneNumber.setError("INVALID PHONE NUMBER");
             return false;
         }
         else if (passwordSignUp.length() < 5) {
