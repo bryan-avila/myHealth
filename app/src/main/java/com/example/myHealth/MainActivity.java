@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    EditText username;
+    EditText email;
     EditText password;
     Button loginButton;
     Button signUpBtn;
@@ -22,17 +22,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        username = findViewById(R.id.username);
+        email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
         signUpBtn = findViewById(R.id.registerButton);
 
-        username.setHorizontallyScrolling(true);
+        email.setHorizontallyScrolling(true);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (username.getText().toString().equals("username") && password.getText().toString().equals("1234")) {
+                if (email.getText().toString().equals("username@gmail.com") && password.getText().toString().equals("1234")) {
                     Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                     setContentView(R.layout.activity_custom_nav_bar);
                 } else {

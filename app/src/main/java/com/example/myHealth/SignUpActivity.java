@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText firstName, lastName, email, username, passwordEntered, passwordConfirm, phoneNumber;
+    EditText firstName, lastName, email, passwordEntered, passwordConfirm, phoneNumber;
     Button signupButton;
     AlertDialog.Builder builder;
 
@@ -42,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
         email = findViewById(R.id.email);
-        username = findViewById(R.id.username);
         passwordEntered = findViewById(R.id.passwordEntered);
         passwordConfirm = findViewById(R.id.passwordConfirm);
         signupButton = findViewById(R.id.signupButton);
@@ -52,7 +51,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         firstName.setHorizontallyScrolling(true); // Fixes line break issue
         lastName.setHorizontallyScrolling(true); // "
-        username.setHorizontallyScrolling(true); // "
 
         builder = new AlertDialog.Builder(this);
 
@@ -62,7 +60,6 @@ public class SignUpActivity extends AppCompatActivity {
                 String firstNameSignUp = firstName.getText().toString();
                 String lastNameSignUp = lastName.getText().toString();
                 String emailSignUp = email.getText().toString();
-                String usernameSignUp = username.getText().toString();
                 String passwordSignUp = passwordEntered.getText().toString();
                 String passwordSignUpConfirm = passwordConfirm.getText().toString();
                 String phoneSignUp = phoneNumber.getText().toString();
@@ -87,7 +84,6 @@ public class SignUpActivity extends AppCompatActivity {
                         user.put("firstName", firstNameSignUp);
                         user.put("lastName", lastNameSignUp);
                         user.put("Email", emailSignUp);
-                        user.put("Username", usernameSignUp);
                         user.put("password", passwordSignUp);
                         user.put("phone", phoneSignUp);
 
