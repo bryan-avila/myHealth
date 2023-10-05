@@ -18,8 +18,13 @@ import android.app.AlertDialog.Builder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -37,7 +42,9 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
 
-        FirebaseFirestore db = myFirestore.getInstance();
+        //gets instances of database connection and user authentication
+        FirebaseFirestore db = myFirestore.getDBInstance();
+        FirebaseAuth mAuth = myFirestore.getmAuthInstance();
 
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
@@ -68,7 +75,6 @@ public class SignUpActivity extends AppCompatActivity {
                 boolean check = validateInfo (firstNameSignUp, lastNameSignUp, emailSignUp, passwordSignUp, passwordSignUpConfirm, phoneSignUp);
 
                 if (check) {
-                    // ADD ACCOUNT DETAILS TO DATABASE HERE !!!!!!!!!!!!!
                     builder.setTitle("Registration Complete! ✅")
                             .setMessage("You may now login using your account credentials.")
                             .setCancelable(true)
@@ -79,6 +85,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                             })
                             .show();
+                    //adds account to database
                     // Create a new user with a first and last name
                     Map<String, Object> user = new HashMap<>();
                         user.put("firstName", firstNameSignUp);
@@ -100,6 +107,24 @@ public class SignUpActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Log.w(TAG, "Error adding document", e);
+                                }
+                            });
+                    //uses firebase user authentication to save user login info
+                    mAuth.createUserWithEmailAndPassword(email.getText().toString(), passwordEntered.getText().toString())
+                            .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "createUserWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        setContentView(R.layout.activity_custom_nav_bar);
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             });
                 } else {
