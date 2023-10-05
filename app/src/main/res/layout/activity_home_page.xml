@@ -24,6 +24,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="-80dp"
+        android:layout_marginBottom="40dp"
         android:layout_below="@id/top_view">
 
         <androidx.cardview.widget.CardView

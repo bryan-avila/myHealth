@@ -6,6 +6,8 @@
     <color name="redish">#CA726B</color>
     <color name ="blue">#0000FF</color>
     <color name="grey">#A2A2A2</color>
-    <color name="lightpurple">#C1C7FF</color>
+    <color name="lightpurple">#B1B8F6</color>
+    <color name="lightpurple2">#C1C7FF</color>
     <color name="lightgrey">#a6a6a6</color>
+    <color name="lightblue">#D7F4FF</color>
 </resources>
