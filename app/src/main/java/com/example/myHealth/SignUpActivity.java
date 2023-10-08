@@ -64,6 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String firstNameSignUp = firstName.getText().toString();
                 String lastNameSignUp = lastName.getText().toString();
                 String emailSignUp = email.getText().toString();
@@ -81,7 +82,8 @@ public class SignUpActivity extends AppCompatActivity {
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    finish();
+                                    // Don't need this finish() since it will just load the next view twice
+                                    //finish();
                                 }
                             })
                             .show();
@@ -118,7 +120,9 @@ public class SignUpActivity extends AppCompatActivity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        setContentView(R.layout.activity_custom_nav_bar);
+
+                                        // Upon registratiom send users to do medical history questions
+                                        setContentView(R.layout.activity_first_time_registration);
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());

@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 if (email.getText().toString().equals("username@gmail.com") && password.getText().toString().equals("1234")) {
                     Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                     setContentView(R.layout.activity_custom_nav_bar);
-                } else {
+                } /*else {
                     Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
 
@@ -88,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            setContentView(R.layout.activity_custom_nav_bar);
+            // If you log in successfully once, it stays logged in even after you delete a user from the Firebase console.
+            // Work around this issue by preventing this if statement
+       //     setContentView(R.layout.activity_custom_nav_bar);
         }
     }
 }
