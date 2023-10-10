@@ -11,4 +11,5 @@
     <color name="lightgrey">#a6a6a6</color>
     <color name="lightblue">#D7F4FF</color>
     <color name="greenish">#52DEA0</color>
+    <color name="transparent">#FFFFFF</color>
 </resources>

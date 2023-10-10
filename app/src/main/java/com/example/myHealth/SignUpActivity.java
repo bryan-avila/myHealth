@@ -93,7 +93,6 @@ public class SignUpActivity extends AppCompatActivity {
                         user.put("firstName", firstNameSignUp);
                         user.put("lastName", lastNameSignUp);
                         user.put("Email", emailSignUp);
-                        user.put("password", passwordSignUp);
                         user.put("phone", phoneSignUp);
 
                     // Add a new document with a generated ID
@@ -121,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         Log.d(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
 
-                                        // Upon registratiom send users to do medical history questions
+                                        // Upon registration send users to do medical history questions
                                         setContentView(R.layout.activity_first_time_registration);
                                     } else {
                                         // If sign in fails, display a message to the user.
