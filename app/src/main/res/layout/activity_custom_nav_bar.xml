@@ -69,7 +69,8 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/account"
             android:layout_marginLeft="8dp"
-            android:backgroundTint="@color/transparent"
+            android:backgroundTint="@color/white"
+
             />
     </LinearLayout>
 
