@@ -52,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    setContentView(R.layout.activity_custom_nav_bar);
+                                    Intent intent = new Intent(MainActivity.this, CustomNavBar.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(intent);
+                                    finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -61,12 +64,6 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                if (email.getText().toString().equals("username@gmail.com") && password.getText().toString().equals("1234")) {
-                    Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
-                    setContentView(R.layout.activity_custom_nav_bar);
-                } /*else {
-                    Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_SHORT).show();
-                }*/
             }
         });
 

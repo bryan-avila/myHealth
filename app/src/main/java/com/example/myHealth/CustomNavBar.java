@@ -13,15 +13,28 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class CustomNavBar extends AppCompatActivity {
 
     //Number of selected tab. We have 5 so value should lie between 1-5 Home page is selected by default
     private int selectedTab = 1;
+    TextView dateTimeDisplay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_nav_bar);
 
+        String dateTime;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+
+        dateTimeDisplay = (TextView) findViewById(R.id.text_date_display);
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss aaa z");
+        dateTime = simpleDateFormat.format(calendar.getTime()).toString();
+        dateTimeDisplay.setText(dateTime);
 
         //Add intent here to start application
             Intent intent2 = new Intent(CustomNavBar.this, SplashScreen.class);
@@ -98,7 +111,7 @@ public class CustomNavBar extends AppCompatActivity {
 
                     //might need to change the icons around here
                     homeImage.setImageResource(R.drawable.home_icon);
-                    chatImage.setImageResource(R.drawable.chat_icon);
+                    chatImage.setImageResource(R.drawable.chat_icon );
                     notificationImage.setImageResource(R.drawable.notifications);
                     profileImage.setImageResource(R.drawable.account);
 

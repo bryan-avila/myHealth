@@ -15,8 +15,20 @@
         android:background="@drawable/bg_view"/>
 
     <TextView
+        android:id="@+id/text_date_display"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="140dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="Welcome to myHealth!"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
@@ -39,31 +51,169 @@
         android:background="#FFFFFF"
         >
 
-        <Button
-            android:id="@+id/home_button"
-            android:layout_width="90dp"
+        <LinearLayout
+            android:id="@+id/homeLayout"
+            android:background="@drawable/home_button_back"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:drawableLeft="@drawable/home_icon_selected"
-            />
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1">
 
-        <Button
-            android:id="@+id/appointment_button"
-            android:layout_width="90dp"
+            <ImageView
+                android:id="@+id/homeImage"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/home_icon_selected"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/hometxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:text="Home"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/appointmentLayout"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:drawableLeft="@drawable/make_appoint_selected"
-            />
-        <Button
-            android:id="@+id/chat_button"
-            android:layout_width="90dp"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/appointmentImage"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/make_appoint"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/appointmenttxt"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:text="Appointments"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/chatLayout"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:drawableLeft="@drawable/chat_icon_selected"
-            />
-        <Button
-            android:id="@+id/profile_button"
-            android:layout_width="90dp"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/chatImage"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/chat_icon"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/chattxt"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:text="Chat"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/notificationLayout"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:drawableLeft="@drawable/account_selected"
-            />
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/notificatioImage"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/notifications"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/notificationtxt"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:text="Notifications"
+                android:textColor="@color/purple"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profileLayout"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/account"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/profiletxt"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:text="Profile"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
 
