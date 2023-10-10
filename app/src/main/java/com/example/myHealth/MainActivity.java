@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
             // If you log in successfully once, it stays logged in even after you delete a user from the Firebase console.
             // Work around this issue by preventing this if statement
-            setContentView(R.layout.activity_custom_nav_bar);
+            //setContentView(R.layout.activity_custom_nav_bar);
         }
     }
 }
