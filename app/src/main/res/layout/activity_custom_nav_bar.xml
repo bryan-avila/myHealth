@@ -14,27 +14,6 @@
         android:layout_height="100dp"
         android:background="@drawable/bg_view"/>
 
-
-    <EditText
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/searchbar_custom_text"
-        android:drawableEnd="@drawable/search"
-        android:ems="10"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:elevation="30dp"
-        android:padding="20dp"
-        android:textSize="18sp"
-        android:textColor="#7a7a7a"
-        android:inputType="text"
-        android:maxLines="1"
-        android:textStyle="bold"
-        android:hint="Searching for..."
-        />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
