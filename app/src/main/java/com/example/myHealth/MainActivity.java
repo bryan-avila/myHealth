@@ -44,29 +44,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth mAuth = myFirestore.getmAuthInstance();
-                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    setContentView(R.layout.activity_custom_nav_bar);
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(MainActivity.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                String newEmail = email.getText().toString();
+                String newPassword = password.getText().toString();
+                if (newEmail != null && newPassword != null) {
+                    mAuth.signInWithEmailAndPassword(newEmail, newPassword)
+                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        setContentView(R.layout.activity_custom_nav_bar);
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Toast.makeText(MainActivity.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
-                if (email.getText().toString().equals("username@gmail.com") && password.getText().toString().equals("1234")) {
-                    Toast.makeText(MainActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
-                    setContentView(R.layout.activity_custom_nav_bar);
-                } /*else {
-                    Toast.makeText(MainActivity.this,"Login Failed", Toast.LENGTH_SHORT).show();
-                }*/
+                            });
+                }
             }
         });
 
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
             // If you log in successfully once, it stays logged in even after you delete a user from the Firebase console.
             // Work around this issue by preventing this if statement
-       //     setContentView(R.layout.activity_custom_nav_bar);
+            setContentView(R.layout.activity_custom_nav_bar);
         }
     }
 }
