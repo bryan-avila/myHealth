@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/home_icon"
             android:backgroundTint="@color/transparent"
+            android:layout_marginLeft="15dp"
             />
 
         <Button
@@ -52,15 +53,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/make_appoint"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="15dp"
             android:backgroundTint="@color/transparent"
             />
         <Button
-            android:id="@+id/chat_button"
+            android:id="@+id/medical_history_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/chat_icon"
-            android:layout_marginLeft="8dp"
+            android:drawableLeft="@drawable/medi_hist"
+            android:layout_marginLeft="15dp"
             android:backgroundTint="@color/transparent"
             />
         <Button
@@ -68,7 +69,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/account"
-            android:layout_marginLeft="8dp"
             android:backgroundTint="@color/transparent"
             />
     </LinearLayout>
