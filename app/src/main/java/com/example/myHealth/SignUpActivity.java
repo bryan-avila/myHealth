@@ -93,7 +93,6 @@ public class SignUpActivity extends AppCompatActivity {
                         user.put("firstName", firstNameSignUp);
                         user.put("lastName", lastNameSignUp);
                         user.put("Email", emailSignUp);
-                        user.put("password", passwordSignUp);
                         user.put("phone", phoneSignUp);
 
                     // Add a new document with a generated ID

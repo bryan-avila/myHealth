@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class CustomNavBar extends AppCompatActivity {
 
     //Number of selected tab. We have 5 so value should lie between 1-5 Home page is selected by default
@@ -45,6 +47,8 @@ public class CustomNavBar extends AppCompatActivity {
         final TextView chattxt = findViewById(R.id.chattxt);
         final TextView notificationtxt = findViewById(R.id.notificationtxt);
         final TextView profiletxt = findViewById(R.id.profiletxt);
+
+        final Button LogoutButton = findViewById(R.id.LogoutButton);
 
         homeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +145,22 @@ public class CustomNavBar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+
+        LogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+                mAuth.getInstance().signOut();
+
+                // Start the LoginActivity (or any other activity you want to go to)
+                Intent intent = new Intent(CustomNavBar.this, MainActivity.class);
+                startActivity(intent);
+
+                // Optionally, finish the current activity to prevent the user from going back to it
+                finish();
             }
         });
 

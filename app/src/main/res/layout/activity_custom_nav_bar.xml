@@ -35,6 +35,16 @@
         android:hint="Searching for..."
         />
 
+
+    <Button
+        android:id="@+id/LogoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:visibility="visible"
+        android:text="Logout" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -225,5 +235,6 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
 </RelativeLayout>
