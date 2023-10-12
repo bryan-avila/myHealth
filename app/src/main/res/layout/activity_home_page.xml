@@ -9,6 +9,7 @@
     android:background="@drawable/home_page_back_2">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -40,10 +41,9 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
-        android:layout_marginTop="250dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp">
+        android:layout_centerVertical="true">
 
         <TextView
             android:layout_width="match_parent"
