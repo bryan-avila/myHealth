@@ -34,13 +34,9 @@ public class CustomNavBar extends AppCompatActivity {
 
         dateTimeDisplay = (TextView) findViewById(R.id.text_date_display);
         calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss aaa z");
+        simpleDateFormat = new SimpleDateFormat("MMMM MM, yyyy HH:mm:ss aaa");
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
         dateTimeDisplay.setText(dateTime);
-
-        //Add intent here to start application
-            Intent intent2 = new Intent(CustomNavBar.this, SplashScreen.class);
-            startActivity(intent2);
 
 
         final LinearLayout homeLayout = findViewById(R.id.homeLayout);
