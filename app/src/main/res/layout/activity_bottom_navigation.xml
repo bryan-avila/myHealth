@@ -16,4 +16,13 @@
         app:itemRippleColor="@color/lightpurple"
         app:itemIconTint="@color/icons_color"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/lightblue"
+        android:drawableLeft="@drawable/notifications"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="5dp"/>
+
+
 </RelativeLayout>
