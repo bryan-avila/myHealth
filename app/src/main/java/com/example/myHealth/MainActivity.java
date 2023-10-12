@@ -18,7 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     EditText email;
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent intent = new Intent(MainActivity.this, bottom_navigation.class);
+                                    Intent intent = new Intent(MainActivity.this, home_page.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     startActivity(intent);
                                     finish();
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         if(currentUser != null){
             // If you log in successfully once, it stays logged in even after you delete a user from the Firebase console.
             // Work around this issue by preventing this if statement
-            Intent intent = new Intent(MainActivity.this, bottom_navigation.class);
+            Intent intent = new Intent(MainActivity.this, home_page.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
             finish();
