@@ -1,13 +1,16 @@
 package com.example.myHealth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class home_page extends AppCompatActivity {
@@ -20,7 +23,30 @@ public class home_page extends AppCompatActivity {
         //Adding tab functionality to bottom navigation tab
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        bottomNavigationView.setSelectedItemId(R.id.homeId);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch (id) {
+                    //check id
+                }
+                return false;
+            }
+        });
+
+        //Set home as selected
+        /*bottomNavigationView.setSelectedItemId(R.id.homeId);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                }
+                return false;
+            }
+        });*/
 
 
 
