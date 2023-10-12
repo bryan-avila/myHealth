@@ -19,16 +19,7 @@
             android:name=".FirstTimeRegistration"
             android:exported="false" />
         <activity
-            android:name=".FinalHomePage"
-            android:exported="false" />
-        <activity
-            android:name=".CustomNavBar"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomePage"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
