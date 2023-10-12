@@ -13,6 +13,18 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".medical_records_page"
+            android:exported="false" />
+        <activity
+            android:name=".resources_page"
+            android:exported="false" />
+        <activity
+            android:name=".appointments_page"
+            android:exported="false" />
+        <activity
+            android:name=".profile_page"
+            android:exported="false" />
+        <activity
             android:name=".home_page"
             android:exported="false" />
         <activity
