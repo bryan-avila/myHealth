@@ -13,6 +13,9 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".bottom_navigation"
+            android:exported="false" />
+        <activity
             android:name=".FirstTimeRegistration"
             android:exported="false" />
         <activity
