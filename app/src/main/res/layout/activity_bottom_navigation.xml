@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bottom_navigation"
+    tools:context=".home_page"
     android:background="@drawable/home_page_back_2">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -14,7 +14,8 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation_items"
         app:itemRippleColor="@color/lightpurple"
-        app:itemIconTint="@color/icons_color"/>
+        app:itemIconTint="@color/icons_color"
+        app:itemTextColor="@color/lightpurple"/>
 
     <Button
         android:layout_width="wrap_content"

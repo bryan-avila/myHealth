@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class bottom_navigation extends AppCompatActivity {
+public class home_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class bottom_navigation extends AppCompatActivity {
                 mAuth.signOut();
 
                 // Start the LoginActivity (or any other activity you want to go to)
-                Intent intent = new Intent(bottom_navigation.this, MainActivity.class);
+                Intent intent = new Intent(home_page.this, MainActivity.class);
                 startActivity(intent);
 
                 // Optionally, finish the current activity to prevent the user from going back to it
