@@ -36,6 +36,14 @@
         android:textSize="30dp"
         android:textColor="@color/white"/>
 
+    <Button
+        android:id="@+id/LogoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Button" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

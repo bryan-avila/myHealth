@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -58,6 +60,24 @@ public class CustomNavBar extends AppCompatActivity {
         final TextView chattxt = findViewById(R.id.chattxt);
         final TextView notificationtxt = findViewById(R.id.notificationtxt);
         final TextView profiletxt = findViewById(R.id.profiletxt);
+
+        final Button LogoutButton = findViewById(R.id.LogoutButton);
+
+
+        LogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+                mAuth.signOut();
+
+                // Start the LoginActivity (or any other activity you want to go to)
+                Intent intent = new Intent(CustomNavBar.this, MainActivity.class);
+                startActivity(intent);
+
+                // Optionally, finish the current activity to prevent the user from going back to it
+                finish();
+            }
+        });
 
         homeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
