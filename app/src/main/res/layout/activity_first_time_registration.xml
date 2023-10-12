@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,28 +15,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="0dp"
             android:background="@drawable/splashback"
+            android:padding="0sp"
             tools:context=".FirstTimeRegistration">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:background="@drawable/custom_edittext"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="30dp"
-                android:background="@drawable/custom_edittext">
+                app:cardElevation="30dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Enter Your Basic Medical History:"
-                        android:textSize="20sp" />
+                        android:text="Enter Your Basic Medical History"
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:padding="5sp"/>
 
 
                     <LinearLayout
@@ -48,60 +49,68 @@
 
                         <EditText
                             android:id="@+id/edit_text_height_in_feet"
-                            android:hint="Height(Feet)"
-                            android:inputType="number"
-                            android:maxLines="1"
-                            android:maxLength="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:hint="Height (Feet)"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:maxLines="1" />
 
                         <EditText
                             android:id="@+id/edit_text_height_in_inches"
-                            android:hint="Height(Inches)"
-                            android:inputType="number"
-                            android:maxLines="1"
-                            android:maxLength="2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
-
+                            android:layout_weight="1"
+                            android:hint="Height (Inches)"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:maxLines="1" />
                     </LinearLayout>
 
-
-                    <EditText
-                        android:id="@+id/edit_text_age"
-                        android:hint="Age"
-                        android:inputType="number"
-                        android:maxLength="3"
-                        android:maxLines="1"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/edit_text_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:paddingEnd="40sp"
+                            android:hint="Age"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:maxLines="1" />
 
 
-                    <EditText
-                        android:id="@+id/edit_text_weight"
-                        android:hint="Weight"
-                        android:inputType="number"
-                        android:maxLength="3"
-                        android:maxLines="1"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        <EditText
+                            android:id="@+id/edit_text_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:paddingEnd="40sp"
 
-                    <EditText
-                        android:id="@+id/edit_text_blood_type"
-                        android:hint="Blood Type"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:maxLength="2"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                            android:hint="Weight (lbs)"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:maxLines="1" />
+
+                        <EditText
+                            android:id="@+id/edit_text_blood_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:hint="Blood Type"
+                            android:inputType="text"
+                            android:maxLength="1"
+                            android:maxLines="1" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -110,28 +119,27 @@
 
                         <CheckBox
                             android:id="@+id/check_box_smoke"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Do you smoke?" />
 
                         <CheckBox
                             android:id="@+id/check_box_alcohol"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Do you drink alcohol?" />
 
                         <CheckBox
                             android:id="@+id/check_box_overseasTravel"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Have you traveled overseas?" />
-
                     </LinearLayout>
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="286dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
