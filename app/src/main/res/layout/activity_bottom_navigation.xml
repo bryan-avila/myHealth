@@ -21,8 +21,17 @@
         android:layout_height="50dp"
         android:backgroundTint="@color/lightblue"
         android:drawableLeft="@drawable/notifications"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/LogoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="310dp"
+        android:text="Logout"
+        android:backgroundTint="@color/purple"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -47,6 +56,5 @@
             android:layout_marginTop="15dp"/>
 
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>
