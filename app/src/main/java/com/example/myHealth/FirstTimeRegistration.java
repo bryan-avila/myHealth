@@ -18,3 +18,7 @@ public class FirstTimeRegistration extends AppCompatActivity {
         setContentView(R.layout.activity_first_time_registration);
     }
 }
+
+
+
+
