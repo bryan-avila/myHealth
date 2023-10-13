@@ -32,9 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="310dp"
+        android:layout_marginLeft="305dp"
         android:text="Logout"
-        android:backgroundTint="@color/purple"/>
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple"
+        android:backgroundTint="@color/lightblue"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

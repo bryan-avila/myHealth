@@ -7,7 +7,7 @@
 
     <item android:id="@+id/appointmentId"
         android:icon="@drawable/make_appoint"
-        android:title="Appointments"/>
+        android:title="Calendar"/>
 
     <item android:id="@+id/medicalHistId"
         android:icon="@drawable/medi_hist"
