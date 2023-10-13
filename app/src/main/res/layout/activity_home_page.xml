@@ -18,6 +18,7 @@
         app:itemIconTint="@color/icons_color"
         app:itemTextColor="@color/lightpurple"/>
 
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"

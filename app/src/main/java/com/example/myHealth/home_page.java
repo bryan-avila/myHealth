@@ -20,38 +20,39 @@ public class home_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        //Adding tab functionality to bottom navigation tab
+        //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set home selected
+        bottomNavigationView.setSelectedItemId(R.id.homeId);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                switch (id) {
-                    //check id
+                //check id
+                if (id == R.id.appointmentId) {
+                    startActivity(new Intent(getApplicationContext(), appointments_page.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (id == R.id.homeId) {
+                    return true;
+                } else if (id == R.id.medicalHistId) {
+                    startActivity(new Intent(getApplicationContext(), medical_records_page.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (id == R.id.resourcesId) {
+                    startActivity(new Intent(getApplicationContext(), resources_page.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (id == R.id.profileId) {
+                    startActivity(new Intent(getApplicationContext(), profile_page.class));
+                    overridePendingTransition(0, 0);
+                    return true;
                 }
                 return false;
             }
         });
-
-        //Set home as selected
-        /*bottomNavigationView.setSelectedItemId(R.id.homeId);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-
-                }
-                return false;
-            }
-        });*/
-
-
-
-
-
 
 
 
