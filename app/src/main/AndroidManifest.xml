@@ -31,6 +31,12 @@
             android:name=".FirstTimeRegistration"
             android:exported="false" />
         <activity
+            android:name=".CaretakerSignUp"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseAccountType"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
