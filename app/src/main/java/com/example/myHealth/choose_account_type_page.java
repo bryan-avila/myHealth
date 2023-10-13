@@ -4,11 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.view.View;
 
 
-public class ChooseAccountType extends AppCompatActivity {
+public class choose_account_type_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,16 +19,18 @@ public class ChooseAccountType extends AppCompatActivity {
     // OnClickerListener for Patient Button. Defined in .XML
     public void onPatientClick(View view)
     {
-        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+        Intent intent = new Intent(getApplicationContext(), sign_up_activity.class);
         startActivity(intent);
+        finish();
     }
 
     // OnClickerListener for Caretaker Button. Defined in .XML
 
     public void onCaretakerClick(View view)
     {
-        Intent intent = new Intent(getApplicationContext(), CaretakerSignUp.class);
+        Intent intent = new Intent(getApplicationContext(), clinic_sign_up.class);
         startActivity(intent);
+        finish();
 
     }
 }

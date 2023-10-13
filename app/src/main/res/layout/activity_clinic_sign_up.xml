@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/signupback"
-    tools:context=".SignUpActivity">
+    tools:context=".sign_up_activity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Care Center Sign Up"
+                android:text="Clinic Sign Up"
                 android:id="@+id/textView_login"
                 android:textSize="35sp"
                 android:textAlignment="center"

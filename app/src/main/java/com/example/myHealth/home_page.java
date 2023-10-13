@@ -65,7 +65,7 @@ public class home_page extends AppCompatActivity {
                 mAuth.signOut();
 
                 // Start the LoginActivity (or any other activity you want to go to)
-                Intent intent = new Intent(home_page.this, MainActivity.class);
+                Intent intent = new Intent(home_page.this, login_page.class);
                 startActivity(intent);
 
                 // Optionally, finish the current activity to prevent the user from going back to it
