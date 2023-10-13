@@ -28,13 +28,19 @@
             android:name=".home_page"
             android:exported="false" />
         <activity
-            android:name=".FirstTimeRegistration"
+            android:name=".first_time_medical_survey_page"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".clinic_sign_up"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".choose_account_type_page"
+            android:exported="false" />
+        <activity
+            android:name=".login_page"
+            android:exported="false" />
+        <activity
+            android:name=".sign_up_activity"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"

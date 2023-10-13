@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class FirstTimeRegistration extends AppCompatActivity {
+public class first_time_medical_survey_page extends AppCompatActivity {
 
     // TO DO:
     // 1. Create collections specific to a user who has recently signed up that will hold all the info
