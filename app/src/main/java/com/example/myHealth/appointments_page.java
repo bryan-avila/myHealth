@@ -31,7 +31,7 @@ public class appointments_page extends AppCompatActivity {
                 if (id == R.id.appointmentId) {
                     return true;
                 } else if (id == R.id.homeId) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class)); //check this line it might be wrong
+                    startActivity(new Intent(getApplicationContext(), home_page.class)); //check this line it might be wrong
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (id == R.id.medicalHistId) {
