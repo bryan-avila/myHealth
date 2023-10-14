@@ -27,7 +27,6 @@ public class login_page extends AppCompatActivity {
 
     // testing 1 2 3
     // testing github yoooo
-    // testing calendar branch yo yo yo!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
