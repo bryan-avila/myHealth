@@ -1,24 +1,48 @@
 package com.example.myHealth;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 
 public class home_page extends AppCompatActivity {
+
+    TextView welcome_user;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private String firstName;
+    private DocumentReference userRef = db.collection("users").document("yg6M7EVOepq8ZzBfQE7j");
+
+    private ListenerRegistration userListener;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        welcome_user = findViewById(R.id.text_view_dashboard);
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -74,4 +98,37 @@ public class home_page extends AppCompatActivity {
             }
         });
     }
+
+    // AUTOMATIC LOADING
+   /* public void onStart()
+    {
+        super.onStart();
+        // Automatically loading
+        // Firestore wants to load things quickly, so it loads in locally before from the cloud
+        // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
+        userListener = userRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+
+                // Error checking
+                if(error != null)
+                {
+                    Toast.makeText(home_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if(documentSnapshot.exists())
+                {
+
+                    String user_firstname = documentSnapshot.getString(firstName);
+                    // This will do the same work as the onLoad method
+                    // But it is done automatically
+                    welcome_user.setText("Hello " + user_firstname);
+
+
+                }
+
+            }
+        });
+    }*/
 }
