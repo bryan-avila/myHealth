@@ -63,7 +63,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dashboard"
+            android:text="(greeting, first name)"
             android:id="@+id/text_view_dashboard"
             android:textSize="20sp"
             android:textAlignment="center"

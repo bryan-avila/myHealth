@@ -28,7 +28,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class home_page extends AppCompatActivity {
-    TextView welcome_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference userRef = db.collection("users").document("yg6M7EVOepq8ZzBfQE7j");
     private ListenerRegistration userListener;
@@ -39,8 +38,6 @@ public class home_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-        welcome_user = findViewById(R.id.text_view_dashboard);
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -131,16 +128,17 @@ public class home_page extends AppCompatActivity {
                     // Set greeting
                     calendar = Calendar.getInstance();
                     int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                    TextView welcome = (TextView) findViewById(R.id.text_view_dashboard);
 
                     String greeting = "null";
                     if (hour >= 5 && hour < 12){
-                        greeting = "Good Morning";
+                        greeting = "Good morning, ";
                     } else if (hour >= 12 && hour < 17){
-                        greeting = "Good Afternoon";
+                        greeting = "Good afternoon, ";
                     } else {
-                        greeting = "Good Evening";
+                        greeting = "Good evening, ";
                     }
-                    welcome_user.setText(greeting + ", " + user_firstname + ".");
+                    welcome.setText(greeting + user_firstname + ".");
                 }
             }
         });
