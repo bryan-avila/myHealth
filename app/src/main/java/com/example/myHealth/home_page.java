@@ -8,13 +8,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class home_page extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
+public class home_page extends AppCompatActivity {
+    TextView dateFormat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +58,15 @@ public class home_page extends AppCompatActivity {
             }
         });
 
+        dateFormat = (TextView) findViewById(R.id.date);
 
-
+        String date;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        date = simpleDateFormat.format(calendar.getTime()).toString();
+        dateFormat.setText(date);
         //Log out button
         final Button LogoutButton = findViewById(R.id.LogoutButton);
 
