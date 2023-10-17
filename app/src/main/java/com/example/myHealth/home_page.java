@@ -14,9 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -30,6 +33,7 @@ import java.util.Calendar;
 public class home_page extends AppCompatActivity {
     TextView welcome_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
     private DocumentReference userRef = db.collection("users").document("yg6M7EVOepq8ZzBfQE7j");
     private ListenerRegistration userListener;
     TextView dateFormat;
@@ -106,9 +110,36 @@ public class home_page extends AppCompatActivity {
     }
 
     // AUTOMATIC LOADING
-   public void onStart()
-    {
-        super.onStart();
+   public void onStart() {
+
+       FirebaseUser currentUser = mAuth.getCurrentUser();
+       if (currentUser != null) {
+           DocumentReference userRef = db.collection("users").document(currentUser.getUid());
+
+           userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+               @Override
+               public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                   if (task.isSuccessful()) {
+                       DocumentSnapshot document = task.getResult();
+                       if (document.exists()) {
+                           // User document exists, retrieve data
+                           String userFirstName = document.getString("firstName");
+                           String userLastName = document.getString("lastName");
+                           String userEmail = document.getString("email");
+                           String userPhone = document.getString("phone");
+                           // Retrieve other user data as needed
+                       } else {
+                           // User document doesn't exist, handle accordingly
+                       }
+                   } else {
+                       // Handle failure to retrieve user document
+                   }
+               }
+           });
+       }
+
+
+       super.onStart();
         // Automatically loading
         // Firestore wants to load things quickly, so it loads in locally before from the cloud
         // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
