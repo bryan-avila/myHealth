@@ -24,13 +24,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class home_page extends AppCompatActivity {
     TextView welcome_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference userRef = db.collection("users").document("yg6M7EVOepq8ZzBfQE7j");
     private ListenerRegistration userListener;
-
-
+    TextView dateFormat;
+    Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +76,15 @@ public class home_page extends AppCompatActivity {
             }
         });
 
+        dateFormat = (TextView) findViewById(R.id.date);
 
+        String date;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("'Today is': MMMM dd, yyyy");
+        date = simpleDateFormat.format(calendar.getTime()).toString();
+        dateFormat.setText(date);
 
         //Log out button
         final Button LogoutButton = findViewById(R.id.LogoutButton);
@@ -112,17 +123,25 @@ public class home_page extends AppCompatActivity {
                     return;
                 }
 
-                if(documentSnapshot.exists())
-                {
-
+                if (documentSnapshot.exists()) {
                     String user_firstname = documentSnapshot.get("firstName").toString();
                     // This will do the same work as the onLoad method
                     // But it is done automatically
-                    welcome_user.setText("Hello " + user_firstname);
 
+                    // Set greeting
+                    calendar = Calendar.getInstance();
+                    int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
+                    String greeting = "null";
+                    if (hour >= 5 && hour < 12){
+                        greeting = "Good Morning";
+                    } else if (hour >= 12 && hour < 17){
+                        greeting = "Good Afternoon";
+                    } else {
+                        greeting = "Good Evening";
+                    }
+                    welcome_user.setText(greeting + ", " + user_firstname + ".");
                 }
-
             }
         });
     }
