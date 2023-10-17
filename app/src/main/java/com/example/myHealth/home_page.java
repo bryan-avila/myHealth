@@ -25,14 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
 public class home_page extends AppCompatActivity {
-
     TextView welcome_user;
-
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    private String firstName;
     private DocumentReference userRef = db.collection("users").document("yg6M7EVOepq8ZzBfQE7j");
-
     private ListenerRegistration userListener;
 
 
@@ -100,7 +95,7 @@ public class home_page extends AppCompatActivity {
     }
 
     // AUTOMATIC LOADING
-   /* public void onStart()
+   public void onStart()
     {
         super.onStart();
         // Automatically loading
@@ -120,7 +115,7 @@ public class home_page extends AppCompatActivity {
                 if(documentSnapshot.exists())
                 {
 
-                    String user_firstname = documentSnapshot.getString(firstName);
+                    String user_firstname = documentSnapshot.get("firstName").toString();
                     // This will do the same work as the onLoad method
                     // But it is done automatically
                     welcome_user.setText("Hello " + user_firstname);
@@ -130,5 +125,5 @@ public class home_page extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 }
