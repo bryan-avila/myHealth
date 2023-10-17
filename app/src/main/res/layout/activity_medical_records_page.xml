@@ -29,6 +29,7 @@
         android:layout_centerVertical="true">
 
         <Button
+            android:id="@+id/records_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My Records"
@@ -40,6 +41,7 @@
             android:layout_marginRight="25dp"/>
 
         <Button
+            android:id="@+id/medications_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medications"
@@ -51,6 +53,7 @@
             android:layout_marginRight="25dp"/>
 
         <Button
+            android:id="@+id/medical_hist_survey_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medical History Survey"
@@ -62,6 +65,7 @@
             android:layout_marginRight="25dp"/>
 
         <Button
+            android:id="@+id/dietary_plans_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My Dietary Plans"
