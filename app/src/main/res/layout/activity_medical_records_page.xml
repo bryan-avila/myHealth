@@ -18,4 +18,61 @@
         app:itemIconTint="@color/icons_color"
         app:itemTextColor="@color/lightpurple"/>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="20dp"
+        android:background="@drawable/custom_edittext"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerVertical="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Records"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medications"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medical History Survey"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Dietary Plans"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+
 </RelativeLayout>

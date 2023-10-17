@@ -31,20 +31,17 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class home_page extends AppCompatActivity {
-    TextView welcome_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
     private DocumentReference userRef = db.collection("users").document("yg6M7EVOepq8ZzBfQE7j");
     private ListenerRegistration userListener;
     TextView dateFormat;
-
+    Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-        welcome_user = findViewById(R.id.text_view_dashboard);
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -154,17 +151,26 @@ public class home_page extends AppCompatActivity {
                     return;
                 }
 
-                if(documentSnapshot.exists())
-                {
-
+                if (documentSnapshot.exists()) {
                     String user_firstname = documentSnapshot.get("firstName").toString();
                     // This will do the same work as the onLoad method
                     // But it is done automatically
-                    welcome_user.setText("Hello " + user_firstname);
 
+                    // Set greeting
+                    calendar = Calendar.getInstance();
+                    int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                    TextView welcome = (TextView) findViewById(R.id.text_view_dashboard);
 
+                    String greeting = "null";
+                    if (hour >= 5 && hour < 12){
+                        greeting = "Good morning, ";
+                    } else if (hour >= 12 && hour < 17){
+                        greeting = "Good afternoon, ";
+                    } else {
+                        greeting = "Good evening, ";
+                    }
+                    welcome.setText(greeting + user_firstname + ".");
                 }
-
             }
         });
     }
