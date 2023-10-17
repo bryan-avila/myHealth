@@ -64,7 +64,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dietary Plans"
+            android:text="My Dietary Plans"
             android:backgroundTint="@color/purple"
             android:textStyle="bold"
             android:textSize="20sp"
