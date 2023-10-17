@@ -24,12 +24,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class home_page extends AppCompatActivity {
     TextView welcome_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference userRef = db.collection("users").document("yg6M7EVOepq8ZzBfQE7j");
     private ListenerRegistration userListener;
-
+    TextView dateFormat;
 
 
     @Override
@@ -73,7 +76,15 @@ public class home_page extends AppCompatActivity {
             }
         });
 
+        dateFormat = (TextView) findViewById(R.id.date);
 
+        String date;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("'Today is': MMMM dd, yyyy");
+        date = simpleDateFormat.format(calendar.getTime()).toString();
+        dateFormat.setText(date);
 
         //Log out button
         final Button LogoutButton = findViewById(R.id.LogoutButton);
