@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class first_time_medical_survey_page extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class first_time_medical_survey_page extends AppCompatActivity {
         setContentView(R.layout.activity_first_time_registration);
     }
 
-    public void onFinishClick()
+    public void onFinishClick(View view)
     {
         Intent intent = new Intent(getApplicationContext(), first_time_sign_up_diet_survey.class);
         startActivity(intent);
