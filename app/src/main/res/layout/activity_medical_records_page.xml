@@ -20,7 +20,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="210dp"
         app:cardCornerRadius="25dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
@@ -53,18 +53,6 @@
             android:layout_marginRight="25dp"/>
 
         <Button
-            android:id="@+id/medical_hist_survey_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Medical History Survey"
-            android:backgroundTint="@color/purple"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="140dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
-
-        <Button
             android:id="@+id/dietary_plans_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +60,7 @@
             android:backgroundTint="@color/purple"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="140dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"/>
 
