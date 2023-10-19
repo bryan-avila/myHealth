@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Clinic Sign Up"
-                android:id="@+id/textView_login"
+                android:id="@+id/text_view_clinic_sign_up_greeting"
                 android:textSize="35sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
@@ -37,35 +37,23 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/edit_text_first_Name"
+                android:id="@+id/edit_text_clinic_name"
                 android:inputType="text"
                 android:maxLines="1"
                 android:background="@drawable/custom_edittext"
-                android:hint="First Name"
+                android:hint="Clinc Name"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="20dp"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/edit_text_last_name"
-                android:inputType="text"
-                android:maxLines="1"
-                android:background="@drawable/custom_edittext"
-                android:hint="Last Name"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="10dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/edit_text_email"
+                android:id="@+id/edit_text_clinic_email"
                 android:background="@drawable/custom_edittext"
-                android:hint="Email Address"
+                android:hint="Clinic Email Address"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:textColor="@color/black"
@@ -75,9 +63,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/edit_text_phone_number"
+                android:id="@+id/edit_text_clinic_phone_number"
                 android:background="@drawable/custom_edittext"
-                android:hint="Phone Number"
+                android:hint="Clinic Phone Number"
                 android:inputType="phone"
                 android:maxLength="14"
                 android:padding="10dp"
@@ -89,7 +77,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/edit_text_password"
+                android:id="@+id/edit_text_clinic_password"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
@@ -103,7 +91,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/edit_text_password_confirm"
+                android:id="@+id/edit_text_clinic_password_confirm"
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
@@ -118,7 +106,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/edit_text_location"
+                android:id="@+id/edit_text_clinic_location"
                 android:background="@drawable/custom_edittext"
                 android:drawablePadding="8dp"
                 android:hint="Enter Location"
