@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".medical_records_page"
-    android:background="@drawable/medical_record_page_back">
+    android:background="@drawable/med_page_back">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
