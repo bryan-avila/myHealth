@@ -20,7 +20,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="210dp"
         app:cardCornerRadius="25dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
@@ -29,6 +29,7 @@
         android:layout_centerVertical="true">
 
         <Button
+            android:id="@+id/records_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="My Records"
@@ -40,6 +41,7 @@
             android:layout_marginRight="25dp"/>
 
         <Button
+            android:id="@+id/medications_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medications"
@@ -51,9 +53,10 @@
             android:layout_marginRight="25dp"/>
 
         <Button
+            android:id="@+id/dietary_plans_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medical History Survey"
+            android:text="My Dietary Plans"
             android:backgroundTint="@color/purple"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -61,18 +64,6 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My Dietary Plans"
-            android:backgroundTint="@color/purple"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="200dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
-
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>
