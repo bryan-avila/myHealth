@@ -30,19 +30,19 @@ public class profile_page extends AppCompatActivity {
                 //check id
                 if (id == R.id.appointmentId) {
                     startActivity(new Intent(getApplicationContext(), appointments_page.class));
-                    overridePendingTransition(0, 0);
+                    finish();
                     return true;
                 } else if (id == R.id.homeId) {
                     startActivity(new Intent(getApplicationContext(), home_page.class)); //check this line it might be wrong
-                    overridePendingTransition(0, 0);
+                    finish();
                     return true;
                 } else if (id == R.id.medicalHistId) {
                     startActivity(new Intent(getApplicationContext(), medical_records_page.class));
-                    overridePendingTransition(0, 0);
+                    finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
                     startActivity(new Intent(getApplicationContext(), resources_page.class));
-                    overridePendingTransition(0, 0);
+                    finish();
                     return true;
                 } else if (id == R.id.profileId) {
                     return true;
