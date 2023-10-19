@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -50,5 +51,14 @@ public class medical_records_page extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void onMyRecordsClick(View view)
+    {
+        // If choose my records, send them to the view records
+        Intent intent = new Intent(getApplicationContext(), patient_view_med_history.class);
+        startActivity(intent);
+        finish();
+
     }
 }
