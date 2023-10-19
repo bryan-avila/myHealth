@@ -33,7 +33,8 @@ import java.util.Calendar;
 public class home_page extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
-    private DocumentReference userRef = db.collection("users").document("yg6M7EVOepq8ZzBfQE7j");
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+    private DocumentReference userRef = db.collection("users").document(currentUser.getUid());
     private ListenerRegistration userListener;
     TextView dateFormat;
     Calendar calendar;
