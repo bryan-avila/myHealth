@@ -38,6 +38,9 @@ public class clinic_sign_up extends AppCompatActivity {
     EditText clinic_name, clinic_email, clinic_password_Entered, clinic_password_Confirm, clinic_phone_number, clinic_location;
     Button button_clinic_finish;
     AlertDialog.Builder builder;
+    //gets instances of database connection and user authentication
+    FirebaseFirestore db = myFirestore.getDBInstance();
+    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +58,6 @@ public class clinic_sign_up extends AppCompatActivity {
         clinic_phone_number.addTextChangedListener(new PhoneNumberFormattingTextWatcher()); // Phone number auto-format while inputting
 
         clinic_name.setHorizontallyScrolling(true); // Fixes line break issue
-
-
-
     }
 
     // OnClickerListener for Confirmation Button. Defined in .XML
@@ -75,19 +75,74 @@ public class clinic_sign_up extends AppCompatActivity {
         //Function for validation of inputted data
         boolean check_clinic_sign_up_info = validate_clinic_info(string_c_name, string_c_email, string_c_password, string_c_password_confirm, string_c_phone_number, string_c_location);
 
-        if(check_clinic_sign_up_info)
-        {
+        if(check_clinic_sign_up_info) {
             // If approved, move to login screen waiting for approval
             Toast.makeText(clinic_sign_up.this, "APPROVED.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(), login_page.class);
-            startActivity(intent);
-            finish();
-        }
-        else
+            //adds the clinic account to the databases
+            //uses firebase user authentication to save user login info
+            mAuth.createUserWithEmailAndPassword(string_c_email, string_c_password)
+                    .addOnCompleteListener(clinic_sign_up.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "createUserWithEmail:success");
+                                //adds account to database
+                                FirebaseUser currentUser = mAuth.getCurrentUser();
+                                if (currentUser != null) {
+                                    Log.d(TAG, "currentUser is not null");
+                                    DocumentReference userRef = db.collection("clinic").document(currentUser.getUid());
+
+                                    // Check if the user document already exists
+                                    userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                DocumentSnapshot document = task.getResult();
+                                                Log.d(TAG, "task successful");
+                                                if (!document.exists()) {
+                                                    Log.d(TAG, "document doesnt exist");
+                                                    // Create a new clinic
+                                                    Map<String, Object> clinic = new HashMap<>();
+                                                    clinic.put("clinicName", string_c_name);
+                                                    clinic.put("email", string_c_email);
+                                                    clinic.put("phone", string_c_phone_number);
+                                                    clinic.put("location", string_c_location);
+
+                                                    userRef.set(clinic)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid) {
+                                                                    // User document created successfully
+                                                                    Log.d(TAG, "DocumentSnapshot added;");
+                                                                    // Upon registration send users to do medical history questions
+                                                                    Intent intent = new Intent(clinic_sign_up.this, home_page.class);
+                                                                    startActivity(intent);
+                                                                    finish(); // If you don't want to allow the user to go back to the registration screen
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    // Handle failure to create user document
+                                                                    Log.w(TAG, "Error adding document", e);
+                                                                }
+                                                            });
+                                                }
+                                            } else {
+                                                Log.d(TAG, "document exists");
+                                                // Handle failure to check if user document exists
+                                            }
+                                        }
+                                    });
+
+                                }
+                            }
+                        }
+                    });
+        } else {
             Toast.makeText(clinic_sign_up.this, "DISAPPROVED.", Toast.LENGTH_LONG).show();
-
-
-
+        }
     }
 
     private Boolean validate_clinic_info (String c_name, String c_email, String c_passwordSignUp, String c_passwordSignUpConfirm, String c_phone_number, String c_location) {

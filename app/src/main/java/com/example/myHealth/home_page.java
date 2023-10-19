@@ -151,9 +151,9 @@ public class home_page extends AppCompatActivity {
                     Toast.makeText(home_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
                     return;
                 }
-
+                //check if the user is a patient or a clinic
                 if (documentSnapshot.exists()) {
-                    String user_firstname = documentSnapshot.get("firstName").toString();
+                    // Document exists
                     // This will do the same work as the onLoad method
                     // But it is done automatically
 
@@ -170,7 +170,15 @@ public class home_page extends AppCompatActivity {
                     } else {
                         greeting = "Good evening, ";
                     }
-                    welcome.setText(greeting + user_firstname + ".");
+                    if (documentSnapshot.contains("location")) {
+                    } else {
+                        // Document doesn't have the specific element
+                        // Perform your action here
+                        String user_firstname = documentSnapshot.get("firstName").toString();
+                        welcome.setText(greeting + user_firstname + ".");
+                    }
+
+
                 }
             }
         });
