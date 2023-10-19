@@ -1,16 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".first_time_sign_up_diet_survey">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_view_phos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phosphorus:"
+        android:padding="5dp"
+        android:layout_toLeftOf="@id/edit_text_phosphorus"
+        android:layout_centerInParent="true"
+        />
+
+    <EditText
+        android:id="@+id/edit_text_phosphorus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TO BE WORKED ON"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="319dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:hint="Phosporus (mg)"
+        android:inputType="number"
+        android:maxLines="1"
+        android:maxLength="4"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/text_view_potas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_phos"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="0dp"
+        android:layout_toLeftOf="@id/edit_text_potassium"
+        android:padding="5dp"
+        android:paddingTop="10dp"
+        android:text="Potassium:" />
+
+    <EditText
+        android:id="@+id/edit_text_potassium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Potassium (mg)"
+        android:inputType="number"
+        android:maxLines="1"
+        android:maxLength="4"
+        android:layout_below="@id/edit_text_phosphorus"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/text_view_prot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_potas"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="0dp"
+        android:layout_toLeftOf="@id/edit_text_protein"
+        android:padding="5dp"
+        android:paddingTop="10dp"
+        android:text="Protein:"
+        />
+
+    <EditText
+        android:id="@+id/edit_text_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Protein (g)"
+        android:inputType="number"
+        android:maxLines="1"
+        android:maxLength="4"
+        android:layout_below="@id/edit_text_potassium"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/text_view_sodium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_prot"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="0dp"
+        android:layout_toLeftOf="@id/edit_text_sodium"
+        android:padding="5dp"
+        android:paddingTop="10dp"
+        android:text="Sodium:"
+        />
+
+    <EditText
+        android:id="@+id/edit_text_sodium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Sodium (mg)"
+        android:inputType="number"
+        android:maxLines="1"
+        android:maxLength="4"
+        android:layout_below="@id/edit_text_protein"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/text_view_water"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_sodium"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="0dp"
+        android:layout_toLeftOf="@id/edit_text_water"
+        android:padding="5dp"
+        android:paddingTop="10dp"
+        android:text="Water:"
+        />
+
+    <EditText
+        android:id="@+id/edit_text_water"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Water (ml)"
+        android:inputType="number"
+        android:maxLines="1"
+        android:maxLength="4"
+        android:layout_below="@id/edit_text_sodium"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/text_view_cal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_water"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="0dp"
+        android:layout_toLeftOf="@id/edit_text_calories"
+        android:padding="5dp"
+        android:paddingTop="10dp"
+        android:text="Calories:"
+        />
+
+    <EditText
+        android:id="@+id/edit_text_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Calories (kcal)"
+        android:inputType="number"
+        android:maxLines="1"
+        android:maxLength="4"
+        android:layout_below="@id/edit_text_water"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_diet_finish"
+        android:onClick="onDietButtonClick"
+        android:text="Finish"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/edit_text_calories"
+        />
+
+
+</RelativeLayout>
