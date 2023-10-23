@@ -55,9 +55,11 @@ public class medical_records_page extends AppCompatActivity {
 
     public void onMyRecordsClick(View view)
     {
-        // If choose my records, send them to the view records
-        Intent intent = new Intent(getApplicationContext(), patient_view_med_history.class);
-        startActivity(intent);
+//        // If choose my records, send them to the view records
+//        Intent intent = new Intent(getApplicationContext(), patient_view_med_history.class);
+//        startActivity(intent);
+//        finish();
+        startActivity(new Intent(getApplicationContext(), patient_view_med_history.class));
         finish();
 
     }

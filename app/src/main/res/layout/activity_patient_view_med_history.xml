@@ -1,16 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".patient_view_med_history">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="TBD!" />
+        android:layout_height="match_parent"
+        android:background="@drawable/splashback"
+        android:padding="0dp"
+        tools:context=".FirstTimeRegistration">
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/custom_edittext"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="20dp">
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- All objects in this .xml are pvc for patient view records -->
+                    <TextView
+                        android:id="@+id/text_view_med_history_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/text_view_age_pvr"
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="-20dp"
+                        android:text="Your Medical History"
+                        android:fontFamily="serif"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/text_view_age_pvr"
+                        android:text="Age: test"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="15dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/text_view_height_feet_pvr"
+                        android:text="Height(Feet): test"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+
+                        android:layout_marginBottom="15dp"
+                        android:layout_below="@id/text_view_age_pvr"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_view_height_inches_pvr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Height(Inches): test"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+
+                        android:layout_toRightOf="@id/text_view_height_feet_pvr"
+                        android:paddingTop="55dp"
+                        android:paddingLeft="55dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/text_view_weight_pvr"
+                        android:text="Weight: test"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+
+                        android:layout_marginBottom="15dp"
+                        android:layout_below="@id/text_view_height_feet_pvr"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/text_view_blood_type_pvr"
+                        android:text="Blood Type: test"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+
+                        android:layout_marginBottom="15dp"
+                        android:layout_below="@id/text_view_weight_pvr"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/text_view_gender_pvr"
+                        android:text="Gender: test"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+
+                        android:layout_marginBottom="15dp"
+                        android:layout_below="@id/text_view_blood_type_pvr"
+                        />
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_view_treatment_type_pvr"
+                        android:text="---Your Treatment Type---"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+
+                        android:layout_below="@id/text_view_gender_pvr"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="serif"
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Treatment test"
+                        android:id="@+id/radio_button_treatment_pvr"
+                        android:layout_below="@id/text_view_treatment_type_pvr"
+                        android:layout_centerInParent="true"
+                        android:textSize="14dp"
+                        android:clickable="false"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_view_kidney_disease_stage_pvr"
+                        android:text="---Your Kidney Disease Stage---"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_below="@id/radio_button_treatment_pvr"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="serif"
+                        />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kidney Stage test"
+                        android:id="@+id/radio_button_kidney_disease_stage_pvr"
+                        android:layout_below="@id/text_view_kidney_disease_stage_pvr"
+                        android:layout_centerInParent="true"
+                        android:textSize="14dp"
+                        android:clickable="false"
+                        />
+
+
+                    <!-- Need to prevent users from selecting checkbox,
+                    should manually check off based off their original survey -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_view_other_med_pvr"
+                        android:text="---Other Medical History---"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_below="@id/radio_button_kidney_disease_stage_pvr"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="serif"
+                        />
+
+                    <CheckBox
+                    android:id="@+id/check_box_diabetes_pvr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                    android:text="Diabetes"
+                        android:layout_below="@id/radio_button_kidney_disease_stage_pvr"
+                        android:clickable="false"
+                        android:layout_marginTop="20dp"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/check_box_highBloodPressure_pvr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                        android:text="High Blood Pressure"
+                        android:layout_below="@id/check_box_diabetes_pvr"
+                        android:clickable="false"
+                        android:layout_marginTop= "5dp"
+                        />
+
+
+                </RelativeLayout>
+
+
+
+
+            </androidx.cardview.widget.CardView>
+
+        </ScrollView>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
