@@ -55,12 +55,20 @@ public class medical_records_page extends AppCompatActivity {
 
     public void onMyRecordsClick(View view)
     {
-//        // If choose my records, send them to the view records
-//        Intent intent = new Intent(getApplicationContext(), patient_view_med_history.class);
-//        startActivity(intent);
-//        finish();
+
+
         startActivity(new Intent(getApplicationContext(), patient_view_med_history.class));
-        finish();
+    }
+
+    public void onMedicationsClick(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), paitient_view_medications.class));
+
+    }
+
+    public void onDietClick(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), patient_view_dietary_plan.class));
 
     }
 }

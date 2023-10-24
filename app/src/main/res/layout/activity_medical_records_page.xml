@@ -18,6 +18,8 @@
         app:itemIconTint="@color/icons_color"
         app:itemTextColor="@color/lightpurple"/>
 
+
+    <!-- Added on Click to buttons -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="210dp"
@@ -51,7 +53,8 @@
             android:textSize="20sp"
             android:layout_marginTop="80dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
+            android:layout_marginRight="25dp"
+            android:onClick="onMedicationsClick"/>
 
         <Button
             android:id="@+id/dietary_plans_button"
@@ -63,7 +66,8 @@
             android:textSize="20sp"
             android:layout_marginTop="140dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
+            android:layout_marginRight="25dp"
+            android:onClick="onDietClick"/>
 
     </androidx.cardview.widget.CardView>
 

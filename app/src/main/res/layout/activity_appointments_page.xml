@@ -30,7 +30,7 @@
                 android:id="@+id/loginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="myHealth Login"
+                android:text="Select Date"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
                 android:textSize="35sp"
