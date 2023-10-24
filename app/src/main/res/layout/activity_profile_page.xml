@@ -18,4 +18,17 @@
         app:itemIconTint="@color/icons_color"
         app:itemTextColor="@color/lightpurple"/>
 
+    <Button
+        android:id="@+id/LogoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_margin="30dp"
+        android:text="Logout"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple"/>
+
 </RelativeLayout>
