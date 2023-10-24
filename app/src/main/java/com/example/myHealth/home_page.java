@@ -78,6 +78,7 @@ public class home_page extends AppCompatActivity {
             }
         });
 
+        // Display current date
         dateFormat = (TextView) findViewById(R.id.date);
 
         String date;
