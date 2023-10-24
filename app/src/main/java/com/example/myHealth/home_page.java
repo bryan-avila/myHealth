@@ -88,23 +88,6 @@ public class home_page extends AppCompatActivity {
         date = simpleDateFormat.format(calendar.getTime()).toString();
         dateFormat.setText(date);
 
-        //Log out button
-        final Button LogoutButton = findViewById(R.id.LogoutButton);
-
-        LogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth mAuth = myFirestore.getmAuthInstance();
-                mAuth.signOut();
-
-                // Start the LoginActivity (or any other activity you want to go to)
-                Intent intent = new Intent(home_page.this, login_page.class);
-                startActivity(intent);
-
-                // Optionally, finish the current activity to prevent the user from going back to it
-                finish();
-            }
-        });
     }
 
     // AUTOMATIC LOADING

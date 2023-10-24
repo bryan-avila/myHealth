@@ -18,8 +18,9 @@
         app:itemIconTint="@color/icons_color"
         app:itemTextColor="@color/lightpurple"/>
 
+
     <Button
-        android:id="@+id/LogoutButton"
+        android:id="@+id/button_patient_log_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -29,6 +30,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:backgroundTint="@color/purple"/>
+        android:backgroundTint="@color/purple" />
+
 
 </RelativeLayout>

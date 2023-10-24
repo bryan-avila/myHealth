@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class profile_page extends AppCompatActivity {
 
@@ -49,6 +52,28 @@ public class profile_page extends AppCompatActivity {
                 }
                 return false;
             }
+
+        });
+
+        // Create button object, id from profile_page.xml
+        Button lg_out_btn = findViewById(R.id.button_patient_log_out);
+
+        // Add button functionality with this method
+        lg_out_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+                mAuth.signOut();
+
+                // Start the LoginActivity (or any other activity you want to go to)
+                Intent intent = new Intent(getApplicationContext(), login_page.class);
+                startActivity(intent);
+
+                // Optionally, finish the current activity to prevent the user from going back to it
+                finish();
+            }
         });
     }
+    
 }
