@@ -13,6 +13,9 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".patient_view_search_centers_visit"
+            android:exported="false" />
+        <activity
             android:name=".patient_view_dietary_plan"
             android:exported="false" />
         <activity
