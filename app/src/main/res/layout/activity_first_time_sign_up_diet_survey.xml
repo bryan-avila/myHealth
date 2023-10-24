@@ -157,8 +157,13 @@
         android:id="@+id/button_diet_finish"
         android:onClick="onDietButtonClick"
         android:text="Finish"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/purple"
         android:layout_marginTop="40dp"
         android:layout_below="@id/edit_text_calories"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         />
 
 
