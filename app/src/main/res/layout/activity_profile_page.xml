@@ -157,7 +157,8 @@
         android:text="Edit Profile"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:onClick="onEditClick"/>
 
     <Button
         android:id="@+id/button_patient_log_out"

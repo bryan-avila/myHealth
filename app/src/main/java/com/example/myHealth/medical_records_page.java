@@ -62,7 +62,7 @@ public class medical_records_page extends AppCompatActivity {
 
     public void onMedicationsClick(View view)
     {
-        startActivity(new Intent(getApplicationContext(), paitient_view_medications.class));
+        startActivity(new Intent(getApplicationContext(), patient_view_medications.class));
 
     }
 
