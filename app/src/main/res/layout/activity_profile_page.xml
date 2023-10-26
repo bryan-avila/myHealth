@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="(first name)"
-        android:id="@+id/nameonprofilepage"
+        android:id="@+id/firstNameTitle"
         android:textSize="30sp"
         android:textAlignment="center"
         android:textStyle="bold"
@@ -52,7 +52,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/emailplaceholder"
+            android:id="@+id/emailPlaceholder"
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="email"
@@ -80,7 +80,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/firstnameplaceholder"
+            android:id="@+id/firstnamePlaceholder"
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="first name"
@@ -108,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lastnameplaceholder"
+            android:id="@+id/lastnamePlaceholder"
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="last name"
@@ -137,7 +137,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/phoneplaceholder"
+            android:id="@+id/phonePlaceholder"
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="phone number"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -15,10 +16,24 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class profile_page extends AppCompatActivity {
 
+
+    TextView firstNameTitle;
+    TextView emailPlaceholder, firstnamePlaceholder, lastnamePlaceholder, phonePlaceholder;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
+
+
+        firstNameTitle = findViewById(R.id.firstNameTitle);
+        emailPlaceholder = findViewById(R.id.emailPlaceholder);
+        firstnamePlaceholder = findViewById(R.id.firstnamePlaceholder);
+        lastnamePlaceholder = findViewById(R.id.lastnamePlaceholder);
+        //phonePlaceholder = phonePlaceholder(R.id.phonePlaceholder);
+
+
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -74,6 +89,13 @@ public class profile_page extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void showUserInfo () {
+        Intent intent = new Intent(getApplicationContext(), home_page.class);
+
+
+
     }
     
 }

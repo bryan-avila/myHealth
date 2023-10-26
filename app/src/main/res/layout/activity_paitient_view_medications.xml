@@ -141,6 +141,7 @@
                 android:text="See Details"
                 android:textSize="18dp"
                 android:textColor="@color/grey"/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>
