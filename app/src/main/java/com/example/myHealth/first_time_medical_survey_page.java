@@ -119,20 +119,20 @@ public class first_time_medical_survey_page extends AppCompatActivity {
 
 
         // add the medical history to a hashmap
-        Map<String, Object> medicalHistoryData = new HashMap<>();
-        medicalHistoryData.put("heightFeet", HeightFeet);
-        medicalHistoryData.put("heightInches", HeightInches);
-        medicalHistoryData.put("age", Age);
-        medicalHistoryData.put("weight", Weight);
-        medicalHistoryData.put("bloodType", BloodType);
-        medicalHistoryData.put("gender", Gender);
-        medicalHistoryData.put("treatment", Treatment);
-        medicalHistoryData.put("stage", Stage);
-        medicalHistoryData.put("diabetes", Diabetes);
-        medicalHistoryData.put("bloodPressure", HighBloodPressure);
+        Map<String, Object> medicalHistory = new HashMap<>();
+        medicalHistory.put("heightFeet", HeightFeet);
+        medicalHistory.put("heightInches", HeightInches);
+        medicalHistory.put("age", Age);
+        medicalHistory.put("weight", Weight);
+        medicalHistory.put("bloodType", BloodType);
+        medicalHistory.put("gender", Gender);
+        medicalHistory.put("treatment", Treatment);
+        medicalHistory.put("stage", Stage);
+        medicalHistory.put("diabetes", Diabetes);
+        medicalHistory.put("bloodPressure", HighBloodPressure);
 
         // Add medical history data to the map
-        medicalHistoryRef.add(medicalHistoryData)
+        medicalHistoryRef.add(medicalHistory)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
