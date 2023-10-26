@@ -27,8 +27,120 @@
             android:textColor="@color/purple"
             android:textStyle="bold"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutmed"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="100dp"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/medicationName1"
+                android:text="Medication Name"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/purple"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detailsMed1"
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:text="See Details"
+                android:textSize="18dp"
+                android:textColor="@color/grey"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutmed2"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="170dp"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/medicationName2"
+                android:text="Medication Name"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/purple"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detailsMed2"
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:text="See Details"
+                android:textSize="18dp"
+                android:textColor="@color/grey"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutmed3"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="240dp"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/medicationName3"
+                android:text="Medication Name"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/purple"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detailsMed3"
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:text="See Details"
+                android:textSize="18dp"
+                android:textColor="@color/grey"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutmed4"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="310dp"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/medicationName4"
+                android:text="Medication Name"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/purple"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/detailsMed4"
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:text="See Details"
+                android:textSize="18dp"
+                android:textColor="@color/grey"/>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
-
 </RelativeLayout>
