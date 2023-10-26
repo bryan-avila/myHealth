@@ -46,11 +46,10 @@ public class profile_page extends AppCompatActivity {
         setContentView(R.layout.activity_profile_page);
 
 
-        firstNameTitle = findViewById(R.id.firstNameTitle);
         emailPlaceholder = findViewById(R.id.emailPlaceholder);
         firstnamePlaceholder = findViewById(R.id.firstnamePlaceholder);
         lastnamePlaceholder = findViewById(R.id.lastnamePlaceholder);
-        //phonePlaceholder = phonePlaceholder(R.id.phonePlaceholder);
+        phonePlaceholder = findViewById(R.id.phonePlaceholder);
 
 
 
@@ -108,34 +107,6 @@ public class profile_page extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public void onStart() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
-
-            userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // User document exists, retrieve data
-                            String userFirstName = document.getString("firstName");
-                            String userLastName = document.getString("lastName");
-                            String userEmail = document.getString("email");
-                            String userPhone = document.getString("phone");
-                            // Retrieve other user data as needed
-                        } else {
-                            // User document doesn't exist, handle accordingly
-                        }
-                    } else {
-                        // Handle failure to retrieve user document
-                    }
-                }
-            });
-        }
     }
 
     public void onEditClick(View view) {
