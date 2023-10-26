@@ -45,13 +45,12 @@ public class profile_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
-        firstNameTitle = findViewById(R.id.firstNameTitle);
         emailPlaceholder = findViewById(R.id.emailPlaceholder);
         firstnamePlaceholder = findViewById(R.id.firstnamePlaceholder);
         lastnamePlaceholder = findViewById(R.id.lastnamePlaceholder);
-        //phonePlaceholder = phonePlaceholder(R.id.phonePlaceholder);
+        phonePlaceholder = findViewById(R.id.phonePlaceholder);
 
-        String firstNameT = firstNameTitle.toString();
+        //String firstNameT = firstNameTitle.toString();
 
 
 
@@ -173,6 +172,8 @@ public class profile_page extends AppCompatActivity {
                             emailPlaceholder.setText(user_email);
                             String user_lastname = documentSnapshot.get("lastName").toString();
                             lastnamePlaceholder.setText(user_lastname);
+                            String phone_number = documentSnapshot.get("phone").toString();
+                            phonePlaceholder.setText(phone_number);
                         }
 
 
