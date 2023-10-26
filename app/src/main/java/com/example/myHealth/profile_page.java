@@ -36,8 +36,8 @@ public class profile_page extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
-    private DocumentReference userRef = db.collection("users").document(currentUser.getUid());
-    private ListenerRegistration userListener;
+    private DocumentReference uRef = db.collection("users").document(currentUser.getUid());
+    private ListenerRegistration userL;
 
 
     @Override
@@ -45,12 +45,13 @@ public class profile_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_page);
 
-
         firstNameTitle = findViewById(R.id.firstNameTitle);
         emailPlaceholder = findViewById(R.id.emailPlaceholder);
         firstnamePlaceholder = findViewById(R.id.firstnamePlaceholder);
         lastnamePlaceholder = findViewById(R.id.lastnamePlaceholder);
         //phonePlaceholder = phonePlaceholder(R.id.phonePlaceholder);
+
+        String firstNameT = firstNameTitle.toString();
 
 
 
@@ -110,36 +111,76 @@ public class profile_page extends AppCompatActivity {
         });
     }
 
-    public void onStart() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
+    public void onEditClick(View view) {
+        startActivity(new Intent(getApplicationContext(), editProfile.class));
+    }
 
-            userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // User document exists, retrieve data
-                            String userFirstName = document.getString("firstName");
-                            String userLastName = document.getString("lastName");
-                            String userEmail = document.getString("email");
-                            String userPhone = document.getString("phone");
-                            // Retrieve other user data as needed
+    public void onStart() {
+        {
+
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            if (currentUser != null) {
+                DocumentReference userRef = db.collection("users").document(currentUser.getUid());
+
+                userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                // User document exists, retrieve data
+                                String userFirstName = document.getString("firstName");
+                                String userLastName = document.getString("lastName");
+                                String userEmail = document.getString("email");
+                                String userPhone = document.getString("phone");
+                                // Retrieve other user data as needed
+                            } else {
+                                // User document doesn't exist, handle accordingly
+                            }
                         } else {
-                            // User document doesn't exist, handle accordingly
+                            // Handle failure to retrieve user document
                         }
-                    } else {
-                        // Handle failure to retrieve user document
+                    }
+                });
+            }
+
+
+            super.onStart();
+            // Automatically loading
+            // Firestore wants to load things quickly, so it loads in locally before from the cloud
+            // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
+            userL = uRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+
+                    // Error checking
+                    if (error != null) {
+                        Toast.makeText(profile_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    //check if the user is a patient or a clinic
+                    if (documentSnapshot.exists()) {
+                        // Document exists
+                        // This will do the same work as the onLoad method
+                        // But it is done automatically
+                        if (documentSnapshot.contains("location")) {
+                        } else {
+                            // Document doesn't have the specific element
+                            // Perform your action here
+                            String user_firstname = documentSnapshot.get("firstName").toString();
+                            firstnamePlaceholder.setText(user_firstname);
+                            String user_email = documentSnapshot.get("email").toString();
+                            emailPlaceholder.setText(user_email);
+                            String user_lastname = documentSnapshot.get("lastName").toString();
+                            lastnamePlaceholder.setText(user_lastname);
+                        }
+
+
                     }
                 }
             });
         }
+
     }
 
-    public void onEditClick(View view) {
-        startActivity(new Intent(getApplicationContext(), editProfile.class));
-    }
-    
 }
