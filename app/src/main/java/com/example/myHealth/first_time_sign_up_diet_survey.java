@@ -67,12 +67,13 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
         dietInfo.put("calories", Calories);
 
         // Add medical history data to the map
-        dietInfoRef.add(dietInfo)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        dietInfoRef.document("dietInfo")
+                .set(dietInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onSuccess(Void aVoid) {
                         // Handle success
-                        Log.d(TAG, "Diet info added with ID: " + documentReference.getId());
+                        Log.d(TAG, "Diet info added");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

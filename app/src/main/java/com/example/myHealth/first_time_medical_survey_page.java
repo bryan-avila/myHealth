@@ -132,19 +132,20 @@ public class first_time_medical_survey_page extends AppCompatActivity {
         medicalHistory.put("bloodPressure", HighBloodPressure);
 
         // Add medical history data to the map
-        medicalHistoryRef.add(medicalHistory)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        medicalHistoryRef.document("medicalHistory")
+                .set(medicalHistory)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onSuccess(Void aVoid) {
                         // Handle success
-                        Log.d(TAG, "Medical history added with ID: " + documentReference.getId());
+                        Log.d(TAG, "Medical history added");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Handle failure
-                        Log.w(TAG, "Error adding medical history document", e);
+                        Log.w(TAG, "Error adding medical history", e);
                     }
                 });
 
