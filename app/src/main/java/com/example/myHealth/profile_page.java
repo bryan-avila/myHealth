@@ -30,7 +30,6 @@ import java.util.Calendar;
 public class profile_page extends AppCompatActivity {
 
 
-    TextView firstNameTitle;
     TextView emailPlaceholder, firstnamePlaceholder, lastnamePlaceholder, phonePlaceholder;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
