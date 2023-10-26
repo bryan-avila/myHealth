@@ -36,7 +36,9 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    >
 
                     <!-- All objects in this .xml are pvc for patient view records -->
 
@@ -144,7 +146,7 @@
                         android:fontFamily="serif"
                         />
 
-                    <RadioButton
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Treatment test"
@@ -167,7 +169,7 @@
                         android:fontFamily="serif"
                         />
 
-                    <RadioButton
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Kidney Stage test"
@@ -194,12 +196,11 @@
                         android:fontFamily="serif"
                         />
 
-                    <CheckBox
+                    <TextView
                     android:id="@+id/check_box_diabetes_pvr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
-                    android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                     android:text="Diabetes"
                         android:layout_below="@id/radio_button_kidney_disease_stage_pvr"
                         android:clickable="false"
@@ -207,12 +208,11 @@
                         android:layout_marginLeft="8dp"
                         />
 
-                    <CheckBox
+                    <TextView
                         android:id="@+id/check_box_highBloodPressure_pvr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:button="@null"
-                        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                         android:text="High Blood Pressure"
                         android:layout_below="@id/check_box_diabetes_pvr"
                         android:clickable="false"

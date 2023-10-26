@@ -69,9 +69,16 @@ public class patient_view_med_history extends AppCompatActivity {
 
 
         super.onStart();
-        // Automatically loading
-        // Firestore wants to load things quickly, so it loads in locally before from the cloud
-        // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
+        TextView pAge = (TextView) findViewById(R.id.text_view_age_pvr);
+        TextView pHeightFeet = (TextView) findViewById(R.id.text_view_height_feet_pvr);
+        TextView pHeightInches = (TextView) findViewById(R.id.text_view_height_inches_pvr);
+        TextView pWeight = (TextView) findViewById(R.id.text_view_weight_pvr);
+        TextView pBloodType = (TextView) findViewById(R.id.text_view_blood_type_pvr);
+        TextView pGender = (TextView) findViewById(R.id.text_view_gender_pvr);
+        TextView pTreatment = (TextView) findViewById(R.id.radio_button_treatment_pvr);
+        TextView pStage = (TextView) findViewById(R.id.radio_button_kidney_disease_stage_pvr);
+        TextView pDiabetes = (TextView) findViewById(R.id.check_box_diabetes_pvr);
+        TextView pBloodPressure = (TextView) findViewById(R.id.check_box_highBloodPressure_pvr);
         userMedListener = userMedRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -86,16 +93,31 @@ public class patient_view_med_history extends AppCompatActivity {
                 if (documentSnapshot.exists())
                 {
 
-                    TextView p_age = (TextView) findViewById(R.id.text_view_age_pvr);
-
-
                     if (documentSnapshot.contains("location")) {
                     }
                     else {
                         // Document doesn't have the specific element
                         // Perform your action here
                         String patient_age = documentSnapshot.get("age").toString();
-                        p_age.setText("Age: " + patient_age);
+                        pAge.setText("Age: " + patient_age);
+                        String patient_heightF = documentSnapshot.get("heightFeet").toString();
+                        pHeightFeet.setText("Height(Feet): " + patient_heightF);
+                        String patient_heightI = documentSnapshot.get("heightInches").toString();
+                        pHeightInches.setText("Height(Inches): " + patient_heightI);
+                        String patient_weight = documentSnapshot.get("weight").toString();
+                        pWeight.setText("Weight: " + patient_weight);
+                        String patient_blood = documentSnapshot.get("bloodType").toString();
+                        pBloodType.setText("Blood Type: " + patient_blood);
+                        String patient_gender = documentSnapshot.get("gender").toString();
+                        pGender.setText("Gender: " + patient_gender);
+                        String patient_treatment = documentSnapshot.get("treatment").toString();
+                        pTreatment.setText(patient_treatment);
+                        String patient_stage = documentSnapshot.get("stage").toString();
+                        pStage.setText(patient_stage);
+                        String patient_diabetes = documentSnapshot.get("diabetes").toString();
+                        pDiabetes.setText(patient_diabetes);
+                        String patient_pressure = documentSnapshot.get("bloodPressure").toString();
+                        pBloodPressure.setText(patient_pressure);
                     }
 
 
