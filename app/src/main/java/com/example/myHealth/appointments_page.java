@@ -36,14 +36,16 @@ public class appointments_page extends AppCompatActivity {
         calendarview = findViewById(R.id.calendarView);
         calendar = Calendar.getInstance();
 
-        // Pop-Up Window Intialization
+
+        // Might not need this pop up
+        /*// Pop-Up Window Intialization
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.popup_example, null);
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true; // lets taps outside the popup also dismiss it
-        PopupWindow pWindow = new PopupWindow(popupView, width, height, focusable);
+        PopupWindow pWindow = new PopupWindow(popupView, width, height, focusable);*/
 
         //You can force a date to appear in the calendar with the following code
         //setDate(10,31,2023);
@@ -57,7 +59,7 @@ public class appointments_page extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 // Toast message displaying date MM/DD/YYYY
                Toast.makeText(appointments_page.this, (month + 1) + "/" + day +"/" + year, Toast.LENGTH_LONG).show();
-                pWindow.showAtLocation(popupView,Gravity.CENTER, 0, 0);
+               // pWindow.showAtLocation(popupView,Gravity.CENTER, 0, 0);
 
             }
         });

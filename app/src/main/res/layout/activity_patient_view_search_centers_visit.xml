@@ -1,18 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_view_search_centers_visit">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0dp"
+            tools:context=".FirstTimeRegistration">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:scaleType="centerCrop"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/custom_edittext"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="24dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="5sp"
+                            android:text="Clinic Search"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="30dp"
+                            android:background="@drawable/custom_edittext"
+                            app:cardCornerRadius="30dp"
+                            app:cardElevation="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:padding="24dp">
+
+
+                                <TextView
+                                    android:id="@+id/text_view_clinic_1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Clinic 1"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/purple"
+                                    android:textSize="30sp"
+                                    android:textStyle="bold" />
+
+                                <Button
+                                    android:id="@+id/button_clinic_search_finish"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@id/text_view_clinic_1"
+                                    android:layout_centerInParent="true"
+                                    android:onClick="onClinic1Click"
+                                    android:text="Finish" />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="30dp"
+                            android:background="@drawable/custom_edittext"
+                            app:cardCornerRadius="30dp"
+                            app:cardElevation="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:padding="24dp">
+
+
+                                <TextView
+                                    android:id="@+id/text_view_clinic_2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Clinic 2"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/purple"
+                                    android:textSize="30sp"
+                                    android:textStyle="bold" />
+
+                                <Button
+                                    android:id="@+id/button_clinic_search_finish_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@id/text_view_clinic_2"
+                                    android:layout_centerInParent="true"
+                                    android:onClick="onClinic2Click"
+                                    android:text="Finish" />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="30dp"
+                            android:background="@drawable/custom_edittext"
+                            app:cardCornerRadius="30dp"
+                            app:cardElevation="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:padding="24dp">
+
+
+                                <TextView
+                                    android:id="@+id/text_view_clinic_3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Clinic 3"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/purple"
+                                    android:textSize="30sp"
+                                    android:textStyle="bold" />
+
+                                <Button
+                                    android:id="@+id/button_clinic_search_finish_3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@id/text_view_clinic_3"
+                                    android:layout_centerInParent="true"
+                                    android:onClick="onClinic3Click"
+                                    android:text="Finish" />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="30dp"
+                            android:background="@drawable/custom_edittext"
+                            app:cardCornerRadius="30dp"
+                            app:cardElevation="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:padding="24dp">
+
+
+                                <TextView
+                                    android:id="@+id/text_view_clinic_4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Clinic 4"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/purple"
+                                    android:textSize="30sp"
+                                    android:textStyle="bold" />
+
+                                <Button
+                                    android:id="@+id/button_clinic_search_finish_4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@id/text_view_clinic_4"
+                                    android:layout_centerInParent="true"
+                                    android:onClick="onClinic4Click"
+                                    android:text="Finish" />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="30dp"
+                            app:cardCornerRadius="30dp"
+                            app:cardElevation="20dp"
+                            android:background="@drawable/custom_edittext">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="24dp" >
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Clinic 5"
+                                    android:textSize="30sp"
+                                    android:id="@+id/text_view_clinic_5"
+                                    android:textAlignment="center"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/purple" />
+
+                                <Button
+                                    android:id="@+id/button_clinic_search_finish_5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_below="@id/text_view_clinic_5"
+                                    android:layout_centerInParent="true"
+                                    android:onClick="onClinic5Click"
+                                    android:text="Finish" />
+
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                        <!--Age, Weight, Blood Type boxes-->
+
+                        <!-- Radio buttons for gender  -->
+
+                        <!-- Radio buttons for treatment  -->
+
+
+                        <!-- Radio buttons for Kidney Disease Stage  -->
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </ScrollView>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This is how patients will search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_items"
+        app:itemRippleColor="@color/lightpurple"
+        app:itemIconTint="@color/icons_color"
+        app:itemTextColor="@color/lightpurple"/>
+
+
+
+</RelativeLayout>
