@@ -30,7 +30,7 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), appointments_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_view_search_centers_visit.class));
                     finish();
                     return true;
                 } else if (id == R.id.homeId) {
@@ -38,6 +38,8 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.medicalHistId) {
+                    startActivity(new Intent(getApplicationContext(), medical_records_page.class)); //check this line it might be wrong
+                    finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
                     startActivity(new Intent(getApplicationContext(), resources_page.class));

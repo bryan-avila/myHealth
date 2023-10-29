@@ -65,7 +65,7 @@ public class profile_page extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), appointments_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_view_search_centers_visit.class));
                     finish();
                     return true;
                 } else if (id == R.id.homeId) {
