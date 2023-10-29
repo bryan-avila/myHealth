@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".first_time_sign_up_diet_survey">
 
+
     <TextView
         android:id="@+id/text_view_phos"
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
         android:hint="Phosporus (mg)"
         android:inputType="number"
         android:maxLines="1"
-        android:maxLength="4"
+        android:maxLength="5"
         android:layout_centerInParent="true"/>
 
     <TextView
@@ -47,7 +48,7 @@
         android:hint="Potassium (mg)"
         android:inputType="number"
         android:maxLines="1"
-        android:maxLength="4"
+        android:maxLength="5"
         android:layout_below="@id/edit_text_phosphorus"
         android:layout_centerHorizontal="true"/>
 
@@ -72,7 +73,7 @@
         android:hint="Protein (g)"
         android:inputType="number"
         android:maxLines="1"
-        android:maxLength="4"
+        android:maxLength="5"
         android:layout_below="@id/edit_text_potassium"
         android:layout_centerHorizontal="true"/>
 
@@ -97,7 +98,7 @@
         android:hint="Sodium (mg)"
         android:inputType="number"
         android:maxLines="1"
-        android:maxLength="4"
+        android:maxLength="5"
         android:layout_below="@id/edit_text_protein"
         android:layout_centerHorizontal="true"/>
 
@@ -122,7 +123,7 @@
         android:hint="Water (ml)"
         android:inputType="number"
         android:maxLines="1"
-        android:maxLength="4"
+        android:maxLength="5"
         android:layout_below="@id/edit_text_sodium"
         android:layout_centerHorizontal="true"/>
 
@@ -147,7 +148,7 @@
         android:hint="Calories (kcal)"
         android:inputType="number"
         android:maxLines="1"
-        android:maxLength="4"
+        android:maxLength="5"
         android:layout_below="@id/edit_text_water"
         android:layout_centerHorizontal="true"/>
 
@@ -165,6 +166,30 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         />
+
+    <!-- Set warning messages to invisible -->
+
+    <TextView
+        android:id="@+id/text_view_stage_4_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*STAGE 4:WARNING MESSAGE GOES HERE*"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/edit_text_phosphorus"
+        android:layout_marginBottom="200dp"
+        android:textColor="@color/redish"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/text_view_stage_5_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*STAGE 5:WARNING MESSAGE GOES HERE*"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/edit_text_phosphorus"
+        android:layout_marginBottom="200dp"
+        android:textColor="@color/redish"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>

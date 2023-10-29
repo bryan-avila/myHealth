@@ -3,6 +3,7 @@ package com.example.myHealth;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,15 +11,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 
+import org.w3c.dom.Text;
+
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,16 +39,24 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     private DocumentReference userRef = db.collection("users").document(currentUser.getUid());
+
     CollectionReference dietInfoRef = userRef.collection("dietInfo");
+
+    private DocumentReference userMedHistory = db.collection("users").document(currentUser.getUid()).collection("medicalHistory").document("medicalHistory");
+    private ListenerRegistration userMedHistoryListener;
+
 
     // TO DO:
     // 1. Do input validation
-    // 2. Store information in the database
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_time_sign_up_diet_survey);
+
+
+        // need to create an if statement for people with stage 4 and stage 5 to provide
+        // general nutrient limits, but nothing concrete as its best to talk to a dietician
     }
 
 
@@ -89,5 +109,87 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
         startActivity(intent);
         finish();
 
+    }
+
+
+    // Loading user's data to check if they are
+    // In Stage 5/4 and general health guidelines
+    public void onStart() {
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
+
+            userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // User document exists, retrieve data
+                            String userFirstName = document.getString("firstName");
+                            String userLastName = document.getString("lastName");
+                            String userEmail = document.getString("email");
+                            String userPhone = document.getString("phone");
+                            // Retrieve other user data as needed
+                        } else {
+                            // User document doesn't exist, handle accordingly
+                        }
+                    } else {
+                        // Handle failure to retrieve user document
+                    }
+                }
+            });
+        }
+
+
+        super.onStart();
+        // Automatically loading of user data
+        userMedHistoryListener = userMedHistory.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+
+                // Error checking
+                if(error != null)
+                {
+                    Toast.makeText(first_time_sign_up_diet_survey.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // If medical history data exists
+                if (documentSnapshot.exists())
+                {
+                    // Initialize data
+                    String patient_stage = documentSnapshot.get("stage").toString();
+                    TextView stage_4_message = findViewById(R.id.text_view_stage_4_warning);
+                    TextView stage_5_message = findViewById(R.id.text_view_stage_5_warning);
+
+
+                    //Todo
+                    // Need to input values based off stage 4 or 5.
+                    // Need to type warning message
+
+                    if(patient_stage.equals("Kidney Disease Stage 4"))
+                    {
+                        // Load in general nutrient amounts and warning message
+                        EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+                        editTextPotassium.setText("asd", TextView.BufferType.EDITABLE);
+                        stage_4_message.setVisibility(View.VISIBLE);
+
+                    }
+
+                    else if(patient_stage.equals("Kidney Disease Stage 5"))
+                    {
+                        EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+                        editTextPhosphorus.setText("asd", TextView.BufferType.EDITABLE);
+                        // editTextPhosphorus.setEnabled(false); Disable user's editing nutrients
+
+                        stage_5_message.setVisibility(View.VISIBLE);
+                    }
+
+
+                }
+            }
+        });
     }
 }
