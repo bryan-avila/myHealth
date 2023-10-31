@@ -55,8 +55,8 @@
                         android:layout_marginBottom="-25dp"
                         android:fontFamily="serif"
                         android:text="My Medical History"
-                        android:textColor="@color/goodGrey"
-                        android:textSize="20dp"
+                        android:textColor="@color/purple"
+                        android:textSize="25dp"
                         android:textStyle="bold" />
 
                     <TextView
