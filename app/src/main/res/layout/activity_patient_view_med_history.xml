@@ -156,11 +156,11 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text_view_treatment_type_pvr"
                         android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
                         android:clickable="false"
                         android:text="Treatment test"
                         android:textColor="@color/goodGrey"
-                        android:textSize="14dp"
-                        android:layout_marginTop="15dp"/>
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/text_view_kidney_disease_stage_pvr"
@@ -181,11 +181,11 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text_view_kidney_disease_stage_pvr"
                         android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
                         android:clickable="false"
                         android:text="Kidney Stage test"
                         android:textColor="@color/goodGrey"
-                        android:textSize="14dp"
-                        android:layout_marginTop="15dp"/>
+                        android:textSize="14dp" />
 
 
                     <!-- Need to prevent users from selecting checkbox,

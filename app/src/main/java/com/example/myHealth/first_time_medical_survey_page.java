@@ -80,17 +80,17 @@ public class first_time_medical_survey_page extends AppCompatActivity {
         } else {
             Gender = "prefer not to say";
         }
-        // find out which gender is chosen
+        // find out which treatment is chosen
         String Treatment = "";
         int selectedRadioButtonTreatmentId = radioGroupTreatmentType.getCheckedRadioButtonId();
         if (selectedRadioButtonTreatmentId != -1) {
             // At least one radio button is selected
-            RadioButton selectedRadioButton = findViewById(selectedRadioButtonGenderId);
+            RadioButton selectedRadioButton = findViewById(selectedRadioButtonTreatmentId);
             Treatment = selectedRadioButton.getText().toString();
         } else {
             Treatment = "N/A";
         }
-        // find out which treatment is chosen
+        // find out which kidney disease stage is chosen
         String Stage = "";
         int selectedRadioButtonStageId = radioGroupStageType.getCheckedRadioButtonId();
         if (selectedRadioButtonStageId != -1) {
