@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splashback"
+        android:background="@drawable/medications_background"
         android:padding="0dp"
         tools:context=".FirstTimeRegistration">
 
@@ -27,7 +27,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginTop="90dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/custom_edittext"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="20dp">
@@ -53,7 +55,8 @@
                         android:layout_marginBottom="-25dp"
                         android:fontFamily="serif"
                         android:text="My Medical History"
-                        android:textSize="16dp"
+                        android:textColor="@color/goodGrey"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -61,11 +64,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="40dp"
                         android:layout_marginBottom="15dp"
                         android:text="Age: test"
                         android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/goodGrey"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -74,7 +78,7 @@
                         android:text="Height(Feet): test"
                         android:textStyle="bold"
                         android:textSize="16dp"
-
+                        android:textColor="@color/goodGrey"
                         android:layout_marginBottom="15dp"
                         android:layout_marginLeft="8dp"
                         android:layout_below="@id/text_view_age_pvr"
@@ -87,7 +91,7 @@
                         android:text="Height(Inches): test"
                         android:textStyle="bold"
                         android:textSize="16dp"
-
+                        android:textColor="@color/goodGrey"
                         android:layout_toRightOf="@id/text_view_height_feet_pvr"
                         android:paddingTop="56.5dp"
                         android:paddingLeft="55dp"/>
@@ -99,7 +103,7 @@
                         android:text="Weight: test"
                         android:textStyle="bold"
                         android:textSize="16dp"
-
+                        android:textColor="@color/goodGrey"
                         android:layout_marginBottom="15dp"
                         android:layout_marginLeft="8dp"
                         android:layout_below="@id/text_view_height_feet_pvr"
@@ -112,7 +116,7 @@
                         android:text="Blood Type: test"
                         android:textStyle="bold"
                         android:textSize="16dp"
-
+                        android:textColor="@color/goodGrey"
                         android:layout_marginBottom="15dp"
                         android:layout_marginLeft="8dp"
                         android:layout_below="@id/text_view_weight_pvr"
@@ -132,30 +136,27 @@
                         />
 
 
-
                     <TextView
+                        android:id="@+id/text_view_treatment_type_pvr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/text_view_treatment_type_pvr"
-                        android:text="---Your Treatment Type---"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-
                         android:layout_below="@id/text_view_gender_pvr"
                         android:layout_centerInParent="true"
                         android:fontFamily="serif"
-                        />
+
+                        android:text="---Your Treatment Type---"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/radio_button_treatment_pvr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Treatment test"
-                        android:id="@+id/radio_button_treatment_pvr"
                         android:layout_below="@id/text_view_treatment_type_pvr"
                         android:layout_centerInParent="true"
-                        android:textSize="14dp"
                         android:clickable="false"
-                        />
+                        android:text="Treatment test"
+                        android:textSize="14dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
