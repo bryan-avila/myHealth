@@ -143,10 +143,11 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text_view_gender_pvr"
                         android:layout_centerInParent="true"
-                        android:textColor="@color/goodGrey"
                         android:fontFamily="serif"
                         android:text="---Your Treatment Type---"
+                        android:textColor="@color/goodGrey"
                         android:textSize="18dp"
+                        android:layout_marginTop="20dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -156,9 +157,10 @@
                         android:layout_below="@id/text_view_treatment_type_pvr"
                         android:layout_centerInParent="true"
                         android:clickable="false"
-                        android:textColor="@color/goodGrey"
                         android:text="Treatment test"
-                        android:textSize="14dp" />
+                        android:textColor="@color/goodGrey"
+                        android:textSize="14dp"
+                        android:layout_marginTop="15dp"/>
 
                     <TextView
                         android:id="@+id/text_view_kidney_disease_stage_pvr"
@@ -167,9 +169,10 @@
                         android:layout_below="@id/radio_button_treatment_pvr"
                         android:layout_centerInParent="true"
                         android:fontFamily="serif"
-                        android:textColor="@color/goodGrey"
                         android:text="---Your Kidney Disease Stage---"
+                        android:textColor="@color/goodGrey"
                         android:textSize="18dp"
+                        android:layout_marginTop="20dp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -179,9 +182,10 @@
                         android:layout_below="@id/text_view_kidney_disease_stage_pvr"
                         android:layout_centerInParent="true"
                         android:clickable="false"
-                        android:textColor="@color/goodGrey"
                         android:text="Kidney Stage test"
-                        android:textSize="14dp" />
+                        android:textColor="@color/goodGrey"
+                        android:textSize="14dp"
+                        android:layout_marginTop="15dp"/>
 
 
                     <!-- Need to prevent users from selecting checkbox,
@@ -193,6 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/radio_button_kidney_disease_stage_pvr"
                         android:layout_centerInParent="true"
+                        android:layout_marginTop="20dp"
                         android:fontFamily="serif"
                         android:text="---Other Medical History---"
                         android:textColor="@color/goodGrey"
@@ -205,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:button="@null"
                     android:text="Diabetes"
-                        android:layout_below="@id/radio_button_kidney_disease_stage_pvr"
+                        android:layout_below="@id/text_view_other_med_pvr"
                         android:clickable="false"
                         android:textColor="@color/goodGrey"
                         android:layout_marginTop="20dp"
@@ -223,6 +228,7 @@
                         android:layout_marginTop= "5dp"
                         android:textColor="@color/goodGrey"
                         android:layout_marginLeft="8dp"
+                        android:layout_marginBottom="15dp"
                         />
 
 
