@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".profile_page_clinic">
 
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_items_clinic"
+        app:itemRippleColor="@color/lightpurple"
+        app:itemIconTint="@color/icons_color"
+        app:itemTextColor="@color/lightpurple"/>
 
 </RelativeLayout>

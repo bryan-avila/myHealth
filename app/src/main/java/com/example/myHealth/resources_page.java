@@ -20,7 +20,7 @@ public class resources_page extends AppCompatActivity {
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Set profile selected
+        //Set resources selected
         bottomNavigationView.setSelectedItemId(R.id.resourcesId);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -33,7 +33,7 @@ public class resources_page extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.homeId) {
-                    startActivity(new Intent(getApplicationContext(), home_page.class)); //check this line it might be wrong
+                    startActivity(new Intent(getApplicationContext(), home_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.medicalHistId) {
