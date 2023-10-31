@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/homeIdCLinic"
+        android:icon="@drawable/home_icon"
+        android:title="Home"/>
+
+    <item android:id="@+id/appointmentIdClinic"
+        android:icon="@drawable/make_appoint"
+        android:title="Visits"/>
+
+    <item android:id="@+id/medicalHistIdClinic"
+        android:icon="@drawable/medi_hist"
+        android:title="Records"/>
+
+    <item android:id="@+id/resourcesIdClinic"
+        android:icon="@drawable/resources_icon"
+        android:title="Resources"/>
+
+    <item android:id="@+id/profileIdClinic"
+        android:icon="@drawable/account"
+        android:title="Profile"/>
+
+</menu>
