@@ -116,7 +116,7 @@ public class clinic_sign_up extends AppCompatActivity {
                                                                     // User document created successfully
                                                                     Log.d(TAG, "DocumentSnapshot added;");
                                                                     // Upon registration send users to do medical history questions
-                                                                    Intent intent = new Intent(clinic_sign_up.this, home_page.class);
+                                                                    Intent intent = new Intent(clinic_sign_up.this, clinic_home_page.class);
                                                                     startActivity(intent);
                                                                     finish(); // If you don't want to allow the user to go back to the registration screen
                                                                 }
