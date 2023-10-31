@@ -62,7 +62,7 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
     }
 
 
-    // onClick listener using .xml declartion onClick="onDietButtonClick"
+    // onClick listener using .xml declaration onClick="onDietButtonClick"
     public void onDietButtonClick(View view)
     {
         EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
