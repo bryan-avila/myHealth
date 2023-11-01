@@ -123,7 +123,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/phonePlaceholder"
+            android:id="@+id/clinicPhonePlaceholder"
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="phone number"

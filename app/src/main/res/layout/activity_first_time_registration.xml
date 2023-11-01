@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splashback"
+        android:background="@drawable/blankback"
         android:padding="0dp"
         tools:context=".FirstTimeRegistration">
 
@@ -308,17 +308,16 @@
 
                     <Button
                         android:id="@+id/button_finished"
+                        android:backgroundTint="@color/purple"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Finish"
+                        android:textStyle="bold"
                         android:onClick="onFinishClick"/>
-
 
                 </LinearLayout>
 
-
             </androidx.cardview.widget.CardView>
-
 
         </ScrollView>
 </RelativeLayout>

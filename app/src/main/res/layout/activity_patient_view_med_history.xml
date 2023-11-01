@@ -53,7 +53,6 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="-30dp"
-                        android:fontFamily="serif"
                         android:text="My Medical History"
                         android:textColor="@color/purple"
                         android:textSize="25dp"
@@ -143,11 +142,11 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text_view_gender_pvr"
                         android:layout_centerInParent="true"
+                        android:layout_marginTop="20dp"
                         android:fontFamily="serif"
                         android:text="---Your Treatment Type---"
                         android:textColor="@color/goodGrey"
                         android:textSize="18dp"
-                        android:layout_marginTop="20dp"
                         android:textStyle="bold" />
 
                     <TextView
