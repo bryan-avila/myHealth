@@ -7,7 +7,7 @@
 
     <item android:id="@+id/appointmentId"
         android:icon="@drawable/make_appoint"
-        android:title="Visits"/>
+        android:title="Book APT"/>
 
     <item android:id="@+id/medicalHistId"
         android:icon="@drawable/medi_hist"
@@ -15,7 +15,7 @@
 
     <item android:id="@+id/resourcesId"
         android:icon="@drawable/resources_icon"
-        android:title="Resources"/>
+        android:title="Diet Diary"/>
 
     <item android:id="@+id/profileId"
         android:icon="@drawable/account"

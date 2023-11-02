@@ -113,7 +113,6 @@
                 android:padding="8dp"
                 android:inputType="text"
                 android:maxLines="1"
-                android:maxLength="6"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="10dp"/>
