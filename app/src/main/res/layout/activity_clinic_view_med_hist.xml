@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".clinic_view_med_hist"
+    android:background="@drawable/blankback">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myhealth_logo"
+            android:adjustViewBounds="true"
+            android:maxWidth="80dp"
+            android:maxHeight="80dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/myhealth_logo_brand"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fill Prescription"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_below="@id/myhealth_logo_brand"
+            android:onClick="onFillPrescriptionClick"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Patients"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

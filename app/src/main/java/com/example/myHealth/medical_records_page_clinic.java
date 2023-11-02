@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -52,4 +53,15 @@ public class medical_records_page_clinic extends AppCompatActivity {
             }
         });
     }
+
+    public void onMyPatientRecordsClick(View view) {
+
+        startActivity(new Intent(getApplicationContext(), clinic_view_med_hist.class));
+    }
+
+    public void onMedicationsPrescriptionsClick(View view) {
+
+        startActivity(new Intent(getApplicationContext(), clinic_view_prescriptions.class));
+    }
+
 }
