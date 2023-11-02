@@ -2,8 +2,8 @@
     <string name="app_name">Login Screen</string>
 
     <string name="vitamin_d">
-        Responsible for:\n-Building and maintaining strong bones
-        -Keeping the right level of calcium and phosphorus in the blood\n-Preventing bones from becoming weak or malformed\n-Preventing rickets in children and osteomalacia in adults.
+        -Builds and maintains strong bones
+        -Keeps the right level of calcium and phosphorus in the blood\n-Prevents bones from becoming weak or malformed\n-Prevents rickets in children and osteomalacia in adults.
     </string>
 
     <string name="vitamin_d_dosage">
