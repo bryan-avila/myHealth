@@ -37,7 +37,7 @@
     <!-- Added on Click to buttons -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
@@ -45,44 +45,68 @@
         android:layout_marginRight="30dp"
         android:layout_centerVertical="true">
 
-        <Button
-            android:id="@+id/records_button"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Records"
-            android:backgroundTint="@color/purple"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:onClick="onMyRecordsClick"/>
+            >
 
-        <Button
-            android:id="@+id/medications_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Medications"
-            android:backgroundTint="@color/purple"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="80dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:onClick="onMedicationsClick"/>
+            <Button
+                android:id="@+id/records_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Records"
+                android:backgroundTint="@color/purple"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:onClick="onMyRecordsClick"/>
 
-        <Button
-            android:id="@+id/dietary_plans_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My Dietary Plans"
-            android:backgroundTint="@color/purple"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="140dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:onClick="onDietClick"/>
+            <Button
+                android:id="@+id/medications_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Medications"
+                android:backgroundTint="@color/purple"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="80dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:onClick="onMedicationsClick"/>
+
+            <Button
+                android:id="@+id/dietary_plans_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Dietary Plans"
+                android:backgroundTint="@color/purple"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="140dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:onClick="onDietClick"/>
+
+            <Button
+                android:id="@+id/button_appointments_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Appointment History"
+                android:backgroundTint="@color/purple"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:onClick="onAppointmentsRecordClick"
+                android:layout_below="@id/dietary_plans_button"
+                 />
+
+
+
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
