@@ -1,9 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clinic_prescription_form">
+    tools:context=".clinic_prescription_form"
+    android:background="@drawable/blankback">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myhealth_logo"
+            android:adjustViewBounds="true"
+            android:maxWidth="80dp"
+            android:maxHeight="81dp"
+            android:scaleType="fitCenter"
+            android:id="@+id/myhealth_logo_brand"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="20dp"
+            android:background="@drawable/custom_edittext"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prescription Form"
+                android:textAlignment="center"
+                android:layout_marginTop="20dp"
+                android:textSize="25sp"
+                android:textColor="@color/purple"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutMed"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp"
+                android:padding="8dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/medName"
+                    android:text="Medication"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/goodGrey"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/medNameEdit"
+                    android:hint="name"
+                    android:layout_weight="1"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/medLayout2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginBottom="10dp"
+                android:padding="8dp">
+
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/medDosage"
+                    android:text="Dosage"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/goodGrey"/>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/medDosageEdit"
+                    android:hint="enter dosage"
+                    android:layout_weight="1"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:layout_marginTop="200dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginBottom="15dp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/purple"
+                android:textSize="18dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

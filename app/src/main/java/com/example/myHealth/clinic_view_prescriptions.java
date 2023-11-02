@@ -17,4 +17,5 @@ public class clinic_view_prescriptions extends AppCompatActivity {
     public void onFillPrescriptionClick(View view) {
         startActivity(new Intent(getApplicationContext(), clinic_prescription_form.class));
     }
+
 }

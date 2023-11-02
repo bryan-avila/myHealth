@@ -66,8 +66,7 @@
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/purple"
                 android:textStyle="bold"
-                android:textSize="20sp"
-                android:onClick="onManagePrescriptionClick"/>
+                android:textSize="20sp"/>
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
