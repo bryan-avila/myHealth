@@ -67,22 +67,86 @@
         android:layout_marginRight="30dp"
         android:layout_centerVertical="true">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="(greeting, first name)"
-            android:id="@+id/text_view_dashboard"
-            android:textSize="22sp"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/purple"
-            android:layout_marginTop="10dp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:layout_marginTop="50dp"
-            android:background="@color/purple" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(greeting, first name)"
+                android:id="@+id/text_view_dashboard"
+                android:textSize="22sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/purple"
+                android:layout_marginTop="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="50dp"
+                android:background="@color/purple" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Notices"
+                android:id="@+id/text_view_notices"
+                android:layout_centerHorizontal="true"
+                android:textSize="24sp"
+                android:layout_below="@id/text_view_dashboard"
+                android:layout_marginTop="20sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_appointments_notice"
+                android:text="1) No Upcoming Appointments"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/text_view_notices"
+                android:layout_marginBottom="10sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_medications_list"
+                android:text="2) Your daily Medications: .... "
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/text_view_appointments_notice"
+                android:layout_marginBottom="10sp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_nutrient_msg"
+                android:text="3) You are managing your nutrient intake well."
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/text_view_medications_list"
+                android:layout_marginBottom="10sp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_totd"
+                android:text="4) Tip/Fact of the Day: ....."
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_below="@id/text_view_nutrient_msg"
+                android:layout_marginBottom="10sp"
+
+                />
+
+
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
