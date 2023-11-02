@@ -2,16 +2,29 @@ package com.example.myHealth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class patient_view_search_centers_visit extends AppCompatActivity {
+    // Inside your activity or fragment
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +66,30 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                 return false;
             }
         });
+        // Set up the RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //list of items
+        FirebaseFirestore db = myFirestore.getDBInstance();
+        CollectionReference clinicsRef = db.collection("clinic");
+
+        clinicsRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Clinic> clinics = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Clinic clinic = document.toObject(Clinic.class);
+                    clinics.add(clinic);
+                }
+                Log.d("TAG", "Clinics size: " + clinics.size()); // Check the size of the clinics list
+                // Set the adapter (you'll create and set the adapter in later steps)
+                recyclerView.setAdapter(new MyClinicAdapter(getApplicationContext(), clinics));
+            } else {
+                // Handle the error
+                Log.e("TAG", "Error getting clinics", task.getException());
+            }
+        });
+
     }
 
     public void onClinic1Click(View view)
@@ -81,3 +118,5 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
     }
 
 }
+
+
