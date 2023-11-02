@@ -21,7 +21,7 @@
             android:src="@drawable/myhealth_logo"
             android:adjustViewBounds="true"
             android:maxWidth="80dp"
-            android:maxHeight="80dp"
+            android:maxHeight="81dp"
             android:scaleType="fitCenter"
             android:id="@+id/myhealth_logo_brand"/>
 
