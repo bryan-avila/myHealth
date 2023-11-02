@@ -118,11 +118,13 @@
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="10dp"/>
 
+            <!-- name is from previous button message -->
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/button_Signup"
-                android:text="Send Email for Confirmation"
+                android:text="Next"
                 android:textSize="18sp"
                 android:layout_marginTop="14dp"
                 android:backgroundTint="@color/purple"
