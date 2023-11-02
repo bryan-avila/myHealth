@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Login Screen</string>
+
+    <string name="vitamin_d">
+        Active vitamin D controls the balance of calcium, phosphorus and PTH.\nVitamin D is responsible for:\n-Building and maintaining strong bones
+        -Keeping the right level of calcium and phosphorus in the blood\n-Preventing bones from becoming weak or malformed\n-Preventing rickets in children and osteomalacia in adults
+    </string>
+
+    <string name="vitamin_d_dosage">
+        Maximum intake is 25 mcg (1,000 IU) for infants and 50 mcg (2,000 IU) for children and adults with normal kidney function.
+    </string>
+
 </resources>

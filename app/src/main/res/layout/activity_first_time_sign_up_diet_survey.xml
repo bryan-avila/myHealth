@@ -265,9 +265,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginBottom="100dp"
         android:fontFamily="sans-serif"
-        android:text="Provided are the following nutrient values as an INFORMATIONAL GUIDELINE for someone with Stage 4 Kidney Disease. Please speak with your doctor
- to recieve medical advise on exactly what your body needs for nutrients.
-There is no one-size fits all diet plan!"
+        android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 4 Kidney Disease and the appropriate nutrition."
         android:textColor="@color/redish"
         android:textSize="20sp"
         android:visibility="invisible" />
@@ -279,15 +277,36 @@ There is no one-size fits all diet plan!"
         android:fontFamily="sans-serif"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="110dp"
-        android:text="Provided are the following nutrient values as an INFORMATIONAL GUIDELINE for someone with Stage 5 Kidney Disease. Please speak with your doctor
- to recieve medical advise on exactly what your body needs for nutrients.
-There is no one-size fits all diet plan!"
+        android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 5 Kidney Disease and the appropriate nutrition."
         android:textSize="20sp"
         android:layout_centerInParent="true"
         android:layout_above="@id/edit_text_phosphorus"
         android:textColor="@color/redish"
         android:visibility="invisible"/>
 
+    <Button
+        android:id="@+id/button_patient_diet_auto_fill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/edit_text_phosphorus"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100sp"
+        android:visibility="invisible"
+        android:clickable="false"
+        android:onClick="onAutoFillClick"
+        android:text="Auto Fill" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nutrient Intake"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_above="@id/edit_text_phosphorus"
+        android:layout_centerInParent="true"
+        />
+    <!--
     <TextView
         android:id="@+id/text_view_diet_message"
         android:layout_width="wrap_content"
@@ -298,7 +317,8 @@ There is no one-size fits all diet plan!"
         android:text="You may edit these values now if you have spoken with your doctor or edit them later"
         android:textColor="@color/redish"
         android:textSize="17sp"
-        android:visibility="invisible" />
+        android:visibility="visible" />
+        -->
 
 
 </RelativeLayout>

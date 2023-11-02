@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,10 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
     private DocumentReference userMedHistory = db.collection("users").document(currentUser.getUid()).collection("medicalHistory").document("medicalHistory");
     private ListenerRegistration userMedHistoryListener;
 
+    Button autofill_btn;
+
+    String chosen_stage;
+
 
     // TO DO:
     // 1. Do input validation
@@ -54,13 +59,10 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_time_sign_up_diet_survey);
 
-
-        // need to create an if statement for people with stage 4 and stage 5 to provide
-        // general nutrient limits, but nothing concrete as its best to talk to a dietician
     }
 
 
-    // onClick listener using .xml declartion onClick="onDietButtonClick"
+    // onClick listener using .xml declaration onClick="onDietButtonClick"
     public void onDietButtonClick(View view)
     {
         EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
@@ -163,14 +165,12 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
                     String patient_stage = documentSnapshot.get("stage").toString();
                     TextView stage_4_message = findViewById(R.id.text_view_stage_4_warning);
                     TextView stage_5_message = findViewById(R.id.text_view_stage_5_warning);
-                    // could cause crashing?
-                    TextView diet_message = findViewById(R.id.text_view_diet_message);
 
 
                     // Display different nutrient values depending on stage/med history/age
                     if(patient_stage.equals("Kidney Disease Stage 4"))
                     {
-                        // Load in general nutrient amounts and warning message
+                     /*   // Load in general nutrient amounts and warning message
                         EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
                         EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
                         EditText editTextProtein = findViewById(R.id.edit_text_protein);
@@ -182,15 +182,17 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
                         editTextProtein.setText("46",TextView.BufferType.EDITABLE);
                         editTextSodium.setText("2300", TextView.BufferType.EDITABLE);
                         editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
-                        editTextCalories.setText("2000", TextView.BufferType.EDITABLE);
+                        editTextCalories.setText("2000", TextView.BufferType.EDITABLE);*/
+                        chosen_stage = "4";
                         stage_4_message.setVisibility(View.VISIBLE);
-                        diet_message.setVisibility(View.VISIBLE);
-
+                        autofill_btn = findViewById(R.id.button_patient_diet_auto_fill);
+                        autofill_btn.setVisibility(View.VISIBLE);
+                        autofill_btn.setClickable(true);
                     }
 
                     else if(patient_stage.equals("Kidney Disease Stage 5"))
                     {
-                        EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+                       /* EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
                         EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
                         EditText editTextProtein = findViewById(R.id.edit_text_protein);
                         EditText editTextSodium = findViewById(R.id.edit_text_sodium);
@@ -201,14 +203,53 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
                         editTextProtein.setText("40",TextView.BufferType.EDITABLE);
                         editTextSodium.setText("1800", TextView.BufferType.EDITABLE);
                         editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
-                        editTextCalories.setText("2000", TextView.BufferType.EDITABLE);
+                        editTextCalories.setText("2000", TextView.BufferType.EDITABLE);*/
+                        chosen_stage ="5";
                         stage_5_message.setVisibility(View.VISIBLE);
-                        diet_message.setVisibility(View.VISIBLE);
+                        autofill_btn = findViewById(R.id.button_patient_diet_auto_fill);
+                        autofill_btn.setVisibility(View.VISIBLE);
+                        autofill_btn.setClickable(true);
                     }
 
 
                 }
             }
         });
+    }
+
+    public void onAutoFillClick(View view)
+    {
+
+        if("4".equals(chosen_stage)) {
+            EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+            EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+            EditText editTextProtein = findViewById(R.id.edit_text_protein);
+            EditText editTextSodium = findViewById(R.id.edit_text_sodium);
+            EditText editTextWater = findViewById(R.id.edit_text_water);
+            EditText editTextCalories = findViewById(R.id.edit_text_calories);
+            editTextPhosphorus.setText("900", TextView.BufferType.EDITABLE);
+            editTextPotassium.setText("2500", TextView.BufferType.EDITABLE);
+            editTextProtein.setText("46", TextView.BufferType.EDITABLE);
+            editTextSodium.setText("2300", TextView.BufferType.EDITABLE);
+            editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
+            editTextCalories.setText("2000", TextView.BufferType.EDITABLE);
+        }
+
+        if("5".equals(chosen_stage)) {
+            EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+            EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+            EditText editTextProtein = findViewById(R.id.edit_text_protein);
+            EditText editTextSodium = findViewById(R.id.edit_text_sodium);
+            EditText editTextWater = findViewById(R.id.edit_text_water);
+            EditText editTextCalories = findViewById(R.id.edit_text_calories);
+            editTextPhosphorus.setText("800", TextView.BufferType.EDITABLE);
+            editTextPotassium.setText("2000", TextView.BufferType.EDITABLE);
+            editTextProtein.setText("40", TextView.BufferType.EDITABLE);
+            editTextSodium.setText("1800", TextView.BufferType.EDITABLE);
+            editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
+            editTextCalories.setText("2000", TextView.BufferType.EDITABLE);
+        }
+
+
     }
 }

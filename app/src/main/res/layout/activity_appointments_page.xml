@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".appointments_page"
-    android:background="@drawable/appointment_page_back">
+    android:background="@drawable/visits_background">
 
 
     <androidx.cardview.widget.CardView

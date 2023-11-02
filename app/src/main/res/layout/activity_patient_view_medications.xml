@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
@@ -25,7 +25,8 @@
             android:layout_marginTop="20dp"
             android:textSize="25sp"
             android:textColor="@color/purple"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:fontFamily="serif"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,14 +34,15 @@
             android:id="@+id/layoutmed"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginBottom="10dp"
             android:padding="8dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/medicationName1"
-                android:text="Medication Name"
+                android:text="Vitamin D"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/purple"/>
@@ -54,7 +56,8 @@
                 android:textSize="18dp"
                 android:textColor="@color/grey"
                 android:layout_marginLeft="20dp"
-                android:backgroundTint="@color/white"/>
+                android:backgroundTint="@color/white"
+                android:onClick="onDetailsClick"/>
         </LinearLayout>
 
         <LinearLayout
@@ -63,14 +66,15 @@
             android:id="@+id/layoutmed2"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="170dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginBottom="10dp"
             android:padding="8dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/medicationName2"
-                android:text="Medication Name"
+                android:text="Erythropoietin"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/purple"/>
@@ -93,14 +97,15 @@
             android:id="@+id/layoutmed3"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="240dp"
-            android:padding="8dp">
+            android:layout_marginTop="230dp"
+            android:padding="8dp"
+            android:layout_marginBottom="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/medicationName3"
-                android:text="Medication Name"
+                android:text="Vitamin E"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/purple"/>
@@ -123,14 +128,15 @@
             android:id="@+id/layoutmed4"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="310dp"
-            android:padding="8dp">
+            android:layout_marginTop="300dp"
+            android:padding="8dp"
+            android:layout_marginBottom="30dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/medicationName4"
-                android:text="Medication Name"
+                android:text="Phosphorus"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/purple"/>
