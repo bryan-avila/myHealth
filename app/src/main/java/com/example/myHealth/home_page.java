@@ -6,11 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +62,7 @@ public class home_page extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), resources_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
