@@ -48,7 +48,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             medDosage.requestFocus();
             medDosage.setError("FIELD CANNOT BE EMPTY");
             return false;
-        }  else if (medFrequency.length() == 0) {
+        }  else if (med_Frequency.length() == 0) {
             medFrequency.requestFocus();
             medFrequency.setError("FIELD CANNOT BE EMPTY");
             return false;
