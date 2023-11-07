@@ -105,7 +105,7 @@ public class appointments_page extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), resources_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
