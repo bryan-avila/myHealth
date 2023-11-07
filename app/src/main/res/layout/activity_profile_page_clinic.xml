@@ -6,7 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profile_page_clinic"
-    android:background="@drawable/profile_page_back">
+    android:background="@drawable/blankback">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myhealth_logo"
+            android:adjustViewBounds="true"
+            android:maxWidth="80dp"
+            android:maxHeight="80dp"
+            android:scaleType="fitCenter"/>
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation2"
@@ -42,7 +57,8 @@
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="email"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="@color/goodGrey"/>
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +86,8 @@
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="name"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="@color/goodGrey"/>
     </LinearLayout>
 
     <LinearLayout
@@ -98,7 +115,8 @@
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="location"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="@color/goodGrey"/>
     </LinearLayout>
 
 
@@ -127,7 +145,8 @@
             android:layout_weight="1"
             android:textAlignment="viewEnd"
             android:text="phone number"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:textColor="@color/goodGrey"/>
     </LinearLayout>
 
     <Button

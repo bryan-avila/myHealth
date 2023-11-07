@@ -38,6 +38,15 @@
                     android:orientation="vertical"
                     android:padding="24dp">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/myhealth_logo_white"
+                        android:adjustViewBounds="true"
+                        android:maxWidth="80dp"
+                        android:maxHeight="80dp"
+                        android:scaleType="fitCenter"/>
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -45,6 +54,7 @@
                         android:padding="5sp"
                         android:text="Enter Your Basic Medical History"
                         android:textSize="20sp"
+                        android:textColor="@color/purple"
                         android:textStyle="bold" />
 
 
@@ -184,6 +194,7 @@
                             android:layout_height="match_parent"
                             android:text="What Treatment are you recieving?"
                             android:textSize="20dp"
+                            android:textColor="@color/purple"
                             android:textStyle="bold"
                             />
 
@@ -235,7 +246,8 @@
                             android:layout_height="match_parent"
                             android:text="Which Stage?"
                             android:textSize="20dp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold"
+                            android:textColor="@color/purple"/>
 
                         <RadioButton
                             android:id="@+id/radio_button_stage_1"
@@ -280,7 +292,8 @@
                             android:layout_height="wrap_content"
                             android:text="Medical History:"
                             android:textSize="20dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="@color/purple"/>
 
 
                         <CheckBox

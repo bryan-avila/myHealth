@@ -13,6 +13,15 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".clinic_prescription_form"
+            android:exported="false" />
+        <activity
+            android:name=".clinic_view_prescriptions"
+            android:exported="false" />
+        <activity
+            android:name=".clinic_view_med_hist"
+            android:exported="false" />
+        <activity
             android:name=".medication1_details"
             android:exported="false" />
         <activity
@@ -55,7 +64,7 @@
             android:name=".medical_records_page"
             android:exported="false" />
         <activity
-            android:name=".resources_page"
+            android:name=".patient_diet_page"
             android:exported="false" />
         <activity
             android:name=".appointments_page"

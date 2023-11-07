@@ -155,7 +155,7 @@ public class clinic_sign_up extends AppCompatActivity {
             return false;
         }
 
-        else if (!c_name.matches("[a-zA-Z]+")) {
+        else if (!c_name.matches("[a-zA-Z ]+")) {
             clinic_name.requestFocus();
             clinic_name.setError("ENTER ONLY ALPHABETICAL CHARACTERS");
             return false;

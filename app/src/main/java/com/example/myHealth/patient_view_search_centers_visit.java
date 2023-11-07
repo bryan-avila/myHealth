@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -55,7 +53,7 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), resources_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {

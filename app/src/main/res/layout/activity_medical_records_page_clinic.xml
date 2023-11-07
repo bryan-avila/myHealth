@@ -5,7 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".medical_records_page_clinic">
+    tools:context=".medical_records_page_clinic"
+    android:background="@drawable/med_page_back">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myhealth_logo"
+            android:adjustViewBounds="true"
+            android:maxWidth="80dp"
+            android:maxHeight="80dp"
+            android:scaleType="fitCenter"/>
+    </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation2"
@@ -16,5 +32,57 @@
         app:itemRippleColor="@color/lightpurple"
         app:itemIconTint="@color/icons_color"
         app:itemTextColor="@color/lightpurple"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="20dp"
+        android:background="@drawable/custom_edittext"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerVertical="true">
+
+        <Button
+            android:id="@+id/records_button_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Patient Records"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:onClick="onMyPatientRecordsClick"/>
+
+        <Button
+            android:id="@+id/medications_button_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medication Prescriptions"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:onClick="onMedicationsPrescriptionsClick"/>
+
+        <Button
+            android:id="@+id/todecide_button_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="To decide???"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:onClick="onDecideClick"/>
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
