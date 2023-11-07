@@ -83,7 +83,19 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                 }
                 Log.d("TAG", "Clinics size: " + clinics.size()); // Check the size of the clinics list
                 // Set the adapter (you'll create and set the adapter in later steps)
-                recyclerView.setAdapter(new MyClinicAdapter(getApplicationContext(), clinics));
+                MyClinicAdapter myAdapter = new MyClinicAdapter(getApplicationContext(), clinics);
+                recyclerView.setAdapter(myAdapter);
+
+                myAdapter.setOnItemClickListener(new MyClinicAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, Clinic clinic) {
+                        // Handle the item click here
+                        Intent intent = new Intent(patient_view_search_centers_visit.this, appointments_page.class);
+                        intent.putExtra("clinicData", clinic);
+                        startActivity(intent);
+                    }
+                });
+
             } else {
                 // Handle the error
                 Log.e("TAG", "Error getting clinics", task.getException());

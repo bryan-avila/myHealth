@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,6 +37,24 @@ public class appointments_page extends AppCompatActivity {
         calendarview = findViewById(R.id.calendarView);
         calendar = Calendar.getInstance();
 
+        // Retrieve the data from the intent
+        Intent intent = getIntent();
+        if (intent != null) {
+            Clinic clinic = (Clinic) intent.getSerializableExtra("clinicData");
+
+            // Now you can use 'clinic' to update your UI or perform other operations
+            if (clinic != null) {
+                TextView clinicTextView = findViewById(R.id.clinicText);
+                TextView emailTextView = findViewById(R.id.emailText);
+                TextView locationTextView = findViewById(R.id.locationText);
+                TextView phoneTextView = findViewById(R.id.phoneText);
+
+                clinicTextView.setText(clinic.getClinicName());
+                emailTextView.setText(clinic.getEmail());
+                locationTextView.setText(clinic.getLocation());
+                phoneTextView.setText(clinic.getPhone());
+            }
+        }
 
         // Might not need this pop up
         /*// Pop-Up Window Intialization
