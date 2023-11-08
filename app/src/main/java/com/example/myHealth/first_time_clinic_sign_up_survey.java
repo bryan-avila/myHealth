@@ -82,7 +82,7 @@ public class first_time_clinic_sign_up_survey extends AppCompatActivity {
                     }
                 });
 
-        // Once they finish inputting diet, send them home
+        // Send to clinic home page
         Intent intent = new Intent(first_time_clinic_sign_up_survey.this, clinic_home_page.class);
         startActivity(intent);
         finish();
