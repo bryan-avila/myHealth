@@ -36,7 +36,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
@@ -68,20 +68,8 @@
             android:layout_marginTop="80dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
+            android:layout_marginBottom="20dp"
             android:onClick="onMedicationsPrescriptionsClick"/>
-
-        <Button
-            android:id="@+id/todecide_button_clinic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="To decide???"
-            android:backgroundTint="@color/purple"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="140dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:onClick="onDecideClick"/>
 
     </androidx.cardview.widget.CardView>
 

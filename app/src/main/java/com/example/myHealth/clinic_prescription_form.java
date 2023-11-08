@@ -34,6 +34,7 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         if (inputCheckerOnMedication) {
             Toast.makeText(clinic_prescription_form.this, "Medication Prescribed.", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(getApplicationContext(), clinic_view_prescriptions.class));
         } else {
             Toast.makeText(clinic_prescription_form.this, "Please fill out any empty fields.", Toast.LENGTH_LONG).show();
         }

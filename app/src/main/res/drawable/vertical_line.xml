@@ -4,7 +4,7 @@
             android:shape="rectangle">
             <size
                 android:width="10sp"
-            android:height="match_parent" /> <!-- Set the line's height to match the parent view -->
+            android:height="10sp" /> <!-- Set the line's height to match the parent view -->
             <solid android:color="#000000" /> <!-- Black color -->
         </shape>
     </item>

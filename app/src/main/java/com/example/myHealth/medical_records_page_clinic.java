@@ -60,8 +60,8 @@ public class medical_records_page_clinic extends AppCompatActivity {
     }
 
     public void onMedicationsPrescriptionsClick(View view) {
-
-        startActivity(new Intent(getApplicationContext(), clinic_view_prescriptions.class));
+        //will need to show current patients
+        startActivity(new Intent(getApplicationContext(), clinic_view_med_hist.class));
     }
 
 }
