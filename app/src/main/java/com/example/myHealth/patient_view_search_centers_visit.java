@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -55,7 +53,7 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), resources_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
@@ -83,7 +81,19 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                 }
                 Log.d("TAG", "Clinics size: " + clinics.size()); // Check the size of the clinics list
                 // Set the adapter (you'll create and set the adapter in later steps)
-                recyclerView.setAdapter(new MyClinicAdapter(getApplicationContext(), clinics));
+                MyClinicAdapter myAdapter = new MyClinicAdapter(getApplicationContext(), clinics);
+                recyclerView.setAdapter(myAdapter);
+
+                myAdapter.setOnItemClickListener(new MyClinicAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, Clinic clinic) {
+                        // Handle the item click here
+                        Intent intent = new Intent(patient_view_search_centers_visit.this, appointments_page.class);
+                        intent.putExtra("clinicData", clinic);
+                        startActivity(intent);
+                    }
+                });
+
             } else {
                 // Handle the error
                 Log.e("TAG", "Error getting clinics", task.getException());
