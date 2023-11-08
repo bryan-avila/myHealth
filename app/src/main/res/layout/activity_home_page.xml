@@ -34,6 +34,10 @@
         app:itemTextColor="@color/lightpurple"/>
 
 
+
+
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -56,10 +60,11 @@
         android:textColor="@color/purple"/>
     <!--Ignore the "(date)" position on page, it is fixed on runtime-->
 
+    <!--Still need to show the date using ScrollView...-->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_home_page"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="500dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
@@ -68,8 +73,8 @@
         android:layout_centerVertical="true">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,6 +86,8 @@
                 android:textStyle="bold"
                 android:textColor="@color/purple"
                 android:layout_marginTop="10dp"/>
+
+
 
             <View
                 android:layout_width="match_parent"
@@ -95,59 +102,95 @@
                 android:id="@+id/text_view_notices"
                 android:layout_centerHorizontal="true"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 android:layout_below="@id/text_view_dashboard"
                 android:layout_marginTop="20sp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_view_appointments_notice"
-                android:text="1) No Upcoming Appointments"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_below="@id/text_view_notices"
-                android:layout_marginBottom="10sp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_view_medications_list"
-                android:text="2) Your daily Medications: .... "
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_below="@id/text_view_appointments_notice"
-                android:layout_marginBottom="10sp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_view_nutrient_msg"
-                android:text="3) You are managing your nutrient intake well."
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_below="@id/text_view_medications_list"
-                android:layout_marginBottom="10sp"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_view_totd"
-                android:text="4) Tip/Fact of the Day: ....."
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_below="@id/text_view_nutrient_msg"
-                android:layout_marginBottom="10sp"
-
-                />
 
 
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="120dp"
+                        android:paddingLeft="30dp"
+                        android:id="@+id/text_view_appointments_notice"
+                        android:text="1) No Upcoming Appointments"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/text_view_notices"
+                        android:layout_marginBottom="10sp"
+                        />
+
+                    <!--Insert a reference to an object for "Daily Medications"-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="30dp"
+                        android:id="@+id/text_view_medications_list"
+                        android:text="2) Your daily Medications:"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/text_view_appointments_notice"
+                        android:layout_marginBottom="10sp"
+                        />
+
+                    <!--This is a list of all medication required for patient-->
+                    <ListView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="70dp"
+                        android:id="@+id/list_view_medications_list"
+                        android:layout_below="@id/text_view_medications_list"
+                        android:dividerHeight="1dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="30dp"
+                        android:id="@+id/text_view_nutrient_msg"
+                        android:text="3) You are managing your nutrient intake well."
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/list_view_medications_list"
+                        android:layout_marginBottom="10sp"
+
+                        />
+
+                    <!--Insert a reference to an object for "Tip of the day"-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="30dp"
+                        android:id="@+id/text_view_totd"
+                        android:text="4) Tip/Fact of the Day:"
+
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_below="@id/text_view_nutrient_msg"
+                        android:layout_marginBottom="10sp"
+                        />
+
+                </LinearLayout>
+            </ScrollView>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 </RelativeLayout>

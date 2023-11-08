@@ -53,9 +53,46 @@
             <CalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="300dp"
                 android:layout_above="@id/bottom_navigation"
                 android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/clinicText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="clinic"
+                android:textAlignment="center"
+                android:textColor="@color/goodGrey"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="email"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/locationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="location"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/phoneText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="phone"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
