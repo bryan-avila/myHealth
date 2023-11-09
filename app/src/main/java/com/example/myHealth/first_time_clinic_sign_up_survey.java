@@ -17,10 +17,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +34,12 @@ public class first_time_clinic_sign_up_survey extends AppCompatActivity {
     EditText startHour, finishHour, numofMachines;
     FirebaseFirestore db = myFirestore.getDBInstance();
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+    // Gave Clinics a collection inside a document
+    private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,53 +53,38 @@ public class first_time_clinic_sign_up_survey extends AppCompatActivity {
         finishHour = findViewById(R.id.edit_text_end_hours_operation);
         numofMachines = findViewById(R.id.edit_text_num_of_machines);
 
-        // Get firebase info
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
-
         // Set user data to strings to pass to Firebase
-        String sHour = startHour.toString();
-        String fHour = finishHour.toString();
-        String numOfM = numofMachines.toString();
-        clinicRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    Log.d(TAG, "task successful");
-                    if (document.exists()) {
-                        Log.d(TAG, "document doesnt exist");
-                        // Create a new clinic
-                        Map<String, Object> clinic = new HashMap<>();
-                        clinic.put("startHour", sHour);
-                        clinic.put("closeHour", fHour);
-                        clinic.put("numOfMachines", numOfM);
+        String sHour = startHour.getText().toString();
+        String fHour = finishHour.getText().toString();
+        String numOfM = numofMachines.getText().toString();
+
+        // add user data to hashmap
+        Map<String, Object> clinicInfo = new HashMap<>();
+        clinicInfo.put("startHour", sHour);
+        clinicInfo.put("closeHour", fHour);
+        clinicInfo.put("numOfMachines", numOfM);
 
 
-                        clinicRef.set(clinic)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        // User document created successfully
-                                        Log.d(TAG, "added hours and machines");
-                                        // Upon registration send users to do medical history questions
-                                        Intent intent = new Intent(first_time_clinic_sign_up_survey.this, clinic_home_page.class);
-                                        startActivity(intent);
-                                        finish(); // If you don't want to allow the user to go back to the registration screen
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        // Handle failure to create user document
-                                        Log.w(TAG, "Error adding document", e);
-                                    }
-                                });
-
-
+        // Add the data to the firebase
+        clinicRef.update(clinicInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Handle success
+                        Log.d(TAG, "Added clinic info!");
                     }
-                }
-            }
-        });
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Handle failure
+                        Log.w(TAG, "Error adding clinc info", e);
+                    }
+                });
+
+        // Send to clinic home page
+        Intent intent = new Intent(first_time_clinic_sign_up_survey.this, clinic_home_page.class);
+        startActivity(intent);
+        finish();
     }
 }
