@@ -14,6 +14,7 @@ public class clinic_view_prescriptions extends AppCompatActivity {
         setContentView(R.layout.activity_clinic_view_prescriptions);
     }
 
+    // When clinic clicks this button, send them to search for a list of patients
     public void onFillPrescriptionClick(View view) {
         startActivity(new Intent(getApplicationContext(), clinic_prescription_form.class));
     }
