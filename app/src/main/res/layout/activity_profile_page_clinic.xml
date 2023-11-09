@@ -163,7 +163,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:onClick="onEditClick"/>
+        android:onClick="onEditClickClinic"/>
 
     <Button
         android:id="@+id/button_clinic_log_out"

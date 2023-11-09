@@ -75,8 +75,28 @@ public class profile_page_clinic extends AppCompatActivity {
 
         //Log out button here
 
+        Button log_out_button_clinic = findViewById(R.id.button_clinic_log_out);
 
+        log_out_button_clinic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+                mAuth.signOut();
 
-        //Retrieve information from database to display
+                // Start the LoginActivity (or any other activity you want to go to)
+                Intent intent = new Intent(getApplicationContext(), login_page.class);
+                startActivity(intent);
+
+                // Optionally, finish the current activity to prevent the user from going back to it
+                finish();
+            }
+        });
     }
+
+    public void onEditClickClinic(View view) {
+        startActivity(new Intent(getApplicationContext(), editProfile.class));
+    }
+
+
+
 }
