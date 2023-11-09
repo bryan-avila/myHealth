@@ -61,7 +61,7 @@
             android:id="@+id/medications_button_clinic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medication Prescriptions"
+            android:text="Prescribe Medications"
             android:backgroundTint="@color/purple"
             android:textStyle="bold"
             android:textSize="20sp"

@@ -75,6 +75,8 @@ public class profile_page_clinic extends AppCompatActivity {
 
         //Log out button here
 
+
+
         //Retrieve information from database to display
     }
 }
