@@ -37,7 +37,7 @@ public class first_time_clinic_sign_up_survey extends AppCompatActivity {
     FirebaseUser currentUser = mAuth.getCurrentUser();
 
     // Gave Clinics a collection inside a document
-    private CollectionReference clinicRef = db.collection("clinic").document(currentUser.getUid()).collection("clinicInfo");
+    private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
 
 
     @Override
@@ -66,7 +66,7 @@ public class first_time_clinic_sign_up_survey extends AppCompatActivity {
 
 
         // Add the data to the firebase
-        clinicRef.document("clincInfo").set(clinicInfo)
+        clinicRef.update(clinicInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
