@@ -40,7 +40,6 @@ public class clinic_prescription_form extends AppCompatActivity {
         }
     }
 
-    //test
 
     public boolean validateMedInput (String med_Name, String med_Dosage, String med_Frequency) {
         if (med_Name.length() == 0) {
