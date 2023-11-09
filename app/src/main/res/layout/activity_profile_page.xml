@@ -157,7 +157,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="71dp"
+        android:layout_marginBottom="55dp"
         android:backgroundTint="@color/purple"
         android:onClick="onResourcesClick"
         android:text="View Resources"
