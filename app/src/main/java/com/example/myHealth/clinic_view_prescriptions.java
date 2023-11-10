@@ -11,7 +11,7 @@ public class clinic_view_prescriptions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clinic_view_prescriptions);
+        //setContentView(R.layout.activity_clinic_view_prescriptions);
     }
 
     // When clinic clicks this button, send them to search for a list of patients
