@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.firestore.CollectionReference;
@@ -34,6 +35,7 @@ public class clinic_view_med_hist extends AppCompatActivity {
 
         patients.get().addOnCompleteListener(task -> {
 
+            //asdasdasdas
             // Create a list of all patients
             List<Patient> patientsList = null;
 
@@ -47,7 +49,18 @@ public class clinic_view_med_hist extends AppCompatActivity {
                 }
             }
 
-            recyclerView.setAdapter(new MyPatientAdapter(getApplicationContext(), patientsList));
+            MyPatientAdapter myPatAdapater = new MyPatientAdapter(getApplicationContext(), patientsList);
+            recyclerView.setAdapter(myPatAdapater);
+
+            // Make Patient's Clickable
+            myPatAdapater.setOnItemClickListener(new MyPatientAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position, Patient patients) {
+                    // Send them to the prescription form after click
+                    Intent intent = new Intent(clinic_view_med_hist.this, clinic_prescription_form.class);
+                    startActivity(intent);
+                }
+            });
 
         });
 

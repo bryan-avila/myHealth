@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 
 public class login_page extends AppCompatActivity {
     EditText email;
@@ -53,10 +54,19 @@ public class login_page extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent intent = new Intent(login_page.this, home_page.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                    startActivity(intent);
-                                    finish();
+                                    if(user.getEmail().contains("@clinic.com"))
+                                    {
+                                        Intent intent = new Intent(login_page.this, clinic_home_page.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else {
+                                        Intent intent = new Intent(login_page.this, home_page.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                        startActivity(intent);
+                                        finish();
+                                    }
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -85,13 +95,23 @@ public class login_page extends AppCompatActivity {
         FirebaseAuth mAuth = myFirestore.getmAuthInstance();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if(currentUser != null){
             // If you log in successfully once, it stays logged in even after you delete a user from the Firebase console.
             // Work around this issue by preventing this if statement
-            Intent intent = new Intent(login_page.this, home_page.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            finish();
+            if(currentUser.getEmail().contains("@clinic.com")) {
+                Intent intent = new Intent(login_page.this, clinic_home_page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            }
+
+            else {
+                Intent intent = new Intent(login_page.this, home_page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 }
