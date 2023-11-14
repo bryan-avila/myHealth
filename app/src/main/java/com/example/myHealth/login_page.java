@@ -54,6 +54,8 @@ public class login_page extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
+
+                                    // If they entered an email with clinic.com, then they must be a Clinic user. Send to clinic home page
                                     if(user.getEmail().contains("@clinic.com"))
                                     {
                                         Intent intent = new Intent(login_page.this, clinic_home_page.class);
@@ -61,6 +63,8 @@ public class login_page extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     }
+
+                                    // Else, they must be a patient user. Send them to the patient home page
                                     else {
                                         Intent intent = new Intent(login_page.this, home_page.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -99,6 +103,9 @@ public class login_page extends AppCompatActivity {
         if(currentUser != null){
             // If you log in successfully once, it stays logged in even after you delete a user from the Firebase console.
             // Work around this issue by preventing this if statement
+
+            // If the user created an email account that contains clinic.com, they will automatically
+            // be logged in as a clinic user
             if(currentUser.getEmail().contains("@clinic.com")) {
                 Intent intent = new Intent(login_page.this, clinic_home_page.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -106,6 +113,7 @@ public class login_page extends AppCompatActivity {
                 finish();
             }
 
+            // Else, they will be logged in as a patient user
             else {
                 Intent intent = new Intent(login_page.this, home_page.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
