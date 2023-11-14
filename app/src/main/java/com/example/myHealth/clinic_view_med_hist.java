@@ -18,6 +18,7 @@ import java.util.List;
 
 public class clinic_view_med_hist extends AppCompatActivity {
 
+    // DISPLAY LIST OF PATIENTS
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -56,8 +57,10 @@ public class clinic_view_med_hist extends AppCompatActivity {
             myPatAdapater.setOnItemClickListener(new MyPatientAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position, Patient patients) {
-                    // Send them to the prescription form after click
+                    // Send them to the prescription form after clicking on a patients name using this onItemClickListener
                     Intent intent = new Intent(clinic_view_med_hist.this, clinic_prescription_form.class);
+                    // Send extra info to know where to send the medication information
+                    intent.putExtra("patient", patients.getEmail());
                     startActivity(intent);
                 }
             });

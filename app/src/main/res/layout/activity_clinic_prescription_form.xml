@@ -69,7 +69,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/medNameEdit"
+                    android:id="@+id/edit_text_med_Name"
                     android:hint="name"
                     android:layout_weight="1"
                     android:textAlignment="center"
@@ -100,7 +100,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/medDosageEdit"
+                    android:id="@+id/edit_text_med_Dosage"
                     android:hint="enter dosage"
                     android:layout_weight="1"
                     android:textAlignment="center"
@@ -131,7 +131,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/medFrequencyEdit"
+                    android:id="@+id/edit_text_med_Frequency"
                     android:hint="enter frequency"
                     android:layout_weight="1"
                     android:textAlignment="center"
