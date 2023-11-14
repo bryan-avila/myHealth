@@ -9,6 +9,7 @@ public class Patient implements Serializable {
     String lastName;
     String phone;
     String email;
+    String pat_ID; // to get patient id
 
     public Patient() {
     }
@@ -50,6 +51,14 @@ public class Patient implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    // get patient ID
+    public String getPat_ID(){return pat_ID;}
+
+    public void setPat_ID(String id)
+    {
+        this.pat_ID = id;
     }
 
 }
