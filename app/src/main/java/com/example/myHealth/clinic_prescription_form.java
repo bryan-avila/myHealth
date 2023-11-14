@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -55,11 +56,17 @@ public class clinic_prescription_form extends AppCompatActivity {
         // Obtain information from clinic_view_med_hist.java
         Bundle bundle = getIntent().getExtras();
         String patientId = bundle.getString("patient");
-        // Test toast msg
-        Toast.makeText(this, patientId, Toast.LENGTH_SHORT).show();
 
+/*      *//*  Intent intent = getIntent();
+        if (intent != null) {
+            // Get patient info
+            Patient patient = (Patient) intent.getSerializableExtra("patient");
+
+            String patient_id = patient.getPat_ID();
+*//*
+        }*/
         // Hardcoded example
-        DocumentReference patientRef = db.collection("users").document("G0Zg1uGasOQSMJfOBQqz3H88sM83");
+        DocumentReference patientRef = db.collection("users").document(patientId);
 
         CollectionReference prescriptionsInfoRef = patientRef.collection("prescriptionsInfo");
 
@@ -78,6 +85,7 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         // Add the medication info to the patient's database collection
         Map<String, Object> medicationInfo = new HashMap<>();
+        medicationInfo.put("medicationName", s_med_name);
         medicationInfo.put("medicationName", s_med_name);
         medicationInfo.put("dosageAmount", s_dosage_amt);
         medicationInfo.put("medFrequency", s_frequency);

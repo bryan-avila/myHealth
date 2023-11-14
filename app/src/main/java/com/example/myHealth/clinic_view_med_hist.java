@@ -46,6 +46,8 @@ public class clinic_view_med_hist extends AppCompatActivity {
                 // For loop populating the recycler view
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Patient p = document.toObject(Patient.class);
+                    String patient_id = document.getId(); // Get patient userID
+                    p.setPat_ID(patient_id); // Set patient id
                     patientsList.add(p);
                 }
             }
@@ -57,10 +59,12 @@ public class clinic_view_med_hist extends AppCompatActivity {
             myPatAdapater.setOnItemClickListener(new MyPatientAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position, Patient patients) {
+
+                    String p_id = patients.getPat_ID().toString();
                     // Send them to the prescription form after clicking on a patients name using this onItemClickListener
                     Intent intent = new Intent(clinic_view_med_hist.this, clinic_prescription_form.class);
                     // Send extra info to know where to send the medication information
-                    intent.putExtra("patient", patients.getEmail());
+                    intent.putExtra("patient",p_id);
                     startActivity(intent);
                 }
             });
