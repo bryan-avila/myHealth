@@ -77,6 +77,8 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                 List<Clinic> clinics = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Clinic clinic = document.toObject(Clinic.class);
+                    String ID = document.getId();
+                    clinic.setID(ID);
                     clinics.add(clinic);
                 }
                 Log.d("TAG", "Clinics size: " + clinics.size()); // Check the size of the clinics list
@@ -85,6 +87,7 @@ public class patient_view_search_centers_visit extends AppCompatActivity {
                 recyclerView.setAdapter(myAdapter);
 
                 myAdapter.setOnItemClickListener(new MyClinicAdapter.OnItemClickListener() {
+                    //this sends the user to the clinic's specific appointment page
                     @Override
                     public void onItemClick(int position, Clinic clinic) {
                         // Handle the item click here

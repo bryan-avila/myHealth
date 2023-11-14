@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -53,6 +54,8 @@ public class appointments_page extends AppCompatActivity {
                 emailTextView.setText(clinic.getEmail());
                 locationTextView.setText(clinic.getLocation());
                 phoneTextView.setText(clinic.getPhone());
+
+                Log.d("TAG", "clinic id:" + clinic.getID());
             }
         }
 
