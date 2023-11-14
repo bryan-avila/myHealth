@@ -90,9 +90,8 @@ public class clinic_prescription_form extends AppCompatActivity {
         medicationInfo.put("dosageAmount", s_dosage_amt);
         medicationInfo.put("medFrequency", s_frequency);
 
-        // Add medical history data to the map
-        prescriptionsInfoRef.document("prescriptionInfo")
-                .set(medicationInfo)
+        // Add medication to the firebase. The document will be named different according to the name of the Prescription
+        prescriptionsInfoRef.document(s_med_name).set(medicationInfo)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
