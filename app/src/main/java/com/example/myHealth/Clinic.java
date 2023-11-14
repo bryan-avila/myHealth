@@ -8,6 +8,7 @@ public class Clinic implements Serializable{
     String location;
     String phone;
 
+
     public Clinic() {
     }
 
