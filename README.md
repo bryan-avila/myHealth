@@ -2,11 +2,13 @@
 
 # About
 
-This application aims to bridge the gaps between patient, doctor and pharmacist. 
-- Helps patients stay on top of their medications
-- Details the pharmacist's instructions for patient within the app
-- Maintains a list of past and future appointments (with after-visit doctor's notes integrated into appointment info)
-- Provides easy, direct communication with doctor through an in-app messaging system
+This application aims to bring people on Dialysis and Dialysis Centers together. 
+- Our app will allow patients to set up appointments with a center of their choosing.
+- Our app will allow centers to prescribe medications to patients. They will also be able to manage them.
+- Our app will alert patients about upcoming appointments and scheduled medications they need to take.
+
+- We may expand our app to track diet for next semester
+- We may expand our app to integrate hardware for next semester 
 
 # Project Members
 
