@@ -11,7 +11,10 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -77,11 +80,36 @@ public class appointments_page extends AppCompatActivity {
 
         // This function will display toast message when user clicks on a calendar date
         calendarview.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            PopupWindow popupWindow;
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 // Toast message displaying date MM/DD/YYYY
                Toast.makeText(appointments_page.this, (month + 1) + "/" + day +"/" + year, Toast.LENGTH_LONG).show();
-               // pWindow.showAtLocation(popupView,Gravity.CENTER, 0, 0);
+                String selectedDate = year + "-" + (month + 1) + "-" + day;
+
+               // popup window that allows patient to pick time
+                if (popupWindow != null && popupWindow.isShowing()) {
+                    popupWindow.dismiss();
+                }
+                // Initialize a PopupWindow
+                popupWindow = new PopupWindow(appointments_page.this);
+                // Set the width and height of the PopupWindow to MATCH_PARENT
+                popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+                popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+                // Inflate your custom popup layout
+                View popupView = LayoutInflater.from(appointments_page.this).inflate(R.layout.appointment_popup, null);
+                // Set the content view of the PopupWindow
+                popupWindow.setContentView(popupView);
+                // Find the close button in your popup layout
+                ImageButton closeButton = popupView.findViewById(R.id.closeButton);
+                // Set a click listener for the close button
+                closeButton.setOnClickListener(view -> {
+                    // Dismiss the popup when the close button is clicked
+                    popupWindow.dismiss();
+                });
+                // Show the PopupWindow at a specific location
+                popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+
 
             }
         });
