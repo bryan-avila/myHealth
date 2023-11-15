@@ -55,14 +55,17 @@ public class first_time_clinic_sign_up_survey extends AppCompatActivity {
 
         // Set user data to strings to pass to Firebase
         String sHour = startHour.getText().toString();
+        int intsHour=Integer.parseInt(sHour);
         String fHour = finishHour.getText().toString();
+        int intfHour=Integer.parseInt(fHour);
         String numOfM = numofMachines.getText().toString();
+        int intnumOfM=Integer.parseInt(numOfM);
 
         // add user data to hashmap
         Map<String, Object> clinicInfo = new HashMap<>();
-        clinicInfo.put("startHour", sHour);
-        clinicInfo.put("closeHour", fHour);
-        clinicInfo.put("numOfMachines", numOfM);
+        clinicInfo.put("startHour", intsHour);
+        clinicInfo.put("closeHour", intfHour);
+        clinicInfo.put("numOfMachines", intnumOfM);
 
 
         // Add the data to the firebase
