@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
 import android.os.Bundle;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -18,12 +21,29 @@ import java.util.List;
 public class clinic_view_med_hist extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private SearchView searchView;
+    private List<Patient> patientsList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_view_med_hist);
 
+        //Find id for search bar
+        searchView = findViewById(R.id.searchView);
+        searchView.clearFocus(); //removes cursor from search view
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
         // Set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycler_view_patients);
 
@@ -34,10 +54,10 @@ public class clinic_view_med_hist extends AppCompatActivity {
 
         patients.get().addOnCompleteListener(task -> {
 
-            // Create a list of all patients
-            List<Patient> patientsList = null;
+            // Created a list of all patients (above)
 
             if (task.isSuccessful()) {
+                //initialized list of patients here
                 patientsList = new ArrayList<>();
 
                 // For loop populating the recycler view
@@ -51,5 +71,23 @@ public class clinic_view_med_hist extends AppCompatActivity {
 
         });
 
+    }
+
+    private void filterList(String text) {
+        List<Patient> filteredList = new ArrayList<>();
+        for (Patient p : patientsList) {
+            if (p.getfirstName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(p);
+            }
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this,"Patient not found", Toast.LENGTH_SHORT).show();
+        } else {
+            //Send data to the adapter class (look at MyPatientAdapter class
+            //Call adapter
+            //This line not working
+            // MyPatientAdapter.filterList(filteredList);
+
+        }
     }
 }

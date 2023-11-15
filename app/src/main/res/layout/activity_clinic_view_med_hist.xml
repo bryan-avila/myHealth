@@ -10,8 +10,13 @@
     android:background="@drawable/blankback">
 
     <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/search_view_back"
+        android:queryHint="Search Patient"
+        android:iconifiedByDefault="false"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="70dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
             app:cardCornerRadius="30dp"
             app:cardElevation="20dp">
 

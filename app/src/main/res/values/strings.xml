@@ -18,4 +18,8 @@
         Apple: 1 small\nCherry: 3/4 cup\nGrapefruit: 1/2 large
     </string>
 
+    <string name="dropDownSelect">
+        Select
+    </string>
+
 </resources>

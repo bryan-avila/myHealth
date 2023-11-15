@@ -20,6 +20,13 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient>{
         this.context = context;
         this.patients = patients;
     }
+    //For search bar
+    private void filterList(List<Patient> filteredList) {
+        this.patients = filteredList;
+        notifyDataSetChanged();
+    }
+
+
 
     @NonNull
     @Override
@@ -47,6 +54,7 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient>{
     public int getItemCount() {
         return patients.size();
     }
+
 
     // Method to set the click listener from outside the adapter
     public void setOnItemClickListener(OnItemClickListener listener) {

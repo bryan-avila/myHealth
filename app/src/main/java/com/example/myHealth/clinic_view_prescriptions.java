@@ -8,6 +8,7 @@ import android.view.View;
 
 public class clinic_view_prescriptions extends AppCompatActivity {
 
+    //This class might be placed when we click on a patient to prescribe medication
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

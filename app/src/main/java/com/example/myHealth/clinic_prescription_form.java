@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class clinic_prescription_form extends AppCompatActivity {
 
-    EditText medName, medDosage, medFrequency;
+    EditText medName, medDosage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         medName = findViewById(R.id.medNameEdit);
         medDosage = findViewById(R.id.medDosageEdit);
-        medFrequency = findViewById(R.id.medFrequencyEdit);
+        //medFrequency = findViewById(R.id.medFrequencyEdit);
 
     }
 
@@ -28,9 +28,9 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         String string_med_Name = medName.getText().toString();
         String string_med_Dosage = medDosage.getText().toString();
-        String string_med_Frequency = medFrequency.getText().toString();
+        //String string_med_Frequency = medFrequency.getText().toString();
 
-        boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage, string_med_Frequency);
+        boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage);
 
         if (inputCheckerOnMedication) {
             Toast.makeText(clinic_prescription_form.this, "Medication Prescribed.", Toast.LENGTH_LONG).show();
@@ -41,7 +41,7 @@ public class clinic_prescription_form extends AppCompatActivity {
     }
 
 
-    public boolean validateMedInput (String med_Name, String med_Dosage, String med_Frequency) {
+    public boolean validateMedInput (String med_Name, String med_Dosage) {
         if (med_Name.length() == 0) {
             medName.requestFocus();
             medName.setError("FIELD CANNOT BE EMPTY");
@@ -49,10 +49,6 @@ public class clinic_prescription_form extends AppCompatActivity {
         } else if (med_Dosage.length() == 0) {
             medDosage.requestFocus();
             medDosage.setError("FIELD CANNOT BE EMPTY");
-            return false;
-        }  else if (med_Frequency.length() == 0) {
-            medFrequency.requestFocus();
-            medFrequency.setError("FIELD CANNOT BE EMPTY");
             return false;
         } else {
             return true;
