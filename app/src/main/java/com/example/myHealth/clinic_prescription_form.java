@@ -35,7 +35,7 @@ public class clinic_prescription_form extends AppCompatActivity {
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
 
-    String med_frequency;  // Frequency from the pop up, make it global
+    String frequency;  // Frequency from the pop up, make it global
 
 
     @Override
@@ -67,7 +67,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             button_freq = findViewById(R.id.button_med_Frequency);
             button_freq.setText("Once A Day");
 
-            med_frequency = "Once A Day";
+            frequency = "Once A Day";
             return true;
         }
 
@@ -78,7 +78,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             button_freq = findViewById(R.id.button_med_Frequency);
             button_freq.setText("Twice A Day");
 
-            med_frequency = "Twice A Day";
+            frequency = "Twice A Day";
             return true;
         }
 
@@ -89,7 +89,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             button_freq = findViewById(R.id.button_med_Frequency);
             button_freq.setText("Once A Week");
 
-            med_frequency = "Once A Week";
+            frequency = "Once A Week";
             return true;
         }
 
@@ -100,12 +100,9 @@ public class clinic_prescription_form extends AppCompatActivity {
             button_freq = findViewById(R.id.button_med_Frequency);
             button_freq.setText("Twice A Week");
 
-            med_frequency = "Twice A Week";
+            frequency = "Twice A Week";
             return true;
         }
-
-
-
 
 
         return false;
@@ -115,7 +112,7 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         String string_med_Name = medName.getText().toString();
         String string_med_Dosage = medDosage.getText().toString();
-        String string_med_Frequency = med_frequency;
+        String string_med_Frequency = frequency;
 
         boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage, string_med_Frequency);
 
@@ -123,15 +120,6 @@ public class clinic_prescription_form extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String patientId = bundle.getString("patient");
 
-/*      *//*  Intent intent = getIntent();
-        if (intent != null) {
-            // Get patient info
-            Patient patient = (Patient) intent.getSerializableExtra("patient");
-
-            String patient_id = patient.getPat_ID();
-*//*
-        }*/
-        // Hardcoded example
         DocumentReference patientRef = db.collection("users").document(patientId);
 
         CollectionReference prescriptionsInfoRef = patientRef.collection("prescriptionsInfo");
@@ -141,17 +129,36 @@ public class clinic_prescription_form extends AppCompatActivity {
         EditText editTextmedicationName = findViewById(R.id.edit_text_med_Name);
         EditText editTextdosageAmt = findViewById(R.id.edit_text_med_Dosage);
 
-
+        int integer_frequency = 0;
         // Set up strings the database can use
         String s_med_name = editTextmedicationName.getText().toString();
         String s_dosage_amt = editTextdosageAmt.getText().toString();
 
+        if(frequency.equals("Once A Day"))
+        {
+            integer_frequency = 7; // 7 times per week
+        }
+        else if(frequency.equals("Twice A Day"))
+        {
+            integer_frequency = 14; // 14 times per week
+        }
+
+        else if(frequency.equals("Once A Week"))
+        {
+            integer_frequency = 1; // 1 time per week
+        }
+
+        else if(frequency.equals("Twice A Week"))
+        {
+            integer_frequency = 2; // 2 times per week
+        }
 
         // Add the medication info to the patient's database collection
         Map<String, Object> medicationInfo = new HashMap<>();
         medicationInfo.put("medicationName", s_med_name);
         medicationInfo.put("dosageAmount", s_dosage_amt);
-        medicationInfo.put("frequency", med_frequency); // Get frequency from the pop up
+        medicationInfo.put("frequency", frequency); // Get frequency from the pop up
+        medicationInfo.put("intFrequency", integer_frequency); // Turn string frequency into an integer for notifications
 
         // Add medication to the firebase. The document will be named different according to the name of the Prescription
         prescriptionsInfoRef.document(s_med_name).set(medicationInfo)
@@ -186,6 +193,7 @@ public class clinic_prescription_form extends AppCompatActivity {
 
     public boolean validateMedInput (String med_Name, String med_Dosage, String med_Frequency) {
 
+        med_Frequency = frequency;
         if (med_Name.length() == 0) {
             medName.requestFocus();
             medName.setError("FIELD CANNOT BE EMPTY");

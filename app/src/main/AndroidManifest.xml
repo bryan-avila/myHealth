@@ -13,6 +13,9 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".patient_view_prescribed_med"
+            android:exported="false" />
+        <activity
             android:name=".first_time_clinic_sign_up_survey"
             android:exported="false" />
         <activity
