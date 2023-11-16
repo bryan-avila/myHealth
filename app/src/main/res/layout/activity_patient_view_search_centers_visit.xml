@@ -42,7 +42,8 @@
                         android:gravity="center"
                         android:padding="5sp"
                         android:text="Clinic Search"
-                        android:textSize="20sp"
+                        android:textSize="25sp"
+                        android:textColor="@color/purple"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -70,7 +71,5 @@
         app:itemRippleColor="@color/lightpurple"
         app:itemIconTint="@color/icons_color"
         app:itemTextColor="@color/lightpurple"/>
-
-
 
 </RelativeLayout>

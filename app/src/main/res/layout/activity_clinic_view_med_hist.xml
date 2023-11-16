@@ -46,7 +46,7 @@
                     android:padding="5sp"
                     android:text="List Of Patients"
                     android:textSize="25sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/purple"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView

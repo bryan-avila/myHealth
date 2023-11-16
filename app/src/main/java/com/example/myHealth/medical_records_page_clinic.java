@@ -55,10 +55,10 @@ public class medical_records_page_clinic extends AppCompatActivity {
     }
 
 
-    //public void onMyPatientRecordsClick(View view) {
+    public void onMyPatientRecordsClick(View view) {
 
         //startActivity(new Intent(getApplicationContext(), clinic_view_med_hist.class));
-    //}
+    }
 
     public void onMedicationsPrescriptionsClick(View view) {
         //will need to show current patients to prescribe meds

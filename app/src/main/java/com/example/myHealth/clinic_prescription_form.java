@@ -112,9 +112,8 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         String string_med_Name = medName.getText().toString();
         String string_med_Dosage = medDosage.getText().toString();
-        String string_med_Frequency = frequency;
 
-        boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage, string_med_Frequency);
+        boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage);
 
         // Obtain information from clinic_view_med_hist.java
         Bundle bundle = getIntent().getExtras();
@@ -191,9 +190,7 @@ public class clinic_prescription_form extends AppCompatActivity {
     }
 
 
-    public boolean validateMedInput (String med_Name, String med_Dosage, String med_Frequency) {
-
-        med_Frequency = frequency;
+    public boolean validateMedInput (String med_Name, String med_Dosage) {
         if (med_Name.length() == 0) {
             medName.requestFocus();
             medName.setError("FIELD CANNOT BE EMPTY");
@@ -202,11 +199,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             medDosage.requestFocus();
             medDosage.setError("FIELD CANNOT BE EMPTY");
             return false;
-        }  else if (med_Frequency.length() == 0) {
-//            medFrequency.requestFocus();
-//            medFrequency.setError("FIELD CANNOT BE EMPTY");
-            return false;
-        } else {
+        }  else {
             return true;
         }
     }
