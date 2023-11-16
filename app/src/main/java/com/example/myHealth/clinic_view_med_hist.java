@@ -30,7 +30,7 @@ public class clinic_view_med_hist extends AppCompatActivity {
         setContentView(R.layout.activity_clinic_view_med_hist);
 
         //Find id for search bar
-        searchView = findViewById(R.id.searchView);
+        searchView = findViewById(R.id.searchViewForPatients);
         searchView.clearFocus(); //removes cursor from search view
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
