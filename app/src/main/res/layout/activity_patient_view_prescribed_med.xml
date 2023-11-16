@@ -41,9 +41,11 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Prescribed Medication"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:text="Prescribed Medications"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:paddingTop="20dp"
+                        android:textColor="@color/purple"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_view_precribed_meds"
