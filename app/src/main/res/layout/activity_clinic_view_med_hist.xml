@@ -10,7 +10,7 @@
     android:background="@drawable/blankback">
 
     <SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/searchViewForPatients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"

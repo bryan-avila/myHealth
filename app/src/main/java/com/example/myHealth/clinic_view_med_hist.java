@@ -85,7 +85,7 @@ public class clinic_view_med_hist extends AppCompatActivity {
         } else {
             //Send data to the adapter class (look at MyPatientAdapter class
             //Call adapter
-            //This line not working
+            //This line not working with adapter
             // MyPatientAdapter.filterList(filteredList);
 
         }

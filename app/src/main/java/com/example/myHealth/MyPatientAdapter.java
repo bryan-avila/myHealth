@@ -20,7 +20,7 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient>{
         this.context = context;
         this.patients = patients;
     }
-    //For search bar
+    //For search bar functionality
     private void filterList(List<Patient> filteredList) {
         this.patients = filteredList;
         notifyDataSetChanged();
