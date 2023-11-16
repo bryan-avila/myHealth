@@ -28,12 +28,6 @@
             android:name=".clinic_view_med_hist"
             android:exported="false" />
         <activity
-            android:name=".medication1_details"
-            android:exported="false" />
-        <activity
-            android:name=".clinic_view_appointments"
-            android:exported="false" />
-        <activity
             android:name=".resources_page_clinic"
             android:exported="false" />
         <activity
@@ -56,9 +50,6 @@
             android:exported="false" />
         <activity
             android:name=".patient_view_dietary_plan"
-            android:exported="false" />
-        <activity
-            android:name=".patient_view_medications"
             android:exported="false" />
         <activity
             android:name=".patient_view_med_history"
