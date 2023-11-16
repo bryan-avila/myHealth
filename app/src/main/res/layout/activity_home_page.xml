@@ -152,7 +152,7 @@
                     <!--This is a list of all medication required for patient-->
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_view_patient_med_list"
+                        android:id="@+id/recycler_view_home_page_medications"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
