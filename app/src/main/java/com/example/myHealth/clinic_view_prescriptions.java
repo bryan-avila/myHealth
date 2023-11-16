@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -58,13 +59,13 @@ public class clinic_view_prescriptions extends AppCompatActivity {
         // Set up edittext variables from .XML file
         EditText editTextmedicationName = findViewById(R.id.edit_text_med_Name);
         EditText editTextdosageAmt = findViewById(R.id.edit_text_med_Dosage);
-        EditText editTextfrequency = findViewById(R.id.edit_text_med_Frequency);
+        Button btn_frequency = findViewById(R.id.button_med_Frequency);
 
 
         // Set up strings the database can use
         String s_med_name = editTextmedicationName.getText().toString();
         String s_dosage_amt = editTextdosageAmt.getText().toString();
-        String s_frequency = editTextfrequency.getText().toString();
+        String s_frequency = btn_frequency.getText().toString();
 
 
         // Add the medication info to the patient's database collection

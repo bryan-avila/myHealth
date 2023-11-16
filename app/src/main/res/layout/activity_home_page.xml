@@ -150,41 +150,49 @@
                         />
 
                     <!--This is a list of all medication required for patient-->
-                    <ListView
-                        android:layout_width="wrap_content"
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_patient_med_list"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="70dp"
-                        android:id="@+id/list_view_medications_list"
-                        android:layout_below="@id/text_view_medications_list"
-                        android:dividerHeight="1dp"
-                        />
+                        android:overScrollMode="never"
+                        android:scrollbars="vertical" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="30dp"
-                        android:id="@+id/text_view_nutrient_msg"
-                        android:text="3) You are managing your nutrient intake well."
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/list_view_medications_list"
-                        android:layout_marginBottom="10sp"
+<!--                    <ListView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:paddingLeft="70dp"-->
+<!--                        android:id="@+id/list_view_medications_list"-->
+<!--                        android:layout_below="@id/text_view_medications_list"-->
+<!--                        android:dividerHeight="1dp"-->
+<!--                        />-->
 
-                        />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:paddingLeft="30dp"-->
+<!--                        android:id="@+id/text_view_nutrient_msg"-->
+<!--                        android:text="3) You are managing your nutrient intake well."-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:layout_below="@id/list_view_medications_list"-->
+<!--                        android:layout_marginBottom="10sp"-->
 
-                    <!--Insert a reference to an object for "Tip of the day"-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="30dp"
-                        android:id="@+id/text_view_totd"
-                        android:text="4) Tip/Fact of the Day:"
+<!--                        />-->
 
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:layout_below="@id/text_view_nutrient_msg"
-                        android:layout_marginBottom="10sp"
-                        />
+<!--                    &lt;!&ndash;Insert a reference to an object for "Tip of the day"&ndash;&gt;-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:paddingLeft="30dp"-->
+<!--                        android:id="@+id/text_view_totd"-->
+<!--                        android:text="4) Tip/Fact of the Day:"-->
+
+<!--                        android:textSize="20sp"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:layout_below="@id/text_view_nutrient_msg"-->
+<!--                        android:layout_marginBottom="10sp"-->
+<!--                        />-->
 
                 </LinearLayout>
             </ScrollView>
