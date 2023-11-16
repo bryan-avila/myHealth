@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
+        <service
+            android:name=".NotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".patient_view_prescribed_med"
             android:exported="false" />
