@@ -73,6 +73,8 @@ public class clinic_view_med_hist extends AppCompatActivity {
 
     }
 
+
+    //Filtering does not work
     private void filterList(String text) {
         List<Patient> filteredList = new ArrayList<>();
         for (Patient p : patientsList) {
@@ -86,8 +88,8 @@ public class clinic_view_med_hist extends AppCompatActivity {
             //Send data to the adapter class (look at MyPatientAdapter class
             //Call adapter
             //This line not working with adapter
-            // MyPatientAdapter.filterList(filteredList);
-
+            MyPatientAdapter test = new MyPatientAdapter(getApplicationContext(), filteredList);//not filtered list
+            test.filterList(filteredList);
         }
     }
 }
