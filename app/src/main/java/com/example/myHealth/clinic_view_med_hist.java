@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -63,14 +64,30 @@ public class clinic_view_med_hist extends AppCompatActivity {
                 // For loop populating the recycler view
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Patient p = document.toObject(Patient.class);
+                    String patient_id = document.getId(); // Get patient userID
+                    p.setPat_ID(patient_id); // Set patient id
                     patientsList.add(p);
                 }
             }
 
-            recyclerView.setAdapter(new MyPatientAdapter(getApplicationContext(), patientsList));
+            MyPatientAdapter myPatAdapater = new MyPatientAdapter(getApplicationContext(), patientsList);
+            recyclerView.setAdapter(myPatAdapater);
+
+            // Make Patient's Clickable
+            myPatAdapater.setOnItemClickListener(new MyPatientAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position, Patient patients) {
+
+                    String p_id = patients.getPat_ID().toString();
+                    // Send them to the prescription form after clicking on a patients name using this onItemClickListener
+                    Intent intent = new Intent(clinic_view_med_hist.this, clinic_prescription_form.class);
+                    // Send extra info to know where to send the medication information
+                    intent.putExtra("patient",p_id);
+                    startActivity(intent);
+                }
+            });
 
         });
-
     }
 
     private void filterList(String text) {

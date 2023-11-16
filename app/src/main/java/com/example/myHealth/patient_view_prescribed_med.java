@@ -36,33 +36,31 @@ public class patient_view_prescribed_med extends AppCompatActivity {
         CollectionReference patientMedRef = db.collection("users").document(currentUser.getUid()).collection("prescriptionsInfo");
 
         patientMedRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
+            if (task.isSuccessful())
+            {
                 List<PrescribedMedications> pMedications_list = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     PrescribedMedications pMedication = document.toObject(PrescribedMedications.class);
                     pMedications_list.add(pMedication);
                 }
+
                 Log.d("TAG", "Medications size: " + pMedications_list.size()); // Check the size of the clinics list
                 // Set the adapter (you'll create and set the adapter in later steps)
                 MyPrescribedMedAdapter myAdapter = new MyPrescribedMedAdapter(getApplicationContext(), pMedications_list);
                 med_recycle_view.setAdapter(myAdapter);
 
-               /* myAdapter.setOnItemClickListener(new MyPrescribedMedAdapter().OnItemClickListener() {
+ /*               myAdapter.setOnItemClickListener(new MyPrescribedMedAdapter.OnItemClickListener() {
                     //this sends the user to the clinic's specific appointment page
                     @Override
-                    public void onItemClick(int position, PrescribedMedications pMedications) {
+                    public void onItemClick(int position, PrescribedMedications prescribedMedications) {
                         // Handle the item click here
-                        Intent intent = new Intent(patient_view_prescribed_med.this, appointments_page.class);
+                        Intent intent = new Intent(patient_view_prescribed_med.this, clinic_home_page.class);
                         startActivity(intent);
                     }
-                });
-*/
-            }
-            else {
-                // Handle the error
-                Log.e("TAG", "Error getting medications", task.getException());
-            }
-        });
+
+            });*/
 
     }
+});
+}
 }
