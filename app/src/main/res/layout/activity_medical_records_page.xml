@@ -64,32 +64,6 @@
                 android:onClick="onMyRecordsClick"/>
 
             <Button
-                android:id="@+id/medications_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Medications"
-                android:backgroundTint="@color/purple"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="80dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:onClick="onMedicationsClick"/>
-
-            <Button
-                android:id="@+id/dietary_plans_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="My Dietary Plans"
-                android:backgroundTint="@color/purple"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="140dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:onClick="onDietClick"/>
-
-            <Button
                 android:id="@+id/button_appointments_record"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,9 +75,37 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:onClick="onAppointmentsRecordClick"
-                android:layout_below="@id/dietary_plans_button"
-                 />
+                android:layout_below="@id/records_button"
+                />
 
+            <Button
+                android:id="@+id/medications_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Medications"
+                android:backgroundTint="@color/purple"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:onClick="onMedicationsClick"
+                android:layout_below="@id/button_appointments_record"/>
+
+            <Button
+                android:id="@+id/dietary_plans_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Dietary Plans"
+                android:backgroundTint="@color/purple"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:onClick="onDietClick"
+                android:layout_below="@id/medications_button"
+                android:layout_marginBottom="20dp"/>
 
 
         </RelativeLayout>
