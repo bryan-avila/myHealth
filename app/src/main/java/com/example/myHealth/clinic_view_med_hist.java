@@ -41,6 +41,7 @@ public class clinic_view_med_hist extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                //Here we are implementing the filter logic
                 filterList(newText);
                 return true;
             }
@@ -95,7 +96,7 @@ public class clinic_view_med_hist extends AppCompatActivity {
     private void filterList(String text) {
         List<Patient> filteredList = new ArrayList<>();
         for (Patient p : patientsList) {
-            if (p.getfirstName().toLowerCase().contains(text.toLowerCase())) {
+            if (p.getfirstName().toLowerCase().contains(text.toLowerCase()) || p.getlastName().toLowerCase().contains((text.toLowerCase()))) {
                 filteredList.add(p);
             }
         }
@@ -106,7 +107,11 @@ public class clinic_view_med_hist extends AppCompatActivity {
             //Call adapter
             //This line not working with adapter
             MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            RecyclerView recyclerViewFiltered = findViewById(R.id.recycler_view_patients);
+            recyclerViewFiltered.setLayoutManager(new LinearLayoutManager(this));
+            recyclerViewFiltered.setAdapter(newPatientAdapter); //this overrides the previous .setAdapter
             newPatientAdapter.filterList(filteredList);
         }
     }
+
 }
