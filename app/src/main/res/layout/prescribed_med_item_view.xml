@@ -33,6 +33,19 @@
                 android:textSize="20dp"
                 tools:text="Med Name"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_prescribed_frequency"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@id/text_view_prescribed_med_name"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                tools:text="Med Frequency"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,25 +56,10 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_below="@id/text_view_prescribed_med_name"
-                android:textColor="@color/grey"
+                android:layout_below="@id/text_view_prescribed_frequency"
+                android:textColor="@color/black"
                 android:textSize="15dp"
                 tools:text="Med Dosage Amount"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_view_prescribed_frequency"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_below="@id/text_view_prescribed_dosage"
-                android:textColor="@color/grey"
-                android:textSize="15dp"
-                tools:text="Med Frequency"/>
-
 
         </RelativeLayout>
 
