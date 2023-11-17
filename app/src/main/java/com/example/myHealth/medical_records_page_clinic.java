@@ -65,4 +65,8 @@ public class medical_records_page_clinic extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), clinic_view_med_hist.class));
     }
 
+    public void onManageMedicationsClick(View view) {
+        startActivity(new Intent(getApplicationContext(), clinic_view_patients_manage_meds.class));
+    }
+
 }

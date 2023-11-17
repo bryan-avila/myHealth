@@ -81,7 +81,8 @@
             android:layout_marginTop="140dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:onClick="onManageMedicationsClick"/>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
