@@ -56,7 +56,8 @@ public class medical_records_page_clinic extends AppCompatActivity {
 
 
     public void onMyPatientRecordsClick(View view) {
-
+        //create a new activity that lists patients
+        //Allow to click on a patient and display user's medical info
         //startActivity(new Intent(getApplicationContext(), clinic_view_med_hist.class));
     }
 
