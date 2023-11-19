@@ -52,6 +52,9 @@
             android:name=".appointments_page_clinic"
             android:exported="false" />
         <activity
+            android:name=".pick_appointment_time"
+            android:exported="false" />
+        <activity
             android:name=".clinic_home_page"
             android:exported="false" />
         <activity

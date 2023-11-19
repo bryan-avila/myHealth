@@ -1,33 +1,85 @@
 package com.example.myHealth;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class    patient_view_search_centers_visit extends AppCompatActivity {
+public class pick_appointment_time extends AppCompatActivity {
     // Inside your activity or fragment
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_view_search_centers_visit);
+        setContentView(R.layout.activity_pick_appointment_time);
+
+        Clinic clinic;
+        String selectedDate;
+        // ArrayList<Boolean> availabilityList;
+        ArrayList<String> timesList;
+
+        // Retrieve the data from the intent
+        Intent intent = getIntent();
+        if (intent != null) {
+            clinic = (Clinic) intent.getSerializableExtra("clinicData");
+            selectedDate = (String) intent.getStringExtra("selectedDate");
+            // availabilityList = (ArrayList<Boolean>) intent.getStringArrayListExtra("availabilityList");
+            timesList = (ArrayList<String>) intent.getStringArrayListExtra("timesList");
+        } else {
+            clinic = null;
+            selectedDate = null;
+            // availabilityList = null;
+            timesList = null;
+        }
+        // Log the size of the ArrayList
+        Log.d("ArrayListInfo", "Size of times recycler view: " + timesList.size());
+        // Log all elements in the ArrayList
+        if (timesList.size() > 0) {
+            for (int i = 0; i < timesList.size(); i++) {
+                Log.d("ArrayListInfo", "Time " + i + ": " + timesList.get(i));
+            }
+        } else {
+            Log.d("ArrayListInfo", "timeslist is Empty");
+        }
+
+        // Set up the RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        TimeAdapter timeAdapter = new TimeAdapter(timesList);
+        recyclerView.setAdapter(timeAdapter);
+
+        //list of items
+        FirebaseFirestore db = myFirestore.getDBInstance();
+        FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        CollectionReference clinicRef = db.collection("clinic").document(clinic.getID()).collection("appointments");
+
+
+
+
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -41,7 +93,7 @@ public class    patient_view_search_centers_visit extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), patient_view_search_centers_visit.class));
+                    startActivity(new Intent(getApplicationContext(), pick_appointment_time.class));
                     finish();
                     return true;
                 } else if (id == R.id.homeId) {
@@ -64,44 +116,7 @@ public class    patient_view_search_centers_visit extends AppCompatActivity {
                 return false;
             }
         });
-        // Set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //list of items
-        FirebaseFirestore db = myFirestore.getDBInstance();
-        CollectionReference clinicsRef = db.collection("clinic");
-
-        clinicsRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                List<Clinic> clinics = new ArrayList<>();
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    Clinic clinic = document.toObject(Clinic.class);
-                    String ID = document.getId();
-                    clinic.setID(ID);
-                    clinics.add(clinic);
-                }
-                Log.d("TAG", "Clinics size: " + clinics.size()); // Check the size of the clinics list
-                // Set the adapter (you'll create and set the adapter in later steps)
-                MyClinicAdapter myAdapter = new MyClinicAdapter(getApplicationContext(), clinics);
-                recyclerView.setAdapter(myAdapter);
-
-                myAdapter.setOnItemClickListener(new MyClinicAdapter.OnItemClickListener() {
-                    //this sends the user to the clinic's specific appointment page
-                    @Override
-                    public void onItemClick(int position, Clinic clinic) {
-                        // Handle the item click here
-                        Intent intent = new Intent(patient_view_search_centers_visit.this, appointments_page.class);
-                        intent.putExtra("clinicData", clinic);
-                        startActivity(intent);
-                    }
-                });
-
-            } else {
-                // Handle the error
-                Log.e("TAG", "Error getting clinics", task.getException());
-            }
-        });
 
     }
 

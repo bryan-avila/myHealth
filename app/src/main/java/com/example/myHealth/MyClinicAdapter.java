@@ -1,9 +1,7 @@
 package com.example.myHealth;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 
@@ -13,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 // MyAdapter.java
-public class MyClinicAdapter extends RecyclerView.Adapter<MyViewHolder>{
+public class MyClinicAdapter extends RecyclerView.Adapter<MyViewHolderClinic>{
 
     Context context;
     List<Clinic> clinics;
@@ -26,12 +24,12 @@ public class MyClinicAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.clinic_item_view, parent, false));
+    public MyViewHolderClinic onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MyViewHolderClinic(LayoutInflater.from(context).inflate(R.layout.clinic_item_view, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolderClinic holder, int position) {
         holder.clinicName.setText(clinics.get(position).getClinicName());
         holder.location.setText(clinics.get(position).getLocation());
 
