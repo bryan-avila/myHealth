@@ -39,7 +39,7 @@ public class pick_appointment_time extends AppCompatActivity {
         Clinic clinic;
         String selectedDate;
         // ArrayList<Boolean> availabilityList;
-        ArrayList<String> timesList;
+        ArrayList<String> availableTimesList;
 
         // Retrieve the data from the intent
         Intent intent = getIntent();
@@ -47,19 +47,19 @@ public class pick_appointment_time extends AppCompatActivity {
             clinic = (Clinic) intent.getSerializableExtra("clinicData");
             selectedDate = (String) intent.getStringExtra("selectedDate");
             // availabilityList = (ArrayList<Boolean>) intent.getStringArrayListExtra("availabilityList");
-            timesList = (ArrayList<String>) intent.getStringArrayListExtra("timesList");
+            availableTimesList = (ArrayList<String>) intent.getStringArrayListExtra("availableTimesList");
         } else {
             clinic = null;
             selectedDate = null;
             // availabilityList = null;
-            timesList = null;
+            availableTimesList = null;
         }
         // Log the size of the ArrayList
-        Log.d("ArrayListInfo", "Size of times recycler view: " + timesList.size());
+        Log.d("ArrayListInfo", "Size of times recycler view: " + availableTimesList.size());
         // Log all elements in the ArrayList
-        if (timesList.size() > 0) {
-            for (int i = 0; i < timesList.size(); i++) {
-                Log.d("ArrayListInfo", "Time " + i + ": " + timesList.get(i));
+        if (availableTimesList.size() > 0) {
+            for (int i = 0; i < availableTimesList.size(); i++) {
+                Log.d("ArrayListInfo", "Time " + i + ": " + availableTimesList.get(i));
             }
         } else {
             Log.d("ArrayListInfo", "timeslist is Empty");
@@ -68,7 +68,7 @@ public class pick_appointment_time extends AppCompatActivity {
         // Set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        TimeAdapter timeAdapter = new TimeAdapter(timesList);
+        TimeAdapter timeAdapter = new TimeAdapter(availableTimesList);
         recyclerView.setAdapter(timeAdapter);
 
         //list of items

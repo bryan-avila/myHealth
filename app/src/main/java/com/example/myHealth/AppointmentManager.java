@@ -40,16 +40,17 @@ public class AppointmentManager {
     }
 
     //this function is meant to return a boolean array of indexes based on the avaliable operating hours of the clinic
-    public ArrayList availableDayTimes(String clinicId, String appointmentDate) {
+    public ArrayList availableDayTimes(String clinicId, String appointmentDate, OnDataReadyListener listener) {
         ArrayList<Boolean> availableTimes = new ArrayList<>();
-        DocumentReference clinicRef = db.collection("clinics").document(clinicId);
+        Log.d("TAG", "clinic id:" + clinicId);
+        DocumentReference clinicRef = db.collection("clinic").document(clinicId);
         //get the clinic document to get hours and machines
         clinicRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    int clinicStartHour = Math.toIntExact(document.getLong("sHour"));
-                    int clinicFinalHour = (Math.toIntExact(document.getLong("fHour")) + 12);
+                    int clinicStartHour = Math.toIntExact(document.getLong("startHour"));
+                    int clinicFinalHour = (Math.toIntExact(document.getLong("closeHour")) + 12);
                     int clinicNumOfMachines = Math.toIntExact(document.getLong("numOfMachines"));
 
                     //Make an array to add all current appointments to
@@ -85,22 +86,34 @@ public class AppointmentManager {
                                         dailyAppointmentSchedule[i]++;
                                     }
                                 }
-                                //find available times for new appointments based on current daily schedule
-                                for (int i = 0; i < dayArraySize; i++) {
-                                    if (dailyAppointmentSchedule[i] < clinicNumOfMachines) {
-                                        availableTimes.set(i, true);
-                                    } else {
-                                        for (int j = (i - 8); j < i; j++)
-                                            if (j >= 0) {
-                                                availableTimes.set(j, false);
-                                            }
-                                    }
+                            }
+                            //find available times for new appointments based on current daily schedule
+                            for (int i = 0; i < dayArraySize; i++) {
+                                if (dailyAppointmentSchedule[i] < clinicNumOfMachines) {
+                                    availableTimes.set(i, true);
+                                } else {
+                                    for (int j = (i - 8); j < i; j++)
+                                        if (j >= 0) {
+                                            availableTimes.set(j, false);
+                                        }
                                 }
-                                //make sure they can schedule an appointment that goes beyond the end time
-                                for (int i = (dayArraySize - 8); i < dayArraySize; i++)
-                                    if (i >= 0) {
-                                        availableTimes.set(i, false);
-                                    }
+                            }
+                            //make sure they can schedule an appointment that goes beyond the end time
+                            for (int i = (dayArraySize - 8); i < dayArraySize; i++) {
+                                if (i >= 0) {
+                                    availableTimes.set(i, false);
+                                }
+                            }
+                            Log.d("ArrayListInfo", "Size of boolean array: " + availableTimes.size());
+
+                            // Log all elements in the ArrayList
+                            if (availableTimes.size() > 0) {
+                                for (int i = 0; i < availableTimes.size(); i++) {
+                                    Log.d("ArrayListInfo", "Element " + i + ": " + availableTimes.get(i));
+                                }
+                                if (listener != null) {
+                                    listener.onDataReady(availableTimes);
+                                }
                             }
                         } else {
                             // Handle the error in fetching appointments

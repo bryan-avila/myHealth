@@ -74,21 +74,31 @@ public class appointments_page extends AppCompatActivity {
                Toast.makeText(appointments_page.this, (month + 1) + "/" + day +"/" + year, Toast.LENGTH_LONG).show();
                 String selectedDate = year + "-" + (month + 1) + "-" + day;
                 Log.d("TAG", "selectedDate:" + selectedDate);
-
                 Log.d("TAG", "clinic id:" + clinic.getID());
-                AppointmentManager appointmentManager = new AppointmentManager();
-                //ArrayList<Boolean> availabilityList = appointmentManager.availableDayTimes(clinic.getID(), selectedDate);
-                appointmentManager.dayTimes(clinic.getID(), selectedDate, new OnDataReadyListener() {
-                    @Override
-                    public void onDataReady(ArrayList<String> timesList) {
-                        // Now timesList is ready, and you can proceed with creating the intent
-                        Log.d("ArrayListInfo", "Size of timeslist: " + timesList.size());
 
-                        Intent intent = new Intent(appointments_page.this, pick_appointment_time.class);
-                        intent.putExtra("clinicData", clinic);
-                        intent.putExtra("selectedDate", selectedDate);
-                        intent.putExtra("timesList", timesList);
-                        startActivity(intent);
+
+                AppointmentManager appointmentManager = new AppointmentManager();
+                appointmentManager.availableDayTimes(clinic.getID(), selectedDate, new OnDataReadyListener<ArrayList<Boolean>>() {
+                    @Override
+                    public void onDataReady(ArrayList<Boolean> availabilityList) {
+                        appointmentManager.dayTimes(clinic.getID(), selectedDate, new OnDataReadyListener<ArrayList<String>>() {
+                            @Override
+                            public void onDataReady(ArrayList<String> timesList) {
+                                // Now timesList is ready, and you can proceed with creating the intent
+                                ArrayList<String> availableTimesList = new ArrayList<>();
+                                for (int i = 0; i < timesList.size(); i++) {
+                                    if (availabilityList.get(i) == true) {
+                                        availableTimesList.add(timesList.get(i));
+                                    }
+                                }
+
+                                Intent intent = new Intent(appointments_page.this, pick_appointment_time.class);
+                                intent.putExtra("clinicData", clinic);
+                                intent.putExtra("selectedDate", selectedDate);
+                                intent.putExtra("availableTimesList", availableTimesList);
+                                startActivity(intent);
+                            }
+                        });
                     }
                 });
             }
