@@ -2,12 +2,16 @@ package com.example.myHealth;
 
 import static android.content.ContentValues.TAG;
 
+import static com.example.myHealth.TimeConverter.convertToDecimal;
+import static com.example.myHealth.TimeConverter.convertToString;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +29,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class pick_appointment_time extends AppCompatActivity {
     // Inside your activity or fragment
@@ -65,19 +72,60 @@ public class pick_appointment_time extends AppCompatActivity {
             Log.d("ArrayListInfo", "timeslist is Empty");
         }
 
-        // Set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        TimeAdapter timeAdapter = new TimeAdapter(availableTimesList);
-        recyclerView.setAdapter(timeAdapter);
-
         //list of items
         FirebaseFirestore db = myFirestore.getDBInstance();
         FirebaseAuth mAuth = myFirestore.getmAuthInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        CollectionReference clinicRef = db.collection("clinic").document(clinic.getID()).collection("appointments");
+        CollectionReference appointmentsRef = db.collection("clinic").document(clinic.getID()).collection("dates").document(selectedDate).collection("appointments");
 
 
+        // Set up the RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        TimeAdapter timeAdapter = new TimeAdapter(availableTimesList);
+        timeAdapter.setOnItemClickListener(new TimeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String time) {
+                // Handle the click event with the selected time
+                Log.d("SelectedTime", "Time " + ": " + time);
+                String startTime = time;
+                String date = selectedDate;
+                Log.d("selectedDate", "selectedDate " + ": " + selectedDate);
+
+                Double endTimeDecimal = convertToDecimal(time) + 4;
+                if (endTimeDecimal > 12.5) {
+                    endTimeDecimal -= 12;
+                }
+                String endTime = convertToString(endTimeDecimal);
+                Log.d("endTime", "endTime " + ": " + endTime);
+
+                if (currentUser != null) {
+                    String userId = currentUser.getUid();
+
+                    // Create a new appointment document with the user's ID as the document ID
+                    DocumentReference newAppointmentRef = appointmentsRef.document(UUID.randomUUID().toString());
+
+                    // Create a Map to store the data
+                    Map<String, Object> appointmentData = new HashMap<>();
+                    appointmentData.put("startTime", startTime);
+                    appointmentData.put("endTime", endTime);
+                    appointmentData.put("date", date);
+
+                    // Set the data in the document
+                    newAppointmentRef.set(appointmentData)
+                            .addOnSuccessListener(aVoid -> {
+                                // Document successfully written
+                                Log.d("Firestore", "Appointment document added successfully!");
+                            })
+                            .addOnFailureListener(e -> {
+                                // Handle errors
+                                Log.e("Firestore", "Error adding appointment document", e);
+                            });
+                }
+
+            }
+        });
+        recyclerView.setAdapter(timeAdapter);
 
 
 

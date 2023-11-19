@@ -18,4 +18,5 @@ public class MyViewHolderClinic extends RecyclerView.ViewHolder {
     }
 
 
+
 }

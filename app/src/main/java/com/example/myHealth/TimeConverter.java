@@ -10,4 +10,13 @@ public class TimeConverter {
         double decimalTime = hours + (minutes / 60.0);
         return decimalTime;
     }
+
+    public static String convertToString(double time) {
+        int hours = (int) time;
+        int minutes = (int) ((time - hours) * 60);
+
+        // Format the time as a string
+        String timeString = String.format("%02d:%02d", hours, minutes);
+        return timeString;
+    }
 }

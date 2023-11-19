@@ -80,10 +80,23 @@ public class AppointmentManager {
                                 double appointmentEndTimeDecimal = convertToDecimal(appointment.getEndTime());
                                 int appointmentStartIndex = (int) ((appointmentStartTimeDecimal - clinicStartHour) * 2);
                                 int appointmentEndIndex = (int) ((appointmentEndTimeDecimal - clinicStartHour) * 2);
+
+                                if (appointmentStartIndex < 0) {
+                                    appointmentStartIndex = (int) (((appointmentStartTimeDecimal + 12) - clinicStartHour) * 2);
+                                }
+                                if (appointmentEndIndex < 0) {
+                                    appointmentEndIndex = (int) (((appointmentEndTimeDecimal + 12) - clinicStartHour) * 2);
+                                }
+                                if (appointmentEndIndex < appointmentStartIndex) {
+                                    appointmentEndIndex = (int) (((appointmentEndTimeDecimal + 12) - clinicStartHour) * 2);
+                                }
+                                Log.d("appointmentStartIndex", "start :" + appointmentStartIndex);
+                                Log.d("appointmentEndIndex", "end :" + appointmentEndIndex);
                                 //add the appointments to the daily schedule
                                 for (int i = 0; i < dayArraySize; i++) {
                                     if (i >= appointmentStartIndex && i <= appointmentEndIndex) {
                                         dailyAppointmentSchedule[i]++;
+                                        Log.d("ArrayListInfo", "dailyAppointmentSchedule incremented");
                                     }
                                 }
                             }
@@ -92,14 +105,14 @@ public class AppointmentManager {
                                 if (dailyAppointmentSchedule[i] < clinicNumOfMachines) {
                                     availableTimes.set(i, true);
                                 } else {
-                                    for (int j = (i - 8); j < i; j++)
+                                    for (int j = (i - 7); j <= i; j++)
                                         if (j >= 0) {
                                             availableTimes.set(j, false);
                                         }
                                 }
                             }
                             //make sure they can schedule an appointment that goes beyond the end time
-                            for (int i = (dayArraySize - 8); i < dayArraySize; i++) {
+                            for (int i = (dayArraySize - 7); i < dayArraySize; i++) {
                                 if (i >= 0) {
                                     availableTimes.set(i, false);
                                 }
@@ -109,7 +122,8 @@ public class AppointmentManager {
                             // Log all elements in the ArrayList
                             if (availableTimes.size() > 0) {
                                 for (int i = 0; i < availableTimes.size(); i++) {
-                                    Log.d("ArrayListInfo", "Element " + i + ": " + availableTimes.get(i));
+                                    Log.d("ArrayListInfo", "dailyAppointmentSchedule: " + dailyAppointmentSchedule[i]);
+                                    Log.d("ArrayListInfo", "availableTimes: " + availableTimes.get(i));
                                 }
                                 if (listener != null) {
                                     listener.onDataReady(availableTimes);
