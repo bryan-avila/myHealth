@@ -43,30 +43,45 @@
             />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Starting Hour"
-            android:textSize="22sp"
             android:id="@+id/edit_text_start_hours_operation"
-            android:layout_marginTop="70sp"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
-            android:maxLines="1"
-            android:maxLength="1"
+            android:layout_marginTop="70sp"
+            android:hint="Starting Hour"
             android:inputType="number"
-            />
+            android:maxLength="1"
+            android:maxLines="1"
+            android:textSize="15sp" />
 
         <EditText
+            android:id="@+id/edit_text_end_hours_operation"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="180sp"
+            android:layout_marginTop="70sp"
+            android:hint="Ending Hour"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/AMStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Ending Hour"
-            android:id="@+id/edit_text_end_hours_operation"
-            android:textSize="22sp"
-            android:layout_marginTop="70sp"
-            android:layout_marginLeft="190sp"
-            android:maxLines="1"
-            android:maxLength="1"
-            android:inputType="number"
-            />
+            android:text="am"
+            android:layout_marginTop="80sp"
+            android:layout_marginLeft="125sp"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/PMEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pm"
+            android:layout_marginTop="80sp"
+            android:layout_marginLeft="285sp"
+            android:textSize="15sp" />
 
 
     </androidx.cardview.widget.CardView>

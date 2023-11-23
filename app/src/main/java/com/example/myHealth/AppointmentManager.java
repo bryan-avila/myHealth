@@ -2,6 +2,7 @@ package com.example.myHealth;
 
 import static android.content.ContentValues.TAG;
 import static com.example.myHealth.TimeConverter.convertToDecimal;
+import static com.example.myHealth.TimeConverter.convertToString;
 
 import android.content.Intent;
 import android.util.Log;
@@ -26,16 +27,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class AppointmentManager {
     FirebaseFirestore db = myFirestore.getDBInstance();
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
 
-    private static final int APPOINTMENT_DURATION_MINUTES = 30;
-
-    // Other properties or dependencies, such as Firestore database reference
-
-    public AppointmentManager(/* Pass necessary dependencies */) {
+    public  AppointmentManager(/* Pass necessary dependencies */) {
         // Initialize your properties or dependencies
     }
 
@@ -50,7 +48,7 @@ public class AppointmentManager {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     int clinicStartHour = Math.toIntExact(document.getLong("startHour"));
-                    int clinicFinalHour = (Math.toIntExact(document.getLong("closeHour")) + 12);
+                    int clinicFinalHour = Math.toIntExact(document.getLong("closeHour"));
                     int clinicNumOfMachines = Math.toIntExact(document.getLong("numOfMachines"));
 
                     //Make an array to add all current appointments to
@@ -148,55 +146,37 @@ public class AppointmentManager {
     }
 
     //this function makes an appointment at a specified time/date given that time is available
-    public void makeSingleAppointment(String clinicId, Date appointmentDate, ArrayList<Boolean> availableTimes, int appointmentTime) {
-        if (availableTimes.get(appointmentTime) == true) {
-            DocumentReference clinicRef = db.collection("clinic").document(clinicId);
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            String dateId = String.valueOf(appointmentDate);
-            DocumentReference dateAppointmentRef = clinicRef
-                    .collection("dates")
-                    .document(dateId)
-                    .collection("appointments")
-                    .document(currentUser.getUid());
+    public void makeSingleAppointment(String clinicId, String appointmentDate, double appointmentTime) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        CollectionReference appointmentsRef = db.collection("clinic").document(clinicId).collection("dates").document(appointmentDate).collection("appointments");
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
 
+            // Create a new appointment document with the user's ID as the document ID
+            DocumentReference newAppointmentRef = appointmentsRef.document(userId);
 
-            dateAppointmentRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        Log.d(TAG, "task successful");
-                        if (!document.exists()) {
-                            Log.d(TAG, "document doesnt exist");
-                            // Create a new clinic
-                            Map<String, Object> appointment = new HashMap<>();
-                            appointment.put("date", dateId);
-                            appointment.put("startTime", appointmentTime);
-                            appointment.put("endTime", appointmentTime + 8);
+            // convert times to strings
+            String startTime = convertToString(appointmentTime);
+            String endTime = convertToString((appointmentTime + 4));
 
-                            dateAppointmentRef.set(appointment)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            // User document created successfully
-                                            Log.d(TAG, "DocumentSnapshot added;");
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            // Handle failure to create user document
-                                            Log.w(TAG, "Error adding document", e);
-                                        }
-                                    });
-                        }
-                    } else {
-                        Log.d(TAG, "document exists");
-                        // Handle failure to check if user document exists
-                    }
-                }
-            });
-        }
+            // Create a Map to store the data
+            Map<String, Object> appointmentData = new HashMap<>();
+            appointmentData.put("startTime", startTime);
+            appointmentData.put("endTime", endTime);
+            appointmentData.put("date", appointmentDate);
+            appointmentData.put("recurring", false);
+
+            // Set the data in the document
+            newAppointmentRef.set(appointmentData)
+                    .addOnSuccessListener(aVoid -> {
+                        // Document successfully written
+                        Log.d("Firestore", "Appointment document added successfully!");
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle errors
+                        Log.e("Firestore", "Error adding appointment document", e);
+                    });
+            }
     }
 
     public void makeRecurringAppointments(String clinicId, List<Date> appointmentTimes) {
@@ -222,7 +202,7 @@ public class AppointmentManager {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     int clinicStartHour = Math.toIntExact(document.getLong("startHour"));
-                    int clinicFinalHour = (Math.toIntExact(document.getLong("closeHour")) + 12);
+                    int clinicFinalHour = Math.toIntExact(document.getLong("closeHour"));
                     Log.d("Clinic Info", "clinic start time: " + clinicStartHour);
                     Log.d("Clinic Info", "clinic end  time: " + clinicFinalHour);
 
@@ -232,9 +212,6 @@ public class AppointmentManager {
                     int[] dailyAppointmentSchedule = new int[dayArraySize];
                     for (int i = clinicStartHour * 60; i < clinicFinalHour * 60; i += 30) {
                         int hours = i / 60;
-                        if (hours > 12) {
-                            hours -= 12;
-                        }
                         int minutes = i % 60;
                         String timeSlot = String.format("%02d:%02d", hours, minutes);
                         Log.d("TAG", "timeslot: " + timeSlot);

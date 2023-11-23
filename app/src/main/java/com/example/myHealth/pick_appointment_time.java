@@ -45,7 +45,6 @@ public class pick_appointment_time extends AppCompatActivity {
 
         Clinic clinic;
         String selectedDate;
-        // ArrayList<Boolean> availabilityList;
         ArrayList<String> availableTimesList;
 
         // Retrieve the data from the intent
@@ -53,12 +52,10 @@ public class pick_appointment_time extends AppCompatActivity {
         if (intent != null) {
             clinic = (Clinic) intent.getSerializableExtra("clinicData");
             selectedDate = (String) intent.getStringExtra("selectedDate");
-            // availabilityList = (ArrayList<Boolean>) intent.getStringArrayListExtra("availabilityList");
             availableTimesList = (ArrayList<String>) intent.getStringArrayListExtra("availableTimesList");
         } else {
             clinic = null;
             selectedDate = null;
-            // availabilityList = null;
             availableTimesList = null;
         }
         // Log the size of the ArrayList
@@ -83,6 +80,9 @@ public class pick_appointment_time extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         TimeAdapter timeAdapter = new TimeAdapter(availableTimesList);
+        AppointmentManager appointmentmanager = new AppointmentManager();
+        TimeConverter timeconverter = new TimeConverter();
+
         timeAdapter.setOnItemClickListener(new TimeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String time) {
@@ -92,36 +92,12 @@ public class pick_appointment_time extends AppCompatActivity {
                 String date = selectedDate;
                 Log.d("selectedDate", "selectedDate " + ": " + selectedDate);
 
-                Double endTimeDecimal = convertToDecimal(time) + 4;
-                if (endTimeDecimal > 12.5) {
-                    endTimeDecimal -= 12;
-                }
-                String endTime = convertToString(endTimeDecimal);
-                Log.d("endTime", "endTime " + ": " + endTime);
+                double newtime = timeconverter.convertToDecimal(startTime);
 
-                if (currentUser != null) {
-                    String userId = currentUser.getUid();
+                appointmentmanager.makeSingleAppointment(clinic.getID(), date, newtime);
 
-                    // Create a new appointment document with the user's ID as the document ID
-                    DocumentReference newAppointmentRef = appointmentsRef.document(UUID.randomUUID().toString());
-
-                    // Create a Map to store the data
-                    Map<String, Object> appointmentData = new HashMap<>();
-                    appointmentData.put("startTime", startTime);
-                    appointmentData.put("endTime", endTime);
-                    appointmentData.put("date", date);
-
-                    // Set the data in the document
-                    newAppointmentRef.set(appointmentData)
-                            .addOnSuccessListener(aVoid -> {
-                                // Document successfully written
-                                Log.d("Firestore", "Appointment document added successfully!");
-                            })
-                            .addOnFailureListener(e -> {
-                                // Handle errors
-                                Log.e("Firestore", "Error adding appointment document", e);
-                            });
-                }
+                Intent intent = new Intent(pick_appointment_time.this, home_page.class);
+                startActivity(intent);
 
             }
         });

@@ -57,7 +57,7 @@ public class first_time_clinic_sign_up_survey extends AppCompatActivity {
         String sHour = startHour.getText().toString();
         int intsHour=Integer.parseInt(sHour);
         String fHour = finishHour.getText().toString();
-        int intfHour=Integer.parseInt(fHour);
+        int intfHour=(Integer.parseInt(fHour) + 12);
         String numOfM = numofMachines.getText().toString();
         int intnumOfM=Integer.parseInt(numOfM);
 
