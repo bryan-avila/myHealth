@@ -106,11 +106,16 @@ public class clinic_view_med_hist extends AppCompatActivity {
             //Send data to the adapter class (look at MyPatientAdapter class
             //Call adapter
             //This line not working with adapter
-            MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            /*MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            newPatientAdapter.filterList(filteredList);*/
+
+
+            //Below implementation work but messes up with prescribing medication to user
+            /*yPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
             RecyclerView recyclerViewFiltered = findViewById(R.id.recycler_view_patients);
             recyclerViewFiltered.setLayoutManager(new LinearLayoutManager(this));
             recyclerViewFiltered.setAdapter(newPatientAdapter); //this overrides the previous .setAdapter
-            newPatientAdapter.filterList(filteredList);
+            newPatientAdapter.filterList(filteredList);*/
         }
     }
 
