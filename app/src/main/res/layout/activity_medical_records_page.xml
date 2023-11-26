@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".medical_records_page"
-    android:background="@drawable/med_page_back">
+    android:background="@drawable/blankback">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                 android:text="Appointment History"
                 android:backgroundTint="@color/purple"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:layout_marginTop="15sp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
@@ -85,7 +85,7 @@
                 android:text="Medications"
                 android:backgroundTint="@color/purple"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
@@ -99,7 +99,7 @@
                 android:text="My Dietary Plans"
                 android:backgroundTint="@color/purple"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"

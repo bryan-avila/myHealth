@@ -322,10 +322,11 @@
                     <Button
                         android:id="@+id/button_finished"
                         android:backgroundTint="@color/purple"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Finish"
                         android:textStyle="bold"
+                        android:textSize="18dp"
                         android:onClick="onFinishClick"/>
 
                 </LinearLayout>

@@ -78,8 +78,9 @@ public class clinic_view_patients_manage_meds extends AppCompatActivity {
                 public void onItemClick(int position, Patient patients) {
 
                     String p_id = patients.getPat_ID().toString();
-                    // Send them to the prescription form after clicking on a patients name using this onItemClickListener
-                    Intent intent = new Intent(clinic_view_patients_manage_meds.this, clinic_prescription_form.class);
+                    // Send the to see the patient's medications after clicking on a patients name using this onItemClickListener
+                    // Will need to implement an edit functionality to delete medications for a patient
+                    Intent intent = new Intent(clinic_view_patients_manage_meds.this, patient_view_prescribed_med.class);
                     // Send extra info to know where to send the medication information
                     intent.putExtra("patient",p_id);
                     startActivity(intent);
@@ -103,8 +104,16 @@ public class clinic_view_patients_manage_meds extends AppCompatActivity {
             //Send data to the adapter class (look at MyPatientAdapter class
             //Call adapter
             //This line not working with adapter
-            MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
-            newPatientAdapter.filterList(filteredList);
+            /*MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            newPatientAdapter.filterList(filteredList);*/
+
+
+            //Below implementation work but messes up with prescribing medication to user
+            /*yPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            RecyclerView recyclerViewFiltered = findViewById(R.id.recycler_view_patients);
+            recyclerViewFiltered.setLayoutManager(new LinearLayoutManager(this));
+            recyclerViewFiltered.setAdapter(newPatientAdapter); //this overrides the previous .setAdapter
+            newPatientAdapter.filterList(filteredList);*/
         }
     }
 }

@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text="(greeting, first name)"
                 android:id="@+id/text_view_dashboard"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/purple"
@@ -101,8 +101,9 @@
                 android:text="Your Notices"
                 android:id="@+id/text_view_notices"
                 android:layout_centerHorizontal="true"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
+                android:textColor="@color/goodGrey"
                 android:layout_below="@id/text_view_dashboard"
                 android:layout_marginTop="20sp"/>
 
@@ -130,8 +131,8 @@
                         android:paddingLeft="30dp"
                         android:id="@+id/text_view_appointments_notice"
                         android:text="1) No Upcoming Appointments"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textColor="@color/goodGrey"
                         android:layout_below="@id/text_view_notices"
                         android:layout_marginBottom="10sp"
                         />
@@ -143,8 +144,8 @@
                         android:paddingLeft="30dp"
                         android:id="@+id/text_view_medications_list"
                         android:text="2) Your daily Medications:"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textColor="@color/goodGrey"
                         android:layout_below="@id/text_view_appointments_notice"
                         android:layout_marginBottom="10sp"
                         />

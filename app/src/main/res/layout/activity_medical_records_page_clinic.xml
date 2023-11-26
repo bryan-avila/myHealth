@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".medical_records_page_clinic"
-    android:background="@drawable/med_page_back">
+    android:background="@drawable/blankback">
 
     <RelativeLayout
         android:layout_width="match_parent"
