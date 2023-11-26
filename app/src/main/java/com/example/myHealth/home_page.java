@@ -26,6 +26,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -159,6 +160,7 @@ public class home_page extends AppCompatActivity {
    public void onStart() {
 
        FirebaseUser currentUser = mAuth.getCurrentUser();
+       String userId = currentUser.getUid();
        if (currentUser != null) {
            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
 
@@ -182,6 +184,32 @@ public class home_page extends AppCompatActivity {
                    }
                }
            });
+           AppointmentManager appointmentmanager = new AppointmentManager();
+           TimeConverter timeconverter = new TimeConverter();
+           userRef.collection("recurringAppointments")
+                   .get()
+                   .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                       @Override
+                       public void onComplete(Task<QuerySnapshot> task) {
+                           if (task.isSuccessful()) {
+                               for (DocumentSnapshot document : task.getResult()) {
+                                   Appointment appointment = document.toObject(Appointment.class);
+                                   // Get the appointmentDay from the document ID
+                                   String appointmentDay = document.getId();
+                                   double appointmentTime = timeconverter.convertToDecimal(appointment.getStartTime());
+
+                                   // Call the makeMultipleRecurringAppointments function
+                                   appointmentmanager.makeMultipleRecurringAppointments(userId, appointmentDay, appointmentTime, true);
+                               }
+                           } else {
+                               // Handle errors
+                               Exception exception = task.getException();
+                               if (exception != null) {
+                                   // Handle the exception
+                               }
+                           }
+                       }
+                   });
        }
 
 

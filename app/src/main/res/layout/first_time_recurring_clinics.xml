@@ -36,33 +36,35 @@
                     tools:context=".FirstTimeRegistration">
 
                     <TextView
-                        android:id="@+id/ClinicName"
+                        android:id="@+id/ClinicSearch"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Clinic Name"
-                        android:textColor="@color/purple"
+                        android:text="Clinic Search"
                         android:textSize="25sp"
+                        android:textColor="@color/purple"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/PickTime"
+                    <Button
+                        android:id="@+id/SkipRecurring"
+                        android:layout_below="@id/ClinicSearch"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_below="@+id/ClinicName"
-                        android:gravity="center"
-                        android:padding="5sp"
-                        android:text="Pick a Time"
-                        android:textColor="@color/grey"
-                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:backgroundTint="@color/redish"
+                        android:onClick="onSkipRecurringButtonClick1"
+                        android:text="Skip Recurring Appointments"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"
+                        android:layout_below="@+id/SkipRecurring"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/PickTime"
+                        android:layout_marginTop="30dp"
                         android:overScrollMode="never"
                         android:scrollbars="vertical" />
 

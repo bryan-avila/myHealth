@@ -91,6 +91,15 @@
             android:name=".first_time_medical_survey_page"
             android:exported="false" />
         <activity
+            android:name=".first_time_recurring_clinics"
+            android:exported="false" />
+        <activity
+            android:name="first_time_recurring_appointments"
+            android:exported="false" />
+        <activity
+            android:name="pick_recurring_appointment_time"
+            android:exported="false" />
+        <activity
             android:name=".clinic_sign_up"
             android:exported="false" />
         <activity

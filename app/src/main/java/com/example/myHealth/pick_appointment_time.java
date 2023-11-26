@@ -37,7 +37,6 @@ import java.util.UUID;
 public class pick_appointment_time extends AppCompatActivity {
     // Inside your activity or fragment
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +52,13 @@ public class pick_appointment_time extends AppCompatActivity {
             clinic = (Clinic) intent.getSerializableExtra("clinicData");
             selectedDate = (String) intent.getStringExtra("selectedDate");
             availableTimesList = (ArrayList<String>) intent.getStringArrayListExtra("availableTimesList");
+
         } else {
             clinic = null;
             selectedDate = null;
             availableTimesList = null;
         }
+
         // Log the size of the ArrayList
         Log.d("ArrayListInfo", "Size of times recycler view: " + availableTimesList.size());
         // Log all elements in the ArrayList
@@ -68,6 +69,10 @@ public class pick_appointment_time extends AppCompatActivity {
         } else {
             Log.d("ArrayListInfo", "timeslist is Empty");
         }
+
+        TextView ClinicName = findViewById(R.id.ClinicName);
+        //set the clinic name to clinic name
+        ClinicName.setText(clinic.getClinicName());
 
         //list of items
         FirebaseFirestore db = myFirestore.getDBInstance();
@@ -94,7 +99,8 @@ public class pick_appointment_time extends AppCompatActivity {
 
                 double newtime = timeconverter.convertToDecimal(startTime);
 
-                appointmentmanager.makeSingleAppointment(clinic.getID(), date, newtime);
+                appointmentmanager.makeSingleAppointment(clinic.getID(), date, newtime, true);
+                Toast.makeText(pick_appointment_time.this, "appointment made for: " + time + " on: " + selectedDate, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(pick_appointment_time.this, home_page.class);
                 startActivity(intent);

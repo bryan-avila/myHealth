@@ -33,26 +33,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="0dp"
-                    tools:context=".FirstTimeRegistration">
+                    tools:context=".FirstTimeRegistration"
+                    android:layout_margin="30dp">
 
                     <TextView
                         android:id="@+id/ClinicName"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center"
-                        android:padding="5sp"
                         android:text="Clinic Name"
                         android:textColor="@color/purple"
                         android:textSize="25sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/DayOfWeek"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/ClinicName"
+                        android:gravity="center"
+                        android:text="Day"
+                        android:textColor="@color/redish"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/PickTime"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:layout_below="@+id/ClinicName"
+                        android:layout_below="@+id/DayOfWeek"
                         android:gravity="center"
-                        android:padding="5sp"
                         android:text="Pick a Time"
                         android:textColor="@color/grey"
                         android:textSize="15sp"
