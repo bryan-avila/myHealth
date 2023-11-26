@@ -307,22 +307,20 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/edit_text_phosphorus"
         android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="100sp"
-        android:visibility="invisible"
         android:clickable="false"
         android:onClick="onAutoFillClick"
-        android:text="Auto Fill" />
+        android:text="Auto Fill"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nutrient Intake"
-        android:textStyle="bold"
-        android:textSize="20sp"
         android:layout_above="@id/edit_text_phosphorus"
         android:layout_centerInParent="true"
-        />
+        android:text="Nutrient Intake"
+        android:textSize="20sp"
+        android:textStyle="bold" />
     <!--
     <TextView
         android:id="@+id/text_view_diet_message"

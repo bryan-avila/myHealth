@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".choose_account_type_page"
-    android:background="@drawable/signupback">
+    android:background="@drawable/blankback">
 
     <RelativeLayout
         android:layout_width="match_parent"

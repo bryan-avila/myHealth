@@ -124,7 +124,8 @@
                 android:layout_height="60dp"
                 android:id="@+id/button_Signup"
                 android:text="Next"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:layout_marginTop="14dp"
                 android:backgroundTint="@color/purple"
                 android:onClick="onCareCenterAwaitConfirmation"/>
