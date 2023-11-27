@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_diet_page"
-    android:background="@drawable/blankback">
+    android:background="@drawable/patient_diet_diary_bkg">
 
-    <RelativeLayout
+<!--    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relative_layout_logo"
@@ -100,7 +100,7 @@
             android:background="@drawable/button_background"
             android:text="VIEW CHARTS"/>
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
