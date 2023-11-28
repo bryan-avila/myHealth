@@ -81,7 +81,9 @@ public class home_page extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), patient_view_search_centers_visit.class));
+                    // send them to first_time_Recurring if they haven't chosen the button yet
+
+                    startActivity(new Intent(getApplicationContext(), first_time_recurring_clinics.class));
                     finish();
                     return true;
                 } else if (id == R.id.homeId) {

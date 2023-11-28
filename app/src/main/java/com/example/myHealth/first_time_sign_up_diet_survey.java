@@ -106,7 +106,7 @@ public class first_time_sign_up_diet_survey extends AppCompatActivity {
                     }
                 });
 
-        // Once they finish inputting diet, send them home
+        // Once they finish inputting diet, send them to page that lets them make appointments
         Intent intent = new Intent(getApplicationContext(), first_time_recurring_clinics.class);
         startActivity(intent);
         finish();
