@@ -113,10 +113,30 @@ public class first_time_recurring_appointments extends AppCompatActivity {
     {
         day = "tuesday";
         Log.d("TAG", "selectedDay:" + day);
-        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
-        intent.putExtra("clinicData", clinic);
-        intent.putExtra("dayData", day);
-        startActivity(intent);
+        AppointmentManager appointmentManager = new AppointmentManager();
+        appointmentManager.availableRecurringDayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<Boolean>>() {
+            @Override
+            public void onDataReady(ArrayList<Boolean> availabilityList) {
+                appointmentManager.dayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<String>>() {
+                    @Override
+                    public void onDataReady(ArrayList<String> timesList) {
+                        // Now timesList is ready, and you can proceed with creating the intent
+                        ArrayList<String> availableTimesList = new ArrayList<>();
+                        for (int i = 0; i < timesList.size(); i++) {
+                            if (availabilityList.get(i) == true) {
+                                availableTimesList.add(timesList.get(i));
+                            }
+                        }
+
+                        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
+                        intent.putExtra("clinicData", clinic);
+                        intent.putExtra("dayData", day);
+                        intent.putExtra("availableTimesList", availableTimesList);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
 
     }
 
@@ -124,10 +144,30 @@ public class first_time_recurring_appointments extends AppCompatActivity {
     {
         day = "wednesday";
         Log.d("TAG", "selectedDay:" + day);
-        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
-        intent.putExtra("clinicData", clinic);
-        intent.putExtra("dayData", day);
-        startActivity(intent);
+        AppointmentManager appointmentManager = new AppointmentManager();
+        appointmentManager.availableRecurringDayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<Boolean>>() {
+            @Override
+            public void onDataReady(ArrayList<Boolean> availabilityList) {
+                appointmentManager.dayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<String>>() {
+                    @Override
+                    public void onDataReady(ArrayList<String> timesList) {
+                        // Now timesList is ready, and you can proceed with creating the intent
+                        ArrayList<String> availableTimesList = new ArrayList<>();
+                        for (int i = 0; i < timesList.size(); i++) {
+                            if (availabilityList.get(i) == true) {
+                                availableTimesList.add(timesList.get(i));
+                            }
+                        }
+
+                        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
+                        intent.putExtra("clinicData", clinic);
+                        intent.putExtra("dayData", day);
+                        intent.putExtra("availableTimesList", availableTimesList);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
 
     }
 
@@ -135,10 +175,30 @@ public class first_time_recurring_appointments extends AppCompatActivity {
     {
         day = "thursday";
         Log.d("TAG", "selectedDay:" + day);
-        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
-        intent.putExtra("clinicData", clinic);
-        intent.putExtra("dayData", day);
-        startActivity(intent);
+        AppointmentManager appointmentManager = new AppointmentManager();
+        appointmentManager.availableRecurringDayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<Boolean>>() {
+            @Override
+            public void onDataReady(ArrayList<Boolean> availabilityList) {
+                appointmentManager.dayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<String>>() {
+                    @Override
+                    public void onDataReady(ArrayList<String> timesList) {
+                        // Now timesList is ready, and you can proceed with creating the intent
+                        ArrayList<String> availableTimesList = new ArrayList<>();
+                        for (int i = 0; i < timesList.size(); i++) {
+                            if (availabilityList.get(i) == true) {
+                                availableTimesList.add(timesList.get(i));
+                            }
+                        }
+
+                        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
+                        intent.putExtra("clinicData", clinic);
+                        intent.putExtra("dayData", day);
+                        intent.putExtra("availableTimesList", availableTimesList);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
 
     }
 
@@ -146,10 +206,30 @@ public class first_time_recurring_appointments extends AppCompatActivity {
     {
         day = "friday";
         Log.d("TAG", "selectedDay:" + day);
-        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
-        intent.putExtra("clinicData", clinic);
-        intent.putExtra("dayData", day);
-        startActivity(intent);
+        AppointmentManager appointmentManager = new AppointmentManager();
+        appointmentManager.availableRecurringDayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<Boolean>>() {
+            @Override
+            public void onDataReady(ArrayList<Boolean> availabilityList) {
+                appointmentManager.dayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<String>>() {
+                    @Override
+                    public void onDataReady(ArrayList<String> timesList) {
+                        // Now timesList is ready, and you can proceed with creating the intent
+                        ArrayList<String> availableTimesList = new ArrayList<>();
+                        for (int i = 0; i < timesList.size(); i++) {
+                            if (availabilityList.get(i) == true) {
+                                availableTimesList.add(timesList.get(i));
+                            }
+                        }
+
+                        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
+                        intent.putExtra("clinicData", clinic);
+                        intent.putExtra("dayData", day);
+                        intent.putExtra("availableTimesList", availableTimesList);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
 
     }
 
@@ -157,10 +237,30 @@ public class first_time_recurring_appointments extends AppCompatActivity {
     {
         day = "saturday";
         Log.d("TAG", "selectedDay:" + day);
-        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
-        intent.putExtra("clinicData", clinic);
-        intent.putExtra("dayData", day);
-        startActivity(intent);
+        AppointmentManager appointmentManager = new AppointmentManager();
+        appointmentManager.availableRecurringDayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<Boolean>>() {
+            @Override
+            public void onDataReady(ArrayList<Boolean> availabilityList) {
+                appointmentManager.dayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<String>>() {
+                    @Override
+                    public void onDataReady(ArrayList<String> timesList) {
+                        // Now timesList is ready, and you can proceed with creating the intent
+                        ArrayList<String> availableTimesList = new ArrayList<>();
+                        for (int i = 0; i < timesList.size(); i++) {
+                            if (availabilityList.get(i) == true) {
+                                availableTimesList.add(timesList.get(i));
+                            }
+                        }
+
+                        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
+                        intent.putExtra("clinicData", clinic);
+                        intent.putExtra("dayData", day);
+                        intent.putExtra("availableTimesList", availableTimesList);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
 
     }
 
@@ -168,11 +268,56 @@ public class first_time_recurring_appointments extends AppCompatActivity {
     {
         day = "sunday";
         Log.d("TAG", "selectedDay:" + day);
-        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
-        intent.putExtra("clinicData", clinic);
-        intent.putExtra("dayData", day);
-        startActivity(intent);
+        AppointmentManager appointmentManager = new AppointmentManager();
+        appointmentManager.availableRecurringDayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<Boolean>>() {
+            @Override
+            public void onDataReady(ArrayList<Boolean> availabilityList) {
+                appointmentManager.dayTimes(clinic.getID(), day, new OnDataReadyListener<ArrayList<String>>() {
+                    @Override
+                    public void onDataReady(ArrayList<String> timesList) {
+                        // Now timesList is ready, and you can proceed with creating the intent
+                        ArrayList<String> availableTimesList = new ArrayList<>();
+                        for (int i = 0; i < timesList.size(); i++) {
+                            if (availabilityList.get(i) == true) {
+                                availableTimesList.add(timesList.get(i));
+                            }
+                        }
 
+                        Intent intent = new Intent(first_time_recurring_appointments.this, pick_recurring_appointment_time.class);
+                        intent.putExtra("clinicData", clinic);
+                        intent.putExtra("dayData", day);
+                        intent.putExtra("availableTimesList", availableTimesList);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
+
+    }
+
+    public void onClinic1Click(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+    }
+
+    public void onClinic2Click(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+    }
+
+    public void onClinic3Click(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+    }
+
+    public void onClinic4Click(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+    }
+
+    public void onClinic5Click(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), appointments_page.class));
     }
 
 }
