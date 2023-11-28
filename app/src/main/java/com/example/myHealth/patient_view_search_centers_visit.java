@@ -105,29 +105,11 @@ public class    patient_view_search_centers_visit extends AppCompatActivity {
 
     }
 
-    public void onClinic1Click(View view)
+    public void onRecurringButtonClick(View view)
     {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
-    }
-
-    public void onClinic2Click(View view)
-    {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
-    }
-
-    public void onClinic3Click(View view)
-    {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
-    }
-
-    public void onClinic4Click(View view)
-    {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
-    }
-
-    public void onClinic5Click(View view)
-    {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+        // If patients want to make recurring appointments, send them to that page
+        Intent intent = new Intent(patient_view_search_centers_visit.this, first_time_recurring_appointments.class);
+        startActivity(intent);
     }
 
 }

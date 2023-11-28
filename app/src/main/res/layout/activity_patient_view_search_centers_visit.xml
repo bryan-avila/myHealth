@@ -18,11 +18,19 @@
             android:padding="0dp"
             tools:context=".FirstTimeRegistration">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Make Recurring Appointment?"
+                android:onClick="onRecurringButtonClick"
+                android:layout_marginLeft="230sp"
+                />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/custom_edittext"
@@ -41,7 +49,7 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Clinic Search"
+                        android:text="Dialysis Centers Search"
                         android:textSize="25sp"
                         android:textColor="@color/purple"
                         android:textStyle="bold" />

@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +30,38 @@ public class first_time_recurring_appointments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_time_recurring_appointments);
+
+        //Initialize and assign bottom nav from .xml file
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_first_time_recurr);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                //check id
+                if (id == R.id.appointmentIdClinic) {
+                    startActivity(new Intent(first_time_recurring_appointments.this, appointments_page_clinic.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.homeIdCLinic) {
+                    return true;
+                } else if (id == R.id.medicalHistIdClinic) {
+                    startActivity(new Intent(first_time_recurring_appointments.this, medical_records_page_clinic.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.resourcesIdClinic) {
+                    startActivity(new Intent(first_time_recurring_appointments.this, resources_page_clinic.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.profileIdClinic) {
+                    startActivity(new Intent(first_time_recurring_appointments.this, profile_page_clinic.class));
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+
 
         // Retrieve the data from the intent
         Intent intent = getIntent();
