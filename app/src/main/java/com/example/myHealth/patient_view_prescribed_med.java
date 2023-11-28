@@ -1,5 +1,7 @@
 package com.example.myHealth;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,18 +9,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class patient_view_prescribed_med extends AppCompatActivity {
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,19 +62,16 @@ public class patient_view_prescribed_med extends AppCompatActivity {
                 // Set the adapter (you'll create and set the adapter in later steps)
                 MyPrescribedMedAdapter myAdapter = new MyPrescribedMedAdapter(getApplicationContext(), pMedications_list);
                 med_recycle_view.setAdapter(myAdapter);
-
- /*               myAdapter.setOnItemClickListener(new MyPrescribedMedAdapter.OnItemClickListener() {
+                myAdapter.setOnItemClickListener(new MyPrescribedMedAdapter.OnItemClickListener() {
                     //this sends the user to the clinic's specific appointment page
                     @Override
-                    public void onItemClick(int position, PrescribedMedications prescribedMedications) {
+                    public void onItemClick(int position, PrescribedMedications prescribedMedications)
+                    {
+
                         // Handle the item click here
-                        Intent intent = new Intent(patient_view_prescribed_med.this, clinic_home_page.class);
-                        startActivity(intent);
                     }
-
-            });*/
-
+                });
+            }
+        });
     }
-});
-}
 }

@@ -11,13 +11,19 @@ public class PrescribedMedications implements Serializable {
 
     String medicationName;
 
+    String clinicName;
+
+    String clinicPhone;
+
     public PrescribedMedications() {
     }
 
-    public PrescribedMedications(String mName, String freq, String dosAmt) {
+    public PrescribedMedications(String mName, String freq, String dosAmt, String clinicName, String clinicPhone) {
         this.medicationName = mName;
         this.frequency = freq;
         this.dosageAmount = dosAmt;
+        this.clinicName = clinicName;
+        this.clinicPhone = clinicPhone;
     }
 
     public String getMedicationName() {
@@ -43,5 +49,13 @@ public class PrescribedMedications implements Serializable {
     public void setFrequency(String freq) {
         this.frequency = freq;
     }
+
+    public String getClinicName() {return clinicName;}
+
+    public void setClinicName(String cName) {this.clinicName = cName;}
+
+    public String getClinicPhone() {return clinicPhone;}
+
+    public void setClinicPhone(String cPhone) {this.clinicPhone = cPhone;}
 
 }
