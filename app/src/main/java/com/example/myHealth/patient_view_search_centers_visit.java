@@ -108,7 +108,7 @@ public class    patient_view_search_centers_visit extends AppCompatActivity {
     public void onRecurringButtonClick(View view)
     {
         // If patients want to make recurring appointments, send them to that page
-        Intent intent = new Intent(patient_view_search_centers_visit.this, first_time_recurring_appointments.class);
+        Intent intent = new Intent(patient_view_search_centers_visit.this, first_time_recurring_clinics.class);
         startActivity(intent);
     }
 
