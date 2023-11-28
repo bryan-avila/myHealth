@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/resources_page_back"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/SkipRecurring"
@@ -119,7 +119,7 @@
         android:textStyle="bold" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_first_time_recurr"
+        android:id="@+id/bottom_navigation_first_time_recurr_apt"
         android:layout_below="@id/SundayButton"
         android:layout_width="900sp"
         android:layout_height="wrap_content"

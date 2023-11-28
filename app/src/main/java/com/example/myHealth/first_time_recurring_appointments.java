@@ -32,29 +32,32 @@ public class first_time_recurring_appointments extends AppCompatActivity {
         setContentView(R.layout.activity_first_time_recurring_appointments);
 
         //Initialize and assign bottom nav from .xml file
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_first_time_recurr);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_first_time_recurr_apt);
+
+        bottomNavigationView.setSelectedItemId(R.id.appointmentId);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 //check id
-                if (id == R.id.appointmentIdClinic) {
-                    startActivity(new Intent(first_time_recurring_appointments.this, appointments_page_clinic.class));
+                if (id == R.id.appointmentId) {
+                   // startActivity(new Intent(first_time_recurring_appointments.this, a.class));
+                    //finish();
+                  return true;
+                } else if (id == R.id.homeId) {
+                    startActivity(new Intent(first_time_recurring_appointments.this, home_page.class));
+                    return true;
+                } else if (id == R.id.medicalHistId) {
+                    startActivity(new Intent(first_time_recurring_appointments.this, medical_records_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.homeIdCLinic) {
-                    return true;
-                } else if (id == R.id.medicalHistIdClinic) {
-                    startActivity(new Intent(first_time_recurring_appointments.this, medical_records_page_clinic.class));
+                } else if (id == R.id.resourcesId) {
+                    startActivity(new Intent(first_time_recurring_appointments.this, patient_diet_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.resourcesIdClinic) {
-                    startActivity(new Intent(first_time_recurring_appointments.this, resources_page_clinic.class));
-                    finish();
-                    return true;
-                } else if (id == R.id.profileIdClinic) {
-                    startActivity(new Intent(first_time_recurring_appointments.this, profile_page_clinic.class));
+                } else if (id == R.id.profileId) {
+                    startActivity(new Intent(first_time_recurring_appointments.this, profile_page.class));
                     finish();
                     return true;
                 }
