@@ -131,12 +131,19 @@
                         android:layout_marginTop="20sp"
                         android:paddingLeft="30dp"
                         android:id="@+id/text_view_appointments_notice"
-                        android:text="1) No Upcoming Appointments"
+                        android:text="1) Upcoming Appointments:"
                         android:textSize="18sp"
                         android:textColor="@color/goodGrey"
                         android:layout_below="@id/text_view_notices"
                         android:layout_marginBottom="10sp"
                         />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_home_page_appointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
+                        android:scrollbars="vertical" />
 
                     <!--Insert a reference to an object for "Daily Medications"-->
                     <TextView
@@ -159,42 +166,6 @@
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
                         android:scrollbars="vertical" />
-
-<!--                    <ListView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:paddingLeft="70dp"-->
-<!--                        android:id="@+id/list_view_medications_list"-->
-<!--                        android:layout_below="@id/text_view_medications_list"-->
-<!--                        android:dividerHeight="1dp"-->
-<!--                        />-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:paddingLeft="30dp"-->
-<!--                        android:id="@+id/text_view_nutrient_msg"-->
-<!--                        android:text="3) You are managing your nutrient intake well."-->
-<!--                        android:textSize="20sp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:layout_below="@id/list_view_medications_list"-->
-<!--                        android:layout_marginBottom="10sp"-->
-
-<!--                        />-->
-
-<!--                    &lt;!&ndash;Insert a reference to an object for "Tip of the day"&ndash;&gt;-->
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:paddingLeft="30dp"-->
-<!--                        android:id="@+id/text_view_totd"-->
-<!--                        android:text="4) Tip/Fact of the Day:"-->
-
-<!--                        android:textSize="20sp"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:layout_below="@id/text_view_nutrient_msg"-->
-<!--                        android:layout_marginBottom="10sp"-->
-<!--                        />-->
 
                 </LinearLayout>
             </ScrollView>
