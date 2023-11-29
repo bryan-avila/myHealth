@@ -193,6 +193,7 @@ public class clinic_prescription_form extends AppCompatActivity {
 
 
 
+
         startActivity(new Intent(getApplicationContext(), clinic_prescription_form.class));
 
         if (inputCheckerOnMedication) {

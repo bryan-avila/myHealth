@@ -44,7 +44,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:padding="5sp"
-                    android:text="List Of Patients"
+                    android:text="Select Patient To Manage"
                     android:textSize="25sp"
                     android:textColor="@color/purple"
                     android:textStyle="bold" />
