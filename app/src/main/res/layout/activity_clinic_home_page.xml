@@ -80,9 +80,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_view_clinic_machines"
-            android:text="Your dialysis machines.....5\n Machines In Use Today....4"
-            android:textSize="25sp"
-            android:layout_marginTop="135sp"
+            android:text="Dialysis Machines Information:"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="140sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(number of machines)"
+            android:id="@+id/text_view_clinic_num_of_machines"
+            android:textSize="23sp"
+            android:layout_marginTop="210sp"
             />
     </androidx.cardview.widget.CardView>
 
