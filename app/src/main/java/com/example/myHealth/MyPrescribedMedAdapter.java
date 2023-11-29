@@ -32,6 +32,8 @@ public class MyPrescribedMedAdapter extends RecyclerView.Adapter<MyViewHolderPre
         holder.medicationName.setText(pMedications.get(position).getMedicationName());
         holder.dosageAmount.setText(pMedications.get(position).getDosageAmount());
         holder.frequency.setText(pMedications.get(position).getFrequency());
+        holder.clinicName.setText(pMedications.get(position).getClinicName());
+        holder.clinicPhone.setText(pMedications.get(position).getClinicPhone());
 
 
 

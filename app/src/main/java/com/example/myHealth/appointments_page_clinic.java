@@ -2,20 +2,82 @@ package com.example.myHealth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class appointments_page_clinic extends AppCompatActivity {
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+    //Need to know who is the current clinic
+    FirebaseUser currentClinic = mAuth.getCurrentUser();
+
+    private DocumentReference userRef = db.collection("clinic").document(currentClinic.getUid());
+
+    //private List<Appointment> appointmentsList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments_page_clinic);
+
+
+        // Set up the RecyclerView
+        RecyclerView recyclerViewClinicAppointments = findViewById(R.id.recycler_view_upcoming_appointments_clinic);
+
+        recyclerViewClinicAppointments.setLayoutManager(new LinearLayoutManager(this));
+
+        // Get correct database path for appointments
+        CollectionReference clinicAppointmentRef = db.collection("clinic").document(currentClinic.getUid()).collection("days").document("monday").collection("appointments");
+
+        clinicAppointmentRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Appointment> appointmentsList = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    //Appointment appointment = document.toObject(PrescribedMedications.class); //get appointment information
+                    //appointmentsList.add(appointment);
+                }
+                Log.d("TAG", "Medications size: " + appointmentsList.size()); // Check the size of the clinics list
+                // Set the adapter (you'll create and set the adapter in later steps)
+                //MyPrescribedMedAdapter myAdapter = new MyPrescribedMedAdapter(getApplicationContext(), appointmentsList);
+                //med_recycle_view.setAdapter(myAdapter);
+
+               /* myAdapter.setOnItemClickListener(new MyPrescribedMedAdapter().OnItemClickListener() {
+                    //this sends the user to the clinic's specific appointment page
+                    @Override
+                    public void onItemClick(int position, PrescribedMedications pMedications) {
+                        // Handle the item click here
+                        Intent intent = new Intent(patient_view_prescribed_med.this, appointments_page.class);
+                        startActivity(intent);
+                    }
+                });
+*/
+            }
+            else {
+                // Handle the error
+                Log.e("TAG", "Error getting medications", task.getException());
+            }
+        });
+
+
 
 
         //Initialize and assign variable

@@ -42,8 +42,6 @@ public class clinic_prescription_form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_prescription_form);
-
-
         medName = findViewById(R.id.edit_text_med_Name);
         medDosage = findViewById(R.id.edit_text_med_Dosage);
 
@@ -152,12 +150,17 @@ public class clinic_prescription_form extends AppCompatActivity {
             integer_frequency = 2; // 2 times per week
         }
 
+        String phone = "818-355-2913";
+
         // Add the medication info to the patient's database collection
         Map<String, Object> medicationInfo = new HashMap<>();
         medicationInfo.put("medicationName", s_med_name);
         medicationInfo.put("dosageAmount", s_dosage_amt);
         medicationInfo.put("frequency", frequency); // Get frequency from the pop up
-        medicationInfo.put("intFrequency", integer_frequency); // Turn string frequency into an integer for notifications
+       // medicationInfo.put("intFrequency", integer_frequency); // Turn string frequency into an integer for notifications
+        medicationInfo.put("clinicName", currentUser.getEmail()); // Store the clinic name so that patients know where they got it from
+        medicationInfo.put("clinicPhone",  phone); // Hardcoded example for now
+//        Toast.makeText(this, currentUser.getEmail() + " email", Toast.LENGTH_SHORT).show();
 
         // Add medication to the firebase. The document will be named different according to the name of the Prescription
         prescriptionsInfoRef.document(s_med_name).set(medicationInfo)
