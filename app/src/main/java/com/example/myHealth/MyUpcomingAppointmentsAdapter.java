@@ -2,7 +2,9 @@ package com.example.myHealth;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,38 +12,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 // MyAdapter.java
-public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyViewHolderUpcomingAppointment>{
+public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomingAppointmentsAdapter.UpcomingAppointmentViewholder>{
 
     Context context;
-    List<UpcomingAppointments> UpcomingAppointments;
-    private OnItemClickListener mListener;
+    List<String> UpcomingAppointments;
 
-    public MyUpcomingAppointmentsAdapter(Context context, List<UpcomingAppointments> UpcomingAppointments) {
+    public MyUpcomingAppointmentsAdapter(Context context, List<String> UpcomingAppointments) {
         this.context = context;
         this.UpcomingAppointments = UpcomingAppointments;
     }
 
     @NonNull
     @Override
-    public MyViewHolderUpcomingAppointment onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolderUpcomingAppointment(LayoutInflater.from(context).inflate(R.layout.upcoming_appointment_item_view, parent, false));
+    public UpcomingAppointmentViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.upcoming_appointment_item_view, parent, false);
+        return new UpcomingAppointmentViewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolderUpcomingAppointment holder, int position) {
-        holder.clinicName.setText(UpcomingAppointments.get(position).getClinicName());
-        holder.startTime.setText(UpcomingAppointments.get(position).getStartTime());
-        holder.endTime.setText(UpcomingAppointments.get(position).getEndTime());
-        holder.recurring.setText(UpcomingAppointments.get(position).getRecurring());
-
-
-
-        // Set click listener
-        holder.itemView.setOnClickListener(view -> {
-            if (mListener != null) {
-                mListener.onItemClick(position, UpcomingAppointments.get(position));
-            }
-        });
+    public void onBindViewHolder(@NonNull UpcomingAppointmentViewholder holder, int position) {
+        String date = UpcomingAppointments.get(position);
+        holder.bind(date);
     }
 
     @Override
@@ -49,12 +40,16 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyViewHo
         return UpcomingAppointments.size();
     }
 
-    // Method to set the click listener from outside the adapter
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
-    }
+    public static class UpcomingAppointmentViewholder extends RecyclerView.ViewHolder {
+        private TextView dateTextView;
 
-    public interface OnItemClickListener {
-        void onItemClick(int position, UpcomingAppointments upcomingAppointments);
+        public UpcomingAppointmentViewholder(@NonNull View itemView) {
+            super(itemView);
+            dateTextView = itemView.findViewById(R.id.text_view_date);
+        }
+
+        public void bind(String date) {
+            dateTextView.setText(date);
+        }
     }
 }

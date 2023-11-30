@@ -147,14 +147,15 @@ public class home_page extends AppCompatActivity {
         RecyclerView appointments_recycle_view = findViewById(R.id.recycler_view_home_page_appointment);
         appointments_recycle_view.setLayoutManager(new LinearLayoutManager(this));
 
-        CollectionReference patientAppointmentRef = db.collection("users").document(currentUser.getUid()).collection("dates").document("appointmentDate").collection("appointments");
-
-        patientAppointmentRef.get().addOnCompleteListener(task -> {
+        CollectionReference patientAppointmentDateRef = db.collection("users").document(currentUser.getUid()).collection("dates");
+        Log.d("TAG", "Collection Reference: " + patientAppointmentDateRef.getPath());
+        Log.d("TAG", "user id: " + currentUser.getUid());
+        patientAppointmentDateRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                List<UpcomingAppointments> appointments_list = new ArrayList<>();
+                List<String> appointments_list = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    UpcomingAppointments appointment = document.toObject(UpcomingAppointments.class);
-                    appointments_list.add(appointment);
+                    Log.d("TAG", "document id" + document.getId());
+                    appointments_list.add(document.getId());
                 }
                 Log.d("TAG", "Appointment list size: " + appointments_list.size()); // Check the size of the clinics list
                 // Set the adapter (you'll create and set the adapter in later steps)
