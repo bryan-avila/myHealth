@@ -51,7 +51,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_home_page"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="520dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
@@ -78,7 +78,7 @@
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="7dp"
                 android:layout_marginTop="48dp"
                 android:text="(date)"
                 android:textSize="24sp"
@@ -87,13 +87,6 @@
                 android:textColor="@color/purple"/>
             <!--Ignore the "(date)" position on page, it is fixed on runtime-->
 
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginTop="100sp"
-                android:background="@color/purple" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,10 +97,15 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/goodGrey"
-                android:layout_below="@id/text_view_dashboard"
-                android:layout_marginTop="60sp"/>
+                android:layout_below="@id/date"
+                android:layout_marginTop="3sp"/>
 
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="116sp"
+                android:background="@color/purple" />
 
 
             <ScrollView
@@ -132,7 +130,8 @@
                         android:paddingLeft="30dp"
                         android:id="@+id/text_view_appointments_notice"
                         android:text="1) Upcoming Appointments:"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         android:textColor="@color/goodGrey"
                         android:layout_below="@id/text_view_notices"
                         android:layout_marginBottom="10sp"
@@ -152,7 +151,8 @@
                         android:paddingLeft="30dp"
                         android:id="@+id/text_view_medications_list"
                         android:text="2) Your daily Medications:"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         android:textColor="@color/goodGrey"
                         android:layout_below="@id/text_view_appointments_notice"
                         android:layout_marginBottom="10sp"
