@@ -3,48 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".first_time_medical_survey_page">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="vertical">
+        android:background="@drawable/blankback"
+        android:padding="0dp"
+        tools:context=".FirstTimeRegistration">
 
-        <LinearLayout
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/splashback"
-            android:padding="0sp"
-            tools:context=".first_time_medical_survey_page">
+            android:layout_alignParentTop="true"
+            android:scaleType="centerCrop"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:background="@drawable/custom_edittext"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="30dp">
+                app:cardCornerRadius="30dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/myhealth_logo_white"
+                        android:adjustViewBounds="true"
+                        android:maxWidth="80dp"
+                        android:maxHeight="80dp"
+                        android:scaleType="fitCenter"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:padding="5sp"
                         android:text="Enter Your Basic Medical History"
                         android:textSize="20sp"
-                        android:gravity="center"
-                        android:padding="5sp"/>
+                        android:textColor="@color/purple"
+                        android:textStyle="bold" />
 
 
+                    <!--Height Boxes-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
+                        android:layout_margin="5sp"
+                        android:layout_marginBottom="10sp"
                         android:orientation="horizontal">
 
                         <EditText
@@ -63,78 +82,204 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="Height (Inches)"
+                            android:textSize="13dp"
                             android:inputType="number"
                             android:maxLength="2"
                             android:maxLines="1" />
                     </LinearLayout>
 
+
+                    <!--Age, Weight, Blood Type boxes-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
+                        android:layout_margin="5sp"
+                        android:layout_marginBottom="10sp"
                         android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/edit_text_age"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:paddingEnd="40sp"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginBottom="5sp"
                             android:hint="Age"
                             android:inputType="number"
-                            android:maxLength="1"
-                            android:maxLines="1" />
+                            android:maxLength="3"
+                            android:maxLines="1"
+                            android:paddingEnd="40sp" />
 
 
                         <EditText
                             android:id="@+id/edit_text_weight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:paddingEnd="40sp"
-
+                            android:layout_marginTop="5sp"
+                            android:layout_marginBottom="5sp"
                             android:hint="Weight (lbs)"
+
                             android:inputType="number"
-                            android:maxLength="1"
-                            android:maxLines="1" />
+                            android:maxLength="3"
+                            android:maxLines="1"
+                            android:paddingEnd="40sp" />
 
                         <EditText
                             android:id="@+id/edit_text_blood_type"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginBottom="5sp"
+                            android:textSize="13dp"
                             android:hint="Blood Type"
                             android:inputType="text"
-                            android:maxLength="1"
+                            android:maxLength="3"
                             android:maxLines="1" />
                     </LinearLayout>
+
+                    <!-- Radio buttons for gender  -->
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/radio_group_gender"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:hint="Gender:"
+                            android:textSize="18dp" />
+
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male"
+                            android:textSize="12dp"
+                            android:id="@+id/radio_btn_male"
+                            />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female"
+                            android:textSize="12dp"
+                            android:id="@+id/radio_btn_female"
+                            />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prefer Not To Say"
+                            android:textSize="12dp"
+                            android:id="@+id/radio_btn_prefer_not"
+                            />
+
+
+                    </RadioGroup>
+
+                    <!-- Radio buttons for treatment  -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:orientation="vertical">
 
-                        <CheckBox
-                            android:id="@+id/check_box_smoke"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Do you smoke?" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="What Treatment are you recieving?"
+                            android:textSize="20dp"
+                            android:textColor="@color/purple"
+                            android:textStyle="bold"
+                            />
 
-                        <CheckBox
-                            android:id="@+id/check_box_alcohol"
-                            android:layout_width="match_parent"
+                        <RadioGroup
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Do you drink alcohol?" />
+                            android:layout_marginTop="20dp"
+                            android:id="@+id/radio_group_treatment"
+                            android:layout_centerHorizontal="true"
+                            android:orientation="horizontal">
 
-                        <CheckBox
-                            android:id="@+id/check_box_overseasTravel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Have you traveled overseas?" />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hemodialysis"
+                                android:id="@+id/radio_btn_hemodialysis"
+                                />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Peritoneal"
+                                android:id="@+id/radio_btn_peritoneal"
+                                />
+
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hemofiltration"
+                                android:id="@+id/radio_btn_hemofiltration"
+                                />
+
+
+                        </RadioGroup>
+
                     </LinearLayout>
+
+                    <!-- Radio buttons for Kidney Disease Stage  -->
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/radio_group_stages"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Which Stage?"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/purple"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_button_stage_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kidney Disease Stage 1" />
+
+                        <RadioButton
+                            android:id="@+id/radio_button_stage_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kidney Disease Stage 2" />
+
+                        <RadioButton
+                            android:id="@+id/radio_button_stage_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kidney Disease Stage 3" />
+
+                        <RadioButton
+                            android:id="@+id/radio_button_stage_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kidney Disease Stage 4" />
+
+                        <RadioButton
+                            android:id="@+id/radio_button_stage_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kidney Disease Stage 5" />
+
+                    </RadioGroup>
 
 
                     <LinearLayout
@@ -147,23 +292,17 @@
                             android:layout_height="wrap_content"
                             android:text="Medical History:"
                             android:textSize="20dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="@color/purple"/>
+
 
                         <CheckBox
-                            android:id="@+id/check_box_asthma"
+                            android:id="@+id/check_box_diabetes"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:button="@null"
                             android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                            android:text="Asthma" />
-
-                        <CheckBox
-                            android:id="@+id/check_box_kidneyProblems"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:button="@null"
-                            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                            android:text="Kidney Problems" />
+                            android:text="Diabetes" />
 
                         <CheckBox
                             android:id="@+id/check_box_highBloodPressure"
@@ -173,34 +312,27 @@
                             android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                             android:text="High Blood Pressure" />
 
-                        <CheckBox
-                            android:id="@+id/check_box_depression"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:button="@null"
-                            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                            android:text="Depression" />
 
-                        <CheckBox
-                            android:id="@+id/check_box_thyroidDisease"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:button="@null"
-                            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                            android:text="Thyroid Disease" />
 
 
                         <!-- Add more checkboxes as needed -->
 
                     </LinearLayout>
 
+                    <Button
+                        android:id="@+id/button_finished"
+                        android:backgroundTint="@color/purple"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Finish"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:onClick="onFinishClick"/>
 
                 </LinearLayout>
 
-
             </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-    </ScrollView>
-
+        </ScrollView>
+</RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
