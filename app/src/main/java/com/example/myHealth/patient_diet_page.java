@@ -1,21 +1,79 @@
 package com.example.myHealth;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.view.View;
 
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+
+import java.util.Calendar;
 
 public class patient_diet_page extends AppCompatActivity {
+
+    // Initialize Database Stuff
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+    DocumentReference patientRef = db.collection("users").document(currentUser.getUid());
+
+    private ListenerRegistration patientListener;
+
+    // Initialize Activity Stuff
+    Button addFoodBtn, viewFavoritesBtn, viewChartsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_diet_page);
+
+        // Assign buttons
+        addFoodBtn = findViewById(R.id.button_add_foods);
+        viewFavoritesBtn = findViewById(R.id.button_view_favorites);
+        viewChartsBtn = findViewById(R.id.button_view_charts);
+
+        // Set onclick listener methods to buttons
+        addFoodBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(patient_diet_page.this, "DEFAULT.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        viewFavoritesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(patient_diet_page.this, "DEFAULT!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        viewChartsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(patient_diet_page.this, "DEFAULT!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -48,6 +106,58 @@ public class patient_diet_page extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+    }
+
+    public void onStart() {
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+
+            // Get current user, from collection users
+            DocumentReference patientRef = db.collection("users").document(currentUser.getUid());
+
+            patientRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // User document exists, retrieve data
+                            String patient_first_name = document.getString("firstName");
+
+                            // Retrieve other user data as needed
+                        } else {
+                            // User document doesn't exist, handle accordingly
+                        }
+                    } else {
+                        // Handle failure to retrieve user document
+                    }
+                }
+            });
+        }
+
+        super.onStart();
+        // Automatic loading
+        patientListener = patientRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+
+                // Error checking
+                if(error != null)
+                {
+                    Toast.makeText(patient_diet_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (documentSnapshot.exists()) {
+                    // Change a textview from the dietpage to
+                    TextView welcome = (TextView) findViewById(R.id.text_view_nutrition_default_text);
+                    String patient_firstname = documentSnapshot.get("firstName").toString();
+                    welcome.setText(patient_firstname + "!!");
+
+                }
             }
         });
     }
