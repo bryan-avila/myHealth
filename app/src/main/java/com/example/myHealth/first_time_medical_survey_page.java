@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,25 +26,38 @@ import java.util.Map;
 
 public class first_time_medical_survey_page extends AppCompatActivity {
 
+    // Set up database stuff
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     private DocumentReference userRef = db.collection("users").document(currentUser.getUid());
     CollectionReference medicalHistoryRef = userRef.collection("medicalHistory");
 
-
-
-
-    // TO DO:
-    // 1. Create collections specific to a user who has recently signed up that will hold all the info
-    // 2. Store the user input here and upload them to firestore
-    // 3. Make this page more aesthetically pleasing
-    // 4. After medical history q&a is finished, send them to the home page
+    // Set up textview stuff
+    TextView header1, header2, header3, header4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_time_registration);
+
+        header1 = findViewById(R.id.text_view_p_registration_header_1);
+        header2 = findViewById(R.id.text_view_p_registration_header_2);
+        header3 = findViewById(R.id.text_view_p_registration_header_3);
+        header4 = findViewById(R.id.text_view_p_registration_header_4);
+
+        header1.setPaintFlags(header1.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        header1.setText("Enter Your Basic Medical History");
+
+        header2.setPaintFlags(header2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        header2.setText("What Treatment Are You Recieving");
+
+        header3.setPaintFlags(header3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        header3.setText("Which Stage Kidney Disease?");
+
+        header4.setPaintFlags(header4.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        header4.setText("Medical History:");
+
 
     }
 

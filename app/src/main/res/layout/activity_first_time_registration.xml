@@ -48,6 +48,7 @@
                         android:scaleType="fitCenter"/>
 
                     <TextView
+                        android:id="@+id/text_view_p_registration_header_1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -147,9 +148,10 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:text="Gender:"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:hint="Gender:"
+                            android:textColor="@color/black"
                             android:textSize="18dp" />
 
 
@@ -190,6 +192,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_view_p_registration_header_2"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="What Treatment are you recieving?"
@@ -242,6 +245,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_view_p_registration_header_3"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="Which Stage?"
@@ -288,6 +292,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_view_p_registration_header_4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Medical History:"
