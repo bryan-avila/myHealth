@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_diet_page"
-    android:background="@drawable/blankback">
+    android:background="@drawable/background_patient_nutrition_page_v5">
 
     <!-- Controls the header/1st cardview -->
 
@@ -26,7 +26,7 @@
             android:padding="5sp"
             android:text="Nutrition"
             android:textSize="45sp"
-            android:textColor="@color/purple"
+            android:textColor="@color/black"
             android:textStyle="bold"
             />
 
@@ -71,7 +71,8 @@
         <View
             android:id="@+id/view_nutrition_info_background"
             android:layout_width="350sp"
-            android:layout_height="400sp" />
+            android:layout_height="400sp"
+            android:elevation="50sp"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -87,7 +88,7 @@
         android:layout_marginTop="580sp"
         android:layout_marginLeft="5dp"
         android:backgroundTint="@color/purple"
-        android:elevation="8dp"/>
+        android:elevation="10dp"/>
 
     <Button
         android:id="@+id/button_add_foods"
