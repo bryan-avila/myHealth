@@ -46,7 +46,7 @@ public class clinic_view_med_hist extends AppCompatActivity {
                 return true;
             }
         });
-        //testing
+        //testing push
         // Set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycler_view_patients);
 
