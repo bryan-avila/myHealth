@@ -8,7 +8,21 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".choose_account_type_page"
-    android:background="@drawable/loginback">
+    android:background="@drawable/blankback">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myhealth_logo"
+            android:adjustViewBounds="true"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"/>
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -30,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Patient"
+                android:drawableRight="@drawable/baseline_person_24"
                 android:id="@+id/textView_Patient"
                 android:textSize="35sp"
                 android:textAlignment="center"
@@ -73,14 +88,15 @@
 
 
             <TextView
+                android:id="@+id/textView_Caretaker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Caretaker"
-                android:id="@+id/textView_Caretaker"
-                android:textSize="35sp"
+                android:text="Clinic"
+                android:drawableRight="@drawable/baseline_local_hospital_24"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/purple"/>
+                android:textColor="@color/purple"
+                android:textSize="35sp"
+                android:textStyle="bold" />
 
 
 

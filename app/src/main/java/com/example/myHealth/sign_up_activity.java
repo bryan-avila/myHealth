@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -76,40 +78,6 @@ public class sign_up_activity extends AppCompatActivity {
                 boolean check = validateInfo (firstNameSignUp, lastNameSignUp, emailSignUp, passwordSignUp, passwordSignUpConfirm, phoneSignUp);
 
                 if (check) {
-                    builder.setTitle("Registration Complete! ✅")
-                            .setMessage("You may now login using your account credentials.")
-                            .setCancelable(true)
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    // Don't need this finish() since it will just load the next view twice
-                                    //finish();
-                                }
-                            })
-                            .show();
-                    //adds account to database
-                    // Create a new user with a first and last name
-                    Map<String, Object> user = new HashMap<>();
-                        user.put("firstName", firstNameSignUp);
-                        user.put("lastName", lastNameSignUp);
-                        user.put("Email", emailSignUp);
-                        user.put("phone", phoneSignUp);
-
-                    // Add a new document with a generated ID
-                    db.collection("users")
-                            .add(user)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error adding document", e);
-                                }
-                            });
                     //uses firebase user authentication to save user login info
                     mAuth.createUserWithEmailAndPassword(email.getText().toString(), passwordEntered.getText().toString())
                             .addOnCompleteListener(sign_up_activity.this, new OnCompleteListener<AuthResult>() {
@@ -118,18 +86,82 @@ public class sign_up_activity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "createUserWithEmail:success");
-                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        //adds account to database
+                                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                                        if (currentUser != null) {
+                                            Log.d(TAG, "currentUser is not null");
+                                            DocumentReference userRef = db.collection("users").document(currentUser.getUid());
 
-                                        // Upon registration send users to do medical history questions
-                                        setContentView(R.layout.activity_first_time_registration);
+                                            // Check if the user document already exists
+                                            userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        DocumentSnapshot document = task.getResult();
+                                                        Log.d(TAG, "task successful");
+                                                        if (!document.exists()) {
+                                                            Log.d(TAG, "document doesn't exist");
+                                                            // Create a new user with a first and last name
+                                                            Map<String, Object> user = new HashMap<>();
+                                                            user.put("firstName", firstNameSignUp);
+                                                            user.put("lastName", lastNameSignUp);
+                                                            user.put("email", emailSignUp);
+                                                            user.put("phone", phoneSignUp);
+
+                                                            userRef.set(user)
+                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        @Override
+                                                                        public void onSuccess(Void aVoid) {
+                                                                            // User document created successfully
+                                                                            Log.d(TAG, "DocumentSnapshot added;");
+                                                                            // Upon registration send users to do medical history questions
+                                                                            builder.setTitle("Almost done! ✅")
+                                                                                    .setMessage("Please fill out medical history form & diet form to finish registration.")
+                                                                                    .setCancelable(false)
+                                                                                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                                                        @Override
+                                                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                            Intent intent = new Intent(getApplicationContext(), first_time_medical_survey_page.class);
+                                                                                            startActivity(intent);
+                                                                                            finish();
+                                                                                        }
+                                                                                    })
+                                                                                    .show();
+                                                                        }
+                                                                    })
+                                                                    .addOnFailureListener(new OnFailureListener() {
+                                                                        @Override
+                                                                        public void onFailure(@NonNull Exception e) {
+                                                                            // Handle failure to create user document
+                                                                            Log.w(TAG, "Error adding document", e);
+                                                                        }
+                                                                    });
+                                                        }
+                                                    } else {
+                                                        Log.d(TAG, "document exists");
+                                                        // Handle failure to check if user document exists
+                                                    }
+                                                }
+                                            });
+                                        }
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                        Toast.makeText(sign_up_activity.this, "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
+                                        builder.setTitle("Account creation failed! ❌")
+                                                .setMessage("The email you used is already linked to an existing account.")
+                                                .setCancelable(false)
+                                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        // Don't need this finish() since it will just load the next view twice
+                                                        //finish();
+                                                    }
+                                                })
+                                                .show();
                                     }
                                 }
                             });
+
                 } else {
                     Toast.makeText(sign_up_activity.this, "SIGN UP FAILED. TRY AGAIN", Toast.LENGTH_SHORT).show();
                 }

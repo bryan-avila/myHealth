@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/resources_page_back"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/SkipRecurring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/redish"
+        android:onClick="onSkipRecurringButtonClick"
+        android:text="Skip Recurring Appointments"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/MondayButton"
+        android:layout_below="@id/SkipRecurring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/purple"
+        android:onClick="onMondayButtonClick"
+        android:text="Monday"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/TuesdayButton"
+        android:layout_below="@id/MondayButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/purple"
+        android:onClick="onTuesdayButtonClick"
+        android:text="Tuesday"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/WednesdayButton"
+        android:layout_below="@id/TuesdayButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/purple"
+        android:onClick="onWednesdayButtonClick"
+        android:text="Wednesday"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/ThursdayButton"
+        android:layout_below="@id/WednesdayButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/purple"
+        android:onClick="onThursdayButtonClick"
+        android:text="Thursday"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/FridayButton"
+        android:layout_below="@id/ThursdayButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/purple"
+        android:onClick="onFridayButtonClick"
+        android:text="Friday"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/SaturdayButton"
+        android:layout_below="@id/FridayButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/purple"
+        android:onClick="onSaturdayButtonClick"
+        android:text="Saturday"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/SundayButton"
+        android:layout_below="@id/SaturdayButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/purple"
+        android:onClick="onSundayButtonClick"
+        android:text="Sunday"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_first_time_recurr_apt"
+        android:layout_below="@id/SundayButton"
+        android:layout_width="900sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
+        app:itemIconTint="@color/icons_color"
+        app:itemRippleColor="@color/lightpurple"
+        app:itemTextColor="@color/lightpurple"
+        app:menu="@menu/navigation_items" />
+
+
+</RelativeLayout>
