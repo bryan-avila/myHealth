@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".clinic_view_prescribed_meds"
-    android:background="@drawable/blankback">
+    android:background="@drawable/finalappbackground">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +41,7 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Patient Prescribed Meds"
+                        android:text="Prescribed Medicines"
                         android:textSize="25sp"
                         android:textStyle="bold"
                         android:paddingTop="20dp"

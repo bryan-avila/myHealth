@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".clinic_view_med_hist"
-    android:background="@drawable/blankback">
+    android:background="@drawable/finalappbackground">
 
     <SearchView
         android:id="@+id/searchViewForPatients"
