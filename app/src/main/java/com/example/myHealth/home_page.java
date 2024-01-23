@@ -103,7 +103,7 @@ public class home_page extends AppCompatActivity {
             }
         });
 
-        // Set up the RecyclerView
+        // Set up the RecyclerView for medications
         RecyclerView med_recycle_view = findViewById(R.id.recycler_view_home_page_medications);
         med_recycle_view.setLayoutManager(new LinearLayoutManager(this));
 
@@ -142,6 +142,32 @@ public class home_page extends AppCompatActivity {
                 Log.e("TAG", "Error getting medications", task.getException());
             }
         });
+
+        // Set up the RecyclerView for appointments
+        RecyclerView appointments_recycle_view = findViewById(R.id.recycler_view_home_page_appointment);
+        appointments_recycle_view.setLayoutManager(new LinearLayoutManager(this));
+
+        CollectionReference patientAppointmentDateRef = db.collection("users").document(currentUser.getUid()).collection("dates");
+        Log.d("TAG", "Collection Reference: " + patientAppointmentDateRef.getPath());
+        Log.d("TAG", "user id: " + currentUser.getUid());
+        patientAppointmentDateRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<String> appointments_list = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Log.d("TAG", "document id" + document.getId());
+                    appointments_list.add(document.getId());
+                }
+                Log.d("TAG", "Appointment list size: " + appointments_list.size()); // Check the size of the clinics list
+                // Set the adapter (you'll create and set the adapter in later steps)
+                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list);
+                appointments_recycle_view.setAdapter(myAdapter);
+            }
+            else {
+                // Handle the error
+                Log.e("TAG", "Error getting appointments", task.getException());
+            }
+        });
+
 
         // Display current date
         dateFormat = (TextView) findViewById(R.id.date);

@@ -34,20 +34,6 @@
         app:itemTextColor="@color/lightpurple"/>
 
 
-    <TextView
-        android:id="@+id/text_view_clinic_home_page_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/card_home_page_clinic"
-        android:text="(date)"
-        android:textSize="28sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textColor="@color/purple"/>
-    <!--Ignore the "(date)" position on page, it is fixed on runtime-->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/card_home_page_clinic"
         android:layout_width="match_parent"
@@ -64,25 +50,49 @@
             android:layout_height="wrap_content"
             android:text="(greeting, clinic)"
             android:id="@+id/text_view_dashboard_clinic"
-            android:textSize="18sp"
+            android:textSize="25sp"
             android:textAlignment="center"
             android:textStyle="bold"
             android:textColor="@color/purple"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15sp"/>
+
+        <TextView
+            android:id="@+id/text_view_clinic_home_page_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="70dp"
+            android:layout_below="@id/text_view_dashboard_clinic"
+            android:text="(date)"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="@color/purple"/>
+        <!--Ignore the "(date)" position on page, it is fixed on runtime-->
 
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="125sp"
             android:background="@color/purple" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_view_clinic_machines"
-            android:text="Your dialysis machines.....5\n Machines In Use Today....4"
-            android:textSize="25sp"
-            android:layout_marginTop="80sp"
+            android:text="Dialysis Machines Information:"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="140sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(number of machines)"
+            android:id="@+id/text_view_clinic_num_of_machines"
+            android:textSize="23sp"
+            android:layout_marginTop="210sp"
             />
     </androidx.cardview.widget.CardView>
 

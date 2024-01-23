@@ -3,6 +3,7 @@ package com.example.myHealth;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,23 +18,33 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class clinic_prescription_form extends AppCompatActivity {
 
+    String cName, cPhone; // global variables to get clinic's name and clinic phone
     EditText medName, medDosage;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
+    private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
+    private ListenerRegistration clinicListener;
 
     String frequency;  // Frequency from the pop up, make it global
 
@@ -157,10 +168,11 @@ public class clinic_prescription_form extends AppCompatActivity {
         medicationInfo.put("medicationName", s_med_name);
         medicationInfo.put("dosageAmount", s_dosage_amt);
         medicationInfo.put("frequency", frequency); // Get frequency from the pop up
+
        // medicationInfo.put("intFrequency", integer_frequency); // Turn string frequency into an integer for notifications
-        medicationInfo.put("clinicName", currentUser.getEmail()); // Store the clinic name so that patients know where they got it from
-        medicationInfo.put("clinicPhone",  phone); // Hardcoded example for now
-//        Toast.makeText(this, currentUser.getEmail() + " email", Toast.LENGTH_SHORT).show();
+        
+        medicationInfo.put("clinicName", cName); // Store the clinic name so that patients know where they got it from, global variable
+        medicationInfo.put("clinicPhone",  cPhone); // Store clinic phone, using global variable
 
         // Add medication to the firebase. The document will be named different according to the name of the Prescription
         prescriptionsInfoRef.document(s_med_name).set(medicationInfo)
@@ -178,6 +190,7 @@ public class clinic_prescription_form extends AppCompatActivity {
                         Log.w(TAG, "Error adding medicationInfo document", e);
                     }
                 });
+
 
 
 
@@ -205,5 +218,58 @@ public class clinic_prescription_form extends AppCompatActivity {
         }  else {
             return true;
         }
+    }
+
+    public void onStart() {
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // Get information from the firebase for clinics
+            clinicRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            // User document exists, retrieve data from clinic
+                            cName = document.getString("clinicName");
+                            cPhone = document.getString("phone");
+                        } else {
+                            // User document doesn't exist, handle accordingly
+                        }
+                    } else {
+                        // Handle failure to retrieve user document
+                    }
+                }
+            });
+        }
+
+
+        super.onStart();
+        // Automatically loading
+        // Firestore wants to load things quickly, so it loads in locally before from the cloud
+        // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
+        clinicListener = clinicRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+
+                // Error checking
+                if(error != null)
+                {
+                    Toast.makeText(clinic_prescription_form.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (documentSnapshot.exists()) {
+                    // Document exists
+                    // This will do the same work as the onLoad method
+                    // But it is done automatically
+
+                    // Get name and phone information from clinics
+                    cName  = documentSnapshot.get("clinicName").toString();
+                    cPhone = documentSnapshot.get("phone").toString();
+                }
+            }
+        });
     }
 }

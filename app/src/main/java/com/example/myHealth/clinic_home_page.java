@@ -23,11 +23,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class clinic_home_page extends AppCompatActivity {
     TextView dateFormat;
+    TextView clinicNumOfMachines;
     Calendar calendar;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = myFirestore.getmAuthInstance();
@@ -95,7 +98,7 @@ public class clinic_home_page extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             //
-            DocumentReference cRef = db.collection("users").document(currentUser.getUid());
+            DocumentReference cRef = db.collection("clinic").document(currentUser.getUid());
 
             cRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -143,6 +146,7 @@ public class clinic_home_page extends AppCompatActivity {
                     int hour = calendar.get(Calendar.HOUR_OF_DAY);
                     // Get the dashboard of the clinic
                     TextView welcome = (TextView) findViewById(R.id.text_view_dashboard_clinic);
+                    clinicNumOfMachines = (TextView) findViewById(R.id.text_view_clinic_num_of_machines);
 
                     String greeting = "null";
                     if (hour >= 5 && hour < 12){
@@ -156,6 +160,8 @@ public class clinic_home_page extends AppCompatActivity {
                         // Set a greeting message using the Clinic's name
                         String user_firstname = documentSnapshot.get("clinicName").toString();
                         welcome.setText(greeting + user_firstname + ".");
+                     String cNumOfMachines = documentSnapshot.get("numOfMachines").toString();
+                     clinicNumOfMachines.setText(cNumOfMachines + " machines available for use");
 
 
                 }

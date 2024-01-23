@@ -251,7 +251,11 @@ public class AppointmentManager {
     //this function makes an appointment at a specified time/date given that time is available
     public void makeSingleAppointment(String clinicId, String appointmentDate, double appointmentTime, Boolean recurring) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        CollectionReference appointmentsRef = db.collection("clinic").document(clinicId).collection("dates").document(appointmentDate).collection("appointments");
+        DocumentReference dateRef = db.collection("clinic").document(clinicId).collection("dates").document(appointmentDate);
+        Map<String, Object> date = new HashMap<>();
+        date.put("date", appointmentDate);
+        dateRef.set(date);
+        CollectionReference appointmentsRef = dateRef.collection("appointments");
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
@@ -279,14 +283,18 @@ public class AppointmentManager {
                         // Handle errors
                         Log.e("Firestore", "Error adding appointment document", e);
                     });
-            }
+        }
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            CollectionReference userAppointmentsRef = db.collection("users").document(userId).collection("dates").document(appointmentDate).collection("appointments");
+            DocumentReference userDatesRef = db.collection("users").document(userId).collection("dates").document(appointmentDate);
+            Map<String, Object> userdate = new HashMap<>();
+            userdate.put("date", appointmentDate);
+            userDatesRef.set(userdate);
+            CollectionReference userAppointmentsRef = userDatesRef.collection("appointments");
 
 
             // Create a new appointment document with the user's ID as the document ID
-            DocumentReference newAppointmentRef = appointmentsRef.document(userId);
+            DocumentReference newAppointmentRef = userAppointmentsRef.document(clinicId);
 
             // convert times to strings
             String startTime = convertToString(appointmentTime);
@@ -314,7 +322,11 @@ public class AppointmentManager {
 
     public void makeSingleRecurringAppointment(String clinicId, String appointmentDay, double appointmentTime, Boolean recurring) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        CollectionReference appointmentsRef = db.collection("clinic").document(clinicId).collection("days").document(appointmentDay).collection("appointments");
+        DocumentReference dayRef = db.collection("clinic").document(clinicId).collection("days").document(appointmentDay);
+        Map<String, Object> day = new HashMap<>();
+        day.put("day", appointmentDay);
+        dayRef.set(day);
+        CollectionReference appointmentsRef = dayRef.collection("appointments");
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
@@ -348,7 +360,7 @@ public class AppointmentManager {
 
 
             // Create a new appointment document with the user's ID as the document ID
-            DocumentReference newRecurringAppointmentRef = appointmentsRef.document(appointmentDay);
+            DocumentReference newRecurringAppointmentRef = userRecurringRef.document(appointmentDay);
 
             // convert times to strings
             String startTime = convertToString(appointmentTime);
@@ -390,7 +402,7 @@ public class AppointmentManager {
         List<LocalDate> appointmentDates = new ArrayList<>();
 
         // Add the next 52 occurrences of the selected day of the week
-        for (int i = 0; i < 52; i++) {
+        for (int i = 0; i < 26; i++) {
             appointmentDates.add(nextAppointmentDate);
             nextAppointmentDate = nextAppointmentDate.plusWeeks(1);
         }

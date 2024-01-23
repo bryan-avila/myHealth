@@ -23,6 +23,8 @@ public class clinic_view_patients_manage_meds extends AppCompatActivity {
     private SearchView searchView;
     private List<Patient> patientsList = null;
 
+    String patientMedName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +82,8 @@ public class clinic_view_patients_manage_meds extends AppCompatActivity {
                     String p_id = patients.getPat_ID().toString();
                     // Send the to see the patient's medications after clicking on a patients name using this onItemClickListener
                     // Will need to implement an edit functionality to delete medications for a patient
-                    Intent intent = new Intent(clinic_view_patients_manage_meds.this, patient_view_prescribed_med.class);
-                    // Send extra info to know where to send the medication information
-                    intent.putExtra("patient",p_id);
+                    Intent intent = new Intent(clinic_view_patients_manage_meds.this, clinic_view_prescribed_meds.class);
+                    intent.putExtra("patient",p_id); // send patient id with the intent
                     startActivity(intent);
                 }
             });
