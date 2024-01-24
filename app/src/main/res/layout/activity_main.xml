@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".login_page"
-    android:background="@drawable/loginback">
+    android:background="@drawable/finalappbackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/myhealth_logo"
+            android:src="@drawable/myhealth_logo_white"
             android:adjustViewBounds="true"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
@@ -95,7 +95,7 @@
                 android:id="@+id/registerButton"
                 android:textSize="15sp"
                 android:text="No account? Click to Sign Up!"
-                android:backgroundTint="@color/redish"
+                android:backgroundTint="@color/goodGreen"
                 android:layout_marginTop="10dp"
                 android:textStyle="italic"
                 />

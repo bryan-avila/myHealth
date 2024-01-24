@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home_page"
-    android:background="@drawable/home_page_back">
+    android:background="@drawable/finalappbackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/myhealth_logo"
+            android:src="@drawable/myhealth_logo_white"
             android:adjustViewBounds="true"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
@@ -42,7 +42,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:backgroundTint="@color/lightblue"
+        android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/notifications"
         android:layout_marginLeft="330dp"
         android:layout_marginTop="15dp"/>
