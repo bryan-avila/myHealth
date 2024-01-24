@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profile_page_clinic"
-    android:background="@drawable/blankback">
+    android:background="@drawable/finalappbackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,10 +16,10 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/myhealth_logo"
+            android:src="@drawable/myhealth_logo_white"
             android:adjustViewBounds="true"
             android:maxWidth="80dp"
-            android:maxHeight="80dp"
+            android:maxHeight="100dp"
             android:scaleType="fitCenter"/>
     </RelativeLayout>
 
@@ -175,7 +175,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:backgroundTint="@color/redish"
+        android:backgroundTint="@color/goodGreen"
         android:text="Logout"
         android:textColor="@color/white"
         android:textSize="20sp"

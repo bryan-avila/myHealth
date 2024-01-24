@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_view_search_centers_visit"
-    android:background="@drawable/blankback">
+    android:background="@drawable/finalappbackground">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +24,7 @@
                 android:text="Make Recurring Appointment?"
                 android:onClick="onRecurringButtonClick"
                 android:layout_marginLeft="230sp"
+                android:backgroundTint="@color/purple"
                 />
 
             <androidx.cardview.widget.CardView

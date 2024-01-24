@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_view_prescribed_med"
-    android:background="@drawable/blankback">
+    android:background="@drawable/finalappbackground">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
