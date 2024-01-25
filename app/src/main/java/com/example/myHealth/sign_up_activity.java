@@ -45,8 +45,8 @@ public class sign_up_activity extends AppCompatActivity {
         setContentView(R.layout.sign_up);
 
         //gets instances of database connection and user authentication
-        FirebaseFirestore db = myFirestore.getDBInstance();
-        FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+        FirebaseFirestore db = MyFirestore.getDBInstance();
+        FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
 
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
@@ -121,7 +121,7 @@ public class sign_up_activity extends AppCompatActivity {
                                                                                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                                                                         @Override
                                                                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                                                                            Intent intent = new Intent(getApplicationContext(), first_time_medical_survey_page.class);
+                                                                                            Intent intent = new Intent(getApplicationContext(), patient_first_time_medical_survey_page.class);
                                                                                             startActivity(intent);
                                                                                             finish();
                                                                                         }

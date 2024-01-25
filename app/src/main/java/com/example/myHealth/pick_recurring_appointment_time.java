@@ -21,7 +21,7 @@ public class pick_recurring_appointment_time extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_recurring_appointment_time);
+        setContentView(R.layout.activity_patient_pick_recurring_appointment_time);
 
         TextView clinicNameTextView = findViewById(R.id.ClinicName);
         TextView dayOfWeekTextView = findViewById(R.id.DayOfWeek);
@@ -67,8 +67,8 @@ public class pick_recurring_appointment_time extends AppCompatActivity {
         ClinicName.setText(clinic.getClinicName());
 
         //list of items
-        FirebaseFirestore db = myFirestore.getDBInstance();
-        FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+        FirebaseFirestore db = MyFirestore.getDBInstance();
+        FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         CollectionReference appointmentsRef = db.collection("clinic").document(clinic.getID()).collection("days").document(selectedDay).collection("appointments");
 
@@ -95,7 +95,7 @@ public class pick_recurring_appointment_time extends AppCompatActivity {
                 appointmentmanager.makeMultipleRecurringAppointments(clinic.getID(), day, newtime, true);
                 Toast.makeText(pick_recurring_appointment_time.this, "recurring appointment made for: " + time + " on: " + selectedDay, Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(pick_recurring_appointment_time.this, home_page.class);
+                Intent intent = new Intent(pick_recurring_appointment_time.this, patient_home_page.class);
                 startActivity(intent);
 
             }

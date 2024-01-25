@@ -13,10 +13,10 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
-            android:name=".clinic_view_prescribed_meds"
+            android:name=".clinic_prescribed_meds_page"
             android:exported="false" />
         <activity
-            android:name=".clinic_view_patients_manage_meds"
+            android:name=".clinic_manage_meds_page"
             android:exported="false" />
 
         <service
@@ -28,19 +28,19 @@
         </service>
 
         <activity
-            android:name=".patient_view_prescribed_med"
+            android:name=".patient_prescribed_med_page"
             android:exported="false" />
         <activity
-            android:name=".first_time_clinic_sign_up_survey"
+            android:name=".clinic_first_time_hours_page"
             android:exported="false" />
         <activity
             android:name=".clinic_prescription_form"
             android:exported="false" />
         <activity
-            android:name=".clinic_view_prescriptions"
+            android:name=".clinic_prescriptions_page"
             android:exported="false" />
         <activity
-            android:name=".clinic_view_med_hist"
+            android:name=".clinic_med_hist_page"
             android:exported="false" />
         <activity
             android:name=".resources_page_clinic"
@@ -49,10 +49,10 @@
             android:name=".profile_page_clinic"
             android:exported="false" />
         <activity
-            android:name=".medical_records_page_clinic"
+            android:name=".clinic_medical_records_page"
             android:exported="false" />
         <activity
-            android:name=".appointments_page_clinic"
+            android:name=".clinic_appointments_page"
             android:exported="false" />
         <activity
             android:name=".pick_appointment_time"
@@ -61,55 +61,55 @@
             android:name=".clinic_home_page"
             android:exported="false" />
         <activity
-            android:name=".editProfile"
+            android:name=".empty_editProfile"
             android:exported="false" />
         <activity
-            android:name=".patient_view_search_centers_visit"
+            android:name=".patient_search_centers_visit_page"
             android:exported="false" />
         <activity
-            android:name=".patient_view_dietary_plan"
+            android:name=".patient_dietary_plan_page"
             android:exported="false" />
         <activity
-            android:name=".patient_view_med_history"
+            android:name=".patient_medical_history_page"
             android:exported="false" />
         <activity
-            android:name=".first_time_sign_up_diet_survey"
+            android:name=".patient_first_time_time_diet_survey_page"
             android:exported="false" />
         <activity
-            android:name=".medical_records_page"
+            android:name=".patient_medical_records_page"
             android:exported="false" />
         <activity
             android:name=".patient_diet_page"
             android:exported="false" />
         <activity
-            android:name=".appointments_page"
+            android:name=".patient_appointments_view"
             android:exported="false" />
         <activity
-            android:name=".profile_page"
+            android:name=".patient_profile_page"
             android:exported="false" />
         <activity
-            android:name=".home_page"
+            android:name=".patient_home_page"
             android:exported="false" />
         <activity
-            android:name=".first_time_medical_survey_page"
+            android:name=".patient_first_time_medical_survey_page"
             android:exported="false" />
         <activity
-            android:name=".first_time_recurring_clinics"
+            android:name=".patient_first_time_recurring_clinics"
             android:exported="false" />
         <activity
-            android:name=".first_time_recurring_appointments"
+            android:name=".patient_first_time_recurring_appointments_page"
             android:exported="false" />
         <activity
             android:name=".pick_recurring_appointment_time"
             android:exported="false" />
         <activity
-            android:name=".clinic_sign_up"
+            android:name=".clinic_sign_up_page"
             android:exported="false" />
         <activity
-            android:name=".choose_account_type_page"
+            android:name=".main_choose_account_type"
             android:exported="false" />
         <activity
-            android:name=".login_page"
+            android:name=".main_login_page"
             android:exported="false" />
         <activity
             android:name=".sign_up_activity"

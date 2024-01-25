@@ -1,19 +1,10 @@
 package com.example.myHealth;
 
-import static android.content.ContentValues.TAG;
 import static com.example.myHealth.TimeConverter.convertToDecimal;
 import static com.example.myHealth.TimeConverter.convertToString;
 
-import android.content.Intent;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuBuilder;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -29,11 +20,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class AppointmentManager {
-    FirebaseFirestore db = myFirestore.getDBInstance();
-    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+    FirebaseFirestore db = MyFirestore.getDBInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
 
     public  AppointmentManager(/* Pass necessary dependencies */) {
         // Initialize your properties or dependencies

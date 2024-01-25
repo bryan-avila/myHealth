@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clinic_view_patients_manage_meds"
+    tools:context=".clinic_manage_meds_page"
     android:background="@drawable/finalappbackground">
 
     <SearchView

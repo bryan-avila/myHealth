@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".patient_home_page"
+    android:background="@drawable/finalappbackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/myhealth_logo_white"
+            android:adjustViewBounds="true"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:scaleType="fitCenter"/>
+    </RelativeLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_items"
+        app:itemRippleColor="@color/lightpurple"
+        app:itemIconTint="@color/icons_color"
+        app:itemTextColor="@color/lightpurple"/>
+
+
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/notifications"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="15dp"/>
+
+
+    <!--Still need to show the date using ScrollView...-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_home_page"
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp"
+        android:background="@drawable/custom_edittext"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerVertical="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(greeting, first name)"
+                android:id="@+id/text_view_dashboard"
+                android:textSize="26sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/purple"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="48dp"
+                android:text="(date)"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/purple"/>
+            <!--Ignore the "(date)" position on page, it is fixed on runtime-->
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Notices"
+                android:id="@+id/text_view_notices"
+                android:layout_centerHorizontal="true"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/goodGrey"
+                android:layout_below="@id/date"
+                android:layout_marginTop="3sp"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="116sp"
+                android:background="@color/purple" />
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="120dp"
+                        android:layout_marginTop="20sp"
+                        android:paddingLeft="30dp"
+                        android:id="@+id/text_view_appointments_notice"
+                        android:text="1) Upcoming Appointments:"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/goodGrey"
+                        android:layout_below="@id/text_view_notices"
+                        android:layout_marginBottom="10sp"
+                        />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_home_page_appointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
+                        android:scrollbars="vertical" />
+
+                    <!--Insert a reference to an object for "Daily Medications"-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="30dp"
+                        android:id="@+id/text_view_medications_list"
+                        android:text="2) Your daily Medications:"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/goodGrey"
+                        android:layout_below="@id/text_view_appointments_notice"
+                        android:layout_marginBottom="10sp"
+                        />
+
+                    <!--This is a list of all medication required for patient-->
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_home_page_medications"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
+                        android:scrollbars="vertical" />
+
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

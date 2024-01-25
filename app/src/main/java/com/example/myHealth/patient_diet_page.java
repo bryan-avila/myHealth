@@ -26,13 +26,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-import java.util.Calendar;
-
 public class patient_diet_page extends AppCompatActivity {
 
     // Initialize Database Stuff
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     DocumentReference patientRef = db.collection("users").document(currentUser.getUid());
 
@@ -87,21 +85,21 @@ public class patient_diet_page extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), patient_view_search_centers_visit.class));
+                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.homeId) {
-                    startActivity(new Intent(getApplicationContext(), home_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_home_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.medicalHistId) {
-                    startActivity(new Intent(getApplicationContext(), medical_records_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_medical_records_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
                     return true;
                 } else if (id == R.id.profileId) {
-                    startActivity(new Intent(getApplicationContext(), profile_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_profile_page.class));
                     finish();
                     return true;
                 }

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".patient_home_page"
+    tools:context=".clinic_medical_records_page"
     android:background="@drawable/finalappbackground">
 
     <RelativeLayout
@@ -35,65 +35,54 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_home_page_clinic"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:cardCornerRadius="15dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="25dp"
         app:cardElevation="20dp"
         android:background="@drawable/custom_edittext"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_centerVertical="true">
 
-        <TextView
+        <Button
+            android:id="@+id/records_button_clinic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="(greeting, clinic)"
-            android:id="@+id/text_view_dashboard_clinic"
-            android:textSize="25sp"
-            android:textAlignment="center"
+            android:text="Patient Records"
+            android:backgroundTint="@color/purple"
             android:textStyle="bold"
-            android:textColor="@color/purple"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15sp"/>
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:onClick="onMyPatientRecordsClick"/>
 
-        <TextView
-            android:id="@+id/text_view_clinic_home_page_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="70dp"
-            android:layout_below="@id/text_view_dashboard_clinic"
-            android:text="(date)"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            android:textColor="@color/purple"/>
-        <!--Ignore the "(date)" position on page, it is fixed on runtime-->
-
-        <View
+        <Button
+            android:id="@+id/medications_button_clinic"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:layout_marginTop="125sp"
-            android:background="@color/purple" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_view_clinic_machines"
-            android:text="Dialysis Machines Information:"
-            android:textSize="24sp"
+            android:text="Prescribe Medications"
+            android:backgroundTint="@color/purple"
             android:textStyle="bold"
-            android:layout_marginTop="140sp"
-            />
+            android:textSize="20sp"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="onMedicationsPrescriptionsClick"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="(number of machines)"
-            android:id="@+id/text_view_clinic_num_of_machines"
-            android:textSize="23sp"
-            android:layout_marginTop="210sp"
-            />
+            android:text="Manage Medications"
+            android:backgroundTint="@color/purple"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="onManageMedicationsClick"/>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

@@ -9,13 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +30,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +38,7 @@ public class clinic_prescription_form extends AppCompatActivity {
     String cName, cPhone; // global variables to get clinic's name and clinic phone
     EditText medName, medDosage;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
     private ListenerRegistration clinicListener;
@@ -52,7 +49,7 @@ public class clinic_prescription_form extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clinic_prescription_form);
+        setContentView(R.layout.activity_clinic_fill_prescription_form);
         medName = findViewById(R.id.edit_text_med_Name);
         medDosage = findViewById(R.id.edit_text_med_Dosage);
 
@@ -124,7 +121,7 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage);
 
-        // Obtain information from clinic_view_med_hist.java
+        // Obtain information from clinic_med_hist_page.java
         Bundle bundle = getIntent().getExtras();
         String patientId = bundle.getString("patient");
 
@@ -198,7 +195,7 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         if (inputCheckerOnMedication) {
             Toast.makeText(clinic_prescription_form.this, "Medication Prescribed.", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(getApplicationContext(), medical_records_page_clinic.class));
+            startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
         } else {
             Toast.makeText(clinic_prescription_form.this, "Please fill out any empty fields.", Toast.LENGTH_LONG).show();
         }

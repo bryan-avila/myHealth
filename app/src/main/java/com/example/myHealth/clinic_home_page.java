@@ -23,8 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -33,7 +31,7 @@ public class clinic_home_page extends AppCompatActivity {
     TextView clinicNumOfMachines;
     Calendar calendar;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     // Get the clinic information from the database
     private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
@@ -57,13 +55,13 @@ public class clinic_home_page extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), appointments_page_clinic.class));
+                    startActivity(new Intent(getApplicationContext(), clinic_appointments_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.homeIdCLinic) {
                     return true;
                 } else if (id == R.id.medicalHistIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), medical_records_page_clinic.class));
+                    startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.resourcesIdClinic) {

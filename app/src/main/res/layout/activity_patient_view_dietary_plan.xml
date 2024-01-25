@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".patient_view_dietary_plan"
+    tools:context=".patient_dietary_plan_page"
     android:background="@drawable/diet_plan_back_0">
 
     <RelativeLayout

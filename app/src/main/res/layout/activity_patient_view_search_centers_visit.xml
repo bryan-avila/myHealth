@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".patient_view_search_centers_visit"
+    tools:context=".patient_search_centers_visit_page"
     android:background="@drawable/finalappbackground">
 
 

@@ -1,10 +1,5 @@
 package com.example.myHealth;
 
-import static android.content.ContentValues.TAG;
-
-import static com.example.myHealth.TimeConverter.convertToDecimal;
-import static com.example.myHealth.TimeConverter.convertToString;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,16 +18,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public class pick_appointment_time extends AppCompatActivity {
     // Inside your activity or fragment
@@ -40,7 +28,7 @@ public class pick_appointment_time extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_appointment_time);
+        setContentView(R.layout.activity_patient_pick_appointment_time);
 
         Clinic clinic;
         String selectedDate;
@@ -75,8 +63,8 @@ public class pick_appointment_time extends AppCompatActivity {
         ClinicName.setText(clinic.getClinicName());
 
         //list of items
-        FirebaseFirestore db = myFirestore.getDBInstance();
-        FirebaseAuth mAuth = myFirestore.getmAuthInstance();
+        FirebaseFirestore db = MyFirestore.getDBInstance();
+        FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         CollectionReference appointmentsRef = db.collection("clinic").document(clinic.getID()).collection("dates").document(selectedDate).collection("appointments");
 
@@ -102,7 +90,7 @@ public class pick_appointment_time extends AppCompatActivity {
                 appointmentmanager.makeSingleAppointment(clinic.getID(), date, newtime, true);
                 Toast.makeText(pick_appointment_time.this, "appointment made for: " + time + " on: " + selectedDate, Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(pick_appointment_time.this, home_page.class);
+                Intent intent = new Intent(pick_appointment_time.this, patient_home_page.class);
                 startActivity(intent);
 
             }
@@ -127,11 +115,11 @@ public class pick_appointment_time extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.homeId) {
-                    startActivity(new Intent(getApplicationContext(), home_page.class)); //check this line it might be wrong
+                    startActivity(new Intent(getApplicationContext(), patient_home_page.class)); //check this line it might be wrong
                     finish();
                     return true;
                 } else if (id == R.id.medicalHistId) {
-                    startActivity(new Intent(getApplicationContext(), medical_records_page.class)); //check this line it might be wrong
+                    startActivity(new Intent(getApplicationContext(), patient_medical_records_page.class)); //check this line it might be wrong
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
@@ -139,7 +127,7 @@ public class pick_appointment_time extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
-                    startActivity(new Intent(getApplicationContext(), profile_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_profile_page.class));
                     finish();
                     return true;
                 }
@@ -152,27 +140,27 @@ public class pick_appointment_time extends AppCompatActivity {
 
     public void onClinic1Click(View view)
     {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+        startActivity(new Intent(getApplicationContext(), patient_appointments_view.class));
     }
 
     public void onClinic2Click(View view)
     {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+        startActivity(new Intent(getApplicationContext(), patient_appointments_view.class));
     }
 
     public void onClinic3Click(View view)
     {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+        startActivity(new Intent(getApplicationContext(), patient_appointments_view.class));
     }
 
     public void onClinic4Click(View view)
     {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+        startActivity(new Intent(getApplicationContext(), patient_appointments_view.class));
     }
 
     public void onClinic5Click(View view)
     {
-        startActivity(new Intent(getApplicationContext(), appointments_page.class));
+        startActivity(new Intent(getApplicationContext(), patient_appointments_view.class));
     }
 
 }

@@ -6,23 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class resources_page_clinic extends AppCompatActivity {
+public class clinic_medical_records_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clinic_resources_page);
-
+        setContentView(R.layout.activity_clinic_medical_records_page);
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
 
-        //Set resources selected
-        bottomNavigationView.setSelectedItemId(R.id.resourcesIdClinic);
+        //Set medical hist selected
+        bottomNavigationView.setSelectedItemId(R.id.medicalHistIdClinic);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -30,7 +30,8 @@ public class resources_page_clinic extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_appointments_page.class));
+                    startActivity(new Intent(getApplicationContext(),
+                            clinic_appointments_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.homeIdCLinic) {
@@ -38,10 +39,10 @@ public class resources_page_clinic extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.medicalHistIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
-                    finish();
                     return true;
                 } else if (id == R.id.resourcesIdClinic) {
+                    startActivity(new Intent(getApplicationContext(), resources_page_clinic.class));
+                    finish();
                     return true;
                 } else if (id == R.id.profileIdClinic) {
                     startActivity(new Intent(getApplicationContext(), profile_page_clinic.class));
@@ -52,4 +53,21 @@ public class resources_page_clinic extends AppCompatActivity {
             }
         });
     }
+
+
+    public void onMyPatientRecordsClick(View view) {
+        //create a new activity that lists patients
+        //Allow to click on a patient and display user's medical info
+        //startActivity(new Intent(getApplicationContext(), clinic_med_hist_page.class));
+    }
+
+    public void onMedicationsPrescriptionsClick(View view) {
+        //will need to show current patients to prescribe meds
+        startActivity(new Intent(getApplicationContext(), clinic_med_hist_page.class));
+    }
+
+    public void onManageMedicationsClick(View view) {
+        startActivity(new Intent(getApplicationContext(), clinic_manage_meds_page.class));
+    }
+
 }

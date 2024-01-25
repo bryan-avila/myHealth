@@ -25,54 +25,60 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-public class profile_page_clinic extends AppCompatActivity {
+public class patient_profile_page extends AppCompatActivity {
 
-    TextView clinicEmailPlaceholder, clinicNamePlaceholder, clinicLocationPlaceholder, clinicPhonePlaceholder;
+
+    TextView emailPlaceholder, firstnamePlaceholder, lastnamePlaceholder, phonePlaceholder;
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
-    private DocumentReference uRef = db.collection("clinic").document(currentUser.getUid());
+    private DocumentReference uRef = db.collection("users").document(currentUser.getUid());
     private ListenerRegistration userL;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clinic_profile_page);
+        setContentView(R.layout.activity_patient_profile_page);
 
-        clinicEmailPlaceholder = findViewById(R.id.clinicEmailPlaceholder);
-        clinicNamePlaceholder = findViewById(R.id.clinicNamePlaceholder);
-        clinicLocationPlaceholder = findViewById(R.id.clinicLocationPlaceholder);
-        clinicPhonePlaceholder = findViewById(R.id.clinicPhonePlaceholder);
+        emailPlaceholder = findViewById(R.id.emailPlaceholder);
+        firstnamePlaceholder = findViewById(R.id.firstnamePlaceholder);
+        lastnamePlaceholder = findViewById(R.id.lastnamePlaceholder);
+        phonePlaceholder = findViewById(R.id.phonePlaceholder);
+
+        //String firstNameT = firstNameTitle.toString();
+
+
 
         //Initialize and assign variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set profile selected
-        bottomNavigationView.setSelectedItemId(R.id.profileIdClinic);
+        bottomNavigationView.setSelectedItemId(R.id.profileId);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 //check id
-                if (id == R.id.appointmentIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_appointments_page.class));
+                if (id == R.id.appointmentId) {
+                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.homeIdCLinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
+                } else if (id == R.id.homeId) {
+                    startActivity(new Intent(getApplicationContext(), patient_home_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.medicalHistIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
+                } else if (id == R.id.medicalHistId) {
+                    startActivity(new Intent(getApplicationContext(), patient_medical_records_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.resourcesIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), resources_page_clinic.class));
+                } else if (id == R.id.resourcesId) {
+                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.profileIdClinic) {
+                } else if (id == R.id.profileId) {
                     return true;
                 }
                 return false;
@@ -80,13 +86,14 @@ public class profile_page_clinic extends AppCompatActivity {
 
         });
 
-        //Log out button here
+        // Create button object, id from patient_profile_page.xml
+        Button lg_out_btn = findViewById(R.id.button_patient_log_out);
 
-        Button log_out_button_clinic = findViewById(R.id.button_clinic_log_out);
-
-        log_out_button_clinic.setOnClickListener(new View.OnClickListener() {
+        // Add button functionality with this method
+        lg_out_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
                 mAuth.signOut();
 
@@ -100,17 +107,16 @@ public class profile_page_clinic extends AppCompatActivity {
         });
     }
 
-    public void onEditClickClinic(View view) {
+    public void onEditClick(View view) {
         startActivity(new Intent(getApplicationContext(), empty_editProfile.class));
     }
-
 
     public void onStart() {
         {
 
             FirebaseUser currentUser = mAuth.getCurrentUser();
             if (currentUser != null) {
-                DocumentReference userRef = db.collection("clinic").document(currentUser.getUid());
+                DocumentReference userRef = db.collection("users").document(currentUser.getUid());
 
                 userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -119,10 +125,10 @@ public class profile_page_clinic extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 // User document exists, retrieve data
-                                String clinicName = document.getString("clinicName");
-                                String clinicEmail = document.getString("email");
-                                String clinicLocation = document.getString("location");
-                                String clinicPhone = document.getString("phone");
+                                String userFirstName = document.getString("firstName");
+                                String userLastName = document.getString("lastName");
+                                String userEmail = document.getString("email");
+                                String userPhone = document.getString("phone");
                                 // Retrieve other user data as needed
                             } else {
                                 // User document doesn't exist, handle accordingly
@@ -145,7 +151,7 @@ public class profile_page_clinic extends AppCompatActivity {
 
                     // Error checking
                     if (error != null) {
-                        Toast.makeText(profile_page_clinic.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(patient_profile_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
                         return;
                     }
                     //check if the user is a patient or a clinic
@@ -154,21 +160,25 @@ public class profile_page_clinic extends AppCompatActivity {
                         // This will do the same work as the onLoad method
                         // But it is done automatically
                         if (documentSnapshot.contains("location")) {
-                            String clinic_name = documentSnapshot.get("clinicName").toString();
-                            clinicNamePlaceholder.setText(clinic_name);
-                            String clinic_Email = documentSnapshot.get("email").toString();
-                            clinicEmailPlaceholder.setText(clinic_Email);
-                            String clinic_location = documentSnapshot.get("location").toString();
-                            clinicLocationPlaceholder.setText(clinic_location);
-                            String clinic_phone = documentSnapshot.get("phone").toString();
-                            clinicPhonePlaceholder.setText(clinic_phone);
                         } else {
-                            //do nothing as the clinic is the user
+                            // Document doesn't have the specific element
+                            // Perform your action here
+                            String user_firstname = documentSnapshot.get("firstName").toString();
+                            firstnamePlaceholder.setText(user_firstname);
+                            String user_email = documentSnapshot.get("email").toString();
+                            emailPlaceholder.setText(user_email);
+                            String user_lastname = documentSnapshot.get("lastName").toString();
+                            lastnamePlaceholder.setText(user_lastname);
+                            String phone_number = documentSnapshot.get("phone").toString();
+                            phonePlaceholder.setText(phone_number);
                         }
+
+
                     }
                 }
             });
         }
 
     }
+
 }
