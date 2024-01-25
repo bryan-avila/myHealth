@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_search_centers_visit_page"
-    android:background="@drawable/blankback">
+    android:background="@drawable/background_blank">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 app:cardCornerRadius="30dp"
                 app:cardElevation="20dp">
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_home_page"
-    android:background="@drawable/finalappbackground">
+    android:background="@drawable/background_final_app_theme">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/myhealth_logo_white"
+            android:src="@drawable/logo_myhealth_white"
             android:adjustViewBounds="true"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/notifications"
+        android:drawableLeft="@drawable/icon_notifs"
         android:layout_marginLeft="330dp"
         android:layout_marginTop="15dp"/>
 
@@ -55,7 +55,7 @@
         android:layout_height="520dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext"
+        android:background="@drawable/custom_purple_outline"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_centerVertical="true">

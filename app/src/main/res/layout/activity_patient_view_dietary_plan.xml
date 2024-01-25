@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_dietary_plan_page"
-    android:background="@drawable/diet_plan_back_0">
+    android:background="@drawable/background_patient_dietplan">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/myhealth_logo"
+            android:src="@drawable/logo_myhealth_blue"
             android:adjustViewBounds="true"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
@@ -27,7 +27,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_edittext"
+        android:background="@drawable/custom_purple_outline"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
         android:layout_marginLeft="30dp"

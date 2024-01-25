@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/signupback"
+    android:background="@drawable/background_signup"
     tools:context=".sign_up_activity">
 
     <RelativeLayout
@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/myhealth_logo"
+            android:src="@drawable/logo_myhealth_blue"
             android:adjustViewBounds="true"
             android:maxWidth="80dp"
             android:maxHeight="80dp"
@@ -31,7 +31,7 @@
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext">
+        android:background="@drawable/custom_purple_outline">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                 android:id="@+id/firstName"
                 android:inputType="text"
                 android:maxLines="1"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 android:hint="First Name"
                 android:padding="10dp"
                 android:textColor="@color/black"
@@ -69,7 +69,7 @@
                 android:id="@+id/lastName"
                 android:inputType="text"
                 android:maxLines="1"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 android:hint="Last Name"
                 android:padding="10dp"
                 android:textColor="@color/black"
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/email"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/phoneNumber"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 android:hint="Phone Number"
                 android:inputType="phone"
                 android:maxLength="14"
@@ -106,8 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/passwordEntered"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_lock_24"
+                android:background="@drawable/custom_purple_outline"
+                android:drawableLeft="@drawable/icon_lock"
                 android:drawablePadding="8dp"
                 android:hint="Password"
                 android:padding="8dp"
@@ -120,8 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/passwordConfirm"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_lock_24"
+                android:background="@drawable/custom_purple_outline"
+                android:drawableLeft="@drawable/icon_lock"
                 android:drawablePadding="8dp"
                 android:hint="Confirm Password"
                 android:padding="8dp"

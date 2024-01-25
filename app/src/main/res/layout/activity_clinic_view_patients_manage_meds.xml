@@ -7,14 +7,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".clinic_manage_meds_page"
-    android:background="@drawable/finalappbackground">
+    android:background="@drawable/background_final_app_theme">
 
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@drawable/search_view_back"
+        android:background="@drawable/custom_searchview_outline"
         android:queryHint="Search Patient"
         android:iconifiedByDefault="false"/>
 

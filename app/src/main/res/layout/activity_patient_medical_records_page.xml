@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/myhealth_logo"
+            android:src="@drawable/logo_myhealth_blue"
             android:adjustViewBounds="true"
             android:maxWidth="80dp"
             android:maxHeight="80dp"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext"
+        android:background="@drawable/custom_purple_outline"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_centerVertical="true">

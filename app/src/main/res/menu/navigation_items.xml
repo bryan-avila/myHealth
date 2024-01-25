@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/homeId"
-        android:icon="@drawable/home_icon"
+        android:icon="@drawable/icon_home"
         android:title="Home"/>
 
     <item android:id="@+id/appointmentId"
-        android:icon="@drawable/make_appoint"
+        android:icon="@drawable/icon_appointment"
         android:title="Book APT"/>
 
     <item android:id="@+id/medicalHistId"
-        android:icon="@drawable/medi_hist"
+        android:icon="@drawable/icon_medicalhistory"
         android:title="myHealth"/>
 
     <item android:id="@+id/resourcesId"
-        android:icon="@drawable/resources_icon"
+        android:icon="@drawable/icon_resources"
         android:title="Diet Diary"/>
 
     <item android:id="@+id/profileId"
-        android:icon="@drawable/account"
+        android:icon="@drawable/icon_account"
         android:title="Profile"/>
 
 </menu>

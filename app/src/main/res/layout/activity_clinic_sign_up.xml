@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/finalappbackground"
+    android:background="@drawable/background_final_app_theme"
     tools:context=".sign_up_activity">
 
     <androidx.cardview.widget.CardView
@@ -15,7 +15,7 @@
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext">
+        android:background="@drawable/custom_purple_outline">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:id="@+id/edit_text_clinic_name"
                 android:inputType="text"
                 android:maxLines="1"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 android:hint="Clinc Name"
                 android:padding="10dp"
                 android:textColor="@color/black"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/edit_text_clinic_email"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 android:hint="Clinic Email Address"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/edit_text_clinic_phone_number"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 android:hint="Clinic Phone Number"
                 android:inputType="phone"
                 android:maxLength="14"
@@ -78,8 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/edit_text_clinic_password"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_lock_24"
+                android:background="@drawable/custom_purple_outline"
+                android:drawableLeft="@drawable/icon_lock"
                 android:drawablePadding="8dp"
                 android:hint="Password"
                 android:padding="8dp"
@@ -92,8 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/edit_text_clinic_password_confirm"
-                android:background="@drawable/custom_edittext"
-                android:drawableLeft="@drawable/baseline_lock_24"
+                android:background="@drawable/custom_purple_outline"
+                android:drawableLeft="@drawable/icon_lock"
                 android:drawablePadding="8dp"
                 android:hint="Confirm Password"
                 android:padding="8dp"
@@ -107,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/edit_text_clinic_location"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 android:drawablePadding="8dp"
                 android:hint="Enter Location"
                 android:padding="8dp"

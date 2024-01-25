@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/finalappbackground"
+        android:background="@drawable/background_final_app_theme"
         android:padding="0dp"
         tools:context=".FirstTimeRegistration">
 
@@ -33,7 +33,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_purple_outline"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="20dp">
 

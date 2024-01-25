@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".main_choose_account_type"
-    android:background="@drawable/finalappbackground">
+    android:background="@drawable/background_final_app_theme">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/myhealth_logo_white"
+            android:src="@drawable/logo_myhealth_white"
             android:adjustViewBounds="true"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
@@ -30,7 +30,7 @@
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext">
+        android:background="@drawable/custom_purple_outline">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Patient"
-                android:drawableRight="@drawable/baseline_person_24"
+                android:drawableRight="@drawable/icon_person"
                 android:id="@+id/textView_Patient"
                 android:textSize="35sp"
                 android:textAlignment="center"
@@ -77,7 +77,7 @@
         android:layout_margin="30dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
-        android:background="@drawable/custom_edittext">
+        android:background="@drawable/custom_purple_outline">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Clinic"
-                android:drawableRight="@drawable/baseline_local_hospital_24"
+                android:drawableRight="@drawable/icon_hospital"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
                 android:textSize="35sp"
