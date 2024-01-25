@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_dietary_plan_page"
-    android:background="@drawable/background_patient_dietplan">
+    android:background="@drawable/background_patient_diet">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_myhealth_blue"
+            android:src="@drawable/logo_myhealth_white"
             android:adjustViewBounds="true"
             android:maxWidth="100dp"
             android:maxHeight="100dp"
@@ -49,8 +49,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="Recommended Diet"
                 android:textAlignment="center"
-                android:textColor="@color/goodGrey"
-                android:textSize="20dp"
+                android:textColor="@color/purple"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <TextView

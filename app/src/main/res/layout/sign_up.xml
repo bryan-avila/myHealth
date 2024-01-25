@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/background_signup"
+    android:background="@drawable/background_final_app_theme"
     tools:context=".sign_up_activity">
 
     <RelativeLayout
@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_myhealth_blue"
+            android:src="@drawable/logo_myhealth_white"
             android:adjustViewBounds="true"
             android:maxWidth="80dp"
             android:maxHeight="80dp"
@@ -132,7 +132,7 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/signupButton"
                 android:text="Sign Up"
                 android:textSize="18sp"
