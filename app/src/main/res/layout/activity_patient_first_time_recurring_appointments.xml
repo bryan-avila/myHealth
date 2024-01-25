@@ -124,7 +124,7 @@
         android:layout_width="900sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40sp"
-        app:itemIconTint="@color/icons_color"
+        app:itemIconTint="@color/bottom_nav_menu_icons_color"
         app:itemRippleColor="@color/lightpurple"
         app:itemTextColor="@color/lightpurple"
         app:menu="@menu/navigation_items" />

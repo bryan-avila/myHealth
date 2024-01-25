@@ -106,7 +106,7 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation_items"
         app:itemRippleColor="@color/lightpurple"
-        app:itemIconTint="@color/icons_color"
+        app:itemIconTint="@color/bottom_nav_menu_icons_color"
         app:itemTextColor="@color/lightpurple"/>
 
 
