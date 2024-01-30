@@ -13,10 +13,10 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
-            android:name=".patient_view_charts_page"
+            android:name=".patients_view_food_favorites_page"
             android:exported="false" />
         <activity
-            android:name=".patient_view_favorites_page"
+            android:name=".patient_view_food_charts_page"
             android:exported="false" />
         <activity
             android:name=".patient_add_food_page"

@@ -17,6 +17,7 @@ public class patient_add_food_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_add_food_page);
 
+
         // Set up Bottom Nav Bar
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +7,6 @@
     tools:context=".patient_add_food_page">
 
     <!-- Create Top Elements -->
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -18,15 +16,14 @@
         android:layout_marginTop="10dp"/>
 
     <SearchView
-        android:id="@+id/search_view_add_food_search"
         android:layout_width="match_parent"
         android:layout_height="75sp"
-        android:layout_marginTop="80dp"
+        android:queryHint="Food Search"
+        android:iconifiedByDefault="false"
+        android:layout_marginTop="75sp"
         android:layout_marginLeft="10sp"
         android:layout_marginRight="10sp"
-        android:background="@drawable/custom_searchview_outline"
-        android:queryHint="Food Search"
-        android:iconifiedByDefault="false"/>
+        android:background="@drawable/custom_searchview_outline"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
