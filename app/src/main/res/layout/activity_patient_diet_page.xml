@@ -6,37 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_diet_page"
-    android:background="@drawable/background_patient_nutrition_page_v5">
+    android:background="@drawable/background_final_app_theme">
 
-    <!-- Controls the header/1st cardview -->
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_nutrition_message"
-        android:layout_width="wrap_content"
+    <!-- Represents the logo layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30sp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="30dp">
+        android:layout_marginTop="5dp"
+        android:id="@+id/logolayout">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_myhealth_white"
+            android:adjustViewBounds="true"
+            android:maxWidth="80dp"
+            android:maxHeight="80dp"
+            android:scaleType="fitCenter"/>
+    </RelativeLayout>
+
+    <!-- Represents the title of the page -->
         <TextView
             android:id="@+id/text_view_patient_nutrition_page_text"
+            android:layout_below="@id/logolayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:shadowDx="20"
             android:padding="5sp"
             android:text="Nutrition"
-            android:textSize="45sp"
-            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textColor="@color/purple"
             android:textStyle="bold"
             />
 
-    </androidx.cardview.widget.CardView>
-
-    <!-- Controls 2nd cardview -->
+    <!-- Controls cardview -->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_nutrition_info"
-        android:layout_below="@id/card_view_nutrition_info"
+        android:layout_below="@id/text_view_patient_nutrition_page_text"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -81,11 +91,13 @@
     <Button
         android:id="@+id/button_view_charts"
         android:text="View Charts"
+        android:textStyle="bold"
         android:textSize="12sp"
         android:layout_width="120sp"
         android:layout_height="60sp"
         android:background="@drawable/button_rounded"
-        android:layout_marginTop="580sp"
+        android:layout_below="@id/card_view_nutrition_info"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="5dp"
         android:backgroundTint="@color/purple"
         android:elevation="10dp"/>
@@ -93,12 +105,14 @@
     <Button
         android:id="@+id/button_add_foods"
         android:text="Add Food"
+        android:textStyle="bold"
         android:textSize="12sp"
         android:layout_width="120sp"
         android:layout_height="60sp"
         android:background="@drawable/button_rounded"
         android:layout_marginLeft="145sp"
-        android:layout_marginTop="580sp"
+        android:layout_below="@id/card_view_nutrition_info"
+        android:layout_marginTop="15dp"
         android:onClick="onAddFoodClick"
         android:elevation="8dp"
         />
@@ -106,13 +120,15 @@
     <Button
         android:id="@+id/button_view_favorites"
         android:text="View Favorites"
+        android:textStyle="bold"
         android:textSize="12sp"
         android:layout_width="120sp"
         android:layout_height="60sp"
         android:background="@drawable/button_rounded"
         android:layout_marginLeft="25sp"
         android:layout_toRightOf="@id/button_add_foods"
-        android:layout_marginTop="580sp"
+        android:layout_below="@id/card_view_nutrition_info"
+        android:layout_marginTop="15dp"
         android:elevation="8dp"
         />
 
