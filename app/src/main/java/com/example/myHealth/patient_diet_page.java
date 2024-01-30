@@ -53,27 +53,21 @@ public class patient_diet_page extends AppCompatActivity {
         addFoodBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), patient_add_food_page.class);
-                startActivity(intent);
-                finish();
+                Toast.makeText(patient_diet_page.this, "DEFAULT.", Toast.LENGTH_SHORT).show();
             }
         });
 
         viewFavoritesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), patient_view_favorites_page.class);
-                startActivity(intent);
-                finish();
+                Toast.makeText(patient_diet_page.this, "DEFAULT!", Toast.LENGTH_SHORT).show();
             }
         });
 
         viewChartsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), patient_view_charts_page.class);
-                startActivity(intent);
-                finish();
+                Toast.makeText(patient_diet_page.this, "DEFAULT!!", Toast.LENGTH_SHORT).show();
             }
         });
 
