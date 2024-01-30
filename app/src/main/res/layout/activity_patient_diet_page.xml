@@ -90,47 +90,43 @@
 
     <Button
         android:id="@+id/button_view_charts"
-        android:text="View Charts"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:layout_width="120sp"
-        android:layout_height="60sp"
-        android:background="@drawable/button_rounded"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
         android:layout_below="@id/card_view_nutrition_info"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="5dp"
+        android:layout_margin="20dp"
         android:backgroundTint="@color/purple"
-        android:elevation="10dp"/>
+        android:elevation="10dp"
+        android:text="View Charts"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button_add_foods"
         android:text="Add Food"
         android:textStyle="bold"
-        android:textSize="12sp"
-        android:layout_width="120sp"
-        android:layout_height="60sp"
-        android:background="@drawable/button_rounded"
-        android:layout_marginLeft="145sp"
+        android:textSize="15sp"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/purple"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/card_view_nutrition_info"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:onClick="onAddFoodClick"
         android:elevation="8dp"
         />
 
     <Button
         android:id="@+id/button_view_favorites"
-        android:text="View Favorites"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:layout_width="120sp"
-        android:layout_height="60sp"
-        android:background="@drawable/button_rounded"
-        android:layout_marginLeft="25sp"
-        android:layout_toRightOf="@id/button_add_foods"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
         android:layout_below="@id/card_view_nutrition_info"
-        android:layout_marginTop="15dp"
+        android:layout_margin="20dp"
+        android:layout_toRightOf="@id/button_add_foods"
+        android:backgroundTint="@color/purple"
         android:elevation="8dp"
-        />
+        android:text="View Favorites"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <!-- Controls the nav bar at the very bottom -->
 
