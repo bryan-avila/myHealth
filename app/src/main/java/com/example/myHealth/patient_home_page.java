@@ -225,7 +225,7 @@ public class patient_home_page extends AppCompatActivity {
                                    double appointmentTime = timeconverter.convertToDecimal(appointment.getStartTime());
 
                                    // Call the makeMultipleRecurringAppointments function
-                                   appointmentmanager.makeMultipleRecurringAppointments(userId, appointmentDay, appointmentTime, true);
+                                   appointmentmanager.makeMultipleAppointments(userId, appointmentDay, appointmentTime, true);
                                }
                            } else {
                                // Handle errors

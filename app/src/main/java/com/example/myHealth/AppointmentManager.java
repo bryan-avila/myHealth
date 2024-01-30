@@ -241,16 +241,16 @@ public class AppointmentManager {
     //this function makes an appointment at a specified time/date given that time is available
     public void makeSingleAppointment(String clinicId, String appointmentDate, double appointmentTime, Boolean recurring) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        DocumentReference dateRef = db.collection("clinic").document(clinicId).collection("dates").document(appointmentDate);
+        DocumentReference clinicDateRef = db.collection("clinic").document(clinicId).collection("dates").document(appointmentDate);
         Map<String, Object> date = new HashMap<>();
         date.put("date", appointmentDate);
-        dateRef.set(date);
-        CollectionReference appointmentsRef = dateRef.collection("appointments");
+        clinicDateRef.set(date);
+        CollectionReference clinicAppointmentsRef = clinicDateRef.collection("appointments");
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
             // Create a new appointment document with the user's ID as the document ID
-            DocumentReference newAppointmentRef = appointmentsRef.document(userId);
+            DocumentReference clinicnewAppointmentRef = clinicAppointmentsRef.document(userId);
 
             // convert times to strings
             String startTime = convertToString(appointmentTime);
@@ -262,9 +262,10 @@ public class AppointmentManager {
             appointmentData.put("endTime", endTime);
             appointmentData.put("date", appointmentDate);
             appointmentData.put("recurring", recurring);
+            appointmentData.put("complete", false);
 
             // Set the data in the document
-            newAppointmentRef.set(appointmentData)
+            clinicnewAppointmentRef.set(appointmentData)
                     .addOnSuccessListener(aVoid -> {
                         // Document successfully written
                         Log.d("Firestore", "Appointment document added successfully!");
@@ -284,7 +285,7 @@ public class AppointmentManager {
 
 
             // Create a new appointment document with the user's ID as the document ID
-            DocumentReference newAppointmentRef = userAppointmentsRef.document(clinicId);
+            DocumentReference usernewAppointmentRef = userAppointmentsRef.document(clinicId);
 
             // convert times to strings
             String startTime = convertToString(appointmentTime);
@@ -296,9 +297,10 @@ public class AppointmentManager {
             appointmentData.put("endTime", endTime);
             appointmentData.put("date", appointmentDate);
             appointmentData.put("recurring", recurring);
+            appointmentData.put("complete", false);
 
             // Set the data in the document
-            newAppointmentRef.set(appointmentData)
+            usernewAppointmentRef.set(appointmentData)
                     .addOnSuccessListener(aVoid -> {
                         // Document successfully written
                         Log.d("Firestore", "Appointment document added successfully!");
@@ -378,7 +380,7 @@ public class AppointmentManager {
     }
 
     //adds a year of appointments for the selected date
-    public void makeMultipleRecurringAppointments(String clinicId, String appointmentDay, double appointmentTime, Boolean recurring) {
+    public void makeMultipleAppointments(String clinicId, String appointmentDay, double appointmentTime, Boolean recurring) {
         // Parse the selected day to DayOfWeek
         DayOfWeek selectedDayOfWeek = DayOfWeek.valueOf(appointmentDay.toUpperCase());
 
