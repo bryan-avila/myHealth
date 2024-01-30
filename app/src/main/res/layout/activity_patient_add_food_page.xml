@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".patient_add_food_page">
 
+    <!-- Create Top Elements -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/icon_notifs"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="10dp"/>
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="75sp"
+        android:queryHint="Food Search"
+        android:iconifiedByDefault="false"
+        android:layout_marginTop="75sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:background="@drawable/custom_searchview_outline"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
