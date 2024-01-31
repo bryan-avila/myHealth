@@ -13,6 +13,9 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".test_design_diet_diary"
+            android:exported="false" />
+        <activity
             android:name=".patients_view_food_favorites_page"
             android:exported="false" />
         <activity

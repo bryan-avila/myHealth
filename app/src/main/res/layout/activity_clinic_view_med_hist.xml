@@ -41,10 +41,10 @@
                 <TextView
                     android:id="@+id/text_view_recycler_view_heading"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="5sp"
-                    android:text="List Of Patients"
+                    android:layout_margin="10dp"
+                    android:text="Select Patient to View Medical Records"
                     android:textSize="25sp"
                     android:textColor="@color/purple"
                     android:textStyle="bold" />
