@@ -48,17 +48,16 @@
         android:layout_marginTop="15dp"/>
 
 
-    <!--Still need to show the date using ScrollView...-->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_home_page"
         android:layout_width="match_parent"
-        android:layout_height="520dp"
+        android:layout_height="440dp"
         app:cardCornerRadius="15dp"
-        app:cardElevation="20dp"
+        app:cardElevation="15dp"
         android:background="@drawable/custom_purple_outline"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_centerVertical="true">
+        android:layout_marginTop="120dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -173,5 +172,6 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+    <!--Still need to show the date using ScrollView...-->
 
 </RelativeLayout>
