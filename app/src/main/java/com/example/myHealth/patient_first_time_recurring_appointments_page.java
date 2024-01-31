@@ -71,7 +71,7 @@ public class patient_first_time_recurring_appointments_page extends AppCompatAct
     {
         Intent intent = new Intent(patient_first_time_recurring_appointments_page.this, patient_home_page.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot press back
     }
 
     public void onMondayButtonClick(View view)

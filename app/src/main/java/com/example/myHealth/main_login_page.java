@@ -60,7 +60,7 @@ public class main_login_page extends AppCompatActivity {
                                         Intent intent = new Intent(main_login_page.this, clinic_home_page.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                         startActivity(intent);
-                                        finish();
+                                        finish(); // cannot press back
                                     }
 
                                     // Else, they must be a patient user. Send them to the patient home page
@@ -68,7 +68,7 @@ public class main_login_page extends AppCompatActivity {
                                         Intent intent = new Intent(main_login_page.this, patient_home_page.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                         startActivity(intent);
-                                        finish();
+                                        finish(); // cannot press back
                                     }
                                 } else {
                                     // If sign in fails, display a message to the user.

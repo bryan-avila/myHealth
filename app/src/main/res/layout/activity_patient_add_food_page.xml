@@ -25,6 +25,7 @@
         android:layout_marginRight="10sp"
         android:background="@drawable/custom_searchview_outline"/>
 
+    <!-- Create Bottom Element -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -34,5 +35,28 @@
         app:itemRippleColor="@color/lightpurple"
         app:itemIconTint="@color/bottom_nav_menu_icons_color"
         app:itemTextColor="@color/lightpurple"/>
+
+    <!-- Create Middle Elements -->
+    <View
+        android:layout_width="350sp"
+        android:layout_height="450sp"
+        android:layout_marginTop="175sp"
+        android:layout_marginLeft="25sp"
+        android:background="@drawable/background_test_myfitnesspal"
+        android:elevation="10sp"
+        android:translationZ="-10sp"
+        />
+
+    <Button
+        android:id="@+id/button_test_add_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Button"
+        android:backgroundTint="@color/purple"
+        android:layout_marginTop="190sp"
+        android:layout_marginLeft="120sp"
+        android:translationZ="10sp"
+        />
+
 
 </RelativeLayout>

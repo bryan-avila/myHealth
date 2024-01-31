@@ -82,6 +82,6 @@ public class clinic_first_time_hours_page extends AppCompatActivity {
         // Send to clinic home page
         Intent intent = new Intent(clinic_first_time_hours_page.this, clinic_home_page.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot go back
     }
 }

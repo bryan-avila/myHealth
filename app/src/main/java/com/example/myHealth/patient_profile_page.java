@@ -102,7 +102,7 @@ public class patient_profile_page extends AppCompatActivity {
                 startActivity(intent);
 
                 // Optionally, finish the current activity to prevent the user from going back to it
-                finish();
+                finish(); //cannot press back
             }
         });
     }
