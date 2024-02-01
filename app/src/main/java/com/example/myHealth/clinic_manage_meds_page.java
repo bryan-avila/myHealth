@@ -25,7 +25,7 @@ public class clinic_manage_meds_page extends AppCompatActivity {
 
     private SearchView searchView;
 
-    MyPatientAdapter patientAdapter;
+    //MyPatientAdapter patientAdapter;
     private List<Patient> patientsList = null;
 
     String patientMedName;
@@ -142,7 +142,7 @@ public class clinic_manage_meds_page extends AppCompatActivity {
     /*private void filterList(String text) {
         List<Patient> filteredList = new ArrayList<>();
         for (Patient p : patientsList) {
-            if (p.getfirstName().toLowerCase().contains(text.toLowerCase())) {
+            if (p.getfirstName().toLowerCase().contains(text.toLowerCase()) || p.getlastName().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(p);
             }
         }
@@ -157,7 +157,7 @@ public class clinic_manage_meds_page extends AppCompatActivity {
 
 
             //Below implementation works but messes up with prescribing medication to user
-            MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getBaseContext(),patientsList);
             RecyclerView recyclerViewFiltered = findViewById(R.id.recycler_view_patients);
             recyclerViewFiltered.setLayoutManager(new LinearLayoutManager(this));
             recyclerViewFiltered.setAdapter(newPatientAdapter); //this overrides the previous .setAdapter
