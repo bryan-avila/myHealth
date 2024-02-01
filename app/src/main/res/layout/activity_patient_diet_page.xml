@@ -36,7 +36,7 @@
             android:shadowDx="20"
             android:padding="5sp"
             android:text="Nutrition"
-            android:textSize="30sp"
+            android:textSize="26sp"
             android:textColor="@color/purple"
             android:textStyle="bold"
             />
