@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -28,6 +29,10 @@ public class patient_appointments_view extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments_page);
+
+        // Underline Select Date text
+        TextView selectDate = (TextView) findViewById(R.id.loginText);
+        selectDate.setPaintFlags(selectDate.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
         // Create a calendarView object
         calendarview = findViewById(R.id.calendarView);
