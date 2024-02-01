@@ -1,11 +1,14 @@
 package com.example.myHealth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -20,7 +23,9 @@ public class clinic_manage_meds_page extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private SearchView searchView;
+    //private SearchView searchView;
+
+    MyPatientAdapter patientAdapter;
     private List<Patient> patientsList = null;
 
     String patientMedName;
@@ -31,10 +36,11 @@ public class clinic_manage_meds_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_view_patients_manage_meds);
 
+        //------------------------------------------------------------------------------------------
         //Find id for search bar
-        searchView = findViewById(R.id.searchView);
-        searchView.clearFocus(); //removes cursor from search view
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        //searchView = findViewById(R.id.searchView);
+        //searchView.clearFocus(); //removes cursor from search view
+        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -45,7 +51,9 @@ public class clinic_manage_meds_page extends AppCompatActivity {
                 filterList(newText);
                 return true;
             }
-        });
+        });*/
+        //------------------------------------------------------------------------------------------
+
         // Set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.recycler_view_patients);
 
@@ -74,13 +82,13 @@ public class clinic_manage_meds_page extends AppCompatActivity {
             MyPatientAdapter myPatAdapater = new MyPatientAdapter(getApplicationContext(), patientsList);
             recyclerView.setAdapter(myPatAdapater);
 
-            // Make Patient's Clickable
+            // Make Patients Clickable
             myPatAdapater.setOnItemClickListener(new MyPatientAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position, Patient patients) {
 
                     String p_id = patients.getPat_ID().toString();
-                    // Send the to see the patient's medications after clicking on a patients name using this onItemClickListener
+                    // Send them to see the patient's medications after clicking on a patients name using this onItemClickListener
                     // Will need to implement an edit functionality to delete medications for a patient
                     Intent intent = new Intent(clinic_manage_meds_page.this, clinic_prescribed_meds_page.class);
                     intent.putExtra("patient",p_id); // send patient id with the intent
@@ -91,8 +99,45 @@ public class clinic_manage_meds_page extends AppCompatActivity {
         });
     }
 
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int idSearch = item.getItemId();
+        if (idSearch == R.id.searchView) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search,menu);
+        MenuItem menuItem = menu.findItem(R.id.searchView);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String searchString = newText;
+                patientAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------
     //Filtering does not work
-    private void filterList(String text) {
+    /*private void filterList(String text) {
         List<Patient> filteredList = new ArrayList<>();
         for (Patient p : patientsList) {
             if (p.getfirstName().toLowerCase().contains(text.toLowerCase())) {
@@ -105,16 +150,16 @@ public class clinic_manage_meds_page extends AppCompatActivity {
             //Send data to the adapter class (look at MyPatientAdapter class
             //Call adapter
             //This line not working with adapter
-            /*MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
-            newPatientAdapter.filterList(filteredList);*/
+            MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            newPatientAdapter.filterList(filteredList);
 
 
-            //Below implementation work but messes up with prescribing medication to user
-            /*yPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            //Below implementation works but messes up with prescribing medication to user
+            MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
             RecyclerView recyclerViewFiltered = findViewById(R.id.recycler_view_patients);
             recyclerViewFiltered.setLayoutManager(new LinearLayoutManager(this));
             recyclerViewFiltered.setAdapter(newPatientAdapter); //this overrides the previous .setAdapter
-            newPatientAdapter.filterList(filteredList);*/
+            newPatientAdapter.filterList(filteredList);
         }
-    }
+    }*/
 }

@@ -3,21 +3,27 @@ package com.example.myHealth;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // MyAdapter.java
-public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient>{
+public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> implements Filterable {
 
     Context context;
     List<Patient> patients;
+
+    public List<Patient> getPatientsFilter = new ArrayList<>();
     private OnItemClickListener mListener;
 
     public MyPatientAdapter(Context context, List<Patient> patients) {
         this.context = context;
+        this.getPatientsFilter = patients;
         this.patients = patients;
     }
     //For search bar functionality
@@ -59,6 +65,39 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient>{
     // Method to set the click listener from outside the adapter
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
+    }
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults filterResults = new FilterResults();
+                if (constraint == null || constraint.length() == 0) {
+                    filterResults.values = getPatientsFilter;
+                    filterResults.count = getPatientsFilter.size();
+                } else {
+                    String searchString = constraint.toString().toLowerCase();
+                    List<Patient> patientList = new ArrayList<>();
+                    for (Patient patient: getPatientsFilter) {
+                        if (patient.getfirstName().toLowerCase().contains(searchString) || patient.getlastName().toLowerCase().contains(searchString) || patient.getEmail().toLowerCase().contains(searchString) || patient.getPhone().toLowerCase().contains(searchString)) {
+                            patientList.add(patient);
+                        }
+                    }
+                    filterResults.values = patientList;
+                    filterResults.count = patientList.size();
+                }
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                patients = (List<Patient>)results.values;
+                notifyDataSetChanged();
+
+            }
+        };
+        return filter;
     }
 
     public interface OnItemClickListener {
