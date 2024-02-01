@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 // MyAdapter.java
-public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> implements Filterable {
+public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> {
 
     Context context;
     List<Patient> patients;
 
-    public List<Patient> getPatientsFilter = new ArrayList<>();
+    public List<Patient> getPatientsFilter;
     private OnItemClickListener mListener;
 
     public MyPatientAdapter(Context context, List<Patient> patients) {
@@ -26,11 +26,13 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> 
         this.getPatientsFilter = patients;
         this.patients = patients;
     }
+    //----------------------------------------------------------------------------------------------
     //For search bar functionality
     public void filterList(List<Patient> filteredList) {
         this.patients = filteredList;
         notifyDataSetChanged();
     }
+    //----------------------------------------------------------------------------------------------
 
 
 
@@ -67,7 +69,8 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> 
         mListener = listener;
     }
 
-    @Override
+    //----------------------------------------------------------------------------------------------
+    /*@Override
     public Filter getFilter() {
         Filter filter = new Filter() {
             @Override
@@ -98,7 +101,8 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> 
             }
         };
         return filter;
-    }
+    }*/
+    //----------------------------------------------------------------------------------------------
 
     public interface OnItemClickListener {
         void onItemClick(int position, Patient patient);

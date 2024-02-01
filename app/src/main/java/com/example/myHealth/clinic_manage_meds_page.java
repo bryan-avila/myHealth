@@ -23,7 +23,7 @@ public class clinic_manage_meds_page extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    //private SearchView searchView;
+    private SearchView searchView;
 
     MyPatientAdapter patientAdapter;
     private List<Patient> patientsList = null;
@@ -36,11 +36,11 @@ public class clinic_manage_meds_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_view_patients_manage_meds);
 
-        //------------------------------------------------------------------------------------------
+        //-------------------------------UNCOMMENT TO ALLOW FILTERING TO WORK-----------------------
         //Find id for search bar
-        //searchView = findViewById(R.id.searchView);
-        //searchView.clearFocus(); //removes cursor from search view
-        /*searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        /*searchView = findViewById(R.id.searchView);
+        searchView.clearFocus(); //removes cursor from search view
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -101,7 +101,8 @@ public class clinic_manage_meds_page extends AppCompatActivity {
 
 
 
-    @Override
+    //----------------------------------------------------------------------------------------------
+    /*@Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int idSearch = item.getItemId();
         if (idSearch == R.id.searchView) {
@@ -133,9 +134,10 @@ public class clinic_manage_meds_page extends AppCompatActivity {
 
 
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
+    //----------------------------------------------------------------------------------------------
 
-    //---------------------------------------------------------------------------------------------------------------
+    //---------------------------------------UNCOMMENT TO ALLOW FILTERING TO WORK-------------------
     //Filtering does not work
     /*private void filterList(String text) {
         List<Patient> filteredList = new ArrayList<>();
@@ -150,8 +152,8 @@ public class clinic_manage_meds_page extends AppCompatActivity {
             //Send data to the adapter class (look at MyPatientAdapter class
             //Call adapter
             //This line not working with adapter
-            MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
-            newPatientAdapter.filterList(filteredList);
+            //MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            //newPatientAdapter.filterList(filteredList);
 
 
             //Below implementation works but messes up with prescribing medication to user
