@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -176,9 +177,10 @@ public class patient_home_page extends AppCompatActivity {
         Calendar calendar;
         SimpleDateFormat simpleDateFormat;
         calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("'Today is': MMMM dd, yyyy");
+        simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy");
         date = simpleDateFormat.format(calendar.getTime()).toString();
         dateFormat.setText(date);
+        dateFormat.setPaintFlags(dateFormat.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
     }
 
