@@ -301,7 +301,7 @@
         android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 5 Kidney Disease and the appropriate nutrition."
         android:textColor="@color/redish"
         android:textSize="20sp"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/button_patient_diet_auto_fill"

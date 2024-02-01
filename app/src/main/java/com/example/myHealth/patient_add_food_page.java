@@ -44,7 +44,7 @@ public class patient_add_food_page extends AppCompatActivity {
                     public void run() {
                         popupWindow.dismiss();
                     }
-                }, 3000);
+                }, 1000);
 
             }
         });
