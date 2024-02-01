@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -40,6 +44,40 @@ public class patient_medical_history_page extends AppCompatActivity {
         // Set the top message to bold and underline
         top_message = findViewById(R.id.text_view_med_history_text);
         top_message.setPaintFlags(top_message.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
+
+        //Initialize and assign variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set resources selected
+        bottomNavigationView.setSelectedItemId(R.id.medicalHistId);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                //check id
+                if (id == R.id.appointmentId) {
+                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.homeId) {
+                    startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.medicalHistId) {
+                    return true;
+                } else if (id == R.id.resourcesId) {
+                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.profileId) {
+                    startActivity(new Intent(getApplicationContext(), patient_profile_page.class));
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void onStart() {

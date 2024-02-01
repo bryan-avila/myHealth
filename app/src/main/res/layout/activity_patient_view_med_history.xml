@@ -242,5 +242,18 @@
             </androidx.cardview.widget.CardView>
 
         </ScrollView>
+
+        <!-- Bottom Elements -->
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/navigation_items"
+            app:itemRippleColor="@color/lightpurple"
+            app:itemIconTint="@color/bottom_nav_menu_icons_color"
+            app:itemTextColor="@color/lightpurple"/>
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
