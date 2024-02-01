@@ -26,6 +26,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class patient_diet_page extends AppCompatActivity {
 
     // Initialize Database Stuff
@@ -39,10 +42,22 @@ public class patient_diet_page extends AppCompatActivity {
     // Initialize Activity Stuff
     Button addFoodBtn, viewFavoritesBtn, viewChartsBtn;
 
+    TextView header_and_date;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_diet_page);
+
+        // Create and modify header to have date
+        header_and_date = findViewById(R.id.text_view_patient_nutrition_page_text);
+        String date;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        date = simpleDateFormat.format(calendar.getTime()).toString();
+        header_and_date.setText("Nutrition - " + date);
 
         // Assign buttons
         addFoodBtn = findViewById(R.id.button_add_foods);

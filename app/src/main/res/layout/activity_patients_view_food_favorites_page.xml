@@ -1,19 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patients_view_food_favorites_page">
 
+    <!-- Top Elements -->
+    <ImageView
+        android:id="@+id/image_view_myhealth_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_myhealth_white"
+        android:adjustViewBounds="true"
+        android:maxWidth="80dp"
+        android:maxHeight="80dp"
+        android:scaleType="fitCenter"/>
+
     <TextView
+        android:id="@+id/text_view_patient_favorite_food_header"
+        android:layout_below="@id/image_view_myhealth_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DEFAULT!"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10sp"
+        android:shadowDx="20"
+        android:padding="5sp"
+        android:text="Your Favorite Foods"
+        android:textSize="26sp"
+        android:textColor="@color/purple"
+        android:textStyle="bold"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <SearchView
+        android:layout_below="@id/text_view_patient_favorite_food_header"
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
+        android:queryHint="Favorites Search"
+        android:iconifiedByDefault="false"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:background="@drawable/custom_searchview_outline"/>
+
+    <View
+        android:layout_below="@id/text_view_patient_favorite_food_header"
+        android:layout_width="350sp"
+        android:layout_height="420sp"
+        android:layout_marginTop="90sp"
+        android:layout_marginLeft="25sp"
+        android:background="@drawable/background_test_myfitnesspal_fav"
+        android:elevation="10sp"
+        android:translationZ="-10sp"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_items"
+        app:itemRippleColor="@color/lightpurple"
+        app:itemIconTint="@color/bottom_nav_menu_icons_color"
+        app:itemTextColor="@color/lightpurple"/>
+
+
+</RelativeLayout>

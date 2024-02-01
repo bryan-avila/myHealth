@@ -36,7 +36,7 @@
             android:shadowDx="20"
             android:padding="5sp"
             android:text="Nutrition"
-            android:textSize="30sp"
+            android:textSize="26sp"
             android:textColor="@color/purple"
             android:textStyle="bold"
             />
@@ -45,12 +45,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_nutrition_info"
-        android:layout_below="@id/text_view_patient_nutrition_page_text"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_patient_nutrition_page_text"
         android:layout_centerInParent="true"
-        >
+        android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/text_view_nutrition_default_text"
@@ -72,17 +71,10 @@
             android:textSize="20sp" />
 
         <View
-            android:layout_width="2dp"
-            android:layout_height="400sp"
-            android:layout_marginLeft="165sp"
-            android:background="@android:color/black" />
-
-
-        <View
             android:id="@+id/view_nutrition_info_background"
             android:layout_width="350sp"
-            android:layout_height="400sp"
-            android:elevation="50sp"/>
+            android:layout_height="380sp"
+            android:elevation="50sp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -90,13 +82,15 @@
 
     <Button
         android:id="@+id/button_view_charts"
-        android:layout_width="110dp"
-        android:layout_height="60dp"
+        android:layout_width="110sp"
+        android:layout_height="100sp"
         android:layout_below="@id/card_view_nutrition_info"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/purple"
+        android:drawableBottom="@drawable/button_charts_yellow"
         android:elevation="10dp"
-        android:text="View Charts"
+        android:text="View \nCharts"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -105,29 +99,29 @@
         android:text="Add Food"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:layout_width="110dp"
-        android:layout_height="60dp"
+        android:layout_width="110sp"
+        android:layout_height="100sp"
         android:backgroundTint="@color/purple"
+        android:drawableBottom="@drawable/button_add_dark_gray"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/card_view_nutrition_info"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:onClick="onAddFoodClick"
         android:elevation="8dp"
         />
 
     <Button
         android:id="@+id/button_view_favorites"
-        android:layout_width="110dp"
-        android:layout_height="60dp"
+        android:layout_width="110sp"
+        android:layout_height="100sp"
         android:layout_below="@id/card_view_nutrition_info"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/button_add_foods"
         android:backgroundTint="@color/purple"
+        android:drawableBottom="@drawable/button_heart_red"
         android:elevation="8dp"
-        android:text="View Favorites"
+        android:text="View \nFavorites"
         android:textSize="14sp"
         android:textStyle="bold" />
 
