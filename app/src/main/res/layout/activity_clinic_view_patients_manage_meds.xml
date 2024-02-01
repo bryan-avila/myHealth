@@ -9,9 +9,10 @@
     tools:context=".clinic_manage_meds_page"
     android:background="@drawable/background_final_app_theme">
 
-    <!--
+
+
     <SearchView
-        android:id="@+id/searchViewMeds"
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -19,7 +20,7 @@
         android:queryHint="Search Patient"
         android:iconifiedByDefault="false"/>
 
-        -->
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,11 +46,14 @@
                     android:id="@+id/text_view_recycler_view_heading"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:layout_margin="10dp"
                     android:text="Select Patient To Manage"
-                    android:textSize="25sp"
                     android:textColor="@color/purple"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
