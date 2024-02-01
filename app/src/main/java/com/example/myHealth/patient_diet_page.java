@@ -55,16 +55,14 @@ public class patient_diet_page extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), patient_add_food_page.class);
                 startActivity(intent);
-                finish();
             }
         });
 
         viewFavoritesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), patient_view_food_charts_page.class);
+                Intent intent = new Intent(getApplicationContext(), patients_view_food_favorites_page.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -73,7 +71,6 @@ public class patient_diet_page extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), patient_view_food_charts_page.class);
                 startActivity(intent);
-                finish();
             }
         });
 

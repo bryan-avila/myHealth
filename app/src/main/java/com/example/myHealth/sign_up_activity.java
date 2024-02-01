@@ -123,7 +123,7 @@ public class sign_up_activity extends AppCompatActivity {
                                                                                         public void onClick(DialogInterface dialogInterface, int i) {
                                                                                             Intent intent = new Intent(getApplicationContext(), patient_first_time_medical_survey_page.class);
                                                                                             startActivity(intent);
-                                                                                            finish();
+                                                                                            finish(); // cannot press back
                                                                                         }
                                                                                     })
                                                                                     .show();
@@ -153,8 +153,6 @@ public class sign_up_activity extends AppCompatActivity {
                                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                                        // Don't need this finish() since it will just load the next view twice
-                                                        //finish();
                                                     }
                                                 })
                                                 .show();

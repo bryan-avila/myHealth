@@ -166,7 +166,7 @@ public class patient_first_time_medical_survey_page extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), patient_first_time_time_diet_survey_page.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot press back
     }
 }
 

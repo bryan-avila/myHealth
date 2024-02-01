@@ -26,7 +26,7 @@ public class patient_first_time_recurring_clinics extends AppCompatActivity {
         // Once they finish inputting diet, send them home
         Intent intent = new Intent(patient_first_time_recurring_clinics.this, patient_home_page.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot press back
 
     }
     @Override

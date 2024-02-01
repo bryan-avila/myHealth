@@ -117,7 +117,7 @@ public class clinic_sign_up_page extends AppCompatActivity {
                                                                     // Upon registration send users to do medical history questions
                                                                     Intent intent = new Intent(clinic_sign_up_page.this, clinic_first_time_hours_page.class);
                                                                     startActivity(intent);
-                                                                    finish(); // If you don't want to allow the user to go back to the registration screen
+                                                                    finish(); // cannot go back
                                                                 }
                                                             })
                                                             .addOnFailureListener(new OnFailureListener() {

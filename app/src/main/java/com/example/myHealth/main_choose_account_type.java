@@ -21,7 +21,7 @@ public class main_choose_account_type extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(), sign_up_activity.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot press back
     }
 
     // OnClickerListener for Caretaker Button. Defined in .XML
@@ -30,7 +30,7 @@ public class main_choose_account_type extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(), clinic_sign_up_page.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot press back
 
     }
 }
