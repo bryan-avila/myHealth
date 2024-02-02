@@ -37,15 +37,24 @@
 
 
 
-
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="29dp"
+        android:text="(date)"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/icon_notifs"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginLeft="327dp"
+        android:layout_marginTop="18dp"/>
 
 
     <androidx.cardview.widget.CardView
@@ -68,49 +77,24 @@
                 android:layout_height="wrap_content"
                 android:text="(greeting, first name)"
                 android:id="@+id/text_view_dashboard"
-                android:textSize="26sp"
+                android:textSize="30sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/purple"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="48dp"
-                android:text="(date)"
-                android:textSize="24sp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/purple"/>
-            <!--Ignore the "(date)" position on page, it is fixed on runtime-->
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Notices"
-                android:id="@+id/text_view_notices"
-                android:layout_centerHorizontal="true"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/goodGrey"
-                android:layout_below="@id/date"
-                android:layout_marginTop="3sp"/>
-
+                android:layout_marginTop="20dp"/>
 
             <View
+                android:id="@+id/purple_bar"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:layout_marginTop="116sp"
+                android:layout_marginTop="76sp"
                 android:background="@color/purple" />
 
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="80sp"
                 android:overScrollMode="never"
                 android:scrollbars="vertical">
 
@@ -119,22 +103,17 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-
-
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingTop="120dp"
-                        android:layout_marginTop="20sp"
+                        android:layout_marginTop="12sp"
                         android:paddingLeft="30dp"
+                        android:paddingBottom="6dp"
                         android:id="@+id/text_view_appointments_notice"
                         android:text="1) Upcoming Appointments:"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@color/goodGrey"
-                        android:layout_below="@id/text_view_notices"
-                        android:layout_marginBottom="10sp"
                         />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -149,13 +128,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingLeft="30dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="6dp"
                         android:id="@+id/text_view_medications_list"
                         android:text="2) Your daily Medications:"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@color/goodGrey"
                         android:layout_below="@id/text_view_appointments_notice"
-                        android:layout_marginBottom="10sp"
                         />
 
                     <!--This is a list of all medication required for patient-->
