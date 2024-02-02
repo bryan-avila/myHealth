@@ -43,7 +43,10 @@ public class clinic_prescription_form extends AppCompatActivity {
     private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
     private ListenerRegistration clinicListener;
 
+    String dosageMeasurement;
+
     String frequency;  // Frequency from the pop up, make it global
+
 
 
     @Override
@@ -55,6 +58,60 @@ public class clinic_prescription_form extends AppCompatActivity {
 
     }
 
+    //Dosage units implementation
+    public void onDosageSelectClick(View view) {
+        //Make dropdown menu appear when clicked
+        PopupMenu dosage_popup = new PopupMenu(this, view);
+        dosage_popup.setOnMenuItemClickListener(this::onMenuItemClick2);
+        dosage_popup.inflate((R.menu.menu_dosage));
+        dosage_popup.show();
+    }
+
+    public boolean onMenuItemClick2(MenuItem item) {
+        if(item.getItemId() == R.id.item_dosage_grams) {
+
+            Button button_dosage;
+            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage.setText("g");
+
+            dosageMeasurement = "g";
+            return true;
+        }
+
+        else if(item.getItemId() == R.id.item_dosage_milligrams) {
+
+            Button button_dosage;
+            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage.setText("mg");
+
+            dosageMeasurement = "mg";
+            return true;
+        }
+
+        else if(item.getItemId() == R.id.item_dosage_micrograms) {
+
+            Button button_dosage;
+            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage.setText("mcg");
+
+            dosageMeasurement = "mcg";
+            return true;
+        }
+        else if(item.getItemId() == R.id.item_dosage_IU) {
+
+            Button button_dosage;
+            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage.setText("IU");
+
+            dosageMeasurement = "IU";
+            return true;
+        }
+
+        return false;
+
+    }
+
+    //Frequency implementation
     public void onFrequencyClick(View view)
     {
         // Make the dropdown menu appear when you click on frequency
