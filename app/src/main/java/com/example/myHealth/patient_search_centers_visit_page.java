@@ -22,7 +22,14 @@ import java.util.List;
 
 public class patient_search_centers_visit_page extends AppCompatActivity {
     // Inside your activity or fragment
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        finish();
 
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

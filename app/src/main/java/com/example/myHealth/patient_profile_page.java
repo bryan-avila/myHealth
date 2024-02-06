@@ -26,7 +26,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
 public class patient_profile_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        finish();
 
+    }
 
     TextView emailPlaceholder, firstnamePlaceholder, lastnamePlaceholder, phonePlaceholder;
 
