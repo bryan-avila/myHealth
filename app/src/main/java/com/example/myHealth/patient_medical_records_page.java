@@ -62,6 +62,11 @@ public class patient_medical_records_page extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), patient_medical_history_page.class));
     }
 
+    public void onAppointmentsRecordClick(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), patient_view_appointment_history.class));
+    }
+
     public void onMedicationsClick(View view)
     {
         startActivity(new Intent(getApplicationContext(), patient_prescribed_med_page.class));

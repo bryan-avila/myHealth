@@ -13,6 +13,9 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".patient_view_appointment_history"
+            android:exported="false" />
+        <activity
             android:name=".clinic_prescribe_meds_manage"
             android:exported="false" />
         <activity
