@@ -101,7 +101,7 @@ public class profile_page_clinic extends AppCompatActivity {
     }
 
     public void onEditClickClinic(View view) {
-        startActivity(new Intent(getApplicationContext(), empty_editProfile.class));
+        startActivity(new Intent(getApplicationContext(), clinic_edit_my_profile.class));
     }
 
 

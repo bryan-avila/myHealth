@@ -26,7 +26,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
 public class patient_profile_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        finish();
 
+    }
 
     TextView emailPlaceholder, firstnamePlaceholder, lastnamePlaceholder, phonePlaceholder;
 
@@ -46,9 +52,6 @@ public class patient_profile_page extends AppCompatActivity {
         firstnamePlaceholder = findViewById(R.id.firstnamePlaceholder);
         lastnamePlaceholder = findViewById(R.id.lastnamePlaceholder);
         phonePlaceholder = findViewById(R.id.phonePlaceholder);
-
-        //String firstNameT = firstNameTitle.toString();
-
 
 
         //Initialize and assign variable
@@ -108,7 +111,11 @@ public class patient_profile_page extends AppCompatActivity {
     }
 
     public void onEditClick(View view) {
-        startActivity(new Intent(getApplicationContext(), empty_editProfile.class));
+        startActivity(new Intent(getApplicationContext(), clinic_edit_my_profile.class));
+    }
+
+    public void onResourcesClick(View view) {
+        startActivity(new Intent(getApplicationContext(), empty_resourcesPage.class));
     }
 
     public void onStart() {

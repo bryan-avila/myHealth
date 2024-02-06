@@ -12,7 +12,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class patient_medical_records_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        finish();
 
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,11 @@ public class patient_medical_records_page extends AppCompatActivity {
 
 
         startActivity(new Intent(getApplicationContext(), patient_medical_history_page.class));
+    }
+
+    public void onAppointmentsRecordClick(View view)
+    {
+        startActivity(new Intent(getApplicationContext(), patient_view_appointment_history.class));
     }
 
     public void onMedicationsClick(View view)

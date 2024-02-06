@@ -22,7 +22,14 @@ import java.util.List;
 
 public class patient_search_centers_visit_page extends AppCompatActivity {
     // Inside your activity or fragment
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        finish();
 
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +48,6 @@ public class patient_search_centers_visit_page extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
-                    finish();
                     return true;
                 } else if (id == R.id.homeId) {
                     startActivity(new Intent(getApplicationContext(), patient_home_page.class)); //check this line it might be wrong

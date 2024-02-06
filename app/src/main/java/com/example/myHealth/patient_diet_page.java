@@ -30,7 +30,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class patient_diet_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        finish();
 
+    }
     // Initialize Database Stuff
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
