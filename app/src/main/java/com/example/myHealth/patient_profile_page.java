@@ -105,7 +105,7 @@ public class patient_profile_page extends AppCompatActivity {
     }
 
     public void onEditClick(View view) {
-        startActivity(new Intent(getApplicationContext(), empty_editProfile.class));
+        startActivity(new Intent(getApplicationContext(), clinic_edit_my_profile.class));
     }
 
     public void onResourcesClick(View view) {

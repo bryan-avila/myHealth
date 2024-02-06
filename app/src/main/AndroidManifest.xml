@@ -13,6 +13,9 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".clinic_view_patients_medical_records"
+            android:exported="false" />
+        <activity
             android:name=".patient_view_appointment_history"
             android:exported="false" />
         <activity
@@ -82,7 +85,7 @@
             android:name=".clinic_home_page"
             android:exported="false" />
         <activity
-            android:name=".empty_editProfile"
+            android:name=".clinic_edit_my_profile"
             android:exported="false" />
         <activity
             android:name=".empty_resourcesPage"

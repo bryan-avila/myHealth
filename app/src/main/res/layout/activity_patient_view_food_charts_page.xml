@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_final_app_theme"
     tools:context=".patient_view_food_charts_page">
 
     <!-- Top Elements -->
