@@ -7,6 +7,8 @@ public class PrescribedMedications implements Serializable {
     // Get Prescribed Medication info
     String dosageAmount;
 
+    String dosageUnits;
+
     String frequency;
 
     String medicationName;
@@ -18,10 +20,11 @@ public class PrescribedMedications implements Serializable {
     public PrescribedMedications() {
     }
 
-    public PrescribedMedications(String mName, String freq, String dosAmt, String clinicName, String clinicPhone) {
+    public PrescribedMedications(String mName, String freq, String dosAmt, String clinicName, String clinicPhone, String dosUnit) {
         this.medicationName = mName;
         this.frequency = freq;
         this.dosageAmount = dosAmt;
+        this.dosageUnits = dosUnit;
         this.clinicName = clinicName;
         this.clinicPhone = clinicPhone;
     }
@@ -40,6 +43,14 @@ public class PrescribedMedications implements Serializable {
 
     public void setDosageAmount(String dosAmt) {
         this.dosageAmount = dosAmt;
+    }
+
+    public String getDosageUnits() {
+        return dosageUnits;
+    }
+
+    public void setDosageUnits(String dosageUnits) {
+        this.dosageUnits = dosageUnits;
     }
 
     public String getFrequency() {

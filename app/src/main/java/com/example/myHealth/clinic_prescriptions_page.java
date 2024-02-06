@@ -65,6 +65,7 @@ public class clinic_prescriptions_page extends AppCompatActivity {
         // Set up strings the database can use
         String s_med_name = editTextmedicationName.getText().toString();
         String s_dosage_amt = editTextdosageAmt.getText().toString();
+        String s_dosage_unit = btn_frequency.getText().toString();
         String s_frequency = btn_frequency.getText().toString();
 
 
@@ -72,6 +73,7 @@ public class clinic_prescriptions_page extends AppCompatActivity {
         Map<String, Object> medicationInfo = new HashMap<>();
         medicationInfo.put("medicationName", s_med_name);
         medicationInfo.put("dosageAmount", s_dosage_amt);
+        medicationInfo.put("dosageUnits", s_dosage_unit); //-------------------------------------
         medicationInfo.put("medFrequency", s_frequency);
 
         // Add medical history data to the map

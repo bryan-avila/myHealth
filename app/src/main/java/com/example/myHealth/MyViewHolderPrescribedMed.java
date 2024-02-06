@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyViewHolderPrescribedMed extends RecyclerView.ViewHolder {
 
-    TextView medicationName, frequency, dosageAmount, clinicName, clinicPhone;
+    TextView medicationName, frequency, dosageAmount, dosageUnits, clinicName, clinicPhone;
 
     public MyViewHolderPrescribedMed(@NonNull View itemView) {
         super(itemView);
@@ -17,6 +17,7 @@ public class MyViewHolderPrescribedMed extends RecyclerView.ViewHolder {
         medicationName = itemView.findViewById(R.id.text_view_prescribed_med_name);
         frequency = itemView.findViewById(R.id.text_view_prescribed_frequency);
         dosageAmount = itemView.findViewById(R.id.text_view_prescribed_dosage);
+        dosageUnits = itemView.findViewById(R.id.text_view_prescribed_dosage_units);
         clinicName = itemView.findViewById(R.id.text_view_clinic_name);
         clinicPhone = itemView.findViewById(R.id.text_view_clinic_phone);
 
