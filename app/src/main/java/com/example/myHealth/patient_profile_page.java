@@ -47,9 +47,6 @@ public class patient_profile_page extends AppCompatActivity {
         lastnamePlaceholder = findViewById(R.id.lastnamePlaceholder);
         phonePlaceholder = findViewById(R.id.phonePlaceholder);
 
-        //String firstNameT = firstNameTitle.toString();
-
-
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -109,6 +106,10 @@ public class patient_profile_page extends AppCompatActivity {
 
     public void onEditClick(View view) {
         startActivity(new Intent(getApplicationContext(), empty_editProfile.class));
+    }
+
+    public void onResourcesClick(View view) {
+        startActivity(new Intent(getApplicationContext(), empty_resourcesPage.class));
     }
 
     public void onStart() {

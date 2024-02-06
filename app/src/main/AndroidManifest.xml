@@ -82,6 +82,9 @@
             android:name=".empty_editProfile"
             android:exported="false" />
         <activity
+            android:name=".empty_resourcesPage"
+            android:exported="false" />
+        <activity
             android:name=".patient_search_centers_visit_page"
             android:exported="false" />
         <activity
