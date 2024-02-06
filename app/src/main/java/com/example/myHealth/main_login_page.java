@@ -45,40 +45,44 @@ public class main_login_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
-                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener(main_login_page.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
+                // Check if Email or Password are empty
+                if (email.getText().toString().equals("") || password.getText().toString().equals("")) {
+                    Toast.makeText(main_login_page.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                            .addOnCompleteListener(main_login_page.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
 
-                                    // If they entered an email with clinic.com, then they must be a Clinic user. Send to clinic home page
-                                    if(user.getEmail().contains("@clinic.com"))
-                                    {
-                                        Intent intent = new Intent(main_login_page.this, clinic_home_page.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                        startActivity(intent);
-                                        finish(); // cannot press back
-                                    }
+                                        // If they entered an email with clinic.com, then they must be a Clinic user. Send to clinic home page
+                                        if (user.getEmail().contains("@clinic.com")) {
+                                            Intent intent = new Intent(main_login_page.this, clinic_home_page.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(intent);
+                                            finish(); // cannot press back
+                                        }
 
-                                    // Else, they must be a patient user. Send them to the patient home page
-                                    else {
-                                        Intent intent = new Intent(main_login_page.this, patient_home_page.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                        startActivity(intent);
-                                        finish(); // cannot press back
+                                        // Else, they must be a patient user. Send them to the patient home page
+                                        else {
+                                            Intent intent = new Intent(main_login_page.this, patient_home_page.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(intent);
+                                            finish(); // cannot press back
+                                        }
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Toast.makeText(main_login_page.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
                                     }
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(main_login_page.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
                                 }
-                            }
-                        });
-
+                            });
+                }
             }
         });
 
