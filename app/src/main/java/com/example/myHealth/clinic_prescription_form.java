@@ -223,7 +223,7 @@ public class clinic_prescription_form extends AppCompatActivity {
         Map<String, Object> medicationInfo = new HashMap<>();
         medicationInfo.put("medicationName", s_med_name);
         medicationInfo.put("dosageAmount", s_dosage_amt);
-        medicationInfo.put("dosageUnits", dosageUnits); // Get dosage units from the pop up----------------------------------
+        medicationInfo.put("dosageUnits", dosageUnits); // Get dosage units from the pop up
         medicationInfo.put("frequency", frequency); // Get frequency from the pop up
 
        // medicationInfo.put("intFrequency", integer_frequency); // Turn string frequency into an integer for notifications
