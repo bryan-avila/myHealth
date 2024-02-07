@@ -43,9 +43,11 @@ public class clinic_prescription_form extends AppCompatActivity {
     private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
     private ListenerRegistration clinicListener;
 
-    String dosageMeasurement;
+    String dosageUnits; // dosage from the pop up, make it global
 
     String frequency;  // Frequency from the pop up, make it global
+
+
 
 
 
@@ -74,7 +76,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             button_dosage = findViewById(R.id.button_med_dosage);
             button_dosage.setText("g");
 
-            dosageMeasurement = "g";
+            dosageUnits = "g";
             return true;
         }
 
@@ -84,7 +86,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             button_dosage = findViewById(R.id.button_med_dosage);
             button_dosage.setText("mg");
 
-            dosageMeasurement = "mg";
+            dosageUnits = "mg";
             return true;
         }
 
@@ -94,7 +96,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             button_dosage = findViewById(R.id.button_med_dosage);
             button_dosage.setText("mcg");
 
-            dosageMeasurement = "mcg";
+            dosageUnits = "mcg";
             return true;
         }
         else if(item.getItemId() == R.id.item_dosage_IU) {
@@ -103,7 +105,7 @@ public class clinic_prescription_form extends AppCompatActivity {
             button_dosage = findViewById(R.id.button_med_dosage);
             button_dosage.setText("IU");
 
-            dosageMeasurement = "IU";
+            dosageUnits = "IU";
             return true;
         }
 
@@ -221,6 +223,7 @@ public class clinic_prescription_form extends AppCompatActivity {
         Map<String, Object> medicationInfo = new HashMap<>();
         medicationInfo.put("medicationName", s_med_name);
         medicationInfo.put("dosageAmount", s_dosage_amt);
+        medicationInfo.put("dosageUnits", dosageUnits); // Get dosage units from the pop up----------------------------------
         medicationInfo.put("frequency", frequency); // Get frequency from the pop up
 
        // medicationInfo.put("intFrequency", integer_frequency); // Turn string frequency into an integer for notifications
