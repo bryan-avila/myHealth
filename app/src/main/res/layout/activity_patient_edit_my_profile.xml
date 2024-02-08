@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".patient_edit_my_profile">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- User Prompt -->
+    <TextView
+        android:id="@+id/text_view_change_phone_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Phone Number: "
+        android:textSize="30sp"
+        />
+
+    <!-- EditText that will be used for the Database -->
+    <EditText
+        android:id="@+id/edit_text_new_phone_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_change_phone_num"
+        android:layout_marginTop="10sp"
+        android:hint="Enter New Phone Number"
+        android:textSize="25sp"
+        android:background="@drawable/custom_searchview_outline"
+        />
+
+    <!-- Function for putting info into the database -->
+    <Button
+        android:id="@+id/button_submit_new_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text_new_phone_num"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10sp"
+        android:text="Make Changes"
+        android:textSize="23sp"
+        android:onClick="onPatMakeChangesClick"/>
+
+
+
+</RelativeLayout>
