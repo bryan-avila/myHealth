@@ -272,7 +272,12 @@ public class clinic_prescription_form extends AppCompatActivity {
             medDosage.requestFocus();
             medDosage.setError("FIELD CANNOT BE EMPTY");
             return false;
-        }  else {
+            //crashes app here
+        /*} else if (med_Dosage.matches("(?i)[a-zA-Z]+")) {
+            medDosage.requestFocus();
+            medDosage.setError("FIELD MUST BE AN INTEGER");
+            return false;*/
+        } else {
             return true;
         }
     }
