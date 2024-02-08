@@ -59,7 +59,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
                         android:layout_marginTop="50dp"
-                        android:background="@color/grey" />
+                        android:background="@color/purple" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"
