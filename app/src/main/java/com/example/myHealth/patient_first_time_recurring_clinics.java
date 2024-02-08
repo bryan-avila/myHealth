@@ -24,7 +24,7 @@ public class patient_first_time_recurring_clinics extends AppCompatActivity {
     public void onSkipRecurringButtonClick1(View view)
     {
         // Once they finish inputting diet, send them home
-        Intent intent = new Intent(patient_first_time_recurring_clinics.this, patient_home_page.class);
+        Intent intent = new Intent(patient_first_time_recurring_clinics.this, patient_search_centers_visit_page.class);
         startActivity(intent);
         finish(); // cannot press back
 
