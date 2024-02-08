@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".patient_diet_page"
+    tools:context=".patient_nutrition_page"
     android:background="@drawable/background_final_app_theme">
 
     <!-- Represents the logo layout -->
@@ -32,7 +32,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
             android:shadowDx="20"
             android:padding="5sp"
             android:text="Nutrition"
@@ -49,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_view_patient_nutrition_page_text"
         android:layout_centerInParent="true"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/text_view_nutrition_default_text"
@@ -73,7 +72,7 @@
         <View
             android:id="@+id/view_nutrition_info_background"
             android:layout_width="350sp"
-            android:layout_height="380sp"
+            android:layout_height="340sp"
             android:elevation="50sp" />
 
     </androidx.cardview.widget.CardView>
@@ -83,7 +82,7 @@
     <Button
         android:id="@+id/button_view_charts"
         android:layout_width="110sp"
-        android:layout_height="100sp"
+        android:layout_height="85sp"
         android:layout_below="@id/card_view_nutrition_info"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
@@ -100,7 +99,7 @@
         android:textStyle="bold"
         android:textSize="15sp"
         android:layout_width="110sp"
-        android:layout_height="100sp"
+        android:layout_height="85sp"
         android:backgroundTint="@color/purple"
         android:drawableBottom="@drawable/button_add_dark_gray"
         android:layout_centerHorizontal="true"
@@ -113,7 +112,7 @@
     <Button
         android:id="@+id/button_view_favorites"
         android:layout_width="110sp"
-        android:layout_height="100sp"
+        android:layout_height="85sp"
         android:layout_below="@id/card_view_nutrition_info"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
