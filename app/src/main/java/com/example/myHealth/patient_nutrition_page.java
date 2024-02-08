@@ -29,7 +29,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class patient_diet_page extends AppCompatActivity {
+public class patient_nutrition_page extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
@@ -53,7 +53,7 @@ public class patient_diet_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_diet_page);
+        setContentView(R.layout.activity_patient_nutrition_page);
 
         // Create and modify header to have date
         header_and_date = findViewById(R.id.text_view_patient_nutrition_page_text);
@@ -169,7 +169,7 @@ public class patient_diet_page extends AppCompatActivity {
                 // Error checking
                 if(error != null)
                 {
-                    Toast.makeText(patient_diet_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(patient_nutrition_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
                     return;
                 }
 

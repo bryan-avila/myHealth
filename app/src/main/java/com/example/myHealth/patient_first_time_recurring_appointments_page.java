@@ -43,7 +43,7 @@ public class patient_first_time_recurring_appointments_page extends AppCompatAct
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(patient_first_time_recurring_appointments_page.this, patient_diet_page.class));
+                    startActivity(new Intent(patient_first_time_recurring_appointments_page.this, patient_nutrition_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
