@@ -111,7 +111,7 @@ public class patient_home_page extends AppCompatActivity {
                     startActivity(a);
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    Intent a = new Intent(getApplicationContext(), patient_diet_page.class);
+                    Intent a = new Intent(getApplicationContext(), patient_nutrition_page.class);
                     a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(a);
                     return true;

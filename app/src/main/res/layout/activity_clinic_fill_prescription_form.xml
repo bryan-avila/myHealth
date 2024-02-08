@@ -66,7 +66,9 @@
                     android:hint="GENERIC/BRAND NAME"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:maxLines="1"/>
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:singleLine="true"/>
             </LinearLayout>
 
 
@@ -95,7 +97,9 @@
                     android:hint="ENTER DOSAGE"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:maxLines="1"/>
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:singleLine="true"/>
 
                 <Button
                     android:layout_width="wrap_content"

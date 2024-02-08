@@ -58,7 +58,7 @@ public class patient_first_time_recurring_clinics extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_nutrition_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {

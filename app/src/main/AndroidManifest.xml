@@ -109,7 +109,7 @@
             android:name=".patient_medical_records_page"
             android:exported="false" />
         <activity
-            android:name=".patient_diet_page"
+            android:name=".patient_nutrition_page"
             android:exported="false" />
         <activity
             android:name=".patient_appointments_view"
