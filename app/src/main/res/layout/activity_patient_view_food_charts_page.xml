@@ -42,15 +42,21 @@
         android:textColor="@color/purple"/>
 
     <!-- Middle Elements -->
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/text_view_charts_todays_date"/>
 
-    <View
-        android:layout_width="350sp"
-        android:layout_height="400sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="195sp"
-        android:background="@drawable/image_concept_food_charts"
-        android:elevation="20sp"
-        />
+<!--    <View-->
+<!--        android:layout_width="350sp"-->
+<!--        android:layout_height="400sp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="195sp"-->
+<!--        android:background="@drawable/image_concept_food_charts"-->
+<!--        android:elevation="20sp"-->
+<!--        />-->
 
     <!-- Controls the nav bar at the very bottom -->
 
