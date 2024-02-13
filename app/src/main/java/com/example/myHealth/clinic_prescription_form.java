@@ -177,6 +177,8 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         String string_med_Name = medName.getText().toString();
         String string_med_Dosage = medDosage.getText().toString();
+        //String string_dosage_units = dosageUnits.toString();
+        //String string_frequency = frequency.toString();
 
         boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage);
 
@@ -272,12 +274,17 @@ public class clinic_prescription_form extends AppCompatActivity {
             medDosage.requestFocus();
             medDosage.setError("FIELD CANNOT BE EMPTY");
             return false;
-            //crashes app here
-        /*} else if (med_Dosage.matches("(?i)[a-zA-Z]+")) {
+            //crashes here
+        } /*else if (dosageUnits.length() == 0) {
             medDosage.requestFocus();
             medDosage.setError("FIELD MUST BE AN INTEGER");
-            return false;*/
-        } else {
+            return false;
+        }
+        else if (frequency.length() == 0) {
+            medDosage.requestFocus();
+            medDosage.setError("FIELD MUST BE AN INTEGER");
+            return false;
+        }*/ else {
             return true;
         }
     }
