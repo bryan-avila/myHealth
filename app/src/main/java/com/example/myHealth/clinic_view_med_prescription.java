@@ -16,7 +16,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class clinic_med_hist_page extends AppCompatActivity {
+public class clinic_view_med_prescription extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private SearchView searchView;
@@ -25,7 +25,7 @@ public class clinic_med_hist_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clinic_view_med_hist);
+        setContentView(R.layout.activity_clinic_view_med_prescription);
 
         //Find id for search bar
         searchView = findViewById(R.id.searchViewForPatients);
@@ -78,7 +78,7 @@ public class clinic_med_hist_page extends AppCompatActivity {
 
                     String p_id = patients.getPat_ID().toString();
                     // Send them to the prescription form after clicking on a patients name using this onItemClickListener
-                    Intent intent = new Intent(clinic_med_hist_page.this, clinic_prescription_form.class);
+                    Intent intent = new Intent(clinic_view_med_prescription.this, clinic_prescription_form.class);
                     // Send extra info to know where to send the medication information
                     intent.putExtra("patient",p_id);
                     startActivity(intent);
@@ -108,7 +108,7 @@ public class clinic_med_hist_page extends AppCompatActivity {
 
 
             //Below implementation work but messes up with prescribing medication to user
-            /*yPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
+            /*MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
             RecyclerView recyclerViewFiltered = findViewById(R.id.recycler_view_patients);
             recyclerViewFiltered.setLayoutManager(new LinearLayoutManager(this));
             recyclerViewFiltered.setAdapter(newPatientAdapter); //this overrides the previous .setAdapter

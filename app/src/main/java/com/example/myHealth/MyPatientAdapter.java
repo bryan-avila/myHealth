@@ -18,12 +18,12 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> 
     Context context;
     List<Patient> patients;
 
-    public List<Patient> getPatientsFilter;
+    //public List<Patient> getPatientsFilter; for second implementation of filtering
     private OnItemClickListener mListener;
 
     public MyPatientAdapter(Context context, List<Patient> patients) {
         this.context = context;
-        this.getPatientsFilter = patients;
+        //this.getPatientsFilter = patients; for second implementation of filtering
         this.patients = patients;
     }
     //----------------------------------------------------------------------------------------------
@@ -70,6 +70,7 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> 
     }
 
     //----------------------------------------------------------------------------------------------
+    //For second type of implementation of filtering
     /*@Override
     public Filter getFilter() {
         Filter filter = new Filter() {

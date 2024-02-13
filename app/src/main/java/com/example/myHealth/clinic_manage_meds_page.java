@@ -102,6 +102,7 @@ public class clinic_manage_meds_page extends AppCompatActivity {
 
 
     //----------------------------------------------------------------------------------------------
+    //Second way of implementing filtering
     /*@Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int idSearch = item.getItemId();

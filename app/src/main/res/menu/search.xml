@@ -6,7 +6,7 @@
         android:title="Search View"
         android:icon="@drawable/icon_search"
         app:showAsAction="always"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
+    <!--app:actionViewClass="androidx.appcompat.widget.SearchView" goes insided above-->
 
 </menu>

@@ -6,17 +6,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clinic_med_hist_page"
+    tools:context=".clinic_view_med_prescription"
     android:background="@drawable/background_final_app_theme">
 
-    <SearchView
+    <android.widget.SearchView
         android:id="@+id/searchViewForPatients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/custom_searchview_outline"
         android:queryHint="Search Patient"
-        android:iconifiedByDefault="false"/>
+        android:iconifiedByDefault="false">
+
+    </android.widget.SearchView>
 
     <RelativeLayout
         android:layout_width="match_parent"

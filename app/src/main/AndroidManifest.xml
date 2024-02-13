@@ -67,7 +67,7 @@
             android:name=".clinic_prescriptions_page"
             android:exported="false" />
         <activity
-            android:name=".clinic_med_hist_page"
+            android:name=".clinic_view_med_prescription"
             android:exported="false" />
         <activity
             android:name=".resources_page_clinic"

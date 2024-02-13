@@ -10,16 +10,15 @@
     android:background="@drawable/background_final_app_theme">
 
 
-
-    <SearchView
+    <android.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/custom_searchview_outline"
         android:queryHint="Search Patient"
-        android:iconifiedByDefault="false"/>
-
+        android:iconifiedByDefault="false">
+    </android.widget.SearchView>
 
 
     <RelativeLayout
