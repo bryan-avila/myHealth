@@ -17,7 +17,8 @@ import java.util.List;
 
 public class clinic_view_select_patient_to_manage_meds extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private SearchView searchView;
+    private SearchView filterView;
+    MyPatientAdapter myPatAdapater;
     private List<Patient> patientsList = null;
 
     @Override
@@ -50,7 +51,7 @@ public class clinic_view_select_patient_to_manage_meds extends AppCompatActivity
                 }
             }
 
-            MyPatientAdapter myPatAdapater = new MyPatientAdapter(getApplicationContext(), patientsList);
+            myPatAdapater = new MyPatientAdapter(getApplicationContext(), patientsList);
             recyclerView.setAdapter(myPatAdapater);
 
             // Make Patient's Clickable
@@ -67,6 +68,35 @@ public class clinic_view_select_patient_to_manage_meds extends AppCompatActivity
                 }
             });
 
+        });
+
+        // Get searchview from activity_clinic_view_select_patient_to_manage_meds
+        filterView = findViewById(R.id.search_view_find_patient_to_manage_meds);
+        filterView.clearFocus();
+        filterView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myPatAdapater.getFilter().filter(newText); // Filter based off the text in the search view
+
+                // Make the filtered list clickable
+                myPatAdapater.setOnItemClickListener(new MyPatientAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, Patient patients) {
+
+                        String p_id = patients.getPat_ID().toString();
+                        // Send them to clinic_prescribed_meds_page.java
+                        Intent intent = new Intent(clinic_view_select_patient_to_manage_meds.this, clinic_prescribed_meds_page.class);
+                        // Send extra info to know where to send the medication information
+                        intent.putExtra("patient",p_id);
+                        startActivity(intent);
+                    }
+                });
+                return true;
+            }
         });
     }
 
