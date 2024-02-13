@@ -59,12 +59,13 @@ public class clinic_medical_records_page extends AppCompatActivity {
     }
 
     public void onMedicationsPrescriptionsClick(View view) {
-        //will need to show current patients to prescribe meds
+        // Send to Clinic's View of Patient Names to select and prescribe meds to
         startActivity(new Intent(getApplicationContext(), clinic_view_med_prescription.class));
     }
 
+    // TO DO: Causes Crashing. Likely due to not getting the appropiate bundle
     public void onManageMedicationsClick(View view) {
-        startActivity(new Intent(getApplicationContext(), clinic_manage_meds_page.class));
+        startActivity(new Intent(getApplicationContext(), clinic_view_select_patient_to_manage_meds.class));
     }
 
 }
