@@ -18,6 +18,7 @@
         android:background="@drawable/custom_searchview_outline"
         android:queryHint="Search Patient"
         android:iconifiedByDefault="false">
+
     </android.widget.SearchView>
 
 

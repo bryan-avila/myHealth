@@ -19,32 +19,19 @@ import java.util.List;
 public class clinic_view_med_prescription extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private SearchView searchView;
+
+    // Create global variables for searching and click Patient items
     private List<Patient> patientsList = null;
+    RecyclerView recyclerView;
+    SearchView filterView;
+    MyPatientAdapter myPatAdapater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_view_med_prescription);
-
-        //Find id for search bar
-        searchView = findViewById(R.id.searchViewForPatients);
-        searchView.clearFocus(); //removes cursor from search view
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                //Here we are implementing the filter logic
-                filterList(newText);
-                return true;
-            }
-        });
         // Set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recycler_view_patients);
+        recyclerView = findViewById(R.id.recycler_view_patients);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -64,12 +51,12 @@ public class clinic_view_med_prescription extends AppCompatActivity {
                     Patient p = document.toObject(Patient.class);
                     String patient_id = document.getId(); // Get patient userID
                     p.setPat_ID(patient_id); // Set patient id
-                    patientsList.add(p);
+                    patientsList.add(p); // Add patient to the patientList
                 }
             }
 
-            MyPatientAdapter myPatAdapater = new MyPatientAdapter(getApplicationContext(), patientsList);
-            recyclerView.setAdapter(myPatAdapater);
+            myPatAdapater = new MyPatientAdapter(getApplicationContext(), patientsList); // Set the patientList to the Adapter
+            recyclerView.setAdapter(myPatAdapater); // Set adapter to the RecyclerView, which updates the screen with items
 
             // Make Patient's Clickable
             myPatAdapater.setOnItemClickListener(new MyPatientAdapter.OnItemClickListener() {
@@ -86,34 +73,35 @@ public class clinic_view_med_prescription extends AppCompatActivity {
             });
 
         });
-    }
 
-
-    //Filtering does not work
-    private void filterList(String text) {
-        List<Patient> filteredList = new ArrayList<>();
-        for (Patient p : patientsList) {
-            if (p.getfirstName().toLowerCase().contains(text.toLowerCase()) || p.getlastName().toLowerCase().contains((text.toLowerCase()))) {
-                filteredList.add(p);
+        // Get searchview from activity_clinic_view_med_prescription.xml
+        filterView = findViewById(R.id.search_view_select_patient_to_prescribe_med);
+        filterView.clearFocus();
+        filterView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
             }
-        }
-        if (filteredList.isEmpty()) {
-            Toast.makeText(this,"Patient not found", Toast.LENGTH_SHORT).show();
-        } else {
-            //Send data to the adapter class (look at MyPatientAdapter class
-            //Call adapter
-            //This line not working with adapter
-            /*MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
-            newPatientAdapter.filterList(filteredList);*/
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myPatAdapater.getFilter().filter(newText); // Filter based off the text in the search view
 
+                // Make the filtered list clickable
+                myPatAdapater.setOnItemClickListener(new MyPatientAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, Patient patients) {
 
-            //Below implementation work but messes up with prescribing medication to user
-            /*MyPatientAdapter newPatientAdapter = new MyPatientAdapter(getApplicationContext(), patientsList);
-            RecyclerView recyclerViewFiltered = findViewById(R.id.recycler_view_patients);
-            recyclerViewFiltered.setLayoutManager(new LinearLayoutManager(this));
-            recyclerViewFiltered.setAdapter(newPatientAdapter); //this overrides the previous .setAdapter
-            newPatientAdapter.filterList(filteredList);*/
-        }
+                        String p_id = patients.getPat_ID().toString();
+                        // Send them to the prescription form after clicking on a patients name using this onItemClickListener
+                        Intent intent = new Intent(clinic_view_med_prescription.this, clinic_prescription_form.class);
+                        // Send extra info to know where to send the medication information
+                        intent.putExtra("patient",p_id);
+                        startActivity(intent);
+                    }
+                });
+                return true;
+            }
+        });
     }
 
 }

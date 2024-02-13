@@ -13,28 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 // MyAdapter.java
-public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> {
+public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> implements Filterable {
 
     Context context;
     List<Patient> patients;
-
-    //public List<Patient> getPatientsFilter; for second implementation of filtering
+    List<Patient> patientsFull; // Create another list to act as a copy
     private OnItemClickListener mListener;
 
     public MyPatientAdapter(Context context, List<Patient> patients) {
         this.context = context;
-        //this.getPatientsFilter = patients; for second implementation of filtering
         this.patients = patients;
+        patientsFull = new ArrayList<>(patients); // A copy of the patients list
     }
-    //----------------------------------------------------------------------------------------------
-    //For search bar functionality
-    public void filterList(List<Patient> filteredList) {
-        this.patients = filteredList;
-        notifyDataSetChanged();
-    }
-    //----------------------------------------------------------------------------------------------
-
-
 
     @NonNull
     @Override
@@ -69,41 +59,48 @@ public class MyPatientAdapter extends RecyclerView.Adapter<MyViewHolderPatient> 
         mListener = listener;
     }
 
-    //----------------------------------------------------------------------------------------------
-    //For second type of implementation of filtering
-    /*@Override
+    //--------- FILTER LOGIC----------
+    // https://www.youtube.com/watch?v=sJ-Z9G0SDhc
+
+    @Override
     public Filter getFilter() {
-        Filter filter = new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                FilterResults filterResults = new FilterResults();
-                if (constraint == null || constraint.length() == 0) {
-                    filterResults.values = getPatientsFilter;
-                    filterResults.count = getPatientsFilter.size();
-                } else {
-                    String searchString = constraint.toString().toLowerCase();
-                    List<Patient> patientList = new ArrayList<>();
-                    for (Patient patient: getPatientsFilter) {
-                        if (patient.getfirstName().toLowerCase().contains(searchString) || patient.getlastName().toLowerCase().contains(searchString) || patient.getEmail().toLowerCase().contains(searchString) || patient.getPhone().toLowerCase().contains(searchString)) {
-                            patientList.add(patient);
-                        }
+        return pFilter; // this returns the Filter object directly below, named pFilter
+    }
+
+    private Filter pFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Patient> filteredList = new ArrayList<>(); // Create New List to act as the filtered one
+
+            if(constraint == null || constraint.length() == 0)
+            {
+                filteredList.addAll(patientsFull); // If search is zero or null, return the list when it has all items
+            }
+            else{
+                // Else, for each patient, check if the filterPattern that the user entered is equal to the firstName of the patient
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for(Patient patient : patientsFull)
+                {
+                    if(patient.getfirstName().toLowerCase().contains(filterPattern))
+                    {
+                        filteredList.add(patient); // Add that patient to the filtered list
                     }
-                    filterResults.values = patientList;
-                    filterResults.count = patientList.size();
                 }
-                return filterResults;
             }
 
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                patients = (List<Patient>)results.values;
-                notifyDataSetChanged();
+            // Add it to results or something idk
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
 
-            }
-        };
-        return filter;
-    }*/
-    //----------------------------------------------------------------------------------------------
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults results) {
+            patients.clear(); // Remove any items in it
+            patients.addAll((List)results.values); // Update patients with the new results
+            notifyDataSetChanged();
+        }
+    };
 
     public interface OnItemClickListener {
         void onItemClick(int position, Patient patient);
