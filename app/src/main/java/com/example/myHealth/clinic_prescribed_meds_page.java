@@ -26,7 +26,7 @@ public class clinic_prescribed_meds_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_view_prescribed_meds);
 
-        // Obtain information from clinic_med_hist_page.java
+        // Obtain information from clinic_view_select_patient_to_manage_meds.java
         Bundle bundle = getIntent().getExtras();
         String patientId = bundle.getString("patient");
 
