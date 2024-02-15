@@ -26,6 +26,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
 public class profile_page_clinic extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
+        finish();
+
+    }
 
     TextView clinicEmailPlaceholder, clinicNamePlaceholder, clinicLocationPlaceholder, clinicPhonePlaceholder;
     FirebaseFirestore db = FirebaseFirestore.getInstance();

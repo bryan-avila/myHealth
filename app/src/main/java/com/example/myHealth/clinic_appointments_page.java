@@ -23,6 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class clinic_appointments_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
+        finish();
+
+    }
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
