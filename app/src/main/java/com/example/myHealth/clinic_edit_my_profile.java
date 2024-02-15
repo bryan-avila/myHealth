@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,41 +45,47 @@ public class clinic_edit_my_profile extends AppCompatActivity {
         finishHour = findViewById(R.id.edit_text_end_hours_operation);
         numofMachines = findViewById(R.id.edit_text_num_of_machines);
 
-        // Set user data to strings to pass to Firebase
-        String sHour = startHour.getText().toString();
-        int intsHour=Integer.parseInt(sHour);
-        String fHour = finishHour.getText().toString();
-        int intfHour=(Integer.parseInt(fHour) + 12);
-        String numOfM = numofMachines.getText().toString();
-        int intnumOfM=Integer.parseInt(numOfM);
+        if (startHour.getText().toString().equals("") ||
+                finishHour.getText().toString().equals("") ||
+                    numofMachines.getText().toString().equals("")) {
+            Toast.makeText(clinic_edit_my_profile.this, "Error: Field(s) are blank.", Toast.LENGTH_SHORT).show();
+        } else {
+            // Set user data to strings to pass to Firebase
+            String sHour = startHour.getText().toString();
+            int intsHour = Integer.parseInt(sHour);
+            String fHour = finishHour.getText().toString();
+            int intfHour = (Integer.parseInt(fHour) + 12);
+            String numOfM = numofMachines.getText().toString();
+            int intnumOfM = Integer.parseInt(numOfM);
 
-        // add user data to hashmap
-        Map<String, Object> clinicInfo = new HashMap<>();
-        clinicInfo.put("startHour", intsHour);
-        clinicInfo.put("closeHour", intfHour);
-        clinicInfo.put("numOfMachines", intnumOfM);
+            // add user data to hashmap
+            Map<String, Object> clinicInfo = new HashMap<>();
+            clinicInfo.put("startHour", intsHour);
+            clinicInfo.put("closeHour", intfHour);
+            clinicInfo.put("numOfMachines", intnumOfM);
 
 
-        // Add the data to the firebase
-        clinicRef.update(clinicInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        // Handle success
-                        Log.d(TAG, "Added clinic info!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Handle failure
-                        Log.w(TAG, "Error adding clinc info", e);
-                    }
-                });
+            // Add the data to the firebase
+            clinicRef.update(clinicInfo)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // Handle success
+                            Log.d(TAG, "Added clinic info!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Handle failure
+                            Log.w(TAG, "Error adding clinic info", e);
+                        }
+                    });
 
-        // Send to clinic home page
-        Intent intent = new Intent(clinic_edit_my_profile.this, clinic_home_page.class);
-        startActivity(intent);
-        finish(); // cannot go back
+            // Send to clinic home page
+            Intent intent = new Intent(clinic_edit_my_profile.this, clinic_home_page.class);
+            startActivity(intent);
+            finish(); // cannot go back
+        }
     }
 }
