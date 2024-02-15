@@ -88,7 +88,7 @@ public class pick_appointment_time extends AppCompatActivity {
                 double newtime = timeconverter.convertToDecimal(startTime);
 
                 appointmentmanager.makeSingleAppointment(clinic.getID(), date, newtime, true);
-                Toast.makeText(pick_appointment_time.this, "appointment made for: " + time + " on: " + selectedDate, Toast.LENGTH_LONG).show();
+                Toast.makeText(pick_appointment_time.this, "Appointment made for: " + time + " on: " + selectedDate, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(pick_appointment_time.this, patient_home_page.class);
                 startActivity(intent);

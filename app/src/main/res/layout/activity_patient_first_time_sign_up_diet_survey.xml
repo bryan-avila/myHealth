@@ -12,7 +12,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:id="@+id/logolayout_nutrient_intake">
 
         <ImageView
             android:layout_width="match_parent"
@@ -31,20 +32,20 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_toLeftOf="@id/edit_text_phosphorus"
-        android:padding="5dp"
         android:text="Phosphorus:"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        android:layout_marginLeft="10dp"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_text_phosphorus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:hint="Phosporus (mg)"
         android:inputType="number"
-        android:maxLines="1"
         android:maxLength="5"
-        android:layout_centerInParent="true"/>
+        android:maxLines="1" />
 
     <TextView
         android:id="@+id/text_view_phos_mg"
@@ -66,11 +67,11 @@
         android:layout_marginTop="18dp"
         android:layout_marginRight="0dp"
         android:layout_toLeftOf="@id/edit_text_potassium"
-        android:padding="5dp"
         android:paddingTop="10dp"
         android:text="Potassium:"
+        android:layout_marginLeft="10dp"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_text_potassium"
@@ -102,14 +103,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_view_potas"
         android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="18dp"
         android:layout_marginRight="0dp"
         android:layout_toLeftOf="@id/edit_text_protein"
-        android:padding="5dp"
         android:paddingTop="10dp"
         android:text="Protein:"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_text_protein"
@@ -142,15 +143,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_view_prot"
         android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="18dp"
         android:layout_marginRight="0dp"
         android:layout_toLeftOf="@id/edit_text_sodium"
-        android:padding="5dp"
         android:paddingTop="10dp"
         android:text="Sodium:"
         android:textSize="18sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_text_sodium"
@@ -162,7 +162,7 @@
         android:maxLength="5"
         android:layout_below="@id/edit_text_protein"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -186,11 +186,11 @@
         android:layout_marginTop="18dp"
         android:layout_marginRight="0dp"
         android:layout_toLeftOf="@id/edit_text_water"
-        android:padding="5dp"
+        android:layout_marginLeft="10dp"
         android:paddingTop="10dp"
         android:text="Water:"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_text_water"
@@ -202,7 +202,7 @@
         android:maxLength="5"
         android:layout_below="@id/edit_text_sodium"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -226,11 +226,11 @@
         android:layout_marginTop="18dp"
         android:layout_marginRight="0dp"
         android:layout_toLeftOf="@id/edit_text_calories"
-        android:padding="5dp"
+        android:layout_marginLeft="10dp"
         android:paddingTop="10dp"
         android:text="Calories:"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_text_calories"
@@ -268,6 +268,7 @@
         android:layout_below="@id/edit_text_calories"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginRight="30dp"
         android:backgroundTint="@color/purple"
         android:onClick="onDietButtonClick"
@@ -278,29 +279,29 @@
     <TextView
         android:id="@+id/text_view_stage_4_warning"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@id/edit_text_phosphorus"
         android:layout_centerInParent="true"
-        android:layout_marginTop="110dp"
-        android:layout_marginBottom="100dp"
+        android:layout_below="@id/logolayout_nutrient_intake"
         android:fontFamily="sans-serif"
         android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 4 Kidney Disease and the appropriate nutrition."
         android:textColor="@color/redish"
-        android:textSize="20sp"
+        android:layout_marginStart="30dp"
+        android:textSize="15sp"
         android:visibility="invisible" />
 
     <TextView
         android:id="@+id/text_view_stage_5_warning"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@id/edit_text_phosphorus"
+        android:layout_below="@id/logolayout_nutrient_intake"
         android:layout_centerInParent="true"
-        android:layout_marginTop="110dp"
-        android:layout_marginBottom="100dp"
         android:fontFamily="sans-serif"
         android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 5 Kidney Disease and the appropriate nutrition."
         android:textColor="@color/redish"
-        android:textSize="20sp"
+        android:textSize="15sp"
+        android:layout_marginStart="30dp"
         android:visibility="invisible" />
 
     <Button
@@ -309,13 +310,13 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/edit_text_phosphorus"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="50sp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/purple"
         android:clickable="false"
         android:elevation="8dp"
         android:onClick="onAutoFillClick"
         android:text="Auto Fill"
-        android:visibility="visible"
-        android:backgroundTint="@color/purple"/>
+        android:visibility="visible" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -325,6 +326,7 @@
         android:text="Nutrient Intake"
         android:textSize="23sp"
         android:textStyle="bold" />
+
     <!--
     <TextView
         android:id="@+id/text_view_diet_message"
@@ -338,6 +340,4 @@
         android:textSize="17sp"
         android:visibility="visible" />
         -->
-
-
 </RelativeLayout>

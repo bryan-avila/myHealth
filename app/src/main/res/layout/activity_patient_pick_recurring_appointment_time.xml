@@ -43,8 +43,9 @@
                         android:gravity="center"
                         android:text="Clinic Name"
                         android:textColor="@color/purple"
-                        android:textSize="25sp"
-                        android:textStyle="bold" />
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"/>
                     <TextView
                         android:id="@+id/DayOfWeek"
                         android:layout_width="match_parent"

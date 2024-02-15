@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".clinic_view_select_patient_to_manage_meds">
 
-    <SearchView
+    <android.widget.SearchView
         android:id="@+id/search_view_find_patient_to_manage_meds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
