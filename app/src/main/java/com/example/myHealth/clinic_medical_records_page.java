@@ -63,8 +63,8 @@ public class clinic_medical_records_page extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), clinic_view_med_prescription.class));
     }
 
-    // TO DO: Causes Crashing. Likely due to not getting the appropiate bundle
     public void onManageMedicationsClick(View view) {
+        // Send to them to a page that has a RecyclerView 
         startActivity(new Intent(getApplicationContext(), clinic_view_select_patient_to_manage_meds.class));
     }
 
