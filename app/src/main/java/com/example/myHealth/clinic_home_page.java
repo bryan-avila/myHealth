@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -97,16 +98,17 @@ public class clinic_home_page extends AppCompatActivity {
             }
         });
 
-        // Display current date by using clinic specific date R.id
-        dateFormat = (TextView) findViewById(R.id.text_view_clinic_home_page_date);
+        // Display current date
+        dateFormat = (TextView) findViewById(R.id.date);
 
         String date;
         Calendar calendar;
         SimpleDateFormat simpleDateFormat;
         calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("'Today is': MMMM dd, yyyy");
+        simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy");
         date = simpleDateFormat.format(calendar.getTime()).toString();
         dateFormat.setText(date);
+        dateFormat.setPaintFlags(dateFormat.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
     }
 

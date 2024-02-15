@@ -33,6 +33,24 @@
         app:itemIconTint="@color/bottom_nav_menu_icons_color"
         app:itemTextColor="@color/lightpurple"/>
 
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="29dp"
+        android:text="(date)"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/icon_notifs"
+        android:layout_marginLeft="327dp"
+        android:layout_marginTop="18dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_home_page_clinic"
@@ -58,25 +76,12 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/purple"
-                android:layout_marginTop="18dp"
-                android:layout_marginBottom="15sp"/>
-
-            <TextView
-                android:id="@+id/text_view_clinic_home_page_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_view_dashboard_clinic"
-                android:layout_centerHorizontal="true"
-                android:text="(date)"
-                android:textColor="@color/purple"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="15sp"/>
+                android:layout_marginTop="20dp"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:layout_marginTop="115dp"
+                android:layout_marginTop="72dp"
                 android:background="@color/purple" />
 
             <TextView
@@ -84,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="140dp"
+                android:layout_marginTop="90dp"
                 android:text="Dialysis Machines Count:"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -96,7 +101,7 @@
                 android:text="(number of machines)"
                 android:id="@+id/text_view_clinic_num_of_machines"
                 android:textSize="23sp"
-                android:layout_marginTop="190sp"
+                android:layout_marginTop="130sp"
                 />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
