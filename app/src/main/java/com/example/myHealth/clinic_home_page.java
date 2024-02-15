@@ -2,8 +2,10 @@ package com.example.myHealth;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -36,7 +38,21 @@ public class clinic_home_page extends AppCompatActivity {
     // Get the clinic information from the database
     private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
     private ListenerRegistration clinicListener;
-
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("❌ Closing App")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                        homeIntent.addCategory( Intent.CATEGORY_HOME );
+                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(homeIntent);
+                        System.exit(1);
+                    }
+                }).create().show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,22 +71,26 @@ public class clinic_home_page extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_appointments_page.class));
-                    finish();
+                    Intent a = new Intent(getApplicationContext(), clinic_appointments_page.class);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(a);
                     return true;
                 } else if (id == R.id.homeIdCLinic) {
                     return true;
                 } else if (id == R.id.medicalHistIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
-                    finish();
+                    Intent a = new Intent(getApplicationContext(), clinic_medical_records_page.class);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(a);
                     return true;
                 } else if (id == R.id.resourcesIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), resources_page_clinic.class));
-                    finish();
+                    Intent a = new Intent(getApplicationContext(), resources_page_clinic.class);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(a);
                     return true;
                 } else if (id == R.id.profileIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), profile_page_clinic.class));
-                    finish();
+                    Intent a = new Intent(getApplicationContext(), profile_page_clinic.class);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(a);
                     return true;
                 }
                 return false;

@@ -12,6 +12,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class clinic_medical_records_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
+        finish();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
