@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -45,6 +46,7 @@ public class patient_view_food_charts_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_food_charts_page);
 
+        // ------- BAR CHART SET UP ---------
             // initializing variable for bar chart.
             barChart = findViewById(R.id.chart);
 
@@ -52,7 +54,7 @@ public class patient_view_food_charts_page extends AppCompatActivity {
             getBarEntries();
 
             // creating a new bar data set.
-            barDataSet = new BarDataSet(barEntriesArrayList, "Geeks for Geeks");
+            barDataSet = new BarDataSet(barEntriesArrayList, "Nutrients");
 
             // creating a new bar data and
             // passing our bar data set.
@@ -62,8 +64,10 @@ public class patient_view_food_charts_page extends AppCompatActivity {
             // to our bar chart.
             barChart.setData(barData);
 
+            barData.setBarWidth(0.75f);
+
             // adding color to our bar data set.
-            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+            barDataSet.setColors(getResources().getColor(R.color.purple));
 
             // setting text color.
             barDataSet.setValueTextColor(Color.BLACK);
@@ -130,11 +134,11 @@ public class patient_view_food_charts_page extends AppCompatActivity {
 
         // adding new entry to our array list with bar
         // entry and passing x and y axis value to it. 
-        barEntriesArrayList.add(new BarEntry(1f, 4));
-        barEntriesArrayList.add(new BarEntry(2f, 6));
-        barEntriesArrayList.add(new BarEntry(3f, 8));
-        barEntriesArrayList.add(new BarEntry(4f, 2));
-        barEntriesArrayList.add(new BarEntry(5f, 4));
-        barEntriesArrayList.add(new BarEntry(6f, 1));
+        barEntriesArrayList.add(new BarEntry(1f, 2000)); // X value controls the order of appearance in the bar chart
+        barEntriesArrayList.add(new BarEntry(2f, 1800)); // y value controls how highh the bar chart goes
+        barEntriesArrayList.add(new BarEntry(3f, 1500));
+        barEntriesArrayList.add(new BarEntry(4f, 1700));
+        barEntriesArrayList.add(new BarEntry(5f, 1600));
+        barEntriesArrayList.add(new BarEntry(6f, 2000)); // th
     }
 }

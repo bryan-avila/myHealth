@@ -35,13 +35,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What are your new hours of operation?"
+            android:text="New hours of operation:"
             android:textColor="@color/purple"
-            android:textSize="25sp"
+            android:textSize="29sp"
             android:textStyle="bold"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginLeft="19dp"
             />
 
         <EditText
@@ -104,10 +103,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What is the new count of dialysis machines?"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="New count of dialysis machines:"
             android:textColor="@color/purple"
-            android:textSize="25sp"
-            android:layout_marginTop="15dp"
+            android:textSize="29sp"
+            android:layout_marginTop="16dp"
             android:textStyle="bold"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -123,7 +124,7 @@
             android:inputType="number"
             android:id="@+id/edit_text_num_of_machines"
             android:layout_marginTop="90dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="75dp"
             android:layout_marginBottom="15dp"
             />
 

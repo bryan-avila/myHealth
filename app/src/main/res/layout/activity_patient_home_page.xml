@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
 
-
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,9 +32,6 @@
         app:itemRippleColor="@color/lightpurple"
         app:itemIconTint="@color/bottom_nav_menu_icons_color"
         app:itemTextColor="@color/lightpurple"/>
-
-
-
 
     <TextView
         android:id="@+id/date"
