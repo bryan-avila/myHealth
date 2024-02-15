@@ -159,7 +159,7 @@ public class clinic_home_page extends AppCompatActivity {
                         String user_firstname = documentSnapshot.get("clinicName").toString();
                         welcome.setText(greeting + user_firstname + ".");
                      String cNumOfMachines = documentSnapshot.get("numOfMachines").toString();
-                     clinicNumOfMachines.setText(cNumOfMachines + " machines available for use");
+                     clinicNumOfMachines.setText(cNumOfMachines + " machines available for use.");
 
 
                 }
