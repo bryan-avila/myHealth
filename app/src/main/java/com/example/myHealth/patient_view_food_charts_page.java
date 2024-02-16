@@ -13,7 +13,9 @@ import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.github.mikephil.charting.charts.BarChart;
@@ -26,7 +28,10 @@ import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 public class patient_view_food_charts_page extends AppCompatActivity {
 
@@ -41,6 +46,8 @@ public class patient_view_food_charts_page extends AppCompatActivity {
 
     // array list for storing entries.
     ArrayList barEntriesArrayList;
+
+    private List<String> xValues = Arrays.asList("Phosphorus", "Potassium", "Protein");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +56,14 @@ public class patient_view_food_charts_page extends AppCompatActivity {
         // ------- BAR CHART SET UP ---------
             // initializing variable for bar chart.
             barChart = findViewById(R.id.chart);
+            barChart.getAxisLeft().setDrawLabels(false);
 
+            // Control the Left Y Axis Line
+            YAxis y = barChart.getAxisLeft();
+            y.setAxisLineWidth(2f);
+            y.setAxisLineColor(Color.BLACK);
+            y.setGranularity(1f); // Controls how the labels look when zooming in
+            y.setLabelCount(6); // Controls label entries for the y axis
             // calling method to get bar entries.
             getBarEntries();
 
@@ -64,17 +78,19 @@ public class patient_view_food_charts_page extends AppCompatActivity {
             // to our bar chart.
             barChart.setData(barData);
 
-            barData.setBarWidth(0.75f);
-
             // adding color to our bar data set.
-            barDataSet.setColors(getResources().getColor(R.color.purple));
+            barDataSet.setColors(Color.BLUE);
 
             // setting text color.
             barDataSet.setValueTextColor(Color.BLACK);
 
-            // setting text size
-            barDataSet.setValueTextSize(16f);
+            // Control the X Axis and change names
             barChart.getDescription().setEnabled(false);
+            barChart.invalidate();
+            barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xValues));
+            barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+            barChart.getXAxis().setGranularity(1f);
+            barChart.getXAxis().setGranularityEnabled(true);
 
             // Create and modify header textview
         TextView header_message = findViewById(R.id.text_view_charts_header_message);
@@ -133,12 +149,9 @@ public class patient_view_food_charts_page extends AppCompatActivity {
         barEntriesArrayList = new ArrayList<>();
 
         // adding new entry to our array list with bar
-        // entry and passing x and y axis value to it. 
-        barEntriesArrayList.add(new BarEntry(1f, 2000)); // X value controls the order of appearance in the bar chart
-        barEntriesArrayList.add(new BarEntry(2f, 1800)); // y value controls how highh the bar chart goes
-        barEntriesArrayList.add(new BarEntry(3f, 1500));
-        barEntriesArrayList.add(new BarEntry(4f, 1700));
-        barEntriesArrayList.add(new BarEntry(5f, 1600));
-        barEntriesArrayList.add(new BarEntry(6f, 2000)); // th
+        // entry and passing x and y axis value to it.
+        barEntriesArrayList.add(new BarEntry(0, 45));
+        barEntriesArrayList.add(new BarEntry(1, 60)); // X value controls the order of appearance in the bar chart
+        barEntriesArrayList.add(new BarEntry(2, 30)); // y value controls how highh the bar chart goes
     }
 }
