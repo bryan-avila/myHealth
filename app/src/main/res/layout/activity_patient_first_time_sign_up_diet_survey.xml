@@ -16,7 +16,6 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/logolayout_nutrient_intake"
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"/>
 
@@ -34,73 +33,76 @@
                 app:cardCornerRadius="30dp"
                 app:cardElevation="20dp">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="24dp">
 
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/logo_myhealth_white"
+                        android:adjustViewBounds="true"
+                        android:maxWidth="80dp"
+                        android:maxHeight="80dp"
+                        android:scaleType="fitCenter"/>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/text_view_stage_4_warning"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/text_view_stage_4_warning"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="sans-serif"
-                                android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 4 Kidney Disease and the appropriate nutrition."
-                                android:textColor="@color/redish"
-                                android:textSize="15sp"
-                                android:visibility="invisible" />
-
-                            <TextView
-                                android:id="@+id/text_view_stage_5_warning"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="sans-serif"
-                                android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 5 Kidney Disease and the appropriate nutrition."
-                                android:textColor="@color/redish"
-                                android:textSize="15sp"
-                                android:visibility="invisible" />
-                        </LinearLayout>
-
-                        <Button
-                            android:id="@+id/button_patient_diet_auto_fill"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
                             android:layout_gravity="center_horizontal"
-                            android:backgroundTint="@color/purple"
-                            android:clickable="false"
-                            android:elevation="8dp"
-                            android:onClick="onAutoFillClick"
-                            android:text="Auto Fill"
-                            android:visibility="visible" />
+                            android:fontFamily="sans-serif"
+                            android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 4 Kidney Disease and the appropriate nutrition."
+                            android:textColor="@color/redish"
+                            android:textSize="15sp"
+                            android:visibility="invisible" />
 
                         <TextView
+                            android:id="@+id/text_view_stage_5_warning"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nutrient Intake"
-                            android:textSize="23sp"
-                            android:textStyle="bold"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="20dp"/>
+                            android:fontFamily="sans-serif"
+                            android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 5 Kidney Disease and the appropriate nutrition."
+                            android:textColor="@color/redish"
+                            android:textSize="15sp"
+                            android:visibility="invisible" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button_patient_diet_auto_fill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:backgroundTint="@color/purple"
+                        android:clickable="false"
+                        android:elevation="8dp"
+                        android:onClick="onAutoFillClick"
+                        android:text="Auto Fill"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nutrient Intake"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginTop="20dp">
 
                         <TextView
                             android:id="@+id/text_view_phos"
@@ -113,28 +115,29 @@
                         <EditText
                             android:id="@+id/edit_text_phosphorus"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="48dp"
                             android:hint="Phosporus (mg)"
                             android:inputType="number"
                             android:layout_marginLeft="10dp"
                             android:maxLength="5"
-                            android:maxLines="1" />
+                            android:maxLines="1"/>
 
                         <TextView
                             android:id="@+id/text_view_phos_mg"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="mg"
-                            android:textColor="@color/blue"
-                            android:textSize="18sp" />
+                            android:textColor="@color/purple"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="15dp">
+                        android:layout_marginTop="20dp">
 
                         <TextView
                             android:id="@+id/text_view_potas"
@@ -147,34 +150,35 @@
                         <EditText
                             android:id="@+id/edit_text_potassium"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="48dp"
                             android:hint="Potassium (mg)"
                             android:inputType="number"
                             android:maxLines="1"
-                            android:maxLength="5"/>
+                            android:maxLength="5"
+                            android:layout_marginLeft="17dp"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="mg"
                             android:id="@+id/text_view_pot_mg"
                             android:textSize="18sp"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/purple"
                             android:layout_marginLeft="10dp"
+                            android:textStyle="bold"
                             />
                     </LinearLayout>
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginTop="15dp">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
                         <TextView
                             android:id="@+id/text_view_prot"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="18dp"
                             android:text="Protein:"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -182,45 +186,35 @@
                         <EditText
                             android:id="@+id/edit_text_protein"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="48dp"
                             android:hint="Protein (g)"
                             android:inputType="number"
                             android:maxLines="1"
                             android:maxLength="5"
-                            android:layout_below="@id/edit_text_potassium"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginLeft="45dp"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="g"
                             android:id="@+id/text_view_pro_g"
-                            android:layout_toRightOf="@id/edit_text_protein"
                             android:textSize="18sp"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/purple"
+                            android:textStyle="bold"
                             android:layout_marginLeft="10dp"
-                            android:layout_below="@id/text_view_pot_mg"
-                            android:layout_marginTop="26dp"
                             />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
 
                         <TextView
                             android:id="@+id/text_view_sodium"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/text_view_prot"
-                            android:layout_centerInParent="true"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="18dp"
-                            android:layout_marginRight="0dp"
-                            android:layout_toLeftOf="@id/edit_text_sodium"
-                            android:paddingTop="10dp"
                             android:text="Sodium:"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -228,45 +222,35 @@
                         <EditText
                             android:id="@+id/edit_text_sodium"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="48dp"
                             android:hint="Sodium (mg)"
                             android:inputType="number"
                             android:maxLines="1"
                             android:maxLength="5"
-                            android:layout_below="@id/edit_text_protein"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginLeft="39dp"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="mg"
                             android:id="@+id/text_view_sodium_g"
-                            android:layout_toRightOf="@id/edit_text_sodium"
                             android:textSize="18sp"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/purple"
                             android:layout_marginLeft="10dp"
-                            android:layout_below="@id/text_view_pro_g"
-                            android:layout_marginTop="35dp"
+                            android:textStyle="bold"
                             />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
                         <TextView
                             android:id="@+id/text_view_water"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/text_view_sodium"
-                            android:layout_centerInParent="true"
-                            android:layout_marginTop="18dp"
-                            android:layout_marginRight="0dp"
-                            android:layout_toLeftOf="@id/edit_text_water"
-                            android:layout_marginLeft="10dp"
-                            android:paddingTop="10dp"
                             android:text="Water:"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -274,45 +258,35 @@
                         <EditText
                             android:id="@+id/edit_text_water"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="48dp"
                             android:hint="Water (ml)"
                             android:inputType="number"
                             android:maxLines="1"
                             android:maxLength="5"
-                            android:layout_below="@id/edit_text_sodium"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginLeft="53dp"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ml"
                             android:id="@+id/edit_text_water_ml"
-                            android:layout_toRightOf="@id/edit_text_water"
                             android:textSize="18sp"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/purple"
                             android:layout_marginLeft="10dp"
-                            android:layout_below="@id/text_view_sodium_g"
-                            android:layout_marginTop="35dp"
+                            android:textStyle="bold"
                             />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
                         <TextView
                             android:id="@+id/text_view_cal"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/text_view_water"
-                            android:layout_centerInParent="true"
-                            android:layout_marginTop="18dp"
-                            android:layout_marginRight="0dp"
-                            android:layout_toLeftOf="@id/edit_text_calories"
-                            android:layout_marginLeft="10dp"
-                            android:paddingTop="10dp"
                             android:text="Calories:"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -320,26 +294,22 @@
                         <EditText
                             android:id="@+id/edit_text_calories"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="48dp"
                             android:hint="Calories (kcal)"
                             android:inputType="number"
                             android:maxLines="1"
                             android:maxLength="5"
-                            android:layout_below="@id/edit_text_water"
-                            android:layout_marginTop="10dp"
-                            android:layout_centerHorizontal="true"/>
+                            android:layout_marginLeft="30dp"/>
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="kcal"
                             android:id="@+id/edit_text_calories_kcal"
-                            android:layout_toRightOf="@id/edit_text_calories"
                             android:textSize="18sp"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/purple"
                             android:layout_marginLeft="10dp"
-                            android:layout_below="@id/edit_text_water_ml"
-                            android:layout_marginTop="35dp"
+                            android:textStyle="bold"
                             />
                     </LinearLayout>
 
@@ -349,18 +319,18 @@
 
                     <Button
                         android:id="@+id/button_diet_finish"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/edit_text_calories"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"
-                        android:layout_marginRight="30dp"
                         android:backgroundTint="@color/purple"
                         android:onClick="onDietButtonClick"
                         android:text="Finish"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingLeft="70dp"
+                        android:paddingRight="70dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
