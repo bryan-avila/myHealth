@@ -57,7 +57,6 @@ public class clinic_prescription_form extends AppCompatActivity {
         setContentView(R.layout.activity_clinic_fill_prescription_form);
         medName = findViewById(R.id.edit_text_med_Name);
         medDosage = findViewById(R.id.edit_text_med_Dosage);
-
     }
 
     //Dosage units implementation
@@ -180,7 +179,7 @@ public class clinic_prescription_form extends AppCompatActivity {
         //String string_dosage_units = dosageUnits.toString();
         //String string_frequency = frequency.toString();
 
-        boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage);
+       //boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage);
 
         // Obtain information from clinic_med_hist_page.java
         Bundle bundle = getIntent().getExtras();
@@ -255,16 +254,18 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         startActivity(new Intent(getApplicationContext(), clinic_prescription_form.class));
 
-        if (inputCheckerOnMedication) {
+        if (string_med_Name.equals("") || string_med_Dosage.equals("")) {
+            Toast.makeText(clinic_prescription_form.this, "Please fill out any empty fields.", Toast.LENGTH_LONG).show();
+        } else {
             Toast.makeText(clinic_prescription_form.this, "Medication Prescribed.", Toast.LENGTH_LONG).show();
             startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
-        } else {
-            Toast.makeText(clinic_prescription_form.this, "Please fill out any empty fields.", Toast.LENGTH_LONG).show();
+            finish(); //so user cannot go back
         }
 
     }
 
 
+    /*
     public boolean validateMedInput (String med_Name, String med_Dosage) {
         if (med_Name.length() == 0) {
             medName.requestFocus();
@@ -275,19 +276,10 @@ public class clinic_prescription_form extends AppCompatActivity {
             medDosage.setError("FIELD CANNOT BE EMPTY");
             return false;
             //crashes here
-        } /*else if (dosageUnits.length() == 0) {
-            medDosage.requestFocus();
-            medDosage.setError("FIELD MUST BE AN INTEGER");
-            return false;
-        }
-        else if (frequency.length() == 0) {
-            medDosage.requestFocus();
-            medDosage.setError("FIELD MUST BE AN INTEGER");
-            return false;
-        }*/ else {
+        } else {
             return true;
         }
-    }
+    }*/
 
     public void onStart() {
 
