@@ -51,13 +51,13 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_weight="2">
 
                         <TextView
                             android:id="@+id/text_view_stage_4_warning"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
                             android:fontFamily="sans-serif"
                             android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 4 Kidney Disease and the appropriate nutrition."
                             android:textColor="@color/redish"
@@ -68,12 +68,12 @@
                             android:id="@+id/text_view_stage_5_warning"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
                             android:fontFamily="sans-serif"
                             android:text="As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 5 Kidney Disease and the appropriate nutrition."
                             android:textColor="@color/redish"
                             android:textSize="15sp"
-                            android:visibility="invisible" />
+                            android:visibility="invisible"
+                            android:layout_marginTop="-74dp"/>
                     </LinearLayout>
 
                     <Button
