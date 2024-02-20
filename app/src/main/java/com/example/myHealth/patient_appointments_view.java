@@ -68,8 +68,12 @@ public class patient_appointments_view extends AppCompatActivity {
                     Toast.makeText(patient_appointments_view.this, "Cannot select a date beyond 6 months in the future", Toast.LENGTH_LONG).show();
                 }
                 else {// Toast message displaying date MM/DD/YYYY
-                    Toast.makeText(patient_appointments_view.this, (month + 1) + "/" + day + "/" + year, Toast.LENGTH_LONG).show();
-                    String selectedDateString = year + "-" + (month + 1) + "-" + day;
+                    month++;
+                    String formattedYear = String.format("%04d", year);
+                    String formattedMonth = String.format("%02d", month);
+                    String formattedDay = String.format("%02d", day);
+                    Toast.makeText(patient_appointments_view.this, formattedMonth + "/" + formattedDay + "/" + formattedYear, Toast.LENGTH_LONG).show();
+                    String selectedDateString = formattedYear + "-" + formattedMonth + "-" + formattedDay;
                     Log.d("TAG", "selectedDate:" + selectedDate);
                     Log.d("TAG", "clinic id:" + clinic.getID());
 

@@ -258,6 +258,7 @@ public class AppointmentManager {
 
             // Create a Map to store the data
             Map<String, Object> appointmentData = new HashMap<>();
+            appointmentData.put("patient", userId);
             appointmentData.put("startTime", startTime);
             appointmentData.put("endTime", endTime);
             appointmentData.put("date", appointmentDate);
@@ -293,6 +294,7 @@ public class AppointmentManager {
 
             // Create a Map to store the data
             Map<String, Object> appointmentData = new HashMap<>();
+            appointmentData.put("clinic", clinicId);
             appointmentData.put("startTime", startTime);
             appointmentData.put("endTime", endTime);
             appointmentData.put("date", appointmentDate);
@@ -471,6 +473,26 @@ public class AppointmentManager {
             Log.d("ArrayListInfo", "timeslots is Empty");
         }
         return timeSlots;
+    }
+
+    public void checkPassedAppointments(String userId) {
+        CollectionReference patientAppointmentDateRef = db.collection("users").document(userId).collection("dates");
+        Log.d("TAG", "Collection Reference: " + patientAppointmentDateRef.getPath());
+        Log.d("TAG", "user id: " + userId);
+        patientAppointmentDateRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<String> appointments_list = new ArrayList<>();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Log.d("TAG", "document id" + document.getId());
+                    appointments_list.add(document.getId());
+                }
+                Log.d("TAG", "Appointment list size: " + appointments_list.size()); // Check the size of the clinics list
+            }
+            else {
+                // Handle the error
+                Log.e("TAG", "Error getting appointments", task.getException());
+            }
+        });
     }
 }
 
