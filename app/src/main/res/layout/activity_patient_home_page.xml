@@ -127,7 +127,7 @@
                         android:paddingTop="12dp"
                         android:paddingBottom="6dp"
                         android:id="@+id/text_view_medications_list"
-                        android:text="2) Your daily Medications:"
+                        android:text="2) Current Medications:"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@color/goodGrey"
