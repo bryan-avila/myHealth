@@ -7,7 +7,7 @@
     tools:context=".clinic_view_patients_medical_records"
     android:background="@drawable/clinic_background_final">
 
-    <android.widget.SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view_find_patient_to_view_records"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
