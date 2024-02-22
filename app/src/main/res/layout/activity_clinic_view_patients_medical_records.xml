@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clinic_view_patients_medical_records">
+    tools:context=".clinic_view_patients_medical_records"
+    android:background="@drawable/clinic_background_final">
 
     <android.widget.SearchView
         android:id="@+id/search_view_find_patient_to_view_records"
