@@ -16,6 +16,7 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
 
     Context context;
     List<String> UpcomingAppointments;
+    private OnItemClickListener mListener;
 
     public MyUpcomingAppointmentsAdapter(Context context, List<String> UpcomingAppointments) {
         this.context = context;
@@ -27,6 +28,12 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
     public UpcomingAppointmentViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.upcoming_appointment_item_view, parent, false);
         return new UpcomingAppointmentViewholder(view);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) { mListener = listener; }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position, Clinic clinic);
     }
 
     @Override
