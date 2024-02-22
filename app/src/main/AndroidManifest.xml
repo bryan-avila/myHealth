@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
+
         <activity
             android:name=".clinic_view_select_patient_to_manage_meds"
             android:exported="false" />
@@ -146,6 +147,9 @@
             android:exported="false" />
         <activity
             android:name=".sign_up_activity"
+            android:exported="false" />
+        <activity
+            android:name=".account_type_login_checker"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
