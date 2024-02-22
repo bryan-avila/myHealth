@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,12 +17,16 @@ import java.net.URL;
 
 public class patient_dietary_plan_page extends AppCompatActivity {
 
+    // Create Global Variables
+    String food_name;
+    TextView food_text = findViewById(R.id.text_view_food_db_test);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_dietary_plan);
 
-        // TODO Auto-generated method stub
+        // Create a background Thread
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -66,9 +71,17 @@ public class patient_dietary_plan_page extends AppCompatActivity {
                     for (Object food : foods) {
                         JSONObject foodObject = (JSONObject) food;
                         System.out.println("Food Name: " + foodObject.get("description"));
+                        food_name = "Food Name: " + foodObject.get("description");
                         Log.d("happy", "worked");
                         // Access other properties as needed
                     }
+
+                    // Create a Thread that Updates the UI
+                    runOnUiThread(() -> {
+
+                                // Update the TextView text
+                                food_text.setText(food_name);
+                            });
 
                     // Disconnect the connection
                     connection.disconnect();
@@ -78,6 +91,6 @@ public class patient_dietary_plan_page extends AppCompatActivity {
                     Log.d("sad", "didnt work");
                 }
             }
-        }).start();
-    }
+        }).start(); // End of Thread
+    } // End of onCreate Method
 }
