@@ -17,16 +17,13 @@ import java.net.URL;
 
 public class patient_dietary_plan_page extends AppCompatActivity {
 
-    // Create Global Variables
     String food_name;
-    TextView food_text = findViewById(R.id.text_view_food_db_test);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_dietary_plan);
 
-        // Create a background Thread
+        TextView food_text = findViewById(R.id.text_view_food_db_test);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -76,9 +73,7 @@ public class patient_dietary_plan_page extends AppCompatActivity {
                         // Access other properties as needed
                     }
 
-                    // Create a Thread that Updates the UI
                     runOnUiThread(() -> {
-
                                 // Update the TextView text
                                 food_text.setText(food_name);
                             });
@@ -91,6 +86,6 @@ public class patient_dietary_plan_page extends AppCompatActivity {
                     Log.d("sad", "didnt work");
                 }
             }
-        }).start(); // End of Thread
-    } // End of onCreate Method
+        }).start();
+    }
 }
