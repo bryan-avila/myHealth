@@ -53,7 +53,7 @@
                         android:layout_below="@+id/ClinicName"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Pick a Time"
+                        android:text="Choose appointment time"
                         android:textColor="@color/grey"
                         android:textSize="15sp"
                         android:textStyle="bold" />
