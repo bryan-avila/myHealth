@@ -4,17 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,67 +19,30 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-public class patient_medical_history_page extends AppCompatActivity {
-
-
-    TextView top_message;
+public class clinic_view_chosen_patient_medical_history extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
 
-    private DocumentReference userMedRef = db.collection("users").document(currentUser.getUid()).collection("medicalHistory").document("medicalHistory");
     private ListenerRegistration userMedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_view_med_history);
-
-        // Set the top message to bold and underline
-        top_message = findViewById(R.id.text_view_med_history_text);
-        top_message.setPaintFlags(top_message.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
-
-        //Initialize and assign variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        //Set resources selected
-        bottomNavigationView.setSelectedItemId(R.id.medicalHistId);
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                //check id
-                if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
-                    finish();
-                    return true;
-                } else if (id == R.id.homeId) {
-                    startActivity(new Intent(getApplicationContext(), patient_home_page.class));
-                    finish();
-                    return true;
-                } else if (id == R.id.medicalHistId) {
-                    return true;
-                } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), patient_nutrition_page.class));
-                    finish();
-                    return true;
-                } else if (id == R.id.profileId) {
-                    startActivity(new Intent(getApplicationContext(), patient_profile_page.class));
-                    finish();
-                    return true;
-                }
-                return false;
-            }
-        });
+        setContentView(R.layout.activity_clinic_view_chosen_patient_medical_history);
     }
 
     public void onStart() {
+        // Obtain information from clinic_view_patients_medical_records.java
+        Bundle bundle = getIntent().getExtras();
+        String patientId = bundle.getString("patient");
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        DocumentReference userMedRef = db.collection("users").document(patientId).collection("medicalHistory").document("medicalHistory");
+
         if (currentUser != null) {
-            DocumentReference userRef = db.collection("medicalHistory").document(currentUser.getUid());
+            DocumentReference userRef = db.collection("medicalHistory").document(patientId);
 
             userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -107,16 +65,16 @@ public class patient_medical_history_page extends AppCompatActivity {
 
 
         super.onStart();
-        TextView pAge = (TextView) findViewById(R.id.text_view_age_pvr);
-        TextView pHeightFeet = (TextView) findViewById(R.id.text_view_height_feet_pvr);
-        TextView pHeightInches = (TextView) findViewById(R.id.text_view_height_inches_pvr);
-        TextView pWeight = (TextView) findViewById(R.id.text_view_weight_pvr);
-        TextView pBloodType = (TextView) findViewById(R.id.text_view_blood_type_pvr);
-        TextView pGender = (TextView) findViewById(R.id.text_view_gender_pvr);
-        TextView pTreatment = (TextView) findViewById(R.id.radio_button_treatment_pvr);
-        TextView pStage = (TextView) findViewById(R.id.radio_button_kidney_disease_stage_pvr);
-        TextView pDiabetes = (TextView) findViewById(R.id.check_box_diabetes_pvr);
-        TextView pBloodPressure = (TextView) findViewById(R.id.check_box_highBloodPressure_pvr);
+        TextView pAge = (TextView) findViewById(R.id.text_view_age_pvr_clinic);
+        TextView pHeightFeet = (TextView) findViewById(R.id.text_view_height_feet_pvr_clinic);
+        TextView pHeightInches = (TextView) findViewById(R.id.text_view_height_inches_pvr_clinic);
+        TextView pWeight = (TextView) findViewById(R.id.text_view_weight_pvr_clinic);
+        TextView pBloodType = (TextView) findViewById(R.id.text_view_blood_type_pvr_clinic);
+        TextView pGender = (TextView) findViewById(R.id.text_view_gender_pvr_clinic);
+        TextView pTreatment = (TextView) findViewById(R.id.radio_button_treatment_pvr_clinic);
+        TextView pStage = (TextView) findViewById(R.id.radio_button_kidney_disease_stage_pvr_clinic);
+        TextView pDiabetes = (TextView) findViewById(R.id.check_box_diabetes_pvr_clinic);
+        TextView pBloodPressure = (TextView) findViewById(R.id.check_box_highBloodPressure_pvr_clinic);
         userMedListener = userMedRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -124,7 +82,7 @@ public class patient_medical_history_page extends AppCompatActivity {
                 // Error checking
                 if(error != null)
                 {
-                    Toast.makeText(patient_medical_history_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(clinic_view_chosen_patient_medical_history.this, "Error while loading!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 //check if the user is a patient or a clinic
