@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".clinic_view_patients_medical_records">
 
-    <androidx.appcompat.widget.SearchView
+    <android.widget.SearchView
         android:id="@+id/search_view_find_patient_to_view_records"
+        android:focusable="true"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
