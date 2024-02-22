@@ -62,8 +62,8 @@ public class clinic_view_patients_medical_records extends AppCompatActivity {
                 public void onItemClick(int position, Patient patients) {
 
                     String p_id = patients.getPat_ID().toString();
-                    // Send them to the prescription form after clicking on a patients name using this onItemClickListener
-                    Intent intent = new Intent(clinic_view_patients_medical_records.this, clinic_prescribed_meds_page.class);
+                    // Send them to the medical history page after clicking on a patients name using this onItemClickListener
+                    Intent intent = new Intent(clinic_view_patients_medical_records.this, patient_medical_history_page.class);
                     // Send extra info to know where to send the medication information
                     intent.putExtra("patient",p_id);
                     startActivity(intent);

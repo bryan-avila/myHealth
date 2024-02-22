@@ -44,7 +44,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:padding="5sp"
-                    android:text="Select Patient for Medical History"
+                    android:text="Select Patient for Medical Records"
                     android:textSize="19sp"
                     android:textColor="@color/purple"
                     android:textStyle="bold" />
