@@ -23,6 +23,7 @@ public class clinic_view_patients_medical_records extends AppCompatActivity {
     MyPatientAdapter myPatAdapater;
     private List<Patient> patientsList = null;
 
+    // PAGE TO VIEW LIST OF PATIENTS TO GET THEIR MEDICAL RECORDS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +64,7 @@ public class clinic_view_patients_medical_records extends AppCompatActivity {
 
                     String p_id = patients.getPat_ID().toString();
                     // Send them to the medical history page after clicking on a patients name using this onItemClickListener
-                    Intent intent = new Intent(clinic_view_patients_medical_records.this, patient_medical_history_page.class);
+                    Intent intent = new Intent(clinic_view_patients_medical_records.this, clinic_view_chosen_patient_medical_history.class);
                     // Send extra info to know where to send the medication information
                     intent.putExtra("patient",p_id);
                     startActivity(intent);
@@ -93,7 +94,7 @@ public class clinic_view_patients_medical_records extends AppCompatActivity {
 
                         String p_id = patients.getPat_ID().toString();
                         // Send them to patient_medical_history_page.java
-                        Intent intent = new Intent(clinic_view_patients_medical_records.this, patient_medical_history_page.class);
+                        Intent intent = new Intent(clinic_view_patients_medical_records.this, clinic_view_chosen_patient_medical_history.class);
                         // Send extra info to know where to send the medication information
                         intent.putExtra("patient",p_id);
                         startActivity(intent);

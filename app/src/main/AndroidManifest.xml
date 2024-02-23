@@ -16,6 +16,9 @@
             android:name=".account_type_login_checker"
             android:exported="false" />
         <activity
+            android:name=".clinic_view_chosen_patient_medical_history"
+            android:exported="false" />
+        <activity
             android:name=".clinic_view_select_patient_to_manage_meds"
             android:exported="false" />
         <activity
