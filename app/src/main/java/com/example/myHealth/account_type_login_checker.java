@@ -17,12 +17,12 @@ public class account_type_login_checker extends AppCompatActivity {
     public void onPatientClickChecker(View view) {
         Intent intent = new Intent(getApplicationContext(), main_login_page.class);
         startActivity(intent);
-        finish(); // cannot press back
+        //finish(); // cannot press back
     }
 
     public void onCaretakerClickChecker(View view) {
         Intent intent = new Intent(getApplicationContext(), main_login_page.class);
         startActivity(intent);
-        finish(); // cannot press back
+        //finish(); // cannot press back
     }
 }
