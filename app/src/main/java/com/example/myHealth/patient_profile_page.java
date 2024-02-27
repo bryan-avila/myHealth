@@ -100,8 +100,8 @@ public class patient_profile_page extends AppCompatActivity {
                 FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
                 mAuth.signOut();
 
-                // Start the LoginActivity (or any other activity you want to go to)
-                Intent intent = new Intent(getApplicationContext(), main_login_page.class);
+                // When a patient logs out, send them to the new "Default" screen, account_type_login_checker.class
+                Intent intent = new Intent(getApplicationContext(), account_type_login_checker.class);
                 startActivity(intent);
 
                 // Optionally, finish the current activity to prevent the user from going back to it

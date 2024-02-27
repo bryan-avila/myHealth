@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class main_login_page extends AppCompatActivity {
+    TextView login_text;
     EditText email;
     EditText password;
     Button loginButton;
@@ -33,6 +35,27 @@ public class main_login_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login_page);
+
+        // Obtain information from account_type_login_checker.java
+        Bundle bundle = getIntent().getExtras();
+        String profile_type = bundle.getString("profile");
+
+        // Change the greeting depending on profile type
+        if(profile_type.equals("patient"))
+        {
+            login_text = findViewById(R.id.loginText);
+            login_text.setText("Patient Login");
+        }
+
+        else if(profile_type.equals("clinic"))
+        {
+            login_text = findViewById(R.id.loginText);
+            login_text.setText("Clinic Login");
+        }
+
+        else {
+            Toast.makeText(this, "Error Finding Profile Type?", Toast.LENGTH_LONG).show();
+        }
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -95,34 +118,34 @@ public class main_login_page extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        //this checks if there is currently a user signed in already
-        FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        if(currentUser != null){
-            // If you log in successfully once, it stays logged in even after you delete a user from the Firebase console.
-            // Work around this issue by preventing this if statement
-
-            // If the user created an email account that contains clinic.com, they will automatically
-            // be logged in as a clinic user
-            if(currentUser.getEmail().contains("@clinic.com")) {
-                Intent intent = new Intent(main_login_page.this, clinic_home_page.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                finish();
-            }
-
-            // Else, they will be logged in as a patient user
-            else {
-                Intent intent = new Intent(main_login_page.this, patient_home_page.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                finish();
-            }
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        //this checks if there is currently a user signed in already
+//        FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//
+//        if(currentUser != null){
+//            // If you log in successfully once, it stays logged in even after you delete a user from the Firebase console.
+//            // Work around this issue by preventing this if statement
+//
+//            // If the user created an email account that contains clinic.com, they will automatically
+//            // be logged in as a clinic user
+//            if(currentUser.getEmail().contains("@clinic.com")) {
+//                Intent intent = new Intent(main_login_page.this, clinic_home_page.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                startActivity(intent);
+//                finish();
+//            }
+//
+//            // Else, they will be logged in as a patient user
+//            else {
+//                Intent intent = new Intent(main_login_page.this, patient_home_page.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                startActivity(intent);
+//                finish();
+//            }
+//        }
+//    }
 }
