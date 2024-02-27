@@ -19,6 +19,7 @@ import android.widget.PopupWindow;
 import org.json.simple.JSONArray;
 import android.util.Log;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -43,6 +44,8 @@ public class patient_add_food_page extends AppCompatActivity {
     SearchView filterView;
 
     MyFoodListAdapter foodListAdapter;
+
+    String patient_food_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +93,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Create a thread
+        // Start of thread ****
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -99,7 +102,7 @@ public class patient_add_food_page extends AppCompatActivity {
                     Log.d("start", "start");
 
                     //TODO!!! Hardcoded example. Need to figure out a way to get user input from searchview and change the "apple" to whatever food they type
-                    String endpoint = "https://api.nal.usda.gov/fdc/v1/foods/search?query=apple&api_key=DEMO_KEY";
+                    String endpoint = "https://api.nal.usda.gov/fdc/v1/foods/search?query=apple&api_key=hIXmsCYannc5plOrGfwlqSZkuUsBAznpJEgxtz5T";
 
 
                     // Create a URL object
@@ -164,16 +167,99 @@ public class patient_add_food_page extends AppCompatActivity {
             }
         }).start();
 
+        // END OF THREAD***
+
         // Set the searchview to the one from patient_add_food_page.xml
         filterView = findViewById(R.id.search_view_food_names);
         filterView.clearFocus();
         filterView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            // This method grabs text that the user types into the searchview
             @Override
-            public boolean onQueryTextSubmit(String s)
+            public boolean onQueryTextSubmit(String user_text)
             {
+                // Start of thread ****
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Perform network operations here
+                        try {
+                            Log.d("start", "start");
+
+                            //TODO!!! Hardcoded example. Need to figure out a way to get user input from searchview and change the "apple" to whatever food they type
+                            String endpoint = "https://api.nal.usda.gov/fdc/v1/foods/search?query=" + user_text + "&api_key=DEMO_KEY";
+
+
+                            // Create a URL object
+                            URL url = new URL(endpoint);
+
+                            // Open a connection to the URL
+                            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                            Log.d("middle", "middle");
+
+                            // Set request method
+                            connection.setRequestMethod("GET");
+                            Log.d("get", "success");
+
+                            // Get the response code
+                            int responseCode = connection.getResponseCode();
+                            System.out.println("Response Code: " + responseCode);
+                            Log.d("code", "code" + responseCode);
+
+                            // Read the response
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                            StringBuilder response = new StringBuilder();
+                            String line;
+
+                            while ((line = reader.readLine()) != null) {
+                                response.append(line);
+                            }
+                            reader.close();
+
+                            JSONParser parser = new JSONParser();
+                            JSONObject jsonResponse = (JSONObject) parser.parse(response.toString());
+
+                            // Initialize an empty list of food names
+                            foodNames = new ArrayList<>();
+
+                            // Access the list of foods
+                            JSONArray foods = (JSONArray) jsonResponse.get("foods");
+                            for (Object food : foods) {
+                                JSONObject foodObject = (JSONObject) food;
+                                //food_name = "Food Name: " + foodObject.get("description");
+                                System.out.println("Food Name: " + foodObject.get("description"));
+                                String food_name = (String) foodObject.get("description"); // Get the food_name by converting the foodObject to a String
+                                FoodNameFromList f = new FoodNameFromList(food_name); // Create a new FoodNameFromList object with food_name as the argument
+                                foodNames.add(f); // Add to list
+                                Log.d("happy", "worked");
+                                // Access other properties as needed
+                            }
+
+                            // Affect Android UI Elements
+                            runOnUiThread(() -> {
+                                // Set the Adapter of the page with the list created in this thread
+                                foodListAdapter = new MyFoodListAdapter(getApplicationContext(), foodNames);
+                               // foodListAdapter.getFilter().filter(newText); // Filter based off the text in the search view
+                                recyclerView.setAdapter(foodListAdapter);
+                            });
+
+                            // Disconnect the connection
+                            connection.disconnect();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("sad", "didnt work");
+                        }
+                    }
+                }).start();
+
+                // END OF THREAD***
                 return false;
+
             }
 
+
+            // This method grabs text as the user is currently typing them and filters accordingly
             @Override
             public boolean onQueryTextChange(String newText)
             {
