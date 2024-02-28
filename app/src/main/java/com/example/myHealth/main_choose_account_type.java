@@ -15,6 +15,10 @@ public class main_choose_account_type extends AppCompatActivity {
         setContentView(R.layout.activity_main_choose_account_type);
     }
 
+    //###################################################################################################################
+    //NOTE!!!! THIS IS A CURRENTLY UNUSED FILE (ITS IMPLEMENTATION WAS COMMENTED OUT BELOW)
+    //THIS PAGE IS NO LONGER NECESSARY FOR THE PROJECT
+    //###################################################################################################################
 
     // OnClickerListener for Patient Button. Defined in .XML
     public void onPatientClick(View view)

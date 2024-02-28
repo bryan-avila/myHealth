@@ -85,7 +85,7 @@
             android:name=".resources_page_clinic"
             android:exported="false" />
         <activity
-            android:name=".profile_page_clinic"
+            android:name=".clinic_profile_page"
             android:exported="false" />
         <activity
             android:name=".clinic_medical_records_page"

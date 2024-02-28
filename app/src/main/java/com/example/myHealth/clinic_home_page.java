@@ -89,7 +89,7 @@ public class clinic_home_page extends AppCompatActivity {
                     startActivity(a);
                     return true;
                 } else if (id == R.id.profileIdClinic) {
-                    Intent a = new Intent(getApplicationContext(), profile_page_clinic.class);
+                    Intent a = new Intent(getApplicationContext(), clinic_profile_page.class);
                     a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(a);
                     return true;

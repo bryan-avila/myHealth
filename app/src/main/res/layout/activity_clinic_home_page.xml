@@ -79,9 +79,11 @@
                 android:layout_marginTop="20dp"/>
 
             <View
+                android:id="@+id/view_purple_line"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:layout_marginTop="72dp"
+                android:layout_below="@+id/text_view_dashboard_clinic"
+                android:layout_marginTop="20dp"
                 android:background="@color/purple" />
 
             <TextView
@@ -89,7 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="90dp"
+                android:layout_below="@id/view_purple_line"
+                android:layout_marginTop="15dp"
                 android:text="Dialysis Machines Count:"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -101,7 +104,8 @@
                 android:text="(number of machines)"
                 android:id="@+id/text_view_clinic_num_of_machines"
                 android:textSize="23sp"
-                android:layout_marginTop="130sp"
+                android:layout_below="@id/text_view_clinic_machines"
+                android:layout_marginTop="15dp"
                 />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

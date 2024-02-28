@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-public class profile_page_clinic extends AppCompatActivity {
+public class clinic_profile_page extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
@@ -89,9 +89,9 @@ public class profile_page_clinic extends AppCompatActivity {
 
         //Log out button here
 
-        Button log_out_button_clinic = findViewById(R.id.button_clinic_log_out);
+        Button log_out_button = findViewById(R.id.button_clinic_log_out);
 
-        log_out_button_clinic.setOnClickListener(new View.OnClickListener() {
+        log_out_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
@@ -152,7 +152,7 @@ public class profile_page_clinic extends AppCompatActivity {
 
                     // Error checking
                     if (error != null) {
-                        Toast.makeText(profile_page_clinic.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(clinic_profile_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
                         return;
                     }
                     //check if the user is a patient or a clinic
