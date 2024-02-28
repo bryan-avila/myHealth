@@ -20,12 +20,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class main_login_page extends AppCompatActivity {
+public class main_login_page_clinic extends AppCompatActivity {
     TextView login_text;
     EditText email;
     EditText password;
-    Button loginButton;
-    Button signUpBtn;
+    Button loginButton_clinic;
+    Button signUpBtn_clinic;
 
     // testing 1 2 3
     // testing github yoooo
@@ -34,7 +34,7 @@ public class main_login_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_login_page);
+        setContentView(R.layout.activity_main_login_page_clinic);
 
         // Obtain information from account_type_login_checker.java
         /*Bundle bundle = getIntent().getExtras();
@@ -58,26 +58,26 @@ public class main_login_page extends AppCompatActivity {
         }*/
 
         login_text = findViewById(R.id.loginText);
-        login_text.setText("Patient Login");
+        login_text.setText("Clinic Login");
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        loginButton = findViewById(R.id.loginButton);
-        signUpBtn = findViewById(R.id.registerButton);
+        loginButton_clinic = findViewById(R.id.loginButton_clinic);
+        signUpBtn_clinic = findViewById(R.id.registerButton_clinic);
 
         email.setHorizontallyScrolling(true);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton_clinic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
                 // Check if Email or Password are empty
                 if (email.getText().toString().equals("") || password.getText().toString().equals("")) {
-                    Toast.makeText(main_login_page.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(main_login_page_clinic.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                            .addOnCompleteListener(main_login_page.this, new OnCompleteListener<AuthResult>() {
+                            .addOnCompleteListener(main_login_page_clinic.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
@@ -86,23 +86,20 @@ public class main_login_page extends AppCompatActivity {
                                         FirebaseUser user = mAuth.getCurrentUser();
 
                                         // If they entered an email with clinic.com, then they must be a Clinic user. Send to clinic home page
-                                        if (user.getEmail().contains("@gmail.com")) {
-                                            Intent intent = new Intent(main_login_page.this, patient_home_page.class);
+                                        if (user.getEmail().contains("@clinic.com")) {
+                                            Intent intent = new Intent(main_login_page_clinic.this, clinic_home_page.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                             startActivity(intent);
                                             finish(); // cannot press back
-                                        }
-
-                                        // Else, they must be a patient user. Send them to the patient home page
-                                        else {
+                                        } else {
                                             Log.w(TAG, "Invalid Credentials", task.getException());
-                                            Toast.makeText(main_login_page.this, "Invalid Credentials.",
+                                            Toast.makeText(main_login_page_clinic.this, "Invalid Credentials.",
                                                     Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                        Toast.makeText(main_login_page.this, "Authentication failed.",
+                                        Toast.makeText(main_login_page_clinic.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -112,11 +109,11 @@ public class main_login_page extends AppCompatActivity {
         });
 
         // This is the code to go to choose account type page view
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
+        signUpBtn_clinic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //we need to send user to two different pages depending on what the user is
-                Intent intent = new Intent(getApplicationContext(), sign_up_activity.class);
+                Intent intent = new Intent(getApplicationContext(), clinic_sign_up_page.class);
                 startActivity(intent);
             }
         });

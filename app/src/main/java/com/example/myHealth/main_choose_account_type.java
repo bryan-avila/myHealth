@@ -19,18 +19,18 @@ public class main_choose_account_type extends AppCompatActivity {
     // OnClickerListener for Patient Button. Defined in .XML
     public void onPatientClick(View view)
     {
-        Intent intent = new Intent(getApplicationContext(), sign_up_activity.class);
-        startActivity(intent);
-        finish(); // cannot press back
+        //Intent intent = new Intent(getApplicationContext(), sign_up_activity.class);
+        //startActivity(intent);
+        //finish(); // cannot press back
     }
 
     // OnClickerListener for Caretaker Button. Defined in .XML
 
     public void onCaretakerClick(View view)
     {
-        Intent intent = new Intent(getApplicationContext(), clinic_sign_up_page.class);
-        startActivity(intent);
-        finish(); // cannot press back
+        //Intent intent = new Intent(getApplicationContext(), clinic_sign_up_page.class);
+        //startActivity(intent);
+        //finish(); // cannot press back
 
     }
 }
