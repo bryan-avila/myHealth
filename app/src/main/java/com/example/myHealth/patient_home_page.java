@@ -68,6 +68,7 @@ public class patient_home_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home_page);
 
+        /// asdasdas
         String TAG = "Token ID:";
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {

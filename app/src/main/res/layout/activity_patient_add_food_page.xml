@@ -26,6 +26,7 @@
         android:scaleType="fitCenter"/>
 
     <SearchView
+        android:id="@+id/search_view_food_names"
         android:layout_width="match_parent"
         android:layout_height="75sp"
         android:queryHint="Food Search"
@@ -47,14 +48,13 @@
         app:itemTextColor="@color/lightpurple"/>
 
     <!-- Create Middle Elements -->
-    <View
-        android:layout_width="350sp"
-        android:layout_height="450sp"
-        android:layout_marginTop="175sp"
-        android:layout_marginLeft="25sp"
-        android:background="@drawable/background_test_myfitnesspal"
-        android:elevation="10sp"
-        android:translationZ="-10sp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_food_names"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/search_view_food_names"
+        android:layout_marginTop="25sp"
         />
 
 </RelativeLayout>

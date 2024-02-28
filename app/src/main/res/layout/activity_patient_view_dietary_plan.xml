@@ -106,4 +106,13 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/text_view_food_db_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DEFAULT."
+        android:textSize="40sp"
+        android:layout_marginTop="500sp"
+        />
+
 </RelativeLayout>
