@@ -102,7 +102,7 @@ public class clinic_profile_page extends AppCompatActivity {
                 startActivity(intent);
 
                 // Optionally, finish the current activity to prevent the user from going back to it
-                finish(); // cannot press back
+                finishAffinity(); // cannot press back
             }
         });
     }
