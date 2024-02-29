@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="Make Recurring Appointment"
                 android:onClick="onRecurringButtonClick"
-                android:layout_marginLeft="230sp"
+                android:layout_centerHorizontal="true"
                 android:backgroundTint="@color/purple"
                 />
 

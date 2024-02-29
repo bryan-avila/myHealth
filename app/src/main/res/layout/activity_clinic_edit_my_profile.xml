@@ -131,18 +131,33 @@
     </androidx.cardview.widget.CardView>
 
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm Changes"
-        android:textSize="25sp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:layout_height="wrap_content">
 
-        android:textStyle="bold"
-        android:backgroundTint="@color/purple"
-        android:onClick="onClinicSurveyClick"
-        />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/purple"
+            android:layout_marginRight="30dp"
+            android:onClick="onClinicSurveyClickCancel"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm Changes"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/goodGreen"
+            android:onClick="onClinicSurveyClick"
+            />
+    </LinearLayout>
+
 
 
 </LinearLayout>

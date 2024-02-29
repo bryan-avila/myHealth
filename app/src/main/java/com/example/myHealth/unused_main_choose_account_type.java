@@ -2,17 +2,16 @@ package com.example.myHealth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 
-public class main_choose_account_type extends AppCompatActivity {
+public class unused_main_choose_account_type extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_choose_account_type);
+        setContentView(R.layout.activity_unused_main_choose_account_type);
     }
 
     //###################################################################################################################

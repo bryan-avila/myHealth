@@ -45,6 +45,10 @@ public class patient_edit_my_profile extends AppCompatActivity {
         setContentView(R.layout.activity_patient_edit_my_profile);
     }
 
+    public void onCancelPatCancelChange(View view) {
+        finish();
+    }
+
     public void onPatMakeChangesClick(View view)
     {
         // Get the new information from the editText

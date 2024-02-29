@@ -60,7 +60,7 @@
                 android:text="Press for Patient Login"
                 android:textSize="20sp"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="@color/purple"
+                android:backgroundTint="@color/goodGreen"
                 android:textStyle="bold"
                 android:onClick="onPatientClickChecker"
                 />
@@ -106,7 +106,7 @@
                 android:text="Press for Clinic Login"
                 android:textSize="20sp"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="@color/purple"
+                android:backgroundTint="@color/goodGreen"
                 android:textStyle="bold"
                 android:onClick="onCaretakerClickChecker"/>
 

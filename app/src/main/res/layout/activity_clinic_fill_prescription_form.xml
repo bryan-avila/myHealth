@@ -175,17 +175,43 @@
 
             </LinearLayout>
 
-        <Button
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="550dp"
-            android:backgroundTint="@color/purple"
-            android:onClick="onSubmitPrescriptionClick"
-            android:text="Submit"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:id="@+id/layout_for_buttons"
+            android:layout_below="@id/medLayout3"
+            android:layout_marginTop="40dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/purple"
+                android:onClick="onCancelPrescriptionClick"
+                android:text="Cancel"
+                android:textSize="18dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginRight="30dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/goodGreen"
+                android:onClick="onSubmitPrescriptionClick"
+                android:paddingRight="30dp"
+                android:paddingLeft="30dp"
+                android:text="Submit"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginLeft="30dp"/>
+
+        </LinearLayout>
+
     </RelativeLayout>
 
     <!--

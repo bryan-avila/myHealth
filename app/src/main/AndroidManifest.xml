@@ -150,7 +150,7 @@
             android:name=".clinic_sign_up_page"
             android:exported="false" />
         <activity
-            android:name=".main_choose_account_type"
+            android:name=".unused_main_choose_account_type"
             android:exported="false" />
         <activity
             android:name=".main_login_page"
