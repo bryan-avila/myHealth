@@ -15,6 +15,9 @@
         android:theme="@style/Theme.myHealth"
         tools:targetApi="31">
         <activity
+            android:name=".clinic_view_edit_prescriptions"
+            android:exported="false" />
+        <activity
             android:name=".main_login_page_clinic"
             android:exported="false" />
         <activity
@@ -54,7 +57,7 @@
             android:name=".patient_add_food_page"
             android:exported="false" />
         <activity
-            android:name=".clinic_prescribed_meds_page"
+            android:name=".clinic_view_prescribed_meds_page"
             android:exported="false" />
         <activity
             android:name=".clinic_manage_meds_page"

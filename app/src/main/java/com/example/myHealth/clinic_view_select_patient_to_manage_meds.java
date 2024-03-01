@@ -60,8 +60,8 @@ public class clinic_view_select_patient_to_manage_meds extends AppCompatActivity
                 public void onItemClick(int position, Patient patients) {
 
                     String p_id = patients.getPat_ID().toString();
-                    // Send them to the prescription form after clicking on a patients name using this onItemClickListener
-                    Intent intent = new Intent(clinic_view_select_patient_to_manage_meds.this, clinic_prescribed_meds_page.class);
+                    // Send them to see the patient's prescribed medications after clicking on a patients name using this onItemClickListener
+                    Intent intent = new Intent(clinic_view_select_patient_to_manage_meds.this, clinic_view_prescribed_meds_page.class);
                     // Send extra info to know where to send the medication information
                     intent.putExtra("patient",p_id);
                     startActivity(intent);
@@ -89,7 +89,7 @@ public class clinic_view_select_patient_to_manage_meds extends AppCompatActivity
 
                         String p_id = patients.getPat_ID().toString();
                         // Send them to clinic_prescribed_meds_page.java
-                        Intent intent = new Intent(clinic_view_select_patient_to_manage_meds.this, clinic_prescribed_meds_page.class);
+                        Intent intent = new Intent(clinic_view_select_patient_to_manage_meds.this, clinic_view_prescribed_meds_page.class);
                         // Send extra info to know where to send the medication information
                         intent.putExtra("patient",p_id);
                         startActivity(intent);
