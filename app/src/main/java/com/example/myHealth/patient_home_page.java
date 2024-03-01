@@ -223,7 +223,7 @@ public class patient_home_page extends AppCompatActivity {
                 }
                 Log.d("TAG", "Appointment list size: " + appointments_list.size()); // Check the size of the clinics list
                 // Set the adapter (you'll create and set the adapter in later steps)
-                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list);
+                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list, appointments_recycle_view);
                 appointments_recycle_view.setAdapter(myAdapter);
             }
             else {
