@@ -28,14 +28,26 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class patient_add_food_page extends AppCompatActivity {
+
+    // Set up DB Stuff
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+    private DocumentReference userRef = db.collection("users").document(currentUser.getUid());
 
     // Set Up List of Food Names
     private List<FoodNameFromList> foodNames = null;
@@ -45,13 +57,13 @@ public class patient_add_food_page extends AppCompatActivity {
 
     MyFoodListAdapter foodListAdapter;
 
-    String patient_food_search;
+    String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_add_food_page);
-
 
         // Set up Bottom Nav Bar
         //Initialize and assign variable
@@ -101,80 +113,7 @@ public class patient_add_food_page extends AppCompatActivity {
         foodListAdapter = new MyFoodListAdapter(getApplicationContext(), foodNames);
         recyclerView.setAdapter(foodListAdapter);
 
-
-
-//        // Start of thread ****
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                // Perform network operations here
-//                try {
-//                    Log.d("start", "start");
-////                    String endpoint = "https://api.nal.usda.gov/fdc/v1/foods/search?query=apple&api_key=hIXmsCYannc5plOrGfwlqSZkuUsBAznpJEgxtz5T";
-//
-//
-//                    // Create a URL object
-//                    URL url = new URL(endpoint);
-//
-//                    // Open a connection to the URL
-//                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//                    Log.d("middle", "middle");
-//
-//                    // Set request method
-//                    connection.setRequestMethod("GET");
-//                    Log.d("get", "success");
-//
-//                    // Get the response code
-//                    int responseCode = connection.getResponseCode();
-//                    System.out.println("Response Code: " + responseCode);
-//                    Log.d("code", "code" + responseCode);
-//
-//                    // Read the response
-//                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//                    StringBuilder response = new StringBuilder();
-//                    String line;
-//
-//                    while ((line = reader.readLine()) != null) {
-//                        response.append(line);
-//                    }
-//                    reader.close();
-//
-//                    JSONParser parser = new JSONParser();
-//                    JSONObject jsonResponse = (JSONObject) parser.parse(response.toString());
-//
-//                    // Access the list of foods
-//                    JSONArray foods = (JSONArray) jsonResponse.get("foods");
-//                    for (Object food : foods) {
-//                        JSONObject foodObject = (JSONObject) food;
-//                        //food_name = "Food Name: " + foodObject.get("description");
-//                        System.out.println("Food Name: " + foodObject.get("description"));
-//                        String food_name = (String) foodObject.get("description"); // Get the food_name by converting the foodObject to a String
-//                        FoodNameFromList f = new FoodNameFromList(food_name); // Create a new FoodNameFromList object with food_name as the argument
-//                        foodNames.add(f); // Add to list
-//                        Log.d("happy", "worked");
-//                        // Access other properties as needed
-//                    }
-//
-//                    // Affect Android UI Elements
-//                    runOnUiThread(() -> {
-//                        // Set the Adapter of the page with the list created in this thread
-//                        foodListAdapter = new MyFoodListAdapter(getApplicationContext(), foodNames);
-//                        recyclerView.setAdapter(foodListAdapter);
-//                    });
-//
-//                    // Disconnect the connection
-//                    connection.disconnect();
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    Log.d("sad", "didnt work");
-//                }
-//            }
-//        }).start();
-//
-//        // END OF THREAD***
-
-        // Set the searchview to the one from patient_add_food_page.xml
+        // Set up filterview
         filterView = findViewById(R.id.search_view_food_names);
         filterView.clearFocus();
         filterView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -190,6 +129,7 @@ public class patient_add_food_page extends AppCompatActivity {
                         // Perform network operations here
                         try {
                             Log.d("start", "start");
+
                             String endpoint = "https://api.nal.usda.gov/fdc/v1/foods/search?query=" + user_text + "&api_key=hIXmsCYannc5plOrGfwlqSZkuUsBAznpJEgxtz5T";
 
 
@@ -227,15 +167,19 @@ public class patient_add_food_page extends AppCompatActivity {
 
                             // Access the list of foods
                             JSONArray foods = (JSONArray) jsonResponse.get("foods");
+
                             for (Object food : foods) {
+
                                 JSONObject foodObject = (JSONObject) food;
-                                System.out.println("Food Name: " + foodObject.get("description"));
-                                System.out.println("Food ID: " + foodObject.get("fdcId").toString());
-                                String food_name = (String) foodObject.get("description"); // Get the food_name by converting the foodObject to a String
+                                System.out.println("hopefully working...");
+
+                                String food_name = (String) foodObject.get("description");
                                 String food_id = foodObject.get("fdcId").toString();
-                                FoodNameFromList f = new FoodNameFromList(food_name); // Create a new FoodNameFromList object with food_name as the argument
-                                f.setFood_id(food_id);
+
+                                FoodNameFromList f = new FoodNameFromList(food_name); // Create a new FoodNameFromList object
+                                f.setFood_id(food_id); // Set the ID
                                 foodNames.add(f); // Add to list
+
                                 Log.d("happy", "worked");
                             }
 
@@ -250,8 +194,11 @@ public class patient_add_food_page extends AppCompatActivity {
                                     public void onItemClick(int position, FoodNameFromList food_names) {
 
                                         String food_id = food_names.getFood_id().toString();
-                                        //TODO Make this grab data in some way
-                                        Toast.makeText(patient_add_food_page.this, food_id, Toast.LENGTH_LONG).show();
+                                        //TODO: Change the database nutrient values based off the food's actual value, and not dummy value
+                                        userRef.collection("nutrients").document(todays_date).update("phosphorus", 500);
+                                        userRef.collection("nutrients").document(todays_date).update("potassium", 400);
+                                        userRef.collection("nutrients").document(todays_date).update("your_mom", 1000);
+
 
                                     }
                                 });
@@ -287,7 +234,7 @@ public class patient_add_food_page extends AppCompatActivity {
                     public void onItemClick(int position, FoodNameFromList food_names) {
 
                         String food_id = food_names.getFood_id().toString();
-                        //TODO Make this grab data in some way
+                        //TODO: Change the database nutrient values based off the food's actual value, and not dummy value
                         Toast.makeText(patient_add_food_page.this, food_id, Toast.LENGTH_LONG).show();
 
                     }
