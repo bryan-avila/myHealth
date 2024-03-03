@@ -84,26 +84,32 @@ public class patient_home_page extends AppCompatActivity {
 
         // Set Nutrient values to be EMPTY on a new day
         Map<String, Object> todays_nutrients = new HashMap<>();
+        todays_nutrients.put("phosphorus", 0);
+        todays_nutrients.put("potassium", 0);
+        todays_nutrients.put("protein", 0);
 
         // Check if today_date document already exists
-        //TODO: If today's document doesnt exist, create it with 0 values
-        // Else, do not change the values back to 0
+        // If it doesn't set nutrient values to be 0
+        // Check logcat to see which branch was picked
         userRef.collection("nutrients").document(todays_date).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful())
                 {
                     DocumentSnapshot todays_document = task.getResult();
+
                      if(todays_document.exists())
                      {
-                         System.out.println("It exists!!!");
+                         System.out.println("ATTN: Today's Date already exists.");
                      }
                      else {
-                         System.out.println("Nothing to see here..");
+
+                         System.out.println("ATTN: Creating Today's Date Document...");
+                         userRef.collection("nutrients").document(todays_date).set(todays_nutrients);
                      }
                 }
                 else {
-                    System.out.println("Nope.");
+                    System.out.println("Error. Check Line 96.");
                 }
             }
         });

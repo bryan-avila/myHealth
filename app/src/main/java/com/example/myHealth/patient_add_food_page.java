@@ -195,9 +195,9 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                         String food_id = food_names.getFood_id().toString();
                                         //TODO: Change the database nutrient values based off the food's actual value, and not dummy value
-                                        userRef.collection("nutrients").document(todays_date).update("phosphorus", 500);
-                                        userRef.collection("nutrients").document(todays_date).update("potassium", 400);
-                                        userRef.collection("nutrients").document(todays_date).update("your_mom", 1000);
+                                        userRef.collection("nutrients").document(todays_date).update("phosphorus", 800);
+                                        userRef.collection("nutrients").document(todays_date).update("potassium", 900);
+                                        userRef.collection("nutrients").document(todays_date).update("protein", 1000);
 
 
                                     }
