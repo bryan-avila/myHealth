@@ -48,21 +48,17 @@ import java.util.List;
 
 public class patient_view_food_charts_page extends AppCompatActivity {
 
-    // variable for our bar chart
+    // Set Up Chart Stuff
     BarChart barChart;
+    ArrayList barNutrientList = new ArrayList();
+    private List<String> xValues = Arrays.asList("Phosphorus", "Potassium", "Protein");
 
-    // variable for our bar data.
-    BarData barData;
-
-    // variable for our bar data set.
-    BarDataSet barDataSet;
-
-    // array list for storing entries.
-    ArrayList barNutrientEntries;
-    float i_patient_phosphorus;
-    Number i_patient_potassium;
-    Number i_patient_protein;
+    // Set Up Date
     String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+    // Set up Patient Nutrient Variables
+    public float i_patient_phosphorus, i_patient_potassium, i_patient_protein;
+    public String str_patient_phosphorus, str_patient_potassium, str_patient_protein;
 
     // DB Stuff
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -70,19 +66,20 @@ public class patient_view_food_charts_page extends AppCompatActivity {
     FirebaseUser currentUser = mAuth.getCurrentUser();
     DocumentReference patientNutrientRef = db.collection("users").document(currentUser.getUid()).collection("nutrients").document(todays_date);
     private ListenerRegistration userL;
-    private List<String> xValues = Arrays.asList("Phosphorus", "Potassium", "Protein");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_food_charts_page);
 
+        // ---- START OF DB STUFF -----
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
+
             // Grab the reference of the patients nutrients for todays_date
             DocumentReference patientNutrientRef = db.collection("users").document(currentUser.getUid()).collection("nutrients").document(todays_date);
 
-            // Check if it exists
+            // Check if document exists
             patientNutrientRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -102,11 +99,9 @@ public class patient_view_food_charts_page extends AppCompatActivity {
             });
         }
 
-        super.onStart();
-        // Automatically loading
-        // Firestore wants to load things quickly, so it loads in locally before from the cloud
-        // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
-        userL = patientNutrientRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+        // Now that document exists, get the fields inside
+        userL = patientNutrientRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>()
+        {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
 
@@ -116,73 +111,69 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                     return;
                 }
 
-                if (documentSnapshot.exists()) {
-                    //TODO Make sure that nutrient values are added over time when adding food in patient_add_food_page.java!
-                    String str_patient_phosphorus = documentSnapshot.get("phosphorus").toString();
+                // Get the fields if document exists
+                if (documentSnapshot.exists())
+                {
+                    System.out.println("ATTN: Document Snapshot exists");
+                    str_patient_phosphorus = documentSnapshot.get("phosphorus").toString();
                     String str_patient_potassium = documentSnapshot.get("potassium").toString();
                     String str_patient_protein = documentSnapshot.get("protein").toString();
                     i_patient_phosphorus = (float) Float.parseFloat(str_patient_phosphorus);
+                    i_patient_potassium = (float) Float.parseFloat(str_patient_potassium);
+                    i_patient_protein = (float) Float.parseFloat(str_patient_protein);
 
-                    //TODO It does grab data correctly
-                    Toast.makeText(patient_view_food_charts_page.this, str_patient_phosphorus + " aha", Toast.LENGTH_LONG).show();
 
+                    // Connect barchart to .xml
+                    barChart = findViewById(R.id.bar_chart_todays_nutrients);
+
+                    // Create float versions of 0,1,2
+                    float zero = 0;
+                    float one = 1;
+                    float two = 2;
+
+                    // Add entries to the barNutrientList
+                    BarEntry phosEntry = new BarEntry(zero, i_patient_phosphorus);
+                    barNutrientList.add(phosEntry);
+                    BarEntry potassiumEntry = new BarEntry(one, i_patient_potassium);
+                    barNutrientList.add(potassiumEntry);
+                    BarEntry proteinEntry = new BarEntry(two, i_patient_protein);
+                    barNutrientList.add(proteinEntry);
+
+                    // Initialize Data Set
+                    BarDataSet barNutrientSet = new BarDataSet(barNutrientList, "Nutrients");
+
+                    // Customize data set
+                    barNutrientSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                    barNutrientSet.setDrawValues(false);
+
+                    // Set Bar Data/Customize Bar Data
+                    barChart.setData(new BarData(barNutrientSet));
+                    barChart.getDescription().setEnabled(false);
+                    barChart.invalidate();
+                    barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xValues)); // Give names to the bars
+                    barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+                    barChart.getXAxis().setGranularity(1f);
+                    barChart.getXAxis().setGranularityEnabled(true);
+                    barChart.animateY(5000);
+                    barChart.getDescription().setText("Today's Nutrients");
+                    barChart.getDescription().setTextColor(Color.MAGENTA);
+                }
+
+                else {
+                    // For whatever reason, the documentSnapShot does NOT exist. Abort and go to patient_home_page
+                       startActivity(new Intent(getApplicationContext(), patient_home_page.class));
                 }
             }
         });
 
+        // ---- END OF DB STUFF -----
 
-        // ------- BAR CHART SET UP ---------
-            // initializing variable for bar chart.
-            barChart = findViewById(R.id.chart);
-            barChart.getAxisLeft().setDrawLabels(false);
 
-            // Control the Left Y Axis Line
-            YAxis y = barChart.getAxisLeft();
-            y.setAxisLineWidth(1f);
-            y.setAxisLineColor(Color.BLACK);
-            y.setGranularity(1f); // Controls how the labels look when zooming in
-            y.setLabelCount(6); // Controls label entries for the y axis
 
-            // creating a new array list
-            barNutrientEntries = new ArrayList<>();
-             int zero = 0;
-
-            //TODO How to add data to barchart as variables so that x:, y: appears
-//            barNutrientEntries.add(new BarEntry(0, 800));
-              BarEntry barEntryPhos = new BarEntry(zero, i_patient_phosphorus);
-              barNutrientEntries.add(barEntryPhos);
-
-           // creating a new bar data set.
-            barDataSet = new BarDataSet(barNutrientEntries, "Nutrients");
-
-            // creating a new bar data and
-            // passing our bar data set.
-            barData = new BarData(barDataSet);
-
-            // below line is to set data
-            // to our bar chart.
-            barChart.setData(barData);
-
-            // adding color to our bar data set.
-            barDataSet.setColors(Color.BLUE);
-
-            // setting text color.
-            barDataSet.setValueTextColor(Color.BLACK);
-
-            // Control the X Axis and change names
-            barChart.getDescription().setEnabled(false);
-            barChart.invalidate();
-            barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(xValues)); // Give names to the bars
-            barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-            barChart.getXAxis().setGranularity(1f);
-            barChart.getXAxis().setGranularityEnabled(true);
-
-            //----------- END OF BAR CHART SETUP ------------
-
-            // Create and modify header textview
+        // Edit the top Text View
         TextView header_message = findViewById(R.id.text_view_charts_header_message);
         header_message.setPaintFlags(header_message.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        header_message.setText("Today's Charts");
+        header_message.setText("Today's Charts:");
 
         // Create and modify date textview
         TextView header_date = findViewById(R.id.text_view_charts_todays_date);
@@ -230,62 +221,4 @@ public class patient_view_food_charts_page extends AppCompatActivity {
             }
         });
     }
-
-//    public void onStart() {
-//
-//            FirebaseUser currentUser = mAuth.getCurrentUser();
-//            if (currentUser != null) {
-//                // Grab the reference of the patients nutrients for todays_date
-//                DocumentReference patientNutrientRef = db.collection("users").document(currentUser.getUid()).collection("nutrients").document(todays_date);
-//
-//                // Check if it exists
-//                patientNutrientRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document.exists()) {
-//                                System.out.println("ATTN: No issues loading patient document.");
-//                            } else {
-//                                System.out.println("ATTN: ERROR loading patient info?");
-//
-//                            }
-//                        } else {
-//                            // Handle failure to retrieve user document
-//                            System.out.println("ATTN: Major issue. Check code.");
-//                        }
-//                    }
-//                });
-//            }
-//
-//            super.onStart();
-//            // Automatically loading
-//            // Firestore wants to load things quickly, so it loads in locally before from the cloud
-//            // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
-//            userL = patientNutrientRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-//                @Override
-//                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-//
-//                    // Error checking
-//                    if (error != null) {
-//                        Toast.makeText(patient_view_food_charts_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
-//                        return;
-//                    }
-//
-//                    if (documentSnapshot.exists()) {
-//                       //TODO Make sure that nutrient values are added over time when adding food in patient_add_food_page.java!
-//                        String str_patient_phosphorus = documentSnapshot.get("phosphorus").toString();
-//                        String str_patient_potassium = documentSnapshot.get("potassium").toString();
-//                        String str_patient_protein = documentSnapshot.get("protein").toString();
-//
-//                        Toast.makeText(patient_view_food_charts_page.this, str_patient_phosphorus, Toast.LENGTH_LONG).show();
-//
-//                        i_patient_phosphorus = Integer.decode(str_patient_phosphorus);
-//                        i_patient_potassium = Integer.decode(str_patient_potassium);
-//                        i_patient_protein = Integer.decode(str_patient_protein);
-//
-//                    }
-//                }
-//            });
-//    }
 }
