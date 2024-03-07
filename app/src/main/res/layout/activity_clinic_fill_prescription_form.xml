@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:id="@+id/button_med_dosage"
                     android:layout_height="wrap_content"
-                    android:text="Select"
+                    android:text="Units"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="15dp"

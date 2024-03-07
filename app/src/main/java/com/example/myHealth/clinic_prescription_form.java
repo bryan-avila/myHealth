@@ -173,6 +173,7 @@ public class clinic_prescription_form extends AppCompatActivity {
     }
 
     public void onCancelPrescriptionClick (View view) {
+        //brings user back to the previous window without prescribing the medication
         finish();
     }
 
