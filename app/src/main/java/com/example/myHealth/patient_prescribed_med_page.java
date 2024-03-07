@@ -1,12 +1,17 @@
 package com.example.myHealth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -25,6 +30,40 @@ public class patient_prescribed_med_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_prescribed_med);
+
+        //Initialize and assign variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set resources selected
+        bottomNavigationView.setSelectedItemId(R.id.medicalHistId);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                //check id
+                if (id == R.id.appointmentId) {
+                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.homeId) {
+                    startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.medicalHistId) {
+                    return true;
+                } else if (id == R.id.resourcesId) {
+                    startActivity(new Intent(getApplicationContext(), patient_nutrition_page.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.profileId) {
+                    startActivity(new Intent(getApplicationContext(), patient_profile_page.class));
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         // Set up the RecyclerView
         RecyclerView med_recycle_view = findViewById(R.id.recycler_view_precribed_meds);

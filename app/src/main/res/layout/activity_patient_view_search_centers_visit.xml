@@ -21,7 +21,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Make Recurring Appointment?"
+                android:text="Make Recurring Appointment"
                 android:onClick="onRecurringButtonClick"
                 android:layout_marginLeft="230sp"
                 android:backgroundTint="@color/purple"
@@ -55,12 +55,21 @@
                         android:textColor="@color/purple"
                         android:textStyle="bold" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="50dp"
+                        android:paddingBottom="6dp"
+                        android:background="@color/purple" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"
                         android:layout_below="@+id/ClinicSearch"
+                        android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:overScrollMode="never"
+                        android:paddingBottom="?attr/actionBarSize"
                         android:scrollbars="vertical" />
 
                 </RelativeLayout>

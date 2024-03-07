@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_dosage_grams"
+        android:title="g"/>
+
+    <item
+        android:id="@+id/item_dosage_milligrams"
+        android:title="mg"/>
+
+    <item
+        android:id="@+id/item_dosage_micrograms"
+        android:title="mcg"/>
+
+    <item
+        android:id="@+id/item_dosage_IU"
+        android:title="IU"/>
+</menu>

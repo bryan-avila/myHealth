@@ -43,7 +43,12 @@ public class clinic_prescription_form extends AppCompatActivity {
     private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
     private ListenerRegistration clinicListener;
 
-    String frequency;  // Frequency from the pop up, make it global
+    String dosageUnits = ""; // dosage from the pop up, make it global
+
+    String frequency = "";  // Frequency from the pop up, make it global
+
+
+
 
 
     @Override
@@ -52,9 +57,62 @@ public class clinic_prescription_form extends AppCompatActivity {
         setContentView(R.layout.activity_clinic_fill_prescription_form);
         medName = findViewById(R.id.edit_text_med_Name);
         medDosage = findViewById(R.id.edit_text_med_Dosage);
+    }
+
+    //Dosage units implementation
+    public void onDosageSelectClick(View view) {
+        //Make dropdown menu appear when clicked
+        PopupMenu dosage_popup = new PopupMenu(this, view);
+        dosage_popup.setOnMenuItemClickListener(this::onMenuItemClick2);
+        dosage_popup.inflate((R.menu.menu_dosage));
+        dosage_popup.show();
+    }
+
+    public boolean onMenuItemClick2(MenuItem item) {
+        if(item.getItemId() == R.id.item_dosage_grams) {
+
+            Button button_dosage;
+            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage.setText("g");
+
+            dosageUnits = "g";
+            return true;
+        }
+
+        else if(item.getItemId() == R.id.item_dosage_milligrams) {
+
+            Button button_dosage;
+            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage.setText("mg");
+
+            dosageUnits = "mg";
+            return true;
+        }
+
+        else if(item.getItemId() == R.id.item_dosage_micrograms) {
+
+            Button button_dosage;
+            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage.setText("mcg");
+
+            dosageUnits = "mcg";
+            return true;
+        }
+        else if(item.getItemId() == R.id.item_dosage_IU) {
+
+            Button button_dosage;
+            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage.setText("IU");
+
+            dosageUnits = "IU";
+            return true;
+        }
+
+        return false;
 
     }
 
+    //Frequency implementation
     public void onFrequencyClick(View view)
     {
         // Make the dropdown menu appear when you click on frequency
@@ -118,8 +176,10 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         String string_med_Name = medName.getText().toString();
         String string_med_Dosage = medDosage.getText().toString();
+        String string_dosage_units = dosageUnits;
+        String string_frequency = frequency;
 
-        boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage);
+       //boolean inputCheckerOnMedication = validateMedInput(string_med_Name, string_med_Dosage);
 
         // Obtain information from clinic_med_hist_page.java
         Bundle bundle = getIntent().getExtras();
@@ -129,80 +189,77 @@ public class clinic_prescription_form extends AppCompatActivity {
 
         CollectionReference prescriptionsInfoRef = patientRef.collection("prescriptionsInfo");
 
-
-        // Set up edittext variables from .XML file
-        EditText editTextmedicationName = findViewById(R.id.edit_text_med_Name);
-        EditText editTextdosageAmt = findViewById(R.id.edit_text_med_Dosage);
-
-        int integer_frequency = 0;
-        // Set up strings the database can use
-        String s_med_name = editTextmedicationName.getText().toString();
-        String s_dosage_amt = editTextdosageAmt.getText().toString();
-
-        if(frequency.equals("Once A Day"))
-        {
-            integer_frequency = 7; // 7 times per week
-        }
-        else if(frequency.equals("Twice A Day"))
-        {
-            integer_frequency = 14; // 14 times per week
-        }
-
-        else if(frequency.equals("Once A Week"))
-        {
-            integer_frequency = 1; // 1 time per week
-        }
-
-        else if(frequency.equals("Twice A Week"))
-        {
-            integer_frequency = 2; // 2 times per week
-        }
-
-        String phone = "818-355-2913";
-
-        // Add the medication info to the patient's database collection
-        Map<String, Object> medicationInfo = new HashMap<>();
-        medicationInfo.put("medicationName", s_med_name);
-        medicationInfo.put("dosageAmount", s_dosage_amt);
-        medicationInfo.put("frequency", frequency); // Get frequency from the pop up
-
-       // medicationInfo.put("intFrequency", integer_frequency); // Turn string frequency into an integer for notifications
-        
-        medicationInfo.put("clinicName", cName); // Store the clinic name so that patients know where they got it from, global variable
-        medicationInfo.put("clinicPhone",  cPhone); // Store clinic phone, using global variable
-
-        // Add medication to the firebase. The document will be named different according to the name of the Prescription
-        prescriptionsInfoRef.document(s_med_name).set(medicationInfo)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        // Handle success
-                        Log.d(TAG, "medicationInfo added");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Handle failure
-                        Log.w(TAG, "Error adding medicationInfo document", e);
-                    }
-                });
-
-
-
-
-        startActivity(new Intent(getApplicationContext(), clinic_prescription_form.class));
-
-        if (inputCheckerOnMedication) {
-            Toast.makeText(clinic_prescription_form.this, "Medication Prescribed.", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
+        if (string_med_Name.equals("") || string_med_Dosage.equals("") ||
+                string_dosage_units.equals("") || string_frequency.equals("")) {
+            Toast.makeText(clinic_prescription_form.this, "Error: Field(s) are blank.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(clinic_prescription_form.this, "Please fill out any empty fields.", Toast.LENGTH_LONG).show();
+
+            // Set up edittext variables from .XML file
+            EditText editTextmedicationName = findViewById(R.id.edit_text_med_Name);
+            EditText editTextdosageAmt = findViewById(R.id.edit_text_med_Dosage);
+
+            int integer_frequency = 0;
+            // Set up strings the database can use
+            String s_med_name = editTextmedicationName.getText().toString();
+            String s_dosage_amt = editTextdosageAmt.getText().toString();
+
+            if (frequency.equals("Once A Day")) {
+                integer_frequency = 7; // 7 times per week
+            } else if (frequency.equals("Twice A Day")) {
+                integer_frequency = 14; // 14 times per week
+            } else if (frequency.equals("Once A Week")) {
+                integer_frequency = 1; // 1 time per week
+            } else if (frequency.equals("Twice A Week")) {
+                integer_frequency = 2; // 2 times per week
+            }
+
+            String phone = "818-355-2913";
+
+            // Add the medication info to the patient's database collection
+            Map<String, Object> medicationInfo = new HashMap<>();
+            medicationInfo.put("medicationName", s_med_name);
+            medicationInfo.put("dosageAmount", s_dosage_amt);
+            medicationInfo.put("dosageUnits", dosageUnits); // Get dosage units from the pop up
+            medicationInfo.put("frequency", frequency); // Get frequency from the pop up
+
+            // medicationInfo.put("intFrequency", integer_frequency); // Turn string frequency into an integer for notifications
+
+            medicationInfo.put("clinicName", cName); // Store the clinic name so that patients know where they got it from, global variable
+            medicationInfo.put("clinicPhone", cPhone); // Store clinic phone, using global variable
+
+            // Add medication to the firebase. The document will be named different according to the name of the Prescription
+            prescriptionsInfoRef.document(s_med_name).set(medicationInfo)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // Handle success
+                            Log.d(TAG, "medicationInfo added");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Handle failure
+                            Log.w(TAG, "Error adding medicationInfo document", e);
+                        }
+                    });
+
+
+            startActivity(new Intent(getApplicationContext(), clinic_prescription_form.class));
+
+            if (string_med_Name.equals("") || string_med_Dosage.equals("")) {
+                Toast.makeText(clinic_prescription_form.this, "Please fill out any empty fields.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(clinic_prescription_form.this, "Medication Prescribed.", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
+                finish(); //so user cannot go back
+            }
         }
 
     }
 
 
+    /*
     public boolean validateMedInput (String med_Name, String med_Dosage) {
         if (med_Name.length() == 0) {
             medName.requestFocus();
@@ -212,10 +269,11 @@ public class clinic_prescription_form extends AppCompatActivity {
             medDosage.requestFocus();
             medDosage.setError("FIELD CANNOT BE EMPTY");
             return false;
-        }  else {
+            //crashes here
+        } else {
             return true;
         }
-    }
+    }*/
 
     public void onStart() {
 

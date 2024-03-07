@@ -26,8 +26,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-public class patient_diet_page extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
+public class patient_nutrition_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        finish();
+
+    }
     // Initialize Database Stuff
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
@@ -39,10 +48,22 @@ public class patient_diet_page extends AppCompatActivity {
     // Initialize Activity Stuff
     Button addFoodBtn, viewFavoritesBtn, viewChartsBtn;
 
+    TextView header_and_date;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_diet_page);
+        setContentView(R.layout.activity_patient_nutrition_page);
+
+        // Create and modify header to have date
+        header_and_date = findViewById(R.id.text_view_patient_nutrition_page_text);
+        String date;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+        date = simpleDateFormat.format(calendar.getTime()).toString();
+        header_and_date.setText("Nutrition - " + date);
 
         // Assign buttons
         addFoodBtn = findViewById(R.id.button_add_foods);
@@ -53,21 +74,24 @@ public class patient_diet_page extends AppCompatActivity {
         addFoodBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(patient_diet_page.this, "DEFAULT.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), patient_add_food_page.class);
+                startActivity(intent);
             }
         });
 
         viewFavoritesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(patient_diet_page.this, "DEFAULT!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), patients_view_food_favorites_page.class);
+                startActivity(intent);
             }
         });
 
         viewChartsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(patient_diet_page.this, "DEFAULT!!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), patient_view_food_charts_page.class);
+                startActivity(intent);
             }
         });
 
@@ -145,7 +169,7 @@ public class patient_diet_page extends AppCompatActivity {
                 // Error checking
                 if(error != null)
                 {
-                    Toast.makeText(patient_diet_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(patient_nutrition_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
                     return;
                 }
 

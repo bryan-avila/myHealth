@@ -2,14 +2,13 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
 }
-
 android {
     namespace = "com.example.myHealth"
     compileSdk = 33
 
     defaultConfig {
         applicationId = "com.example.myHealth"
-        minSdk = 26
+        minSdk = 28
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -48,6 +47,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
     implementation("com.google.firebase:firebase-firestore:24.8.1")
     implementation("com.google.firebase:firebase-messaging:23.3.1")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.0.3")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -24,9 +24,9 @@ public class patient_first_time_recurring_clinics extends AppCompatActivity {
     public void onSkipRecurringButtonClick1(View view)
     {
         // Once they finish inputting diet, send them home
-        Intent intent = new Intent(patient_first_time_recurring_clinics.this, patient_home_page.class);
+        Intent intent = new Intent(patient_first_time_recurring_clinics.this, patient_search_centers_visit_page.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot press back
 
     }
     @Override
@@ -46,8 +46,8 @@ public class patient_first_time_recurring_clinics extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
-                    finish();
+//                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
+//                    finish();
                     return true;
                 } else if (id == R.id.homeId) {
                     startActivity(new Intent(getApplicationContext(), patient_home_page.class)); //check this line it might be wrong
@@ -58,7 +58,7 @@ public class patient_first_time_recurring_clinics extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_nutrition_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {

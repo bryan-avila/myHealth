@@ -12,6 +12,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class clinic_medical_records_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
+        finish();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,20 +61,18 @@ public class clinic_medical_records_page extends AppCompatActivity {
         });
     }
 
-
     public void onMyPatientRecordsClick(View view) {
-        //create a new activity that lists patients
-        //Allow to click on a patient and display user's medical info
-        //startActivity(new Intent(getApplicationContext(), clinic_med_hist_page.class));
+        startActivity(new Intent(getApplicationContext(), clinic_view_patients_medical_records.class));
     }
 
     public void onMedicationsPrescriptionsClick(View view) {
-        //will need to show current patients to prescribe meds
-        startActivity(new Intent(getApplicationContext(), clinic_med_hist_page.class));
+        // Send to Clinic's View of Patient Names to select and prescribe meds to
+        startActivity(new Intent(getApplicationContext(), clinic_view_med_prescription.class));
     }
 
     public void onManageMedicationsClick(View view) {
-        startActivity(new Intent(getApplicationContext(), clinic_manage_meds_page.class));
+        // Send to them to a page that has a RecyclerView 
+        startActivity(new Intent(getApplicationContext(), clinic_view_select_patient_to_manage_meds.class));
     }
 
 }

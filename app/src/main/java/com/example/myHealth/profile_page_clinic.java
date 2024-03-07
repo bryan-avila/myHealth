@@ -26,6 +26,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
 public class profile_page_clinic extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
+        finish();
+
+    }
 
     TextView clinicEmailPlaceholder, clinicNamePlaceholder, clinicLocationPlaceholder, clinicPhonePlaceholder;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -95,13 +102,13 @@ public class profile_page_clinic extends AppCompatActivity {
                 startActivity(intent);
 
                 // Optionally, finish the current activity to prevent the user from going back to it
-                finish();
+                finish(); // cannot press back
             }
         });
     }
 
     public void onEditClickClinic(View view) {
-        startActivity(new Intent(getApplicationContext(), empty_editProfile.class));
+        startActivity(new Intent(getApplicationContext(), clinic_edit_my_profile.class));
     }
 
 

@@ -15,7 +15,7 @@
 
     <item android:id="@+id/resourcesId"
         android:icon="@drawable/icon_resources"
-        android:title="Diet Diary"/>
+        android:title="Nutrition"/>
 
     <item android:id="@+id/profileId"
         android:icon="@drawable/icon_account"

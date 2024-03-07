@@ -47,9 +47,7 @@ public class MyClinicAdapter extends RecyclerView.Adapter<MyViewHolderClinic>{
     }
 
     // Method to set the click listener from outside the adapter
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
-    }
+    public void setOnItemClickListener(OnItemClickListener listener) { mListener = listener; }
 
     public interface OnItemClickListener {
         void onItemClick(int position, Clinic clinic);

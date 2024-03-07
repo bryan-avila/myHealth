@@ -34,8 +34,6 @@ public class patient_first_time_recurring_appointments_page extends AppCompatAct
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                   // startActivity(new Intent(patient_first_time_recurring_appointments_page.this, a.class));
-                    //finish();
                   return true;
                 } else if (id == R.id.homeId) {
                     startActivity(new Intent(patient_first_time_recurring_appointments_page.this, patient_home_page.class));
@@ -45,7 +43,7 @@ public class patient_first_time_recurring_appointments_page extends AppCompatAct
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(patient_first_time_recurring_appointments_page.this, patient_diet_page.class));
+                    startActivity(new Intent(patient_first_time_recurring_appointments_page.this, patient_nutrition_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
@@ -71,7 +69,7 @@ public class patient_first_time_recurring_appointments_page extends AppCompatAct
     {
         Intent intent = new Intent(patient_first_time_recurring_appointments_page.this, patient_home_page.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot press back
     }
 
     public void onMondayButtonClick(View view)

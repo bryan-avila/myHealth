@@ -31,6 +31,7 @@ public class MyPrescribedMedAdapter extends RecyclerView.Adapter<MyViewHolderPre
     public void onBindViewHolder(@NonNull MyViewHolderPrescribedMed holder, int position) {
         holder.medicationName.setText(pMedications.get(position).getMedicationName());
         holder.dosageAmount.setText(pMedications.get(position).getDosageAmount());
+        holder.dosageUnits.setText(pMedications.get(position).getDosageUnits());
         holder.frequency.setText(pMedications.get(position).getFrequency());
         holder.clinicName.setText(pMedications.get(position).getClinicName());
         holder.clinicPhone.setText(pMedications.get(position).getClinicPhone());

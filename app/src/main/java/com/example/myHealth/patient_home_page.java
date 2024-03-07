@@ -2,11 +2,14 @@ package com.example.myHealth;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -44,7 +47,22 @@ public class patient_home_page extends AppCompatActivity {
     TextView dateFormat;
     Calendar calendar;
     TextView txtToken;
-
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("❌ Closing App")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                        homeIntent.addCategory( Intent.CATEGORY_HOME );
+                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(homeIntent);
+                        System.exit(1);
+                    }
+                }).create().show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,22 +99,26 @@ public class patient_home_page extends AppCompatActivity {
                 int id = item.getItemId();
                 //check id
                 if (id == R.id.appointmentId) {
-                    startActivity(new Intent(getApplicationContext(), patient_search_centers_visit_page.class));
-                    finish();
+                    Intent a = new Intent(getApplicationContext(), patient_search_centers_visit_page.class);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(a);
                     return true;
                 } else if (id == R.id.homeId) {
                     return true;
                 } else if (id == R.id.medicalHistId) {
-                    startActivity(new Intent(getApplicationContext(), patient_medical_records_page.class));
-                    finish();
+                    Intent a = new Intent(getApplicationContext(), patient_medical_records_page.class);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(a);
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
-                    finish();
+                    Intent a = new Intent(getApplicationContext(), patient_nutrition_page.class);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(a);
                     return true;
                 } else if (id == R.id.profileId) {
-                    startActivity(new Intent(getApplicationContext(), patient_profile_page.class));
-                    finish();
+                    Intent a = new Intent(getApplicationContext(), patient_profile_page.class);
+                    a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(a);
                     return true;
                 }
                 return false;
@@ -180,9 +202,10 @@ public class patient_home_page extends AppCompatActivity {
         Calendar calendar;
         SimpleDateFormat simpleDateFormat;
         calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("'Today is': MMMM dd, yyyy");
+        simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy");
         date = simpleDateFormat.format(calendar.getTime()).toString();
         dateFormat.setText(date);
+        dateFormat.setPaintFlags(dateFormat.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
     }
 

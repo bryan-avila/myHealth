@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clinic_med_hist_page"
-    android:background="@drawable/background_final_app_theme">
+    tools:context=".clinic_view_patients_medical_records"
+    android:background="@drawable/clinic_background_final">
 
-    <SearchView
-        android:id="@+id/searchViewForPatients"
+    <android.widget.SearchView
+        android:id="@+id/search_view_find_patient_to_view_records"
+        android:focusable="true"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/custom_searchview_outline"
-        android:queryHint="Search Patient"
-        android:iconifiedByDefault="false"/>
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Patient" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,21 +42,22 @@
                 android:padding="0dp">
 
                 <TextView
-                    android:id="@+id/text_view_recycler_view_heading"
+                    android:id="@+id/text_view_recycler_view_heading_2"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:padding="5sp"
-                    android:text="List Of Patients"
-                    android:textSize="25sp"
+                    android:text="Select Patient for Medical Records"
+                    android:textSize="19sp"
                     android:textColor="@color/purple"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_patients"
-                    android:layout_below="@+id/text_view_recycler_view_heading"
+                    android:id="@+id/recycler_view_patients_for_med_records"
+                    android:layout_below="@+id/text_view_recycler_view_heading_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
                     android:overScrollMode="never"
                     android:scrollbars="vertical" />
 

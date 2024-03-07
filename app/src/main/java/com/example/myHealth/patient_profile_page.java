@@ -26,7 +26,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
 public class patient_profile_page extends AppCompatActivity {
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        finish();
 
+    }
 
     TextView emailPlaceholder, firstnamePlaceholder, lastnamePlaceholder, phonePlaceholder;
 
@@ -46,9 +52,6 @@ public class patient_profile_page extends AppCompatActivity {
         firstnamePlaceholder = findViewById(R.id.firstnamePlaceholder);
         lastnamePlaceholder = findViewById(R.id.lastnamePlaceholder);
         phonePlaceholder = findViewById(R.id.phonePlaceholder);
-
-        //String firstNameT = firstNameTitle.toString();
-
 
 
         //Initialize and assign variable
@@ -75,7 +78,7 @@ public class patient_profile_page extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_nutrition_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
@@ -97,18 +100,22 @@ public class patient_profile_page extends AppCompatActivity {
                 FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
                 mAuth.signOut();
 
-                // Start the LoginActivity (or any other activity you want to go to)
-                Intent intent = new Intent(getApplicationContext(), main_login_page.class);
+                // When a patient logs out, send them to the new "Default" screen, account_type_login_checker.class
+                Intent intent = new Intent(getApplicationContext(), account_type_login_checker.class);
                 startActivity(intent);
 
                 // Optionally, finish the current activity to prevent the user from going back to it
-                finish();
+                finish(); //cannot press back
             }
         });
     }
 
     public void onEditClick(View view) {
-        startActivity(new Intent(getApplicationContext(), empty_editProfile.class));
+        startActivity(new Intent(getApplicationContext(),patient_edit_my_profile.class));
+    }
+
+    public void onResourcesClick(View view) {
+        startActivity(new Intent(getApplicationContext(), empty_resourcesPage.class));
     }
 
     public void onStart() {

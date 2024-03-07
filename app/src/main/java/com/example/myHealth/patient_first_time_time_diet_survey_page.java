@@ -106,7 +106,7 @@ public class patient_first_time_time_diet_survey_page extends AppCompatActivity 
         // Once they finish inputting diet, send them to page that lets them make appointments
         Intent intent = new Intent(getApplicationContext(), patient_first_time_recurring_clinics.class);
         startActivity(intent);
-        finish();
+        finish(); // cannot press back
 
     }
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_final_app_theme"
+    tools:context=".patient_view_food_charts_page">
+
+    <!-- Top Elements -->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_myhealth_white"
+        android:adjustViewBounds="true"
+        android:maxWidth="80dp"
+        android:maxHeight="80dp"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:id="@+id/text_view_charts_header_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today's Charts"
+        android:textSize="30sp"
+        android:textColor="@color/purple"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="65sp"
+        android:layout_marginTop="70sp"/>
+
+    <TextView
+        android:id="@+id/text_view_charts_todays_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_charts_header_message"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="65sp"
+        android:layout_marginTop="0sp"
+        android:text="Default Date"
+        android:textColor="@color/purple"
+        android:textSize="25sp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="500sp"
+        android:layout_height="465sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140sp"
+        android:background="@drawable/card_border"
+        >
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart"
+            android:layout_width="400sp"
+            android:layout_height="480sp"
+            android:layout_above="@id/bottom_navigation"
+            android:layout_below="@id/text_view_charts_todays_date"
+            android:layout_marginLeft="5sp"/>
+
+    </androidx.cardview.widget.CardView>
+    <!-- Middle Elements -->
+
+<!--    <View-->
+<!--        android:layout_width="350sp"-->
+<!--        android:layout_height="400sp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="195sp"-->
+<!--        android:background="@drawable/image_concept_food_charts"-->
+<!--        android:elevation="20sp"-->
+<!--        />-->
+
+    <!-- Controls the nav bar at the very bottom -->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="45sp"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_items"
+        app:itemRippleColor="@color/lightpurple"
+        app:itemIconTint="@color/bottom_nav_menu_icons_color"
+        app:itemTextColor="@color/lightpurple"/>
+
+</RelativeLayout>

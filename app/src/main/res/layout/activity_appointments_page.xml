@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="435dp"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="10dp">
@@ -47,7 +47,7 @@
                 android:text="Select Date"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
-                android:textSize="35sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <CalendarView
@@ -64,7 +64,7 @@
                 android:text="clinic"
                 android:textAlignment="center"
                 android:textColor="@color/goodGrey"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/emailText"
@@ -73,7 +73,7 @@
                 android:text="email"
                 android:textAlignment="center"
                 android:textColor="@color/grey"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/locationText"
@@ -82,7 +82,7 @@
                 android:text="location"
                 android:textAlignment="center"
                 android:textColor="@color/grey"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/phoneText"

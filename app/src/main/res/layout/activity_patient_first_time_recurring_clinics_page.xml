@@ -41,8 +41,8 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Select Recurring Clinic"
-                        android:textSize="25sp"
+                        android:text="Select Clinic for Recurring Appointment"
+                        android:textSize="19sp"
                         android:textColor="@color/purple"
                         android:textStyle="bold" />
 
@@ -51,12 +51,11 @@
                         android:layout_below="@id/ClinicSearch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginTop="40sp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginRight="60dp"
                         android:backgroundTint="@color/redish"
                         android:onClick="onSkipRecurringButtonClick1"
-                        android:text="Skip Recurring Appointments"
+                        android:text="Cancel"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -65,7 +64,8 @@
                         android:layout_below="@+id/SkipRecurring"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="4dp"
+                        android:paddingBottom="?attr/actionBarSize"
                         android:overScrollMode="never"
                         android:scrollbars="vertical" />
 
