@@ -123,7 +123,7 @@ public class pick_appointment_time extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), patient_diet_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_dietary_plan_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
