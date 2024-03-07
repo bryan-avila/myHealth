@@ -137,7 +137,7 @@
                 android:text="Sign Up"
                 android:textSize="18sp"
                 android:layout_marginTop="14dp"
-                android:backgroundTint="@color/purple"
+                android:backgroundTint="@color/goodGreen"
                 android:textStyle="bold"/>
 
         </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clinic_prescribed_meds_page"
+    tools:context=".clinic_view_prescribed_meds_page"
     android:background="@drawable/clinic_background_final">
 
 
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="0dp"
-            tools:context=".clinic_prescribed_meds_page">
+            tools:context=".clinic_view_prescribed_meds_page">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Patient's Prescriptions"
+                        android:text="Patient's Prescription/s"
                         android:textSize="25sp"
                         android:textStyle="bold"
                         android:paddingTop="20dp"

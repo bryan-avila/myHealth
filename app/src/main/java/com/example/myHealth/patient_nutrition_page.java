@@ -177,7 +177,7 @@ public class patient_nutrition_page extends AppCompatActivity {
                     // Change a textview from the dietpage to
                     TextView welcome = (TextView) findViewById(R.id.text_view_nutrition_default_text);
                     String patient_firstname = documentSnapshot.get("firstName").toString();
-                    welcome.setText(patient_firstname + "!!");
+                    welcome.setText(patient_firstname + ". Test successful. To Do: Display Today's Nutrients.");
 
                 }
             }

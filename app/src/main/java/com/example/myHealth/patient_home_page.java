@@ -1,5 +1,7 @@
 package com.example.myHealth;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -17,11 +19,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.core.operation.Merge;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -30,13 +35,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class patient_home_page extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -67,6 +76,45 @@ public class patient_home_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home_page);
+
+        // START OF NUTRIENT DATABASE STUFF****
+
+        // Grabbing today's date for storing food eaten that day
+        String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+        // Set Nutrient values to be EMPTY on a new day
+        Map<String, Object> todays_nutrients = new HashMap<>();
+        todays_nutrients.put("phosphorus", 0);
+        todays_nutrients.put("potassium", 0);
+        todays_nutrients.put("protein", 0);
+
+        // Check if today_date document already exists
+        // If it doesn't set nutrient values to be 0
+        // Check logcat to see which branch was picked
+        userRef.collection("nutrients").document(todays_date).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    DocumentSnapshot todays_document = task.getResult();
+
+                     if(todays_document.exists())
+                     {
+                         System.out.println("ATTN: Today's Date already exists.");
+                     }
+                     else {
+
+                         System.out.println("ATTN: Creating Today's Date Document...");
+                         userRef.collection("nutrients").document(todays_date).set(todays_nutrients);
+                     }
+                }
+                else {
+                    System.out.println("Error. Check Line 96.");
+                }
+            }
+        });
+
+        // END OF NUTRIENT DATABASE STUFF****
 
         String TAG = "Token ID:";
         FirebaseMessaging.getInstance().getToken()
@@ -185,7 +233,7 @@ public class patient_home_page extends AppCompatActivity {
                 }
                 Log.d("TAG", "Appointment list size: " + appointments_list.size()); // Check the size of the clinics list
                 // Set the adapter (you'll create and set the adapter in later steps)
-                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list);
+                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list, appointments_recycle_view);
                 appointments_recycle_view.setAdapter(myAdapter);
             }
             else {

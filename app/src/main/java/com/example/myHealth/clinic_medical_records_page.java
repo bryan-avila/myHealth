@@ -52,7 +52,7 @@ public class clinic_medical_records_page extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.profileIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), profile_page_clinic.class));
+                    startActivity(new Intent(getApplicationContext(), clinic_profile_page.class));
                     finish();
                     return true;
                 }

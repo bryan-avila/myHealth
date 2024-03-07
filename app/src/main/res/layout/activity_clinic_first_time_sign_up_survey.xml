@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".main_choose_account_type"
+    tools:context=".unused_main_choose_account_type"
     android:background="@drawable/clinic_background_final">
 
     <RelativeLayout
@@ -136,7 +136,7 @@
         android:text="Finish"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:backgroundTint="@color/purple"
+        android:backgroundTint="@color/goodGreen"
         android:onClick="onClinicSurveyClick"
         />
 

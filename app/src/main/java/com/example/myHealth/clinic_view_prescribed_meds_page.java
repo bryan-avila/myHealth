@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,7 +17,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class clinic_prescribed_meds_page extends AppCompatActivity {
+public class clinic_view_prescribed_meds_page extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
@@ -52,11 +53,23 @@ public class clinic_prescribed_meds_page extends AppCompatActivity {
                 // Set the adapter (you'll create and set the adapter in later steps)
                 MyPrescribedMedAdapter myAdapter = new MyPrescribedMedAdapter(getApplicationContext(), pMedications_list);
                 med_recycle_view.setAdapter(myAdapter);
+
+                //make meds clickable
+                myAdapter.setOnItemClickListener(new MyPrescribedMedAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, PrescribedMedications prescribedMedications) {
+
+                        //Send them to a form where clinic can edit the prescription or cancel it
+                        Intent intent = new Intent(clinic_view_prescribed_meds_page.this, clinic_view_edit_prescriptions.class);
+                        startActivity(intent);
+                    }
+                });
             }
             else {
                 // Handle the error
                 Log.e("TAG", "Error getting medications", task.getException());
             }
+
         });
     }
 }

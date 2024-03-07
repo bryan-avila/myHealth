@@ -1,14 +1,11 @@
 package com.example.myHealth;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -76,7 +73,7 @@ public class clinic_manage_meds_page extends AppCompatActivity {
                     String p_id = patients.getPat_ID().toString();
                     // Send them to see the patient's medications after clicking on a patients name using this onItemClickListener
                     // Will need to implement an edit functionality to delete medications for a patient
-                    Intent intent = new Intent(clinic_manage_meds_page.this, clinic_prescribed_meds_page.class);
+                    Intent intent = new Intent(clinic_manage_meds_page.this, clinic_view_prescribed_meds_page.class);
                     intent.putExtra("patient",p_id); // send patient id with the intent
                     startActivity(intent);
                 }

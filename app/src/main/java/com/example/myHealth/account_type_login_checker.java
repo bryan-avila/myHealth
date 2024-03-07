@@ -32,8 +32,8 @@ public class account_type_login_checker extends AppCompatActivity {
     }
 
     public void onCaretakerClickChecker(View view) {
-        Intent intent = new Intent(getApplicationContext(), main_login_page.class);
-        // Send information to main_login_page.class
+        Intent intent = new Intent(getApplicationContext(), main_login_page_clinic.class);
+        // Send information to main_login_page_clinic.class
         String profile_type = "clinic";
         intent.putExtra("profile", profile_type);
         startActivity(intent);

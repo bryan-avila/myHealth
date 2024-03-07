@@ -172,6 +172,10 @@ public class clinic_prescription_form extends AppCompatActivity {
         return false;
     }
 
+    public void onCancelPrescriptionClick (View view) {
+        finish();
+    }
+
     public void onSubmitPrescriptionClick (View view) {
 
         String string_med_Name = medName.getText().toString();

@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -14,43 +13,28 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_purple_outline"
-        app:cardCornerRadius="22dp"
-        app:cardElevation="8dp"
-        >
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_view_date"
-                android:layout_gravity="center"
+                android:id="@+id/text_view_food_name"
+                android:padding="7sp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
-                android:textSize="20dp"
-                tools:text="Appointment Date"/>
+                android:textSize="30dp"
+                tools:text="foodName"/>
 
-            <TextView
-                android:id="@+id/details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:visibility="gone"
-                android:text="(APPOINTMENT DETAILS)"
-                android:textSize="16dp"/>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 

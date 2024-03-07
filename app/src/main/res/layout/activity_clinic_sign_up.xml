@@ -41,7 +41,7 @@
                 android:inputType="text"
                 android:maxLines="1"
                 android:background="@drawable/custom_purple_outline"
-                android:hint="Clinc Name"
+                android:hint="Clinic Name"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
@@ -127,7 +127,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginTop="14dp"
-                android:backgroundTint="@color/purple"
+                android:backgroundTint="@color/goodGreen"
                 android:onClick="onCareCenterAwaitConfirmation"/>
 
         </LinearLayout>

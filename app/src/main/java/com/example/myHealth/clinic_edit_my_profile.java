@@ -38,6 +38,10 @@ public class clinic_edit_my_profile extends AppCompatActivity {
         setContentView(R.layout.activity_clinic_edit_my_profile);
     }
 
+    public void onClinicSurveyClickCancel(View view) {
+        finish();
+    }
+
     public void onClinicSurveyClick(View view)
     {
         // Initialize objects
