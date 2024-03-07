@@ -65,37 +65,49 @@ public class patient_appointments_view extends AppCompatActivity {
 
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                // Toast message displaying date MM/DD/YYYY
-               Toast.makeText(patient_appointments_view.this, (month + 1) + "/" + day +"/" + year, Toast.LENGTH_LONG).show();
-                String selectedDate = year + "-" + (month + 1) + "-" + day;
-                Log.d("TAG", "selectedDate:" + selectedDate);
-                Log.d("TAG", "clinic id:" + clinic.getID());
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(year, month, day);
+                Calendar sixMonthsLater = Calendar.getInstance();
+                sixMonthsLater.add(Calendar.MONTH, 6);
+                if (selectedDate.after(sixMonthsLater)) {
+                    Toast.makeText(patient_appointments_view.this, "Cannot select a date beyond 6 months in the future", Toast.LENGTH_LONG).show();
+                }
+                else {// Toast message displaying date MM/DD/YYYY
+                    month++;
+                    String formattedYear = String.format("%04d", year);
+                    String formattedMonth = String.format("%02d", month);
+                    String formattedDay = String.format("%02d", day);
+                    Toast.makeText(patient_appointments_view.this, formattedMonth + "/" + formattedDay + "/" + formattedYear, Toast.LENGTH_LONG).show();
+                    String selectedDateString = formattedYear + "-" + formattedMonth + "-" + formattedDay;
+                    Log.d("TAG", "selectedDate:" + selectedDate);
+                    Log.d("TAG", "clinic id:" + clinic.getID());
 
 
-                AppointmentManager appointmentManager = new AppointmentManager();
-                appointmentManager.availableDayTimes(clinic.getID(), selectedDate, new OnDataReadyListener<ArrayList<Boolean>>() {
-                    @Override
-                    public void onDataReady(ArrayList<Boolean> availabilityList) {
-                        appointmentManager.dayTimes(clinic.getID(), selectedDate, new OnDataReadyListener<ArrayList<String>>() {
-                            @Override
-                            public void onDataReady(ArrayList<String> timesList) {
-                                // Now timesList is ready, and you can proceed with creating the intent
-                                ArrayList<String> availableTimesList = new ArrayList<>();
-                                for (int i = 0; i < timesList.size(); i++) {
-                                    if (availabilityList.get(i) == true) {
-                                        availableTimesList.add(timesList.get(i));
+                    AppointmentManager appointmentManager = new AppointmentManager();
+                    appointmentManager.availableDayTimes(clinic.getID(), selectedDateString, new OnDataReadyListener<ArrayList<Boolean>>() {
+                        @Override
+                        public void onDataReady(ArrayList<Boolean> availabilityList) {
+                            appointmentManager.dayTimes(clinic.getID(), selectedDateString, new OnDataReadyListener<ArrayList<String>>() {
+                                @Override
+                                public void onDataReady(ArrayList<String> timesList) {
+                                    // Now timesList is ready, and you can proceed with creating the intent
+                                    ArrayList<String> availableTimesList = new ArrayList<>();
+                                    for (int i = 0; i < timesList.size(); i++) {
+                                        if (availabilityList.get(i) == true) {
+                                            availableTimesList.add(timesList.get(i));
+                                        }
                                     }
-                                }
 
-                                Intent intent = new Intent(patient_appointments_view.this, pick_appointment_time.class);
-                                intent.putExtra("clinicData", clinic);
-                                intent.putExtra("selectedDate", selectedDate);
-                                intent.putExtra("availableTimesList", availableTimesList);
-                                startActivity(intent);
-                            }
-                        });
-                    }
-                });
+                                    Intent intent = new Intent(patient_appointments_view.this, pick_appointment_time.class);
+                                    intent.putExtra("clinicData", clinic);
+                                    intent.putExtra("selectedDate", selectedDateString);
+                                    intent.putExtra("availableTimesList", availableTimesList);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
 

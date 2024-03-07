@@ -13,9 +13,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -241,16 +246,16 @@ public class AppointmentManager {
     //this function makes an appointment at a specified time/date given that time is available
     public void makeSingleAppointment(String clinicId, String appointmentDate, double appointmentTime, Boolean recurring) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        DocumentReference dateRef = db.collection("clinic").document(clinicId).collection("dates").document(appointmentDate);
+        DocumentReference clinicDateRef = db.collection("clinic").document(clinicId).collection("dates").document(appointmentDate);
         Map<String, Object> date = new HashMap<>();
         date.put("date", appointmentDate);
-        dateRef.set(date);
-        CollectionReference appointmentsRef = dateRef.collection("appointments");
+        clinicDateRef.set(date);
+        CollectionReference clinicAppointmentsRef = clinicDateRef.collection("appointments");
         if (currentUser != null) {
             String userId = currentUser.getUid();
 
             // Create a new appointment document with the user's ID as the document ID
-            DocumentReference newAppointmentRef = appointmentsRef.document(userId);
+            DocumentReference clinicnewAppointmentRef = clinicAppointmentsRef.document(userId);
 
             // convert times to strings
             String startTime = convertToString(appointmentTime);
@@ -258,13 +263,15 @@ public class AppointmentManager {
 
             // Create a Map to store the data
             Map<String, Object> appointmentData = new HashMap<>();
+            appointmentData.put("patient", userId);
             appointmentData.put("startTime", startTime);
             appointmentData.put("endTime", endTime);
             appointmentData.put("date", appointmentDate);
             appointmentData.put("recurring", recurring);
+            appointmentData.put("complete", false);
 
             // Set the data in the document
-            newAppointmentRef.set(appointmentData)
+            clinicnewAppointmentRef.set(appointmentData)
                     .addOnSuccessListener(aVoid -> {
                         // Document successfully written
                         Log.d("Firestore", "Appointment document added successfully!");
@@ -284,7 +291,7 @@ public class AppointmentManager {
 
 
             // Create a new appointment document with the user's ID as the document ID
-            DocumentReference newAppointmentRef = userAppointmentsRef.document(clinicId);
+            DocumentReference usernewAppointmentRef = userAppointmentsRef.document(clinicId);
 
             // convert times to strings
             String startTime = convertToString(appointmentTime);
@@ -292,13 +299,15 @@ public class AppointmentManager {
 
             // Create a Map to store the data
             Map<String, Object> appointmentData = new HashMap<>();
+            appointmentData.put("clinic", clinicId);
             appointmentData.put("startTime", startTime);
             appointmentData.put("endTime", endTime);
             appointmentData.put("date", appointmentDate);
             appointmentData.put("recurring", recurring);
+            appointmentData.put("complete", false);
 
             // Set the data in the document
-            newAppointmentRef.set(appointmentData)
+            usernewAppointmentRef.set(appointmentData)
                     .addOnSuccessListener(aVoid -> {
                         // Document successfully written
                         Log.d("Firestore", "Appointment document added successfully!");
@@ -378,7 +387,7 @@ public class AppointmentManager {
     }
 
     //adds a year of appointments for the selected date
-    public void makeMultipleRecurringAppointments(String clinicId, String appointmentDay, double appointmentTime, Boolean recurring) {
+    public void makeMultipleAppointments(String clinicId, String appointmentDay, double appointmentTime, Boolean recurring) {
         // Parse the selected day to DayOfWeek
         DayOfWeek selectedDayOfWeek = DayOfWeek.valueOf(appointmentDay.toUpperCase());
 
@@ -469,6 +478,74 @@ public class AppointmentManager {
             Log.d("ArrayListInfo", "timeslots is Empty");
         }
         return timeSlots;
+    }
+
+    public void checkPassedAppointments(String userId) {
+        CollectionReference patientAppointmentDateRef = db.collection("users").document(userId).collection("dates");
+        Log.d("TAG", "Collection Reference: " + patientAppointmentDateRef.getPath());
+        Log.d("TAG", "user id: " + userId);
+        patientAppointmentDateRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot dateDocument : task.getResult()) {
+                    Log.d("TAG", "document id" + dateDocument.getId());
+                    CollectionReference appointmentsCollection = dateDocument.getReference().collection("appointments");
+                    appointmentsCollection.get().addOnCompleteListener(appointmentTask -> {
+                        if (appointmentTask.isSuccessful()) {
+                            for (QueryDocumentSnapshot appointmentDocument : appointmentTask.getResult()) {
+                                // Assuming the completed field is a boolean in the appointment document
+                                boolean complete = appointmentDocument.getBoolean("complete");
+                                if (!complete) { // Check if the appointment is not completed
+                                    String appointmentString = appointmentDocument.getString("date");
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                                    LocalDate appointmentLocalDate = LocalDate.parse(appointmentString, formatter);
+                                    Date appointmentDate = Date.from(appointmentLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                                    Date currentDate = new Date(); // Get current date
+                                    if (appointmentDate != null && appointmentDate.before(currentDate)) {
+                                        // Update the completed field to true
+                                        appointmentDocument.getReference().update("complete", true) //works
+                                                .addOnSuccessListener(aVoid -> {
+                                                    Log.d("TAG", "Appointment marked as completed: " + appointmentDocument.getId());
+                                                    // Check if the appointment is recurring
+                                                    boolean recurring = appointmentDocument.getBoolean("recurring");
+                                                    Log.d("TAG", "recurring: " + recurring);
+                                                    if (recurring) {
+                                                        // Perform additional actions for recurring appointments
+                                                        Log.d("TAG", "Recurring appointment: " + appointmentDocument.getId());
+                                                        Calendar calendar = Calendar.getInstance();
+                                                        calendar.setTime(appointmentDate);
+                                                        calendar.add(Calendar.MONTH, 6);
+                                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                                        String futureDate = sdf.format(calendar.getTime());
+                                                        Log.d("TAG", "Appointment is recurring. Next appointment date: " + futureDate);
+
+                                                        // Retrieve clinic and appointment time from the appointment document
+                                                        String clinic = appointmentDocument.getString("clinic");
+                                                        String startTimeString = appointmentDocument.getString("startTime");
+                                                        TimeConverter timeconverter = new TimeConverter();
+                                                        double newtime = timeconverter.convertToDecimal(startTimeString);
+                                                        Log.d("TAG", "Clinic: " + clinic + ", Appointment Time: " + startTimeString);
+
+
+                                                        makeSingleAppointment(clinic, futureDate, newtime, true);
+                                                    }
+                                                })
+                                                .addOnFailureListener(e -> Log.e("TAG", "Error updating appointment: " + appointmentDocument.getId(), e));
+
+                                    }
+                                }
+                            }
+                        } else {
+                            Log.e("TAG", "Error getting appointments: ", appointmentTask.getException());
+                        }
+                    });
+
+                }
+            }
+            else {
+                // Handle the error
+                Log.e("TAG", "Error getting appointments", task.getException());
+            }
+        });
     }
 }
 

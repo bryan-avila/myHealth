@@ -213,6 +213,10 @@ public class patient_home_page extends AppCompatActivity {
             }
         });
 
+        // Check for past appointments
+        AppointmentManager appointmentManager = new AppointmentManager();
+        appointmentManager.checkPassedAppointments(currentUser.getUid());
+
         // Set up the RecyclerView for appointments
         RecyclerView appointments_recycle_view = findViewById(R.id.recycler_view_home_page_appointment);
         appointments_recycle_view.setLayoutManager(new LinearLayoutManager(this));
@@ -255,59 +259,7 @@ public class patient_home_page extends AppCompatActivity {
 
     // AUTOMATIC LOADING
    public void onStart() {
-
-       FirebaseUser currentUser = mAuth.getCurrentUser();
-       String userId = currentUser.getUid();
-       if (currentUser != null) {
-           DocumentReference userRef = db.collection("users").document(currentUser.getUid());
-
-           userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-               @Override
-               public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                   if (task.isSuccessful()) {
-                       DocumentSnapshot document = task.getResult();
-                       if (document.exists()) {
-                           // User document exists, retrieve data
-                           String userFirstName = document.getString("firstName");
-                           String userLastName = document.getString("lastName");
-                           String userEmail = document.getString("email");
-                           String userPhone = document.getString("phone");
-                           // Retrieve other user data as needed
-                       } else {
-                           // User document doesn't exist, handle accordingly
-                       }
-                   } else {
-                       // Handle failure to retrieve user document
-                   }
-               }
-           });
-           AppointmentManager appointmentmanager = new AppointmentManager();
-           TimeConverter timeconverter = new TimeConverter();
-           userRef.collection("recurringAppointments")
-                   .get()
-                   .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                       @Override
-                       public void onComplete(Task<QuerySnapshot> task) {
-                           if (task.isSuccessful()) {
-                               for (DocumentSnapshot document : task.getResult()) {
-                                   Appointment appointment = document.toObject(Appointment.class);
-                                   // Get the appointmentDay from the document ID
-                                   String appointmentDay = document.getId();
-                                   double appointmentTime = timeconverter.convertToDecimal(appointment.getStartTime());
-
-                                   // Call the makeMultipleRecurringAppointments function
-                                   appointmentmanager.makeMultipleRecurringAppointments(userId, appointmentDay, appointmentTime, true);
-                               }
-                           } else {
-                               // Handle errors
-                               Exception exception = task.getException();
-                               if (exception != null) {
-                                   // Handle the exception
-                               }
-                           }
-                       }
-                   });
-       }
+        //run method to check past appointments
 
 
        super.onStart();

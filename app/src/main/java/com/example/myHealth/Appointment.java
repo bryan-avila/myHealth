@@ -8,6 +8,7 @@ public class Appointment implements Serializable {
     String endTime;
     Boolean recurring;
     String clinic;
+    Boolean complete;
 
     public Appointment() {}
     public Appointment(String date, String startTime, String endTime, Boolean recurring) {
@@ -27,6 +28,23 @@ public class Appointment implements Serializable {
         this.endTime = endTime;
         this.recurring = recurring;
         this.clinic = clinic;
+    }
+
+    public Appointment(String startTime, String endTime, Boolean recurring, String clinic, Boolean complete) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.recurring = recurring;
+        this.clinic = clinic;
+        this.complete = complete;
+    }
+
+    public Appointment(String clinic, String date, String startTime, String endTime, Boolean recurring, Boolean complete) {
+        this.clinic = clinic;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.recurring = recurring;
+        this.complete = complete;
     }
 
     public Boolean getRecurring() { return recurring; }
@@ -51,5 +69,13 @@ public class Appointment implements Serializable {
 
     public void setClinic(String clinic) {
         this.clinic = clinic;
+    }
+
+    public Boolean getComplete() {
+        return complete;
+    }
+
+    public void setComplete(Boolean complete) {
+        this.complete = complete;
     }
 }

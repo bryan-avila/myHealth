@@ -87,8 +87,8 @@ public class pick_appointment_time extends AppCompatActivity {
 
                 double newtime = timeconverter.convertToDecimal(startTime);
 
-                appointmentmanager.makeSingleAppointment(clinic.getID(), date, newtime, true);
-                Toast.makeText(pick_appointment_time.this, "Appointment made for: " + time + " on: " + selectedDate, Toast.LENGTH_LONG).show();
+                appointmentmanager.makeSingleAppointment(clinic.getID(), date, newtime, false);
+                Toast.makeText(pick_appointment_time.this, "appointment made for: " + time + " on: " + selectedDate, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(pick_appointment_time.this, patient_home_page.class);
                 startActivity(intent);
@@ -123,7 +123,7 @@ public class pick_appointment_time extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.resourcesId) {
-                    startActivity(new Intent(getApplicationContext(), patient_nutrition_page.class));
+                    startActivity(new Intent(getApplicationContext(), patient_dietary_plan_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileId) {
