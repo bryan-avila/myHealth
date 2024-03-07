@@ -154,9 +154,15 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                     barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
                     barChart.getXAxis().setGranularity(1f);
                     barChart.getXAxis().setGranularityEnabled(true);
-                    barChart.animateY(5000);
+                    barChart.animateY(2000);
                     barChart.getDescription().setText("Today's Nutrients");
                     barChart.getDescription().setTextColor(Color.MAGENTA);
+
+                    // Display toast if user has yet to add any food for today
+                    if(i_patient_protein == 0 || i_patient_potassium == 0 || i_patient_phosphorus == 0)
+                    {
+                        Toast.makeText(patient_view_food_charts_page.this, "No food added yet.", Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 else {

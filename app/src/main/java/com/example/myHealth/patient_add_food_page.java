@@ -59,6 +59,10 @@ public class patient_add_food_page extends AppCompatActivity {
 
     String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
+    // nutrient data tracker
+    int count = 0;
+
+    double phosAmount, proteinAmount, potassiumAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,13 +197,110 @@ public class patient_add_food_page extends AppCompatActivity {
                                     @Override
                                     public void onItemClick(int position, FoodNameFromList food_names) {
 
-                                        String food_id = food_names.getFood_id().toString();
-                                        //TODO: Change the database nutrient values based off the food's actual value, and not dummy value
-                                        userRef.collection("nutrients").document(todays_date).update("phosphorus", 400);
-                                        userRef.collection("nutrients").document(todays_date).update("potassium", 600);
-                                        userRef.collection("nutrients").document(todays_date).update("protein", 500);
+                                        // When you click on a food, store the food_id
+                                        String current_food_id = food_names.getFood_id().toString();
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                // Perform network operations here
+                                                try {
 
+                                                    // Grab the specific food's nutrient info with this URL using the food id
+                                                    String endpoint = "https://api.nal.usda.gov/fdc/v1/food/" + current_food_id + "?nutrients=305&api_key=hIXmsCYannc5plOrGfwlqSZkuUsBAznpJEgxtz5T";
 
+                                                    // Create a URL object
+                                                    URL url = new URL(endpoint);
+
+                                                    // Open a connection to the URL
+                                                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                                                    Log.d("middle", "middle");
+
+                                                    // Set request method
+                                                    connection.setRequestMethod("GET");
+                                                    Log.d("get", "success");
+
+                                                    // Get the response code
+                                                    int responseCode = connection.getResponseCode();
+                                                    System.out.println("Response Code: " + responseCode);
+                                                    Log.d("code", "code" + responseCode);
+
+                                                    // Read the response
+                                                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                                                    StringBuilder response = new StringBuilder();
+                                                    String line;
+
+                                                    while ((line = reader.readLine()) != null) {
+                                                        response.append(line);
+                                                    }
+                                                    reader.close();
+
+                                                    JSONParser parser = new JSONParser();
+                                                    JSONObject jsonResponse = (JSONObject) parser.parse(response.toString());
+
+                                                    // Access food's array of nutrients
+                                                    JSONArray nutrientsArray = (JSONArray) jsonResponse.get("foodNutrients");
+
+                                                    // Iterate through the array
+                                                    for (Object nutrientObj : nutrientsArray)
+                                                    {
+                                                        JSONObject nutrient = (JSONObject) nutrientObj;
+                                                        JSONObject nutrientInfo = (JSONObject) nutrient.get("nutrient");
+
+//                                                        if(count > 3)
+//                                                        {
+//                                                            break;
+//                                                        }
+
+//                                                        // Match nutrient names
+//                                                        if(nutrientInfo.get("name").equals("Protein"))
+//                                                        {
+//                                                            proteinAmount = (double) nutrient.get("amount");
+//                                                            userRef.collection("nutrients").document(todays_date).update("protein", proteinAmount);
+//                                                            count = count + 1;
+//
+//                                                        }
+//
+                                                        if(nutrientInfo.get("name").equals("Phosphorus, P"))
+                                                        {
+                                                            phosAmount = (double) nutrient.get("amount");
+                                                            userRef.collection("nutrients").document(todays_date).update("phosphorus", phosAmount);
+                                                        }
+
+//                                                        if(nutrientInfo.get("name").equals("Potassium, K"))
+//                                                        {
+//                                                            potassiumAmount = (double) nutrient.get("amount");
+//                                                            userRef.collection("nutrients").document(todays_date).update("potassium", potassiumAmount);
+//                                                        }
+
+                                                        else if(nutrientInfo.get("name").equals("Protein"))
+                                                        {
+                                                            proteinAmount = (double) nutrient.get("amount");
+                                                            userRef.collection("nutrients").document(todays_date).update("protein", proteinAmount);
+
+                                                        }
+//
+//                                                        if(nutrientInfo.get("name").equals("Potassium, K"))
+//                                                        {
+//                                                            potassiumAmount = (double) nutrient.get("amount");
+//                                                            // Found final nutrient. Increment count
+//                                                            count++;
+//                                                        }
+
+                                                        Log.d("happy", "worked");
+                                                        // Access other properties as needed
+                                                    }
+
+                                                    // Disconnect the connection
+                                                    connection.disconnect();
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                    Log.d("sad", "didnt work");
+                                                }
+                                            }
+                                        }).start();
+
+                                        Toast.makeText(patient_add_food_page.this, "Succesfully added", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                foodListAdapter.getFilter().filter(user_text); // Filter based off the text in the search view
@@ -235,7 +336,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                         String food_id = food_names.getFood_id().toString();
                         //TODO: Change the database nutrient values based off the food's actual value, and not dummy value
-                        Toast.makeText(patient_add_food_page.this, food_id, Toast.LENGTH_LONG).show();
+                        Toast.makeText(patient_add_food_page.this, food_id + " ERROR?", Toast.LENGTH_LONG).show();
 
                     }
                 });
