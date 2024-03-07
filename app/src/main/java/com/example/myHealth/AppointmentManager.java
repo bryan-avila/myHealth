@@ -17,6 +17,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -491,36 +493,40 @@ public class AppointmentManager {
                         if (appointmentTask.isSuccessful()) {
                             for (QueryDocumentSnapshot appointmentDocument : appointmentTask.getResult()) {
                                 // Assuming the completed field is a boolean in the appointment document
-                                boolean completed = appointmentDocument.getBoolean("completed");
-                                if (!completed) { // Check if the appointment is not completed
-                                    Date appointmentDate = appointmentDocument.getDate("date");
+                                boolean complete = appointmentDocument.getBoolean("complete");
+                                if (!complete) { // Check if the appointment is not completed
+                                    String appointmentString = appointmentDocument.getString("date");
+                                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                                    LocalDate appointmentLocalDate = LocalDate.parse(appointmentString, formatter);
+                                    Date appointmentDate = Date.from(appointmentLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
                                     Date currentDate = new Date(); // Get current date
                                     if (appointmentDate != null && appointmentDate.before(currentDate)) {
                                         // Update the completed field to true
-                                        appointmentDocument.getReference().update("completed", true)
+                                        appointmentDocument.getReference().update("complete", true) //works
                                                 .addOnSuccessListener(aVoid -> {
                                                     Log.d("TAG", "Appointment marked as completed: " + appointmentDocument.getId());
                                                     // Check if the appointment is recurring
                                                     boolean recurring = appointmentDocument.getBoolean("recurring");
+                                                    Log.d("TAG", "recurring: " + recurring);
                                                     if (recurring) {
                                                         // Perform additional actions for recurring appointments
                                                         Log.d("TAG", "Recurring appointment: " + appointmentDocument.getId());
                                                         Calendar calendar = Calendar.getInstance();
                                                         calendar.setTime(appointmentDate);
                                                         calendar.add(Calendar.MONTH, 6);
-                                                        String futureDate = calendar.getTime().toString();
+                                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                                        String futureDate = sdf.format(calendar.getTime());
                                                         Log.d("TAG", "Appointment is recurring. Next appointment date: " + futureDate);
 
                                                         // Retrieve clinic and appointment time from the appointment document
                                                         String clinic = appointmentDocument.getString("clinic");
                                                         String startTimeString = appointmentDocument.getString("startTime");
+                                                        TimeConverter timeconverter = new TimeConverter();
+                                                        double newtime = timeconverter.convertToDecimal(startTimeString);
                                                         Log.d("TAG", "Clinic: " + clinic + ", Appointment Time: " + startTimeString);
 
-                                                        // Convert startTimeString to double
-                                                        double startTime = Double.parseDouble(startTimeString);
 
-
-                                                        makeSingleAppointment(clinic, futureDate, startTime, true);
+                                                        makeSingleAppointment(clinic, futureDate, newtime, true);
                                                     }
                                                 })
                                                 .addOnFailureListener(e -> Log.e("TAG", "Error updating appointment: " + appointmentDocument.getId(), e));

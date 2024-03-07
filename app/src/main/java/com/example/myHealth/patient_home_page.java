@@ -143,6 +143,10 @@ public class patient_home_page extends AppCompatActivity {
             }
         });
 
+        // Check for past appointments
+        AppointmentManager appointmentManager = new AppointmentManager();
+        appointmentManager.checkPassedAppointments(currentUser.getUid());
+
         // Set up the RecyclerView for appointments
         RecyclerView appointments_recycle_view = findViewById(R.id.recycler_view_home_page_appointment);
         appointments_recycle_view.setLayoutManager(new LinearLayoutManager(this));
