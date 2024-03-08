@@ -1,7 +1,6 @@
 package com.example.myHealth;
 
 import android.content.Context;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,8 +54,8 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
 
     @Override
     public void onBindViewHolder(@NonNull UpcomingAppointmentViewholder holder, int position) {
-        String date = UpcomingAppointments.get(position);
-        holder.bind(date);
+        String title = UpcomingAppointments.get(position);
+        holder.bind(title);
 
         final boolean isExpanded = position == mExpandedPosition;
         holder.details.setVisibility(isExpanded?View.VISIBLE:View.GONE);
@@ -80,7 +79,7 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
     }
 
     public static class UpcomingAppointmentViewholder extends RecyclerView.ViewHolder {
-        private TextView dateTextView;
+        private TextView titleTextView;
         public CardView cv;
         private TextView details;
 
@@ -90,11 +89,11 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             cv = itemView.findViewById(R.id.cardView);
             details = itemView.findViewById(R.id.details);
 
-            dateTextView = itemView.findViewById(R.id.text_view_date);
+            titleTextView = itemView.findViewById(R.id.appointment_title);
         }
 
-        public void bind(String date) {
-            dateTextView.setText(date);
+        public void bind(String title) {
+            titleTextView.setText(title);
         }
     }
 }
