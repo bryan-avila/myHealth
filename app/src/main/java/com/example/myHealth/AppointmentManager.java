@@ -1,10 +1,15 @@
 package com.example.myHealth;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static com.example.myHealth.TimeConverter.convertToDecimal;
 import static com.example.myHealth.TimeConverter.convertToString;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -292,14 +297,32 @@ public class AppointmentManager {
 
             // Create a new appointment document with the user's ID as the document ID
             DocumentReference usernewAppointmentRef = userAppointmentsRef.document(clinicId);
+            DocumentReference clinicNameRef = db.collection("clinic").document(clinicId);
+
+            // Create a Map to store the data
+            Map<String, Object> appointmentData = new HashMap<>();
+            clinicNameRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String clinicName = document.getString("clinicName");
+                            Log.d("TAG", "DocumentSnapshot data: " + clinicName);
+                            appointmentData.put("clinic", clinicName);
+                        } else {
+                            Log.d("TAG", "No such document");
+                        }
+                    } else {
+                        Log.d("TAG", "get failed with ", task.getException());
+                    }
+                }
+            });
 
             // convert times to strings
             String startTime = convertToString(appointmentTime);
             String endTime = convertToString((appointmentTime + 4));
 
-            // Create a Map to store the data
-            Map<String, Object> appointmentData = new HashMap<>();
-            appointmentData.put("clinic", clinicId);
             appointmentData.put("startTime", startTime);
             appointmentData.put("endTime", endTime);
             appointmentData.put("date", appointmentDate);
