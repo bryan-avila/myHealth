@@ -43,6 +43,8 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
     private ListenerRegistration clinicListener;
     private DocumentReference userRef = db.collection("users").document(currentUser.getUid());
     private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
+
+
     String dosageUnitsEdited = "";
     String frequencyEdited = "";
 
@@ -65,7 +67,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         if(item.getItemId() == R.id.item_dosage_grams) {
 
             Button button_dosage;
-            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage = findViewById(R.id.button_med_dosage_edited);
             button_dosage.setText("g");
 
             dosageUnitsEdited = "g";
@@ -75,7 +77,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         else if(item.getItemId() == R.id.item_dosage_milligrams) {
 
             Button button_dosage;
-            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage = findViewById(R.id.button_med_dosage_edited);
             button_dosage.setText("mg");
 
             dosageUnitsEdited = "mg";
@@ -85,7 +87,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         else if(item.getItemId() == R.id.item_dosage_micrograms) {
 
             Button button_dosage;
-            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage = findViewById(R.id.button_med_dosage_edited);
             button_dosage.setText("mcg");
 
             dosageUnitsEdited = "mcg";
@@ -94,7 +96,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         else if(item.getItemId() == R.id.item_dosage_IU) {
 
             Button button_dosage;
-            button_dosage = findViewById(R.id.button_med_dosage);
+            button_dosage = findViewById(R.id.button_med_dosage_edited);
             button_dosage.setText("IU");
 
             dosageUnitsEdited = "IU";
@@ -116,7 +118,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         if(item.getItemId() == R.id.item_med_frequency_once_a_day) {
 
             Button button_freq;
-            button_freq = findViewById(R.id.button_med_Frequency);
+            button_freq = findViewById(R.id.button_med_Frequency_edited);
             button_freq.setText("Once A Day");
 
             frequencyEdited = "Once A Day";
@@ -126,7 +128,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         else if(item.getItemId() == R.id.item_med_frequency_twice_a_day) {
 
             Button button_freq;
-            button_freq = findViewById(R.id.button_med_Frequency);
+            button_freq = findViewById(R.id.button_med_Frequency_edited);
             button_freq.setText("Twice A Day");
 
             frequencyEdited = "Twice A Day";
@@ -136,7 +138,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         else if(item.getItemId() == R.id.item_med_frequency_once_a_week) {
 
             Button button_freq;
-            button_freq = findViewById(R.id.button_med_Frequency);
+            button_freq = findViewById(R.id.button_med_Frequency_edited);
             button_freq.setText("Once A Week");
 
             frequencyEdited = "Once A Week";
@@ -146,7 +148,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         else if(item.getItemId() == R.id.item_med_frequency_twice_a_week) {
 
             Button button_freq;
-            button_freq = findViewById(R.id.button_med_Frequency);
+            button_freq = findViewById(R.id.button_med_Frequency_edited);
             button_freq.setText("Twice A Week");
 
             frequencyEdited = "Twice A Week";
@@ -183,6 +185,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
             int integer_frequency = 0;
 
             // Set up strings the database can use
+            //String s_med_name = editTextmedicationName.getText().toString(); display medication at the top in this box
             String s_dosage_amt_edited = editTextdosageAmtEdited.getText().toString();
 
             if (frequencyEdited.equals("Once A Day")) {
@@ -202,8 +205,9 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
             medicationInfoEdited.put("frequency", frequencyEdited); // Get frequency from the pop up
 
 
-            //Add the data to the Firebase
-            userRef.update(medicationInfoEdited)
+            //Update the information, using .update to not overwrite other fields
+            //prescriptionsInfoRef.document(s_med_name).update(medicationInfoEdited)
+            clinicRef.update(medicationInfoEdited) //this is not corerct but will correct it
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
