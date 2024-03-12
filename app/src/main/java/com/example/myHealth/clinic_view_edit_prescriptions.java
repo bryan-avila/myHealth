@@ -29,6 +29,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,8 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     private ListenerRegistration clinicListener;
+
+    private ListenerRegistration userL;
     private DocumentReference userRef = db.collection("users").document(currentUser.getUid());
     private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
 
@@ -162,6 +165,8 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         finish();
     }
 
+
+
     public void onSubmitPrescriptionEditionClick(View view) {
         //Initialize objects
         String string_med_Dosage_edited = medDosageEdited.getText().toString();
@@ -174,6 +179,13 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         DocumentReference patientRef = db.collection("users").document(patientId);
 
         CollectionReference prescriptionsInfoRef = patientRef.collection("prescriptionsInfo");
+
+        /*prescriptionsInfoRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                String s_med_name = queryDocumentSnapshots.getQuery().toString();
+            }
+        });*/
 
         if (string_med_Dosage_edited.equals("") ||
                 string_dosage_units_edited.equals("") || string_frequency_edited.equals("")) {
@@ -198,6 +210,8 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
                 integer_frequency = 2; // 2 times per week
             }
 
+
+
             //Update the medication info in the patient's database collection
             Map<String, Object> medicationInfoEdited = new HashMap<>();
             medicationInfoEdited.put("dosageAmount", s_dosage_amt_edited);
@@ -206,8 +220,9 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
 
 
             //Update the information, using .update to not overwrite other fields
-            //prescriptionsInfoRef.document(s_med_name).update(medicationInfoEdited)
-            clinicRef.update(medicationInfoEdited) //this is not correct but will correct it
+            //Get the medication name as we are already inside the patient's document
+
+            prescriptionsInfoRef.document(s_med_name).update(medicationInfoEdited)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -282,5 +297,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
                 }
             }
         });
+
     }
+
 }
