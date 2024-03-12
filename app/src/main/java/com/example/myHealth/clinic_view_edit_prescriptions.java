@@ -207,7 +207,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
 
             //Update the information, using .update to not overwrite other fields
             //prescriptionsInfoRef.document(s_med_name).update(medicationInfoEdited)
-            clinicRef.update(medicationInfoEdited) //this is not corerct but will correct it
+            clinicRef.update(medicationInfoEdited) //this is not correct but will correct it
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
