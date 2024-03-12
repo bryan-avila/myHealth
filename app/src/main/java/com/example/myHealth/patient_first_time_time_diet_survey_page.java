@@ -210,6 +210,14 @@ public class patient_first_time_time_diet_survey_page extends AppCompatActivity 
 
 
                 }
+                /*
+                else
+                {
+
+                    Toast.makeText(patient_first_time_time_diet_survey_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                */
             }
         });
     }
