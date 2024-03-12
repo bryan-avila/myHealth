@@ -98,15 +98,15 @@ public class patient_home_page extends AppCompatActivity {
                 {
                     DocumentSnapshot todays_document = task.getResult();
 
-                     if(todays_document.exists())
-                     {
-                         System.out.println("ATTN: Today's Date already exists.");
-                     }
-                     else {
+                    if(todays_document.exists())
+                    {
+                        System.out.println("ATTN: Today's Date already exists.");
+                    }
+                    else {
 
-                         System.out.println("ATTN: Creating Today's Date Document...");
-                         userRef.collection("nutrients").document(todays_date).set(todays_nutrients);
-                     }
+                        System.out.println("ATTN: Creating Today's Date Document...");
+                        userRef.collection("nutrients").document(todays_date).set(todays_nutrients);
+                    }
                 }
                 else {
                     System.out.println("Error. Check Line 96.");
@@ -258,11 +258,11 @@ public class patient_home_page extends AppCompatActivity {
     }
 
     // AUTOMATIC LOADING
-   public void onStart() {
+    public void onStart() {
         //run method to check past appointments
 
 
-       super.onStart();
+        super.onStart();
         // Automatically loading
         // Firestore wants to load things quickly, so it loads in locally before from the cloud
         // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
