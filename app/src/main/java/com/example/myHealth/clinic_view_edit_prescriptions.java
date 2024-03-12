@@ -180,12 +180,18 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
 
         CollectionReference prescriptionsInfoRef = patientRef.collection("prescriptionsInfo");
 
-        /*prescriptionsInfoRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        prescriptionsInfoRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                String s_med_name = queryDocumentSnapshots.getQuery().toString();
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot querySnapshot = task.getResult();
+                    if (!querySnapshot.isEmpty()) {
+                        DocumentSnapshot document = querySnapshot.getDocuments().get(0);
+                        String s_med_name = String.valueOf(document);
+                    }
+                }
             }
-        });*/
+        });
 
         if (string_med_Dosage_edited.equals("") ||
                 string_dosage_units_edited.equals("") || string_frequency_edited.equals("")) {
@@ -198,6 +204,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
 
             // Set up strings the database can use
             //String s_med_name = editTextmedicationName.getText().toString(); display medication at the top in this box
+
             String s_dosage_amt_edited = editTextdosageAmtEdited.getText().toString();
 
             if (frequencyEdited.equals("Once A Day")) {
@@ -278,26 +285,21 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         clinicListener = clinicRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-
                 // Error checking
                 if(error != null)
                 {
                     Toast.makeText(clinic_view_edit_prescriptions.this, "Error while loading!", Toast.LENGTH_LONG).show();
                     return;
                 }
-
                 if (documentSnapshot.exists()) {
                     // Document exists
                     // This will do the same work as the onLoad method
                     // But it is done automatically
-
                     // Get name and phone information from clinics
                     cName  = documentSnapshot.get("clinicName").toString();
                     cPhone = documentSnapshot.get("phone").toString();
                 }
             }
         });
-
     }
-
 }
