@@ -50,7 +50,7 @@ public class patient_first_time_medical_survey_page extends AppCompatActivity {
         header1.setText("Enter Your Basic Medical History");
 
         header2.setPaintFlags(header2.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        header2.setText("What Treatment Are You Recieving");
+        header2.setText("What Treatment Are You Receiving");
 
         header3.setPaintFlags(header3.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         header3.setText("Which Stage Kidney Disease?");

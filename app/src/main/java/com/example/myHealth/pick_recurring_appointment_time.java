@@ -92,7 +92,7 @@ public class pick_recurring_appointment_time extends AppCompatActivity {
                 double newtime = timeconverter.convertToDecimal(startTime);
 
                 appointmentmanager.makeSingleRecurringAppointment(clinic.getID(), day, newtime, true);
-                appointmentmanager.makeMultipleAppointments(clinic.getID(), day, newtime, true);
+                appointmentmanager.makeMultipleAppointments(clinic.getClinicName(), clinic.getID(), day, newtime, true);
                 Toast.makeText(pick_recurring_appointment_time.this, "recurring appointment made for: " + time + " on: " + selectedDay, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(pick_recurring_appointment_time.this, patient_home_page.class);
