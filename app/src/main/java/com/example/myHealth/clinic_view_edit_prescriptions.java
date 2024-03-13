@@ -227,9 +227,9 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
 
 
             //Update the information, using .update to not overwrite other fields
-            //Get the medication name as we are already inside the patient's document
+            //Get the medication name to change its information
 
-            prescriptionsInfoRef.document(s_med_name).update(medicationInfoEdited)
+            /*prescriptionsInfoRef.document(s_med_name).update(medicationInfoEdited)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -248,7 +248,7 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
             // Send to clinic home page
             Intent intent = new Intent(clinic_view_edit_prescriptions.this, clinic_home_page.class);
             startActivity(intent);
-            finish(); // cannot go back
+            finish(); // cannot go back*/
         }
     }
 
