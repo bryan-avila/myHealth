@@ -41,16 +41,19 @@ public class patient_view_appointment_history extends AppCompatActivity {
         patientAppointmentDateRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<String> appointments_list = new ArrayList<>();
+                List<String> clinicNames = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    Log.d("TAG", "document id" + document.getId());
+                    Log.d("TAG", "document id: " + document.getId());
+                    Log.d("TAG", "document field: " + document.getString("clinicName"));
                     appointments_list.add(document.getId());
+                    clinicNames.add(document.getString("clinicName"));
                 }
                 Log.d("TAG", "Appointment list size: " + appointments_list.size()); // Check the size of the clinics list
                 // Set the adapter (you'll create and set the adapter in later steps)
-                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list, recyclerView);
+                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list, clinicNames, recyclerView);
                 recyclerView.setAdapter(myAdapter);
-
-            } else {
+            }
+            else {
                 // Handle the error
                 Log.e("TAG", "Error getting appointments", task.getException());
             }
