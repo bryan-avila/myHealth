@@ -39,6 +39,8 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import org.w3c.dom.Document;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
@@ -227,13 +229,17 @@ public class patient_home_page extends AppCompatActivity {
         patientAppointmentDateRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<String> appointments_list = new ArrayList<>();
+                List<String> clinicNames = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    Log.d("TAG", "document id" + document.getId());
+                    Log.d("TAG", "document id: " + document.getId());
+                    Log.d("TAG", "clinic name: " + document.getString("clinicName"));
                     appointments_list.add(document.getId());
+                    clinicNames.add(document.getString("clinicName"));
                 }
-                Log.d("TAG", "Appointment list size: " + appointments_list.size()); // Check the size of the clinics list
+                Log.d("TAG", "Appointment list size: " + appointments_list.size());
+                Log.d("TAG", "Clinic list size: " + clinicNames.size());// Check the size of the clinics list
                 // Set the adapter (you'll create and set the adapter in later steps)
-                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list, appointments_recycle_view);
+                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list, clinicNames, appointments_recycle_view);
                 appointments_recycle_view.setAdapter(myAdapter);
             }
             else {

@@ -17,14 +17,16 @@ import java.util.List;
 public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomingAppointmentsAdapter.UpcomingAppointmentViewholder>{
     Context context;
     List<String> UpcomingAppointments;
+    List<String> ClinicNames;
     RecyclerView recyclerView;
     int mExpandedPosition = -1;
     int previousExpandedPosition = -1;
     private OnItemClickListener mListener;
 
-    public MyUpcomingAppointmentsAdapter(Context context, List<String> UpcomingAppointments, RecyclerView recyclerView) {
+    public MyUpcomingAppointmentsAdapter(Context context, List<String> UpcomingAppointments, List<String> ClinicNames, RecyclerView recyclerView) {
         this.context = context;
         this.UpcomingAppointments = UpcomingAppointments;
+        this.ClinicNames = ClinicNames;
         this.recyclerView = recyclerView;
     }
 
@@ -54,7 +56,7 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
 
     @Override
     public void onBindViewHolder(@NonNull UpcomingAppointmentViewholder holder, int position) {
-        String title = UpcomingAppointments.get(position);
+        String title = ClinicNames.get(position) + " (" + UpcomingAppointments.get(position) + ")";
         holder.bind(title);
 
         final boolean isExpanded = position == mExpandedPosition;

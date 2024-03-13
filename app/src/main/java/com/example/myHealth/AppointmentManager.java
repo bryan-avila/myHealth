@@ -284,13 +284,14 @@ public class AppointmentManager {
         if (currentUser != null) {
             String userId = currentUser.getUid();
             DocumentReference userDatesRef = db.collection("users").document(userId).collection("dates").document(appointmentDate);
-            Map<String, Object> userdate = new HashMap<>();
-            userdate.put("date", appointmentDate);
-            userDatesRef.set(userdate);
+            Map<String, Object> appointmentTitle = new HashMap<>();
+            appointmentTitle.put("date", appointmentDate);
+            appointmentTitle.put("clinicName", clinicName);
+            userDatesRef.set(appointmentTitle);
             CollectionReference userAppointmentsRef = userDatesRef.collection("appointments");
 
 
-            // Create a new appointment document with the user's ID as the document ID
+            // Create a new appointment document with the clinic's ID as the document ID
             DocumentReference usernewAppointmentRef = userAppointmentsRef.document(clinicId);
 
             // convert times to strings
@@ -488,7 +489,7 @@ public class AppointmentManager {
         patientAppointmentDateRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot dateDocument : task.getResult()) {
-                    Log.d("TAG", "document id" + dateDocument.getId());
+                    Log.d("TAG", "document id: " + dateDocument.getId());
                     CollectionReference appointmentsCollection = dateDocument.getReference().collection("appointments");
                     appointmentsCollection.get().addOnCompleteListener(appointmentTask -> {
                         if (appointmentTask.isSuccessful()) {
