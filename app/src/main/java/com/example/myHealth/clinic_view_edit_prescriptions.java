@@ -36,18 +36,17 @@ import java.util.Map;
 
 public class clinic_view_edit_prescriptions extends AppCompatActivity {
 
-    String cName, cPhone; // global variables to get clinic's name and clinic phone
     EditText medDosageEdited;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     private ListenerRegistration clinicListener;
 
-    private ListenerRegistration userL;
-    private DocumentReference userRef = db.collection("users").document(currentUser.getUid());
-    private DocumentReference clinicRef = db.collection("clinic").document(currentUser.getUid());
+    // Set Up Global String Variables for DB access
+    String prescriptionNameFromBundle;
+    String patientIdFromBundle;
 
-
+    // Set Up Global Variables for DB fields
     String dosageUnitsEdited = "";
     String frequencyEdited = "";
 
@@ -56,6 +55,11 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_view_edit_prescriptions);
         medDosageEdited = findViewById(R.id.edit_text_med_Dosage_edited);
+
+        // Obtain information from clinic_view_select_patient_to_manage_meds.java
+        Bundle bundle = getIntent().getExtras();
+        patientIdFromBundle = bundle.getString("pat_name"); // this returns a string version of the patId stroed in the DB
+        prescriptionNameFromBundle = bundle.getString("presc_name"); // this returns a string version of the prescriptionName stored in the DB
     }
 
     public void onDosageSelectClickEdit(View view) {
@@ -161,52 +165,37 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
     }
 
     public void onCancelPrescriptionClick (View view) {
+        // user clicked the cancel button so...
         //brings user back to the previous window without prescribing the medication
         finish();
     }
 
-
-
     public void onSubmitPrescriptionEditionClick(View view) {
-        //Initialize objects
-        String string_med_Dosage_edited = medDosageEdited.getText().toString();
+
+        //Initialize string versions of the global edited objects
+        String string_med_Dosage_edited = medDosageEdited.getText().toString(); // dosage Amount
         String string_dosage_units_edited = dosageUnitsEdited;
         String string_frequency_edited = frequencyEdited;
 
-        Bundle bundle = getIntent().getExtras();
-        String patientId = bundle.getString("patient");
+        // Initialize a DocumentReference, using info from the bundle
+        DocumentReference prescriptionRef = db.collection("users").document(patientIdFromBundle).collection("prescriptionsInfo").document(prescriptionNameFromBundle);
 
-        DocumentReference patientRef = db.collection("users").document(patientId);
-
-        CollectionReference prescriptionsInfoRef = patientRef.collection("prescriptionsInfo");
-
-        prescriptionsInfoRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    QuerySnapshot querySnapshot = task.getResult();
-                    if (!querySnapshot.isEmpty()) {
-                        DocumentSnapshot document = querySnapshot.getDocuments().get(0);
-                        String s_med_name = String.valueOf(document);
-                    }
-                }
-            }
-        });
-
+        // Input Validation
         if (string_med_Dosage_edited.equals("") ||
                 string_dosage_units_edited.equals("") || string_frequency_edited.equals("")) {
             Toast.makeText(clinic_view_edit_prescriptions.this, "Error: Field(s) are blank.", Toast.LENGTH_SHORT).show();
-        }  else {
+        }
+        else {
+
+            // Input Validation Passed so...
             // Set medication data to string to pass to Firebase
             EditText editTextdosageAmtEdited = findViewById(R.id.edit_text_med_Dosage_edited);
 
             int integer_frequency = 0;
 
-            // Set up strings the database can use
-            //String s_med_name = editTextmedicationName.getText().toString(); display medication at the top in this box
-
             String s_dosage_amt_edited = editTextdosageAmtEdited.getText().toString();
 
+            // Validation for converting frequency to integers
             if (frequencyEdited.equals("Once A Day")) {
                 integer_frequency = 7; // 7 times per week
             } else if (frequencyEdited.equals("Twice A Day")) {
@@ -217,89 +206,38 @@ public class clinic_view_edit_prescriptions extends AppCompatActivity {
                 integer_frequency = 2; // 2 times per week
             }
 
+            // Using the DocumentReference, use .update to change the values
+            prescriptionRef.update("dosageUnits", string_dosage_units_edited);
+            prescriptionRef.update("dosageAmount", s_dosage_amt_edited);
+            prescriptionRef.update("frequency", string_frequency_edited);
 
+            Toast.makeText(clinic_view_edit_prescriptions.this, prescriptionNameFromBundle + " updated successfully.", Toast.LENGTH_SHORT).show();
 
-            //Update the medication info in the patient's database collection
-            Map<String, Object> medicationInfoEdited = new HashMap<>();
-            medicationInfoEdited.put("dosageAmount", s_dosage_amt_edited);
-            medicationInfoEdited.put("dosageUnits", dosageUnitsEdited); // Get dosage units from the pop up
-            medicationInfoEdited.put("frequency", frequencyEdited); // Get frequency from the pop up
-
-
-            //Update the information, using .update to not overwrite other fields
-            //Get the medication name to change its information
-
-            /*prescriptionsInfoRef.document(s_med_name).update(medicationInfoEdited)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            // Handle success
-                            Log.d(TAG, "Updated medication information");
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            // Handle failure
-                            Log.w(TAG, "Error updating medication information", e);
-                        }
-                    });
-
-            // Send to clinic home page
+            // Once Finished, send them back to Clinic Home Page
             Intent intent = new Intent(clinic_view_edit_prescriptions.this, clinic_home_page.class);
             startActivity(intent);
-            finish(); // cannot go back*/
+            finish(); // cannot go back
+
+
         }
     }
 
+    public void onDiscontinuedMedicationClick(View view)
+    {
+        // Clinic has decided to DISCONTINUE/DELETE a prescription from the DB
+        // Initialize a DocumentReference, using info from the bundle
+        DocumentReference prescriptionRef = db.collection("users").document(patientIdFromBundle).collection("prescriptionsInfo").document(prescriptionNameFromBundle);
 
-    public void onStart() {
+        // Delete the document (which holds the prescription) from the DB
+        prescriptionRef.delete().addOnSuccessListener(aVoid -> Log.d(TAG, "Prescription deleted SUCCESSFULLY!"));
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            // Get information from the firebase for clinics
-            clinicRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // User document exists, retrieve data from clinic
-                            cName = document.getString("clinicName");
-                            cPhone = document.getString("phone");
-                        } else {
-                            // User document doesn't exist, handle accordingly
-                        }
-                    } else {
-                        // Handle failure to retrieve user document
-                    }
-                }
-            });
-        }
+        Toast.makeText(clinic_view_edit_prescriptions.this, prescriptionNameFromBundle + " has been discontinued successfully.", Toast.LENGTH_SHORT).show();
 
+        // Once Finished, send them back to Clinic Home Page
+        Intent intent = new Intent(clinic_view_edit_prescriptions.this, clinic_home_page.class);
+        startActivity(intent);
+        finish(); // cannot go back
 
-        super.onStart();
-        // Automatically loading
-        // Firestore wants to load things quickly, so it loads in locally before from the cloud
-        // Save addSnapShotListener to noteListener, automatically detach/attach by adding this
-        clinicListener = clinicRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                // Error checking
-                if(error != null)
-                {
-                    Toast.makeText(clinic_view_edit_prescriptions.this, "Error while loading!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (documentSnapshot.exists()) {
-                    // Document exists
-                    // This will do the same work as the onLoad method
-                    // But it is done automatically
-                    // Get name and phone information from clinics
-                    cName  = documentSnapshot.get("clinicName").toString();
-                    cPhone = documentSnapshot.get("phone").toString();
-                }
-            }
-        });
     }
+
 }

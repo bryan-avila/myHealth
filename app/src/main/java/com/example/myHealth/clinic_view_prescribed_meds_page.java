@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,14 +23,18 @@ public class clinic_view_prescribed_meds_page extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
+
+    String patientId = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_view_prescribed_meds);
 
+        // ***This is the page that has the patient's prescriptions as a recyclerView****
+
         // Obtain information from clinic_view_select_patient_to_manage_meds.java
         Bundle bundle = getIntent().getExtras();
-        String patientId = bundle.getString("patient");
+        patientId = bundle.getString("patient");
 
         // Set up the RecyclerView for medications
         RecyclerView med_recycle_view = findViewById(R.id.recycler_view_clinic_prescribed_meds);
@@ -61,6 +66,11 @@ public class clinic_view_prescribed_meds_page extends AppCompatActivity {
 
                         //Send them to a form where clinic can edit the prescription or cancel it
                         Intent intent = new Intent(clinic_view_prescribed_meds_page.this, clinic_view_edit_prescriptions.class);
+
+                        // Send the patient's ID and prescriptionName for DB access in clinic_view_edit_prescriptions.java
+                        intent.putExtra("presc_name", prescribedMedications.getMedicationName().toString());
+                        intent.putExtra("pat_name", patientId);
+
                         startActivity(intent);
                     }
                 });

@@ -41,7 +41,7 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Patient's Prescription/s"
+                        android:text="Patient's Prescriptions"
                         android:textSize="25sp"
                         android:textStyle="bold"
                         android:paddingTop="20dp"
