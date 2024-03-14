@@ -39,7 +39,7 @@
                 tools:text="Appointment Title"/>
 
             <TextView
-                android:id="@+id/details"
+                android:id="@+id/clinicName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -47,8 +47,51 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:textColor="@color/black"
                 android:visibility="gone"
-                android:text="(APPOINTMENT DETAILS)"
+                android:text="(Clinic Name)"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:text="(Date)"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/start_and_end_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:text="(Start and end time)"
+                android:textSize="16dp"/>
+
+            <TextView
+                android:id="@+id/recurring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"
+                android:visibility="gone"
+                android:text="(Recurring)"
                 android:textSize="16dp"/>
 
         </LinearLayout>

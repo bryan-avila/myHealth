@@ -7,7 +7,7 @@ public class Appointment implements Serializable {
     String startTime;
     String endTime;
     Boolean recurring;
-    String clinic;
+    String clinicName;
     Boolean complete;
 
     public Appointment() {}
@@ -23,23 +23,23 @@ public class Appointment implements Serializable {
         this.recurring = recurring;
     }
 
-    public Appointment(String startTime, String endTime, Boolean recurring, String clinic) {
+    public Appointment(String startTime, String endTime, Boolean recurring, String clinicName) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.recurring = recurring;
-        this.clinic = clinic;
+        this.clinicName = clinicName;
     }
 
-    public Appointment(String startTime, String endTime, Boolean recurring, String clinic, Boolean complete) {
+    public Appointment(String startTime, String endTime, Boolean recurring, String clinicName, Boolean complete) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.recurring = recurring;
-        this.clinic = clinic;
+        this.clinicName = clinicName;
         this.complete = complete;
     }
 
-    public Appointment(String clinic, String date, String startTime, String endTime, Boolean recurring, Boolean complete) {
-        this.clinic = clinic;
+    public Appointment(String clinicName, String date, String startTime, String endTime, Boolean recurring, Boolean complete) {
+        this.clinicName = clinicName;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -63,12 +63,12 @@ public class Appointment implements Serializable {
 
     public void setEndTime(String endTime) { this.endTime = endTime; }
 
-    public String getClinic() {
-        return clinic;
+    public String getClinicName() {
+        return clinicName;
     }
 
-    public void setClinic(String clinic) {
-        this.clinic = clinic;
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
     }
 
     public Boolean getComplete() {

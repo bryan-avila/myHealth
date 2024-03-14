@@ -225,29 +225,32 @@ public class patient_home_page extends AppCompatActivity {
 
         CollectionReference patientAppointmentDateRef = db.collection("users").document(currentUser.getUid()).collection("dates");
         Log.d("TAG", "Collection Reference: " + patientAppointmentDateRef.getPath());
-        Log.d("TAG", "user id: " + currentUser.getUid());
         patientAppointmentDateRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                List<String> appointments_list = new ArrayList<>();
-                List<String> clinicNames = new ArrayList<>();
+                List<Appointment> appointments = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    Log.d("TAG", "document id: " + document.getId());
-                    Log.d("TAG", "clinic name: " + document.getString("clinicName"));
-                    appointments_list.add(document.getId());
-                    clinicNames.add(document.getString("clinicName"));
+                    CollectionReference appointments_collection = patientAppointmentDateRef.document(document.getId()).collection("appointments");
+                    appointments_collection.get().addOnCompleteListener(task2 -> {
+                        if (task2.isSuccessful()) {
+                            for (QueryDocumentSnapshot document2 : task2.getResult()) {
+                                Log.d("TAG", "Document data: " + document2.getData());
+                                Appointment appointment = document2.toObject(Appointment.class);
+                                Log.d("TAG", "FINAL: " + appointment);
+                                appointments.add(appointment);
+                            }
+                            MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments, appointments_recycle_view);
+                            appointments_recycle_view.setAdapter(myAdapter);
+                        } else {
+                            // Handle the error
+                            Log.e("TAG", "Error getting appointments", task2.getException());
+                        }
+                    });
                 }
-                Log.d("TAG", "Appointment list size: " + appointments_list.size());
-                Log.d("TAG", "Clinic list size: " + clinicNames.size());// Check the size of the clinics list
-                // Set the adapter (you'll create and set the adapter in later steps)
-                MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments_list, clinicNames, appointments_recycle_view);
-                appointments_recycle_view.setAdapter(myAdapter);
-            }
-            else {
+            } else {
                 // Handle the error
                 Log.e("TAG", "Error getting appointments", task.getException());
             }
         });
-
 
         // Display current date
         dateFormat = (TextView) findViewById(R.id.date);

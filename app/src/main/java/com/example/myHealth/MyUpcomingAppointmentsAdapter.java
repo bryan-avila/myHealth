@@ -1,6 +1,7 @@
 package com.example.myHealth;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +17,15 @@ import java.util.List;
 // MyAdapter.java
 public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomingAppointmentsAdapter.UpcomingAppointmentViewholder>{
     Context context;
-    List<String> UpcomingAppointments;
-    List<String> ClinicNames;
+    List<Appointment> appointments;
     RecyclerView recyclerView;
     int mExpandedPosition = -1;
     int previousExpandedPosition = -1;
     private OnItemClickListener mListener;
 
-    public MyUpcomingAppointmentsAdapter(Context context, List<String> UpcomingAppointments, List<String> ClinicNames, RecyclerView recyclerView) {
+    public MyUpcomingAppointmentsAdapter(Context context, List<Appointment> appointments, RecyclerView recyclerView) {
         this.context = context;
-        this.UpcomingAppointments = UpcomingAppointments;
-        this.ClinicNames = ClinicNames;
+        this.appointments = appointments;
         this.recyclerView = recyclerView;
     }
 
@@ -40,11 +39,17 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
         vh = new UpcomingAppointmentViewholder(view);
 
         Log.e("viewType: ", ""+viewType);
-        if (viewType == 1)
-            vh.details.setVisibility(View.VISIBLE);
-        else
-            vh.details.setVisibility(View.GONE);
-
+        if (viewType == 1) {
+            vh.clinicName.setVisibility(View.VISIBLE);
+            vh.date.setVisibility(View.VISIBLE);
+            vh.start_and_end_times.setVisibility(View.VISIBLE);
+            vh.recurring.setVisibility(View.VISIBLE);
+        } else {
+            vh.clinicName.setVisibility(View.GONE);
+            vh.date.setVisibility(View.GONE);
+            vh.start_and_end_times.setVisibility(View.GONE);
+            vh.recurring.setVisibility(View.GONE);
+        }
         return vh;
     }
 
@@ -56,11 +61,28 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
 
     @Override
     public void onBindViewHolder(@NonNull UpcomingAppointmentViewholder holder, int position) {
-        String title = ClinicNames.get(position) + " (" + UpcomingAppointments.get(position) + ")";
+        String title = appointments.get(position).getClinicName() + " (" + appointments.get(position).getDate() + ")";
         holder.bind(title);
 
+        holder.clinicName.setText("Clinic: " + appointments.get(position).getClinicName());
+        holder.date.setText("Date: " + appointments.get(position).getDate());
+        holder.start_and_end_times.setText("Time: " + appointments.get(position).getStartTime() + " - " + appointments.get(position).getEndTime());
+        if (appointments.get(position).getRecurring())
+            holder.recurring.setText("Recurring: Yes");
+        else
+            holder.recurring.setText("Recurring: No");
+
+        holder.clinicName.setPaintFlags(holder.clinicName.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
+        holder.date.setPaintFlags(holder.date.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        holder.start_and_end_times.setPaintFlags(holder.start_and_end_times.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        holder.recurring.setPaintFlags(holder.recurring.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         final boolean isExpanded = position == mExpandedPosition;
-        holder.details.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        holder.clinicName.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        holder.date.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        holder.start_and_end_times.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        holder.recurring.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+
         holder.itemView.setActivated(isExpanded);
 
         if (isExpanded)
@@ -77,19 +99,25 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
 
     @Override
     public int getItemCount() {
-        return UpcomingAppointments.size();
+        return appointments.size();
     }
 
     public static class UpcomingAppointmentViewholder extends RecyclerView.ViewHolder {
         private TextView titleTextView;
         public CardView cv;
-        private TextView details;
+        private TextView clinicName;
+        private TextView date;
+        private TextView start_and_end_times;
+        private TextView recurring;
 
         public UpcomingAppointmentViewholder(@NonNull View itemView) {
             super(itemView);
 
             cv = itemView.findViewById(R.id.cardView);
-            details = itemView.findViewById(R.id.details);
+            clinicName = itemView.findViewById(R.id.clinicName);
+            date = itemView.findViewById(R.id.date);
+            start_and_end_times = itemView.findViewById(R.id.start_and_end_times);
+            recurring = itemView.findViewById(R.id.recurring);
 
             titleTextView = itemView.findViewById(R.id.appointment_title);
         }
