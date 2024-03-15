@@ -60,7 +60,7 @@ public class patient_add_food_page extends AppCompatActivity {
     // Global stuff for updating documents
     String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     double phosAmount, proteinAmount;
-    long potassiumAmount;
+    double potassiumAmount;
     double currentPhosAmount, currentProteinAmount, currentPotassiumAmount;
 
     // Set up document reference for the document snapshot
@@ -123,9 +123,11 @@ public class patient_add_food_page extends AppCompatActivity {
         // Set up filterview
         filterView = findViewById(R.id.search_view_food_names);
         filterView.clearFocus();
+
         filterView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-            // This method works whenever the user enters text into the SearchView and presses ENTER
+            // This method works whenever the user enters text into the SearchView and presses ENTER.
+            // A lot of things happen when a user clicks on an item, so a lot of indentations....
             @Override
             public boolean onQueryTextSubmit(String user_text)
             {
@@ -175,6 +177,8 @@ public class patient_add_food_page extends AppCompatActivity {
                             // Access the list of foods
                             JSONArray foods = (JSONArray) jsonResponse.get("foods");
 
+                            // For all foods in the array, get the food's description and food ID
+                            // Place them in foodNames ArrayList
                             for (Object food : foods) {
 
                                 JSONObject foodObject = (JSONObject) food;
@@ -186,7 +190,7 @@ public class patient_add_food_page extends AppCompatActivity {
                                 foodNames.add(f); // Add to global list of FoodNames
                             }
 
-                            // Affect Android UI Elements
+                            // Affect Android UI Elements, such as updating the Adapter and setting an onItemClickListener
                             runOnUiThread(() -> {
 
                                 // Set the Adapter of the page with the list created in this thread
@@ -200,7 +204,8 @@ public class patient_add_food_page extends AppCompatActivity {
                                         // When you click on a food, store the food_id in this string
                                         String current_food_id = food_names.getFood_id().toString();
 
-                                        // Using a document reference....
+                                        // Using a document reference, we need to grab the patient's CURRENT nutrient values and update them with the
+                                        // food values which they just clicked on!
                                         patientNutrientRef.get().addOnCompleteListener(task ->
                                         {
 
@@ -212,6 +217,9 @@ public class patient_add_food_page extends AppCompatActivity {
                                                     if(todays_date_doc.exists())
                                                     {
                                                         // Create a new thread so that you may grab the nutrient information of the food you clicked!
+
+                                                        //************************START OF 2ND THREAD**********************************************
+
                                                         new Thread(new Runnable() {
                                                             @Override
                                                             public void run() {
@@ -265,46 +273,111 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                         JSONObject nutrientInfo = (JSONObject) nutrient.get("nutrient");
 
 
-                                                                        //TODO consider changing the double to longs so that there are no issues working with ANY food
-
-                                                                        // If the current nutrient is Phosphorus...
+                                                                        //TODO Fix some food items not grabbing the values from Food Database, possible due to data types
+                                                                        //************************GET PHOSPHORUS VALUES********************************
                                                                         if(nutrientInfo.get("name").equals("Phosphorus, P"))
                                                                         {
-                                                                            // Update phosAmount
-                                                                            phosAmount = (double) nutrient.get("amount");
-                                                                            // Add phosAmount with the phos value currently found in the document
-                                                                            phosAmount = (double) (phosAmount + currentPhosAmount);
-                                                                            // Push it to the DB
-                                                                            userRef.collection("nutrients").document(todays_date).update("phosphorus", phosAmount);
+                                                                            if(nutrient.get("amount") instanceof Double)
+                                                                            {
+                                                                                System.out.print(nutrientInfo.get("name") + " is of type DOUBLE!!!!!!!!");
+
+                                                                                // Update phosAmount
+                                                                                phosAmount = (double) nutrient.get("amount");
+                                                                                // Add phosAmount with the phos value currently found in the document
+                                                                                phosAmount = (double) (phosAmount + currentPhosAmount);
+                                                                                // Push it to the DB
+                                                                                userRef.collection("nutrients").document(todays_date).update("phosphorus", phosAmount);
+                                                                            }
+
+                                                                            else if(nutrient.get("amount") instanceof Long)
+                                                                            {
+                                                                                System.out.print(nutrientInfo.get("name") + " is of type LONG!!!!!!!");
+
+                                                                                // Update phosAmount
+                                                                                phosAmount = (long) nutrient.get("amount");
+                                                                                // Add phosAmount with the phos value currently found in the document
+                                                                                phosAmount = (long) (phosAmount + currentPhosAmount);
+                                                                                // Push it to the DB
+                                                                                userRef.collection("nutrients").document(todays_date).update("phosphorus", phosAmount);
+                                                                            }
+
                                                                         }
 
-
+                                                                        //************************GET PROTEIN VALUES********************************
                                                                         else if(nutrientInfo.get("name").equals("Protein"))
                                                                         {
-                                                                            // Update proteinAmount
-                                                                            proteinAmount = (double) nutrient.get("amount");
-                                                                            // Add proteinAmount with the protein value currently found in the document
-                                                                            proteinAmount = (double) (proteinAmount + currentProteinAmount);
-                                                                            // Push it to the DB
-                                                                            userRef.collection("nutrients").document(todays_date).update("protein", proteinAmount);
+                                                                            if(nutrientInfo.get("name") instanceof Double)
+                                                                            {
+                                                                                // Update proteinAmount
+                                                                                proteinAmount = (double) nutrient.get("amount");
+                                                                                // Add proteinAmount with the protein value currently found in the document
+                                                                                proteinAmount = (double) (proteinAmount + currentProteinAmount);
+                                                                                // Push it to the DB
+                                                                                userRef.collection("nutrients").document(todays_date).update("protein", proteinAmount);
+
+                                                                            }
+
+                                                                            else if(nutrientInfo.get("name") instanceof Long)
+                                                                            {
+                                                                                // Update proteinAmount
+                                                                                proteinAmount = (long) nutrient.get("amount");
+                                                                                // Add proteinAmount with the protein value currently found in the document
+                                                                                proteinAmount = (long) (proteinAmount + currentProteinAmount);
+                                                                                // Push it to the DB
+                                                                                userRef.collection("nutrients").document(todays_date).update("protein", proteinAmount);
+
+                                                                            }
+
+                                                                            else {
+
+                                                                                // Update proteinAmount
+                                                                                proteinAmount = (double) nutrient.get("amount");
+                                                                                // Add proteinAmount with the protein value currently found in the document
+                                                                                proteinAmount = (double) (proteinAmount + currentProteinAmount);
+                                                                                // Push it to the DB
+                                                                                userRef.collection("nutrients").document(todays_date).update("protein", proteinAmount);
+                                                                            }
 
                                                                         }
 
+                                                                        //************************GET POTASSIUM VALUES********************************
                                                                         else if(nutrientInfo.get("name").equals("Potassium, K"))
                                                                         {
-                                                                            // Update potassiumAmount
-                                                                            potassiumAmount = (long) nutrient.get("amount");
-                                                                            // Add potassiumAmount with the potassium value currently found in the document
-                                                                            potassiumAmount = (long) (potassiumAmount + currentPotassiumAmount);
-                                                                            // Push it to the DB
-                                                                            userRef.collection("nutrients").document(todays_date).update("potassium", potassiumAmount);
+                                                                            if(nutrientInfo.get("name") instanceof Double)
+                                                                            {
+                                                                                // Update potassiumAmount
+                                                                                potassiumAmount = (double) nutrient.get("amount");
+                                                                                // Add potassiumAmount with the potassium value currently found in the document
+                                                                                potassiumAmount = (double) (potassiumAmount + currentPotassiumAmount);
+                                                                                // Push it to the DB
+                                                                                userRef.collection("nutrients").document(todays_date).update("potassium", potassiumAmount);
+                                                                            }
+                                                                            else if(nutrientInfo.get("name") instanceof Long)
+                                                                            {
+                                                                                // Update potassiumAmount
+                                                                                potassiumAmount = (long) nutrient.get("amount");
+                                                                                // Add potassiumAmount with the potassium value currently found in the document
+                                                                                potassiumAmount = (long) (potassiumAmount + currentPotassiumAmount);
+                                                                                // Push it to the DB
+                                                                                userRef.collection("nutrients").document(todays_date).update("potassium", potassiumAmount);
+                                                                            }
+                                                                            else {
+
+                                                                                // Update potassiumAmount
+                                                                                potassiumAmount = (long) nutrient.get("amount");
+                                                                                // Add potassiumAmount with the potassium value currently found in the document
+                                                                                potassiumAmount = (long) (potassiumAmount + currentPotassiumAmount);
+                                                                                // Push it to the DB
+                                                                                userRef.collection("nutrients").document(todays_date).update("potassium", potassiumAmount);
+                                                                            }
+
                                                                         }
 
+                                                                        // You have reached the end of adding new nutrient values and updating nutrient values! Hooray!
                                                                         Log.d("happy", "nutrients obtained. worked!!");
-                                                                        // Access other properties as needed
                                                                     }
 
-                                                                    // Disconnect the connection
+                                                                    // Disconnect the connection of the thread and get out of here!!
                                                                     connection.disconnect();
 
                                                                 }
@@ -317,11 +390,11 @@ public class patient_add_food_page extends AppCompatActivity {
                                                     }
                                                     else
                                                     {
-                                                        // doesnt exist
+                                                        // file doesnt exist?
                                                     }
                                             }
                                             else {
-                                                // error fetching doc
+                                                // error fetching doc?
                                             }
 
                                         });
@@ -343,7 +416,7 @@ public class patient_add_food_page extends AppCompatActivity {
                     }
                 }).start();
 
-                // END OF THREAD***
+                //************************END OF 2ND THREAD**********************************************
                 return false;
 
             }
