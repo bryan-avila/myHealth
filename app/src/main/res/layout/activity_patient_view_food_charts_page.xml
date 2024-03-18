@@ -11,34 +11,70 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="70sp"
-        android:src="@drawable/logo_myhealth_white"
+        android:layout_height="50sp"
         android:adjustViewBounds="true"
         android:maxWidth="80dp"
         android:maxHeight="80dp"
-        android:scaleType="fitCenter"/>
-
-    <TextView
-        android:id="@+id/text_view_charts_header_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Today's Charts:"
-        android:textSize="30sp"
-        android:textColor="@color/purple"
-        android:layout_marginLeft="15sp"
-        android:layout_marginTop="70sp"/>
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo_myhealth_white" />
 
     <TextView
         android:id="@+id/text_view_charts_todays_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="5sp"
-        android:layout_marginTop="75sp"
-        android:layout_toRightOf="@id/text_view_charts_header_message"
+        android:layout_marginTop="50sp"
         android:text="Default Date"
         android:textColor="@color/purple"
-        android:textSize="26sp" />
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/text_view_rec_nutrient_limit_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Recommended Nutrient Limit: "
+        android:textSize="16sp"
+        android:layout_below="@id/text_view_charts_todays_date"
+        android:layout_marginLeft="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_view_rec_potas_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POTASSIUM_DEFAULT"
+        android:textColor="@color/redish"
+        android:layout_below="@id/text_view_rec_nutrient_limit_header"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="5sp"
+        />
+
+    <TextView
+        android:id="@+id/text_view_rec_prot_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PROTEIN_DEFAULT"
+        android:textColor="@color/redish"
+        android:layout_toRightOf="@id/text_view_rec_potas_limit"
+        android:layout_below="@id/text_view_rec_nutrient_limit_header"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="5sp"
+        />
+
+    <TextView
+        android:id="@+id/text_view_rec_phos_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PHOS_DEFAULT"
+        android:textColor="@color/redish"
+        android:layout_toRightOf="@id/text_view_rec_prot_limit"
+        android:layout_below="@id/text_view_rec_nutrient_limit_header"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="5sp"
+        />
+
+    <!-- Middle Elements -->
 
     <androidx.cardview.widget.CardView
         android:layout_width="500sp"
@@ -57,19 +93,9 @@
             android:layout_marginLeft="5sp"/>
 
     </androidx.cardview.widget.CardView>
-    <!-- Middle Elements -->
 
-<!--    <View-->
-<!--        android:layout_width="350sp"-->
-<!--        android:layout_height="400sp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="195sp"-->
-<!--        android:background="@drawable/image_concept_food_charts"-->
-<!--        android:elevation="20sp"-->
-<!--        />-->
 
-    <!-- Controls the nav bar at the very bottom -->
-
+    <!-- Bottom Elements -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

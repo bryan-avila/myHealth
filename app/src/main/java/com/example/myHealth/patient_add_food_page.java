@@ -137,7 +137,7 @@ public class patient_add_food_page extends AppCompatActivity {
                     public void run() {
                         // Perform network operations here
                         try {
-                            Log.d("start", "start");
+                            Log.d("Thread 1", "---------- Starting 1st Thread ----------");
 
                             String endpoint = "https://api.nal.usda.gov/fdc/v1/foods/search?query=" + user_text + "&api_key=hIXmsCYannc5plOrGfwlqSZkuUsBAznpJEgxtz5T";
 
@@ -147,16 +147,16 @@ public class patient_add_food_page extends AppCompatActivity {
 
                             // Open a connection to the URL
                             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                            Log.d("middle", "middle");
+                            Log.d("Thread 1 Connection", "1st Establishing connection...");
 
                             // Set request method
                             connection.setRequestMethod("GET");
-                            Log.d("get", "success");
+                            Log.d("Thread 1 Get", "Thread 1 Get Success");
 
                             // Get the response code
                             int responseCode = connection.getResponseCode();
                             System.out.println("1st Response Code: " + responseCode);
-                            Log.d("code", "code" + responseCode);
+                            Log.d("Thread 1 Code", "Thread 1 code is " + responseCode);
 
                             // Read the response
                             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -231,6 +231,8 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                     currentProteinAmount = todays_date_doc.getDouble("protein");
                                                                     currentPotassiumAmount = todays_date_doc.getLong("potassium");
 
+                                                                    Log.d("Thread 2", "---------- Starting 2nd Thread ----------");
+
                                                                     // Grab the specific food's nutrient info with this URL using the food id
                                                                     String endpoint = "https://api.nal.usda.gov/fdc/v1/food/" + current_food_id + "?nutrients=305&api_key=hIXmsCYannc5plOrGfwlqSZkuUsBAznpJEgxtz5T";
 
@@ -239,16 +241,16 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                     // Open a connection to the URL
                                                                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                                                                    Log.d("middle", "middle");
+                                                                    Log.d("Thread 2 Connection", "2nd Establshing connection...");
 
                                                                     // Set request method
                                                                     connection.setRequestMethod("GET");
-                                                                    Log.d("get", "success");
+                                                                    Log.d("Thread 2 Get", "Thread 2 Get Success");
 
                                                                     // Get the response code
                                                                     int responseCode = connection.getResponseCode();
                                                                     System.out.println("2nd Response Code: " + responseCode);
-                                                                    Log.d("code", "code" + responseCode);
+                                                                    Log.d("Thread 2 Code", "Thread 2 Code is " + responseCode);
 
                                                                     // Read the response
                                                                     BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -266,14 +268,21 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                     // Access food's array of nutrients
                                                                     JSONArray nutrientsArray = (JSONArray) jsonResponse.get("foodNutrients");
 
+                                                                    int food_nutrient_counter = 0;
                                                                     // Iterate through the array of nutrients
                                                                     for (Object nutrientObj : nutrientsArray)
                                                                     {
+                                                                        food_nutrient_counter = food_nutrient_counter + 1;
                                                                         JSONObject nutrient = (JSONObject) nutrientObj;
                                                                         JSONObject nutrientInfo = (JSONObject) nutrient.get("nutrient");
 
+                                                                        if(food_nutrient_counter > 16)
+                                                                        {
+                                                                            break;
+                                                                        }
 
-                                                                        //TODO Fix some food items not grabbing the values from Food Database, possible due to data types
+                                                                        //TODO Some food items seem to not update DB, possibly due to data type checking
+                                                                        //TODO Logcat shows that threads are running twice, possibly due to for loop structure
                                                                         //************************GET PHOSPHORUS VALUES********************************
                                                                         if(nutrientInfo.get("name").equals("Phosphorus, P"))
                                                                         {
@@ -301,6 +310,8 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                                 userRef.collection("nutrients").document(todays_date).update("phosphorus", phosAmount);
                                                                             }
 
+                                                                            Log.d("Happy Days!!!", "Added phos in for loop counter " + food_nutrient_counter + ".");
+
                                                                         }
 
                                                                         //************************GET PROTEIN VALUES********************************
@@ -308,13 +319,13 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                         {
                                                                             if(nutrientInfo.get("name") instanceof Double)
                                                                             {
+
                                                                                 // Update proteinAmount
                                                                                 proteinAmount = (double) nutrient.get("amount");
                                                                                 // Add proteinAmount with the protein value currently found in the document
                                                                                 proteinAmount = (double) (proteinAmount + currentProteinAmount);
                                                                                 // Push it to the DB
                                                                                 userRef.collection("nutrients").document(todays_date).update("protein", proteinAmount);
-
                                                                             }
 
                                                                             else if(nutrientInfo.get("name") instanceof Long)
@@ -337,6 +348,8 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                                 // Push it to the DB
                                                                                 userRef.collection("nutrients").document(todays_date).update("protein", proteinAmount);
                                                                             }
+
+                                                                            Log.d("Happy Days!!!", "---------- Added protein in for loop counter " + food_nutrient_counter + " ----------");
 
                                                                         }
 
@@ -371,10 +384,13 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                                 userRef.collection("nutrients").document(todays_date).update("potassium", potassiumAmount);
                                                                             }
 
+                                                                            Log.d("Happy Days!!!", "Added Potassium in for loop counter " + food_nutrient_counter + ".");
+
                                                                         }
 
-                                                                        // You have reached the end of adding new nutrient values and updating nutrient values! Hooray!
-                                                                        Log.d("happy", "nutrients obtained. worked!!");
+                                                                        // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------
+                                                                        // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------
+                                                                        // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------
                                                                     }
 
                                                                     // Disconnect the connection of the thread and get out of here!!
@@ -383,7 +399,7 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                 }
                                                                 catch (Exception e) {
                                                                     e.printStackTrace();
-                                                                    Log.d("sad", "didnt work");
+                                                                    Log.d("Sad Days", "Couldn't add nutrient!!");
                                                                 }
                                                             }
                                                         }).start();
@@ -399,7 +415,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                         });
 
-                                        Toast.makeText(patient_add_food_page.this, "Succesfully added food", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(patient_add_food_page.this, "Successfully added food " + ("\u2705"), Toast.LENGTH_LONG).show();
                                     }
                                 });
                                foodListAdapter.getFilter().filter(user_text); // Filter based off the text in the search view
@@ -417,7 +433,7 @@ public class patient_add_food_page extends AppCompatActivity {
                 }).start();
 
                 //************************END OF 2ND THREAD**********************************************
-                return false;
+                return true;
 
             }
 
@@ -435,7 +451,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                         String food_id = food_names.getFood_id().toString();
                         // ignore this for now??
-                        Toast.makeText(patient_add_food_page.this, food_id + " ERROR?", Toast.LENGTH_LONG).show();
+                        Toast.makeText(patient_add_food_page.this, "ERROR. Make sure you enter a food name and then press ENTER.", Toast.LENGTH_LONG).show();
 
                     }
                 });

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.graphics.Color;
@@ -65,12 +66,34 @@ public class patient_view_food_charts_page extends AppCompatActivity {
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     DocumentReference patientNutrientRef = db.collection("users").document(currentUser.getUid()).collection("nutrients").document(todays_date);
+    DocumentReference patientRecNutrientValues = db.collection("users").document(currentUser.getUid()).collection("dietInfo").document("dietInfo");
     private ListenerRegistration userL;
+
+    // Set up Nutrient Limit .xml stuff
+    TextView rec_protein_amt;
+    TextView rec_phos_amt;
+    TextView rec_pot_amt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_food_charts_page);
+
+        // Update the page's TextView nutrient
+        userL = patientRecNutrientValues.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+
+                if(documentSnapshot.exists())
+                {
+                    Log.d("O.N.V.", "--------- Successfully obtained recommended nutrient values ----------");
+                    String str_rec_protein_amt = documentSnapshot.get("protein").toString();
+                    rec_protein_amt = findViewById(R.id.text_view_rec_prot_limit);
+                    rec_protein_amt.setText(str_rec_protein_amt);
+                }
+
+            }
+        });
 
         // ---- START OF DB STUFF -----
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -86,14 +109,14 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            System.out.println("ATTN: No issues loading patient document.");
+                            System.out.println("---------- ATTN: No issues loading patient document to obtain current nutrient values ----------");
                         } else {
-                            System.out.println("ATTN: ERROR loading patient info?");
+                            System.out.println("---------- ATTN: ERROR loading patient info? ----------");
 
                         }
                     } else {
                         // Handle failure to retrieve user document
-                        System.out.println("ATTN: Major issue. Check code.");
+                        System.out.println("---------- ATTN: Major issue. Check code ----------");
                     }
                 }
             });
@@ -114,7 +137,7 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                 // Get the fields if document exists
                 if (documentSnapshot.exists())
                 {
-                    System.out.println("ATTN: Document Snapshot exists");
+                    System.out.println("---------- ATTN: Patient Today's Nutrients Snapshot exists ----------");
                     str_patient_phosphorus = documentSnapshot.get("phosphorus").toString();
                     String str_patient_potassium = documentSnapshot.get("potassium").toString();
                     String str_patient_protein = documentSnapshot.get("protein").toString();
@@ -175,12 +198,6 @@ public class patient_view_food_charts_page extends AppCompatActivity {
         // ---- END OF DB STUFF -----
 
 
-
-        // Edit the top Text View
-        TextView header_message = findViewById(R.id.text_view_charts_header_message);
-        header_message.setPaintFlags(header_message.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        header_message.setText("Today's Charts:");
-
         // Create and modify date textview
         TextView header_date = findViewById(R.id.text_view_charts_todays_date);
         String date;
@@ -189,7 +206,7 @@ public class patient_view_food_charts_page extends AppCompatActivity {
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
         date = simpleDateFormat.format(calendar.getTime()).toString();
-        header_date.setText(date);
+        header_date.setText(date + "  Nutrient Chart");
 
 
 
