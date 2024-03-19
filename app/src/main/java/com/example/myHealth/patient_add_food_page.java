@@ -155,7 +155,6 @@ public class patient_add_food_page extends AppCompatActivity {
 
                             // Get the response code
                             int responseCode = connection.getResponseCode();
-                            System.out.println("1st Response Code: " + responseCode);
                             Log.d("Thread 1 Code", "Thread 1 code is " + responseCode);
 
                             // Read the response
@@ -249,7 +248,6 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                     // Get the response code
                                                                     int responseCode = connection.getResponseCode();
-                                                                    System.out.println("2nd Response Code: " + responseCode);
                                                                     Log.d("Thread 2 Code", "Thread 2 Code is " + responseCode);
 
                                                                     // Read the response
@@ -276,19 +274,19 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                         JSONObject nutrient = (JSONObject) nutrientObj;
                                                                         JSONObject nutrientInfo = (JSONObject) nutrient.get("nutrient");
 
-                                                                        if(food_nutrient_counter > 16)
+                                                                        if(food_nutrient_counter > 16) // only need to go up to the first 16 nutrients to find the three we want
                                                                         {
                                                                             break;
                                                                         }
 
-                                                                        //TODO Some food items seem to not update DB, possibly due to data type checking
-                                                                        //TODO Logcat shows that threads are running twice, possibly due to for loop structure
+                                                                        //TODO Some food items seem to not update DB, possibly due to data type checking ?
+                                                                        //TODO Logcat shows that threads are running twice, possibly due to for loop structure ?
                                                                         //************************GET PHOSPHORUS VALUES********************************
                                                                         if(nutrientInfo.get("name").equals("Phosphorus, P"))
                                                                         {
                                                                             if(nutrient.get("amount") instanceof Double)
                                                                             {
-                                                                                System.out.print(nutrientInfo.get("name") + " is of type DOUBLE!!!!!!!!");
+                                                                                //System.out.print(nutrientInfo.get("name") + " is of type DOUBLE!!!!!!!!");
 
                                                                                 // Update phosAmount
                                                                                 phosAmount = (double) nutrient.get("amount");
@@ -300,7 +298,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                             else if(nutrient.get("amount") instanceof Long)
                                                                             {
-                                                                                System.out.print(nutrientInfo.get("name") + " is of type LONG!!!!!!!");
+                                                                               // System.out.print(nutrientInfo.get("name") + " is of type LONG!!!!!!!");
 
                                                                                 // Update phosAmount
                                                                                 phosAmount = (long) nutrient.get("amount");

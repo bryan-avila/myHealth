@@ -69,31 +69,56 @@ public class patient_view_food_charts_page extends AppCompatActivity {
     DocumentReference patientRecNutrientValues = db.collection("users").document(currentUser.getUid()).collection("dietInfo").document("dietInfo");
     private ListenerRegistration userL;
 
-    // Set up Nutrient Limit .xml stuff
+    // Set up Nutrient Limit Text View stuff
     TextView rec_protein_amt;
     TextView rec_phos_amt;
     TextView rec_pot_amt;
+
+    // Set up Global Limit Values
+    float rec_protein_value;
+    float rec_phos_value;
+    float rec_pot_value;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_food_charts_page);
 
-        // Update the page's TextView nutrient
+        // ---------- START: Update the page's TextView recommended nutrient using this SnapShot Listener! ----------
         userL = patientRecNutrientValues.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
 
                 if(documentSnapshot.exists())
                 {
-                    Log.d("O.N.V.", "--------- Successfully obtained recommended nutrient values ----------");
+                    Log.d("Rec Nutrient Vals", "--------- Successfully obtained recommended nutrient values ----------");
+
                     String str_rec_protein_amt = documentSnapshot.get("protein").toString();
                     rec_protein_amt = findViewById(R.id.text_view_rec_prot_limit);
-                    rec_protein_amt.setText(str_rec_protein_amt);
+                    rec_protein_amt.setText("Prot. Limit: " + str_rec_protein_amt);
+                    String str_numeric_protein = str_rec_protein_amt.replaceAll("[^0-9]", ""); // Removes non-digit characters from the DB
+                    rec_protein_value = (float) Float.parseFloat(str_numeric_protein); // Global Float Prot Value!
+
+                    String str_rec_potas_amt = documentSnapshot.get("potassium").toString();
+                    rec_pot_amt = findViewById(R.id.text_view_rec_potas_limit);
+                    rec_pot_amt.setText("Potas. Limit: " + str_rec_potas_amt);
+                    String str_numeric_potas = str_rec_potas_amt.replaceAll("[^0-9]", ""); // Removes non-digit characters from the DB
+                    rec_pot_value = (float) Float.parseFloat(str_numeric_potas); // Global Float Potas Value!
+
+                    String str_rec_phos_amt = documentSnapshot.get("phosphorus").toString();
+                    rec_phos_amt = findViewById(R.id.text_view_rec_phos_limit);
+                    rec_phos_amt.setText("Phos. Limit: " + str_rec_phos_amt);
+                    String str_numeric_phos = str_rec_phos_amt.replaceAll("[^0-9]", ""); // Removes non-digit characters from the DB
+                    rec_phos_value = (float) Float.parseFloat(str_numeric_phos); // Global Float Rec Phos Value!
+
                 }
 
             }
         });
+
+        // ---------- END OF: Update the page's TextView recommended nutrient using this SnapShot Listener! ----------
+
 
         // ---- START OF DB STUFF -----
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -109,14 +134,14 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            System.out.println("---------- ATTN: No issues loading patient document to obtain current nutrient values ----------");
+                            System.out.println("---------- ATTN: patient_view_food_charts_page.java - No issues loading patient nutrients todays date document to obtain current nutrient values ----------");
                         } else {
-                            System.out.println("---------- ATTN: ERROR loading patient info? ----------");
+                            System.out.println("---------- ATTN: ERROR loading patient info??!!?! ----------");
 
                         }
                     } else {
                         // Handle failure to retrieve user document
-                        System.out.println("---------- ATTN: Major issue. Check code ----------");
+                        System.out.println("---------- ATTN: Major issue. Check code!!!! ----------");
                     }
                 }
             });
@@ -165,9 +190,19 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                     // Initialize Data Set
                     BarDataSet barNutrientSet = new BarDataSet(barNutrientList, "Nutrients");
 
-                    // Customize data set
-                    barNutrientSet.setColors(ColorTemplate.COLORFUL_COLORS);
-                    barNutrientSet.setDrawValues(false);
+                    // Customize data set according to if the user has reached the recommended limit
+                    if(i_patient_protein >= rec_protein_value || i_patient_phosphorus >= rec_phos_value || i_patient_potassium >= rec_pot_value)
+                    {
+                        //TODO Set it so only the affected nutrient's bar is changed to Red?
+                        barNutrientSet.setColors(Color.RED);
+                        barNutrientSet.setDrawValues(false);
+                        Toast.makeText(patient_view_food_charts_page.this, "CAUTION. YOU HAVE EXCEEDED ONE OR MORE NUTRIENT LIMITS", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        barNutrientSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                        barNutrientSet.setDrawValues(false);
+                        Toast.makeText(patient_view_food_charts_page.this, "You are under your recommended limits.", Toast.LENGTH_SHORT).show();
+                    }
 
                     // Set Bar Data/Customize Bar Data
                     barChart.setData(new BarData(barNutrientSet));

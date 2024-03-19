@@ -102,17 +102,17 @@ public class patient_home_page extends AppCompatActivity {
 
                     if(todays_document.exists()) // Does today's document exist?
                     {
-                        Log.d("Today's Date Creation", "---------- ATTN: " + todays_date + " already exists in FireBaseDB as a DOCUMENT, no creation required!!! ----------");
+                        System.out.println("---------- ATTN: patient_home_page.java - " + todays_date + " already exists in FireBaseDB as a DOCUMENT, no creation required!!! ----------");
                     }
 
                     else {
 
-                        Log.d("Today's Date Creation", "---------- ATTN: Creating Document for " + todays_date + " in FireBaseDB!!! ----------");
+                        System.out.println("---------- ATTN: patient_home_page.java - Creating Document for " + todays_date + " in FireBaseDB!!! ----------");
                         userRef.collection("nutrients").document(todays_date).set(todays_nutrients);
                     }
                 }
                 else {
-                    System.out.println("---------- Error. Check Line 96 or bug Bryan about it ----------");
+                    System.out.println("---------- ATTN: patient_home_page.java - ERROR. Possibly need to update ANDROID EMULATOR to get connected to Firestore again ----------");
                 }
             }
         });
