@@ -11,6 +11,7 @@ import android.util.Log;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -45,9 +46,12 @@ public class patient_view_appointment_history extends AppCompatActivity {
                     appointments_collection.get().addOnCompleteListener(task2 -> {
                         if (task2.isSuccessful()) {
                             for (QueryDocumentSnapshot document2 : task2.getResult()) {
+                                DocumentReference appointmentDocumentReference = appointments_collection.document(document2.getId());
                                 Log.d("TAG", "Document data: " + document2.getData());
                                 Appointment appointment = document2.toObject(Appointment.class);
                                 Log.d("TAG", "FINAL: " + appointment);
+                                appointment.setDocumentPath(appointmentDocumentReference);
+                                Log.d("document path", appointment.getDocumentPath().toString());
                                 if (appointment.getComplete() == true) {
                                     appointments.add(appointment);
                                 }

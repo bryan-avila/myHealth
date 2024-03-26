@@ -1,5 +1,7 @@
 package com.example.myHealth;
 
+import com.google.firebase.firestore.DocumentReference;
+
 import java.io.Serializable;
 
 public class Appointment implements Serializable {
@@ -9,6 +11,7 @@ public class Appointment implements Serializable {
     Boolean recurring;
     String clinicName;
     Boolean complete;
+    DocumentReference documentPath;
 
     public Appointment() {}
     public Appointment(String date, String startTime, String endTime, Boolean recurring) {
@@ -78,4 +81,8 @@ public class Appointment implements Serializable {
     public void setComplete(Boolean complete) {
         this.complete = complete;
     }
+
+    public DocumentReference getDocumentPath() { return documentPath; }
+    public void setDocumentPath(DocumentReference documentPath) { this.documentPath = documentPath; }
+
 }

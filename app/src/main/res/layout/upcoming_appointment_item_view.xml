@@ -123,7 +123,7 @@
                     android:visibility="gone"
                     android:backgroundTint="@color/redish"
                     android:text="Delete"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"/>
 
             </LinearLayout>
 

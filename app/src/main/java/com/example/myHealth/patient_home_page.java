@@ -234,11 +234,14 @@ public class patient_home_page extends AppCompatActivity {
                     appointments_collection.get().addOnCompleteListener(task2 -> {
                         if (task2.isSuccessful()) {
                             for (QueryDocumentSnapshot document2 : task2.getResult()) {
+                                DocumentReference appointmentDocumentReference = appointments_collection.document(document2.getId());
                                 Log.d("TAG", "Document data: " + document2.getData());
                                 Appointment appointment = document2.toObject(Appointment.class);
                                 Log.d("TAG", "FINAL: " + appointment);
+                                appointment.setDocumentPath(appointmentDocumentReference);
                                 if (appointment.getComplete() == false) {
                                     appointments.add(appointment);
+                                    Log.d("document path", appointment.getDocumentPath().toString());
                                 }
                             }
                             MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments, appointments_recycle_view);
