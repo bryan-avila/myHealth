@@ -37,7 +37,7 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
     @NonNull
     @Override
     public UpcomingAppointmentViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.upcoming_appointment_item_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.appointment_item_view, parent, false);
 
         // create a new view
         UpcomingAppointmentViewholder vh = null;
