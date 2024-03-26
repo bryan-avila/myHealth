@@ -13,6 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentReference;
+
+import org.w3c.dom.Document;
+
 import java.util.List;
 
 // MyAdapter.java
@@ -33,7 +37,7 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
     @NonNull
     @Override
     public UpcomingAppointmentViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.upcoming_appointment_item_view, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.appointment_item_view, parent, false);
 
         // create a new view
         UpcomingAppointmentViewholder vh = null;
@@ -81,6 +85,25 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
         holder.date.setPaintFlags(holder.date.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         holder.start_and_end_times.setPaintFlags(holder.start_and_end_times.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         holder.recurring.setPaintFlags(holder.recurring.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        AppointmentManager appointmentManager = new AppointmentManager();
+        DocumentReference documentPath = appointments.get(position).getDocumentPath();
+        holder.edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //take to page to edit date and time
+                //appointmentManager.editAppointment();
+                Log.d("edit", "success");
+            }
+        });
+        holder.delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //deletes appointment
+                //appointmentManager.deleteAppointment();
+                Log.d("delete", "success");
+            }
+        });
 
         final boolean isExpanded = position == mExpandedPosition;
         holder.clinicName.setVisibility(isExpanded?View.VISIBLE:View.GONE);
@@ -137,4 +160,5 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             titleTextView.setText(title);
         }
     }
+
 }

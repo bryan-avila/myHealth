@@ -15,7 +15,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_purple_outline"
         app:cardCornerRadius="22dp"
-        app:cardElevation="8dp"
+        app:cardElevation="10dp"
         >
 
         <LinearLayout
@@ -105,9 +105,11 @@
                     android:layout_width="300px"
                     android:layout_height="100px"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:textAlignment="center"
+                    android:gravity="center"
                     android:visibility="gone"
                     android:text="Edit"
                     android:textSize="16dp"/>
@@ -119,11 +121,12 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:textAlignment="center"
                     android:visibility="gone"
                     android:backgroundTint="@color/redish"
                     android:text="Delete"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"/>
 
             </LinearLayout>
 
