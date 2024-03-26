@@ -48,7 +48,9 @@ public class patient_view_appointment_history extends AppCompatActivity {
                                 Log.d("TAG", "Document data: " + document2.getData());
                                 Appointment appointment = document2.toObject(Appointment.class);
                                 Log.d("TAG", "FINAL: " + appointment);
-                                appointments.add(appointment);
+                                if (appointment.getComplete() == true) {
+                                    appointments.add(appointment);
+                                }
                             }
                             MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments, recyclerView);
                             recyclerView.setAdapter(myAdapter);

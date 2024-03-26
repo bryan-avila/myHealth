@@ -237,7 +237,9 @@ public class patient_home_page extends AppCompatActivity {
                                 Log.d("TAG", "Document data: " + document2.getData());
                                 Appointment appointment = document2.toObject(Appointment.class);
                                 Log.d("TAG", "FINAL: " + appointment);
-                                appointments.add(appointment);
+                                if (appointment.getComplete() == false) {
+                                    appointments.add(appointment);
+                                }
                             }
                             MyUpcomingAppointmentsAdapter myAdapter = new MyUpcomingAppointmentsAdapter(getApplicationContext(), appointments, appointments_recycle_view);
                             appointments_recycle_view.setAdapter(myAdapter);

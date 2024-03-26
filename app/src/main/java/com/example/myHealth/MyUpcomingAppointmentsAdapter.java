@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,11 +45,15 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             vh.date.setVisibility(View.VISIBLE);
             vh.start_and_end_times.setVisibility(View.VISIBLE);
             vh.recurring.setVisibility(View.VISIBLE);
+            vh.edit_button.setVisibility(View.VISIBLE);
+            vh.delete_button.setVisibility(View.VISIBLE);
         } else {
             vh.clinicName.setVisibility(View.GONE);
             vh.date.setVisibility(View.GONE);
             vh.start_and_end_times.setVisibility(View.GONE);
             vh.recurring.setVisibility(View.GONE);
+            vh.edit_button.setVisibility(View.GONE);
+            vh.delete_button.setVisibility(View.GONE);
         }
         return vh;
     }
@@ -82,6 +87,8 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
         holder.date.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.start_and_end_times.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.recurring.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        holder.edit_button.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+        holder.delete_button.setVisibility(isExpanded?View.VISIBLE:View.GONE);
 
         holder.itemView.setActivated(isExpanded);
 
@@ -109,6 +116,8 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
         private TextView date;
         private TextView start_and_end_times;
         private TextView recurring;
+        private Button edit_button;
+        private Button delete_button;
 
         public UpcomingAppointmentViewholder(@NonNull View itemView) {
             super(itemView);
@@ -118,6 +127,8 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             date = itemView.findViewById(R.id.date);
             start_and_end_times = itemView.findViewById(R.id.start_and_end_times);
             recurring = itemView.findViewById(R.id.recurring);
+            edit_button = itemView.findViewById(R.id.edit_button);
+            delete_button = itemView.findViewById(R.id.delete_button);
 
             titleTextView = itemView.findViewById(R.id.appointment_title);
         }
