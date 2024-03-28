@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_view_food_name"
+                android:id="@+id/text_view_food_name_favorite"
                 android:padding="7sp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
@@ -37,13 +37,12 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/favorite_food_button_unchecked"
-                android:src="@drawable/button_heart_shadow"
+                android:id="@+id/favorite_food_button_checked"
+                android:src="@drawable/button_heart_red"
                 android:background="@color/transparent"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="20dp"
-                android:onClick="onFavoriteFoodCheck"
                 >
 
             </ImageButton>
@@ -51,6 +50,5 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>
