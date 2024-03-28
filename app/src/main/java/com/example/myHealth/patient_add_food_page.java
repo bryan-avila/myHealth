@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import org.json.simple.JSONArray;
 import android.util.Log;
@@ -56,6 +57,8 @@ public class patient_add_food_page extends AppCompatActivity {
     // Set up RecyclerView/SearchView Stuff
     SearchView filterView;
     MyFoodListAdapter foodListAdapter;
+
+    ImageButton favorites_Btn;
 
     // Global stuff for updating documents
     String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());

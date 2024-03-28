@@ -54,7 +54,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/search_view_food_names"
-        android:layout_marginTop="25dp"
-        />
+        android:layout_marginTop="25dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

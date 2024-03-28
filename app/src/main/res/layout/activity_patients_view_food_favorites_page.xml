@@ -67,6 +67,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/search_view_favorite_food_names"
         android:layout_marginTop="25dp">
+
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

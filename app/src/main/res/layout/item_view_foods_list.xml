@@ -34,6 +34,19 @@
                 android:textSize="30dp"
                 tools:text="foodName"/>
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/favorite_food_button"
+                android:src="@drawable/button_heart_shadow"
+                android:background="@color/transparent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="20dp"
+                >
+
+            </ImageButton>
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

@@ -38,6 +38,7 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
     public void onBindViewHolder(@NonNull MyViewHolderFoodList holder, int position) {
         holder.foodName.setText(food_names.get(position).getFood_name());
 
+
         // Set click listener
         holder.itemView.setOnClickListener(view -> {
             if (mListener != null) {
