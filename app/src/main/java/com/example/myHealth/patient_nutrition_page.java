@@ -3,9 +3,12 @@ package com.example.myHealth;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,15 +22,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class patient_nutrition_page extends AppCompatActivity {
     public void onBackPressed()
@@ -50,6 +58,11 @@ public class patient_nutrition_page extends AppCompatActivity {
 
     TextView header_and_date;
 
+    String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+    CollectionReference patientFoodAddedRef = db.collection("users").document(currentUser.getUid()).collection("foodsAdded").document(todays_date).collection("foodsAddedToday");
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +77,55 @@ public class patient_nutrition_page extends AppCompatActivity {
         simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
         date = simpleDateFormat.format(calendar.getTime()).toString();
         header_and_date.setText("Nutrition - " + date);
+
+        // Set up the RecyclerView for medications
+        RecyclerView food_added_recycler_view = findViewById(R.id.recycler_view_foods_added_today);
+        food_added_recycler_view.setLayoutManager(new LinearLayoutManager(this));
+
+        // Set up RecyclerView
+        CollectionReference patientFoodAddedRef = db.collection("users").document(currentUser.getUid()).collection("foodsAdded").document(todays_date).collection("foodsAddedToday");
+        patientFoodAddedRef.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful())
+            {
+                List<FoodsAdded> foodsAddedList = new ArrayList<>();
+                // Obtain the document, which are named the food added that day
+                for (QueryDocumentSnapshot document : task.getResult())
+                {
+                    FoodsAdded food_added_doc = document.toObject(FoodsAdded.class);
+                    foodsAddedList.add(food_added_doc);
+                }
+                Log.d("TAG", "---------- Today's Foods Added is of size: " + foodsAddedList.size()); // Check the size of the foods list
+                MyFoodsAddedAdapter myFoodsAddedAdapter = new MyFoodsAddedAdapter(getApplicationContext(), foodsAddedList);
+                food_added_recycler_view.setAdapter(myFoodsAddedAdapter);
+
+                myFoodsAddedAdapter.setOnItemClickListener(new MyFoodsAddedAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position, FoodsAdded foodsAddedList) {
+
+                        patientFoodAddedRef.document(foodsAddedList.getFoodName().toString()).collection("nutrients").document("thisNutrients").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful())
+                                {
+                                    DocumentSnapshot this_food_nutrient_values = task.getResult();
+                                    if(this_food_nutrient_values.exists())
+                                    {
+                                        //TODO: Make it so when you click on a recyclerview card, it updates like when you check appointments
+                                        String value = "Phos : " + this_food_nutrient_values.get("phosphorus").toString();
+                                        value = value + " , Protein: " + this_food_nutrient_values.get("protein").toString();
+                                        value = value + " , Potas: " + this_food_nutrient_values.get("potassium").toString();
+                                        Toast.makeText(patient_nutrition_page.this, value + ", Okay?", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+
 
         // Assign buttons
         addFoodBtn = findViewById(R.id.button_add_foods);
@@ -94,7 +156,6 @@ public class patient_nutrition_page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         //Initialize and assign variable
@@ -128,58 +189,6 @@ public class patient_nutrition_page extends AppCompatActivity {
                     return true;
                 }
                 return false;
-            }
-        });
-    }
-
-    public void onStart() {
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-
-            // Get current user, from collection users
-            DocumentReference patientRef = db.collection("users").document(currentUser.getUid());
-
-            patientRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            // User document exists, retrieve data
-                            String patient_first_name = document.getString("firstName");
-
-                            // Retrieve other user data as needed
-                        } else {
-                            // User document doesn't exist, handle accordingly
-                        }
-                    } else {
-                        // Handle failure to retrieve user document
-                    }
-                }
-            });
-        }
-
-        super.onStart();
-        // Automatic loading
-        patientListener = patientRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-
-                // Error checking
-                if(error != null)
-                {
-                    Toast.makeText(patient_nutrition_page.this, "Error while loading!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                if (documentSnapshot.exists()) {
-                    // Change a textview from the dietpage to
-                    TextView welcome = (TextView) findViewById(R.id.text_view_nutrition_default_text);
-                    String patient_firstname = documentSnapshot.get("firstName").toString();
-                    welcome.setText(patient_firstname + ". Test successful. To Do: Display Today's Nutrients.");
-
-                }
             }
         });
     }

@@ -30,14 +30,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,6 +71,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
     // Set up document reference for the document snapshot
     DocumentReference patientNutrientRef = db.collection("users").document(currentUser.getUid()).collection("nutrients").document(todays_date);
+    CollectionReference patientFoodAddedRef = db.collection("users").document(currentUser.getUid()).collection("foodsAdded").document(todays_date).collection("foodsAddedToday");
 
 
     @Override
@@ -203,6 +210,38 @@ public class patient_add_food_page extends AppCompatActivity {
                                         // When you click on a food, store the food_id in this string
                                         String current_food_id = food_names.getFood_id().toString();
 
+                                        // Create an addOnCompleteListener if a patient has already added the food they picked today!
+                                        patientFoodAddedRef.document(food_names.getFood_name().toString()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                                if(task.isSuccessful())
+                                                {
+                                                    DocumentSnapshot doesAddedFoodExist = task.getResult(); // Create a document snapshot
+
+                                                    if(doesAddedFoodExist.exists()) // Does the addedFoodToday document exist? Update quantity to + 1
+                                                    {
+                                                        int old_quantity = Integer.parseInt(doesAddedFoodExist.get("quantity").toString());
+                                                        int new_quantity = old_quantity + 1;
+                                                        String str_new_quantity = String.valueOf(new_quantity);
+                                                        patientFoodAddedRef.document(food_names.getFood_name().toString()).update("quantity",str_new_quantity);
+
+                                                    }
+
+                                                    else // Document doesn't exist? Create foodAddedToday document in DB with the quantity initialized to 1!
+                                                    {
+                                                        //Toast.makeText(patient_add_food_page.this, food_names.getFood_name().toString(), Toast.LENGTH_SHORT).show();
+                                                        Map<String, Object> foodsAdded = new HashMap<>();
+                                                        foodsAdded.put("foodName", food_names.getFood_name().toString());
+                                                        foodsAdded.put("quantity", "1");
+                                                        patientFoodAddedRef.document(food_names.getFood_name().toString())
+                                                                .set(foodsAdded);
+                                                    }
+                                                }
+
+                                            }
+                                        });
+
                                         // Using a document reference, we need to grab the patient's CURRENT nutrient values and update them with the
                                         // food values which they just clicked on!
                                         patientNutrientRef.get().addOnCompleteListener(task ->
@@ -268,6 +307,11 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                     int food_nutrient_counter = 0;
                                                                     // Iterate through the array of nutrients
+
+                                                                    // Store the nutrient values in this hashmap to be used with the foodsAddedToday collection!
+                                                                    // Store the nutrient values in this hashmap to be used with the foodsAddedToday collection!
+                                                                    Map<String, Object> this_food_nutrients_hashmap = new HashMap<>();
+
                                                                     for (Object nutrientObj : nutrientsArray)
                                                                     {
                                                                         food_nutrient_counter = food_nutrient_counter + 1;
@@ -279,8 +323,6 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                             break;
                                                                         }
 
-                                                                        //TODO Some food items seem to not update DB, possibly due to data type checking ?
-                                                                        //TODO Logcat shows that threads are running twice, possibly due to for loop structure ?
                                                                         //************************GET PHOSPHORUS VALUES********************************
                                                                         if(nutrientInfo.get("name").equals("Phosphorus, P"))
                                                                         {
@@ -290,6 +332,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                                 // Update phosAmount
                                                                                 phosAmount = (double) nutrient.get("amount");
+                                                                                this_food_nutrients_hashmap.put("phosphorus", phosAmount);
                                                                                 // Add phosAmount with the phos value currently found in the document
                                                                                 phosAmount = (double) (phosAmount + currentPhosAmount);
                                                                                 // Push it to the DB
@@ -302,6 +345,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                                 // Update phosAmount
                                                                                 phosAmount = (long) nutrient.get("amount");
+                                                                                this_food_nutrients_hashmap.put("phosphorus", phosAmount);
                                                                                 // Add phosAmount with the phos value currently found in the document
                                                                                 phosAmount = (long) (phosAmount + currentPhosAmount);
                                                                                 // Push it to the DB
@@ -320,6 +364,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                                 // Update proteinAmount
                                                                                 proteinAmount = (double) nutrient.get("amount");
+                                                                                this_food_nutrients_hashmap.put("protein", proteinAmount);
                                                                                 // Add proteinAmount with the protein value currently found in the document
                                                                                 proteinAmount = (double) (proteinAmount + currentProteinAmount);
                                                                                 // Push it to the DB
@@ -330,6 +375,7 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                             {
                                                                                 // Update proteinAmount
                                                                                 proteinAmount = (long) nutrient.get("amount");
+                                                                                this_food_nutrients_hashmap.put("protein", proteinAmount);
                                                                                 // Add proteinAmount with the protein value currently found in the document
                                                                                 proteinAmount = (long) (proteinAmount + currentProteinAmount);
                                                                                 // Push it to the DB
@@ -341,6 +387,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                                 // Update proteinAmount
                                                                                 proteinAmount = (double) nutrient.get("amount");
+                                                                                this_food_nutrients_hashmap.put("protein", proteinAmount);
                                                                                 // Add proteinAmount with the protein value currently found in the document
                                                                                 proteinAmount = (double) (proteinAmount + currentProteinAmount);
                                                                                 // Push it to the DB
@@ -358,6 +405,7 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                             {
                                                                                 // Update potassiumAmount
                                                                                 potassiumAmount = (double) nutrient.get("amount");
+                                                                                this_food_nutrients_hashmap.put("potassium", potassiumAmount);
                                                                                 // Add potassiumAmount with the potassium value currently found in the document
                                                                                 potassiumAmount = (double) (potassiumAmount + currentPotassiumAmount);
                                                                                 // Push it to the DB
@@ -367,6 +415,7 @@ public class patient_add_food_page extends AppCompatActivity {
                                                                             {
                                                                                 // Update potassiumAmount
                                                                                 potassiumAmount = (long) nutrient.get("amount");
+                                                                                this_food_nutrients_hashmap.put("potassium", potassiumAmount);
                                                                                 // Add potassiumAmount with the potassium value currently found in the document
                                                                                 potassiumAmount = (long) (potassiumAmount + currentPotassiumAmount);
                                                                                 // Push it to the DB
@@ -376,6 +425,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                                 // Update potassiumAmount
                                                                                 potassiumAmount = (long) nutrient.get("amount");
+                                                                                this_food_nutrients_hashmap.put("potassium", potassiumAmount);
                                                                                 // Add potassiumAmount with the potassium value currently found in the document
                                                                                 potassiumAmount = (long) (potassiumAmount + currentPotassiumAmount);
                                                                                 // Push it to the DB
@@ -386,6 +436,9 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                         }
 
+                                                                        // TODO: Add the other nutrient values, potassium and protein
+                                                                        // Update the added food to show the nutrient values
+                                                                        patientFoodAddedRef.document(food_names.getFood_name().toString()).collection("nutrients").document("thisNutrients").set(this_food_nutrients_hashmap);
                                                                         // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------
                                                                         // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------
                                                                         // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------
