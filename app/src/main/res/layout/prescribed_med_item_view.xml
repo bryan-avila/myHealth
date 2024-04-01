@@ -14,7 +14,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/custom_purple_outline"
         app:cardCornerRadius="30dp"
-        app:cardElevation="20dp">
+        app:cardElevation="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -121,7 +121,7 @@
                 android:layout_below="@id/text_view_clinic_name"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                tools:text="Clinic Name"/>
+                tools:text="Clinic Phone Number"/>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import org.json.simple.JSONArray;
 import android.util.Log;
@@ -62,6 +63,8 @@ public class patient_add_food_page extends AppCompatActivity {
     // Set up RecyclerView/SearchView Stuff
     SearchView filterView;
     MyFoodListAdapter foodListAdapter;
+
+    ImageButton favorites_Btn;
 
     // Global stuff for updating documents
     String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -468,6 +471,12 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                         Toast.makeText(patient_add_food_page.this, "Successfully added food " + ("\u2705"), Toast.LENGTH_LONG).show();
                                     }
+
+                                    /*
+                                    public void onFavoriteFoodCheck(View view) {
+                                        //Send the name of the food to a collection that holds the favorite foods
+
+                                    }*/
                                 });
                                foodListAdapter.getFilter().filter(user_text); // Filter based off the text in the search view
                                 recyclerView.setAdapter(foodListAdapter);
@@ -505,6 +514,7 @@ public class patient_add_food_page extends AppCompatActivity {
                         Toast.makeText(patient_add_food_page.this, "ERROR. Make sure you enter a food name and then press ENTER.", Toast.LENGTH_LONG).show();
 
                     }
+
                 });
                 return true;
             }

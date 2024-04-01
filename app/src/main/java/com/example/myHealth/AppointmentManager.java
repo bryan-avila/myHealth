@@ -550,5 +550,9 @@ public class AppointmentManager {
             }
         });
     }
+
+    public void updateSingleAppointment() {
+
+    }
 }
 
