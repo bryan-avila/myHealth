@@ -60,7 +60,7 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderFoodList holder, int position) {
         holder.foodName.setText(food_names.get(position).getFood_name());
-        holder.favoriteFoodButtonUnchecked.setBackgroundResource(R.drawable.button_heart_shadow);
+        //holder.favoriteFoodButtonUnchecked.setBackgroundResource(R.drawable.button_heart_shadow);
 
 
         // Set click listener
