@@ -108,6 +108,9 @@
             android:name=".clinic_edit_my_profile"
             android:exported="false" />
         <activity
+            android:name=".edit_profile_activity"
+            android:exported="false" />
+        <activity
             android:name=".empty_resourcesPage"
             android:exported="false" />
         <activity
