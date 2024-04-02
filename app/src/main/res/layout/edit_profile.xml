@@ -12,8 +12,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="match_parent"
@@ -27,7 +26,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="570dp"
+        android:layout_height="540dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="8dp"
@@ -37,10 +36,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="585dp"
+            android:layout_height="550dp"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/loginText"
@@ -49,7 +48,7 @@
                 android:text="Edit Profile"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
-                android:textSize="35sp"
+                android:textSize="32sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -69,7 +68,7 @@
                 android:id="@+id/lastName"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/custom_purple_outline"
                 android:hint="Last Name"
                 android:inputType="text"
@@ -82,7 +81,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/custom_purple_outline"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
@@ -94,7 +93,7 @@
                 android:id="@+id/phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/custom_purple_outline"
                 android:hint="Phone Number"
                 android:inputType="phone"
@@ -107,7 +106,7 @@
                 android:id="@+id/currentPasswordEntered"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/custom_purple_outline"
                 android:drawableLeft="@drawable/icon_lock"
                 android:drawablePadding="8dp"
@@ -121,7 +120,7 @@
                 android:id="@+id/passwordEntered"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/custom_purple_outline"
                 android:drawableLeft="@drawable/icon_lock"
                 android:drawablePadding="8dp"
@@ -135,7 +134,7 @@
                 android:id="@+id/passwordConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/custom_purple_outline"
                 android:drawableLeft="@drawable/icon_lock"
                 android:drawablePadding="8dp"
@@ -149,7 +148,7 @@
                 android:id="@+id/confirmButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/goodGreen"
                 android:text="Confirm Changes"
                 android:textSize="18sp"

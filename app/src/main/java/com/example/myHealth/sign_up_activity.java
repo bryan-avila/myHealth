@@ -115,7 +115,7 @@ public class sign_up_activity extends AppCompatActivity {
                                                                             // User document created successfully
                                                                             Log.d(TAG, "DocumentSnapshot added;");
                                                                             // Upon registration send users to do medical history questions
-                                                                            builder.setTitle("Almost done! ✅")
+                                                                            builder.setTitle("Almost done! ✔️")
                                                                                     .setMessage("Please fill out medical history form & diet form to finish registration.")
                                                                                     .setCancelable(false)
                                                                                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {

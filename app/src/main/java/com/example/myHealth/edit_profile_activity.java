@@ -132,7 +132,7 @@ public class edit_profile_activity extends AppCompatActivity {
                                             while (!success) {
                                                 if (newPasswordConfirm.equals(newPasswordRepeatConfirm)) {
                                                     Log.d(TAG, "Password updated, signing out.");
-                                                    builder.setTitle("Password updated, please log-in again. ✅")
+                                                    builder.setTitle("Password updated, please log-in again. ✔️")
                                                             .setCancelable(false)
                                                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                                                 @Override
@@ -152,14 +152,14 @@ public class edit_profile_activity extends AppCompatActivity {
                                             }
                                         }
                                         if (exit) {
-                                            Toast.makeText(edit_profile_activity.this, "INFO UPDATED ✅", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(edit_profile_activity.this, "INFO UPDATED ✔️", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(edit_profile_activity.this, patient_home_page.class);
                                             startActivity(intent);
                                             finish();
                                         }
 
                                     } else {
-                                        Log.d(TAG, "Error auth failed");
+                                        Log.d(TAG, "Error: authentication failed");
                                         currentPasswordEntered.requestFocus();
                                         currentPasswordEntered.setError("INCORRECT PASSWORD");
                                     }
