@@ -472,12 +472,13 @@ public class patient_add_food_page extends AppCompatActivity {
                                         Toast.makeText(patient_add_food_page.this, "Successfully added food " + ("\u2705"), Toast.LENGTH_LONG).show();
                                     }
 
-                                    /*
+
+                                });
+                                /*
                                     public void onFavoriteFoodCheck(View view) {
                                         //Send the name of the food to a collection that holds the favorite foods
 
                                     }*/
-                                });
                                foodListAdapter.getFilter().filter(user_text); // Filter based off the text in the search view
                                 recyclerView.setAdapter(foodListAdapter);
                             });
@@ -518,6 +519,7 @@ public class patient_add_food_page extends AppCompatActivity {
                 });
                 return true;
             }
+
         });
 
     }

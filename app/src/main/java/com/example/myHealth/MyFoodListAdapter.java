@@ -1,10 +1,15 @@
 package com.example.myHealth;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,14 +23,32 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
 
     List<FoodNameFromList> food_names;
 
+    ImageButton favorite_Food_Button_Unchecked;
+
     List<FoodNameFromList> food_names_full;
 
     private OnItemClickListener mListener;
 
+
+    @SuppressLint("ClickableViewAccessibility")
     public MyFoodListAdapter(Context context, List<FoodNameFromList> foodnames) {
         this.context = context;
         this.food_names = foodnames;
+        //this.favorite_Food_Button_Unchecked = favoriteFoodButtonUnchecked_2;
         food_names_full = new ArrayList<>(foodnames); // A copy of the food list
+
+        /*
+        favorite_Food_Button_Unchecked.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    favorite_Food_Button_Unchecked.setBackgroundResource(R.drawable.button_heart_shadow);
+                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    favorite_Food_Button_Unchecked.setBackgroundResource(R.drawable.button_heart_red);
+                }
+                return false;
+            }
+        });*/
     }
 
     @NonNull
@@ -37,15 +60,25 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderFoodList holder, int position) {
         holder.foodName.setText(food_names.get(position).getFood_name());
+        holder.favoriteFoodButtonUnchecked.setBackgroundResource(R.drawable.button_heart_shadow);
 
 
         // Set click listener
         holder.itemView.setOnClickListener(view -> {
             if (mListener != null) {
                 mListener.onItemClick(position, food_names.get(position));
-
             }
         });
+
+        /*
+        holder.favoriteFoodButtonUnchecked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.favoriteFoodButtonUnchecked.setBackgroundResource(R.drawable.button_heart_red);
+                //Toast.makeText(MyFoodListAdapter.this,"Successfully added food ", Toast.LENGTH_LONG).show();
+            }
+        });*/
+
     }
 
     @Override
@@ -56,7 +89,6 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
-
 
 
     public Filter getFilter() {
