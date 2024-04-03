@@ -16,5 +16,6 @@ public class MyViewHolderFoodsAdded extends RecyclerView.ViewHolder {
         super(itemView);
         foodAddedName = itemView.findViewById(R.id.text_view_food_added_name);
         foodAddedQuantity = itemView.findViewById(R.id.text_view_food_added_quantity);
+
     }
 }

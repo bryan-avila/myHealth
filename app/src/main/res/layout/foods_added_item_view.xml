@@ -48,6 +48,16 @@
                 android:textSize="25sp"
                 tools:text="Food Quantity"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_view_card_phosphorus"
+                android:text="(Phos Value)"
+                android:layout_marginTop="100sp"
+                android:layout_marginLeft="140sp"
+                android:visibility="gone"
+                />
+
 
         </RelativeLayout>
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_view_recycler_card_food_added_phos"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(phos value)"
+        android:textSize="25sp"
+        />
+    <TextView
+        android:id="@+id/text_view_recycler_card_food_added_prot"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_below="@id/text_view_recycler_card_food_added_phos"
+        android:layout_height="wrap_content"
+        android:text="(prot value)"
+        android:textSize="25sp"
+        />
+
+    <TextView
+        android:id="@+id/text_view_recycler_card_food_added_pot"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_below="@id/text_view_recycler_card_food_added_prot"
+        android:layout_height="wrap_content"
+        android:text="(potassium value)"
+        android:textSize="25sp"
+        />
+
+</RelativeLayout>
