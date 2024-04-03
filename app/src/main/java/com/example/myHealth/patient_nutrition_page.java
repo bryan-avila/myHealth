@@ -29,6 +29,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.text.SimpleDateFormat;
@@ -95,29 +96,22 @@ public class patient_nutrition_page extends AppCompatActivity {
                     foodsAddedList.add(food_added_doc);
                 }
                 Log.d("TAG", "---------- Today's Foods Added is of size: " + foodsAddedList.size()); // Check the size of the foods list
-                MyFoodsAddedAdapter myFoodsAddedAdapter = new MyFoodsAddedAdapter(getApplicationContext(), foodsAddedList);
+                MyFoodsAddedAdapter myFoodsAddedAdapter = new MyFoodsAddedAdapter(getApplicationContext(), foodsAddedList, food_added_recycler_view);
                 food_added_recycler_view.setAdapter(myFoodsAddedAdapter);
 
                 myFoodsAddedAdapter.setOnItemClickListener(new MyFoodsAddedAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position, FoodsAdded foodsAddedList) {
-
-                        patientFoodAddedRef.document(foodsAddedList.getFoodName().toString()).collection("nutrients").document("thisNutrients").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful())
+                        patientFoodAddedRef.document(foodsAddedList.getFoodName().toString()).collection("nutrients").get().addOnCompleteListener(task2 -> {
+                            if(task2.isSuccessful())
+                            {
+                                List<FoodsAdded> food_added_nutrients_list = new ArrayList<>();
+                                for(QueryDocumentSnapshot document2 : task2.getResult())
                                 {
-                                    DocumentSnapshot this_food_nutrient_values = task.getResult();
-                                    if(this_food_nutrient_values.exists())
-                                    {
-                                        //TODO: Make it so when you click on a recyclerview card, it updates like when you check appointments
-                                        String value = "Phos : " + this_food_nutrient_values.get("phosphorus").toString();
-                                        value = value + " , Protein: " + this_food_nutrient_values.get("protein").toString();
-                                        value = value + " , Potas: " + this_food_nutrient_values.get("potassium").toString();
-                                        Toast.makeText(patient_nutrition_page.this, value + ", Okay?", Toast.LENGTH_SHORT).show();
+                                    //TODO Couldn't get the recycler card view to expand and show nutrients...
 
-                                    }
                                 }
+
                             }
                         });
                     }

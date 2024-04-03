@@ -35,18 +35,97 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/text_view_added_food_card_quantity_header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Quantity: "
+                android:textSize="24sp"
+                android:layout_marginTop="60sp"
+                android:layout_marginLeft="50sp"
+                />
+
+            <TextView
                 android:id="@+id/text_view_food_added_quantity"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginLeft="150sp"
                 android:layout_below="@id/text_view_food_added_name"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 tools:text="Food Quantity"/>
+
+            <!-- Handle Stuff that should be unseen until clicked -->
+
+            <TextView
+                android:id="@+id/text_view_added_food_card_phos_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[Phosphorus]: "
+                android:textSize="20sp"
+                android:layout_marginTop="100sp"
+                android:layout_marginLeft="120sp"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/text_view_added_food_card_phos_amt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Phos!!!)"
+                android:textSize="20sp"
+                android:layout_marginTop="100sp"
+                android:layout_marginLeft="250sp"
+                android:visibility="gone"
+                />
+
+
+            <TextView
+                android:id="@+id/text_view_added_food_card_prot_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Protein: "
+                android:textSize="20sp"
+                android:layout_marginTop="130sp"
+                android:layout_marginLeft="120sp"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/text_view_added_food_card_prot_amt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Phos)"
+                android:textSize="20sp"
+                android:layout_marginTop="130sp"
+                android:layout_marginLeft="200sp"
+                android:visibility="gone"
+                />
+
+
+            <TextView
+                android:id="@+id/text_view_added_food_card_pot_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Potassium: "
+                android:textSize="20sp"
+                android:layout_marginTop="160sp"
+                android:layout_marginLeft="120sp"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/text_view_added_food_card_pot_amt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Phos)"
+                android:textSize="20sp"
+                android:layout_marginTop="160sp"
+                android:layout_marginLeft="230sp"
+                android:visibility="gone"
+                />
+
 
 
         </RelativeLayout>
