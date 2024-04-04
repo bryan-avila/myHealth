@@ -2,10 +2,12 @@ package com.example.myHealth;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -95,9 +97,11 @@ public class patient_nutrition_page extends AppCompatActivity {
                     foodsAddedList.add(food_added_doc);
                 }
                 Log.d("TAG", "---------- Today's Foods Added is of size: " + foodsAddedList.size()); // Check the size of the foods list
+
                 MyFoodsAddedAdapter myFoodsAddedAdapter = new MyFoodsAddedAdapter(getApplicationContext(), foodsAddedList);
                 food_added_recycler_view.setAdapter(myFoodsAddedAdapter);
 
+                // When a recycler view card is clicked, grab the food's nutrient values by going to the "nutrients" collection!
                 myFoodsAddedAdapter.setOnItemClickListener(new MyFoodsAddedAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position, FoodsAdded foodsAddedList) {
@@ -105,16 +109,57 @@ public class patient_nutrition_page extends AppCompatActivity {
                         patientFoodAddedRef.document(foodsAddedList.getFoodName().toString()).collection("nutrients").document("thisNutrients").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                String foodNameForPopUP = foodsAddedList.getFoodName().toString(); // save name for the Pop Up
+
                                 if (task.isSuccessful())
                                 {
                                     DocumentSnapshot this_food_nutrient_values = task.getResult();
-                                    if(this_food_nutrient_values.exists())
+                                    String phos_value = "";
+                                    String protein_value = "";
+                                    String potassium_value = "";
+
+                                    if(this_food_nutrient_values.exists()) // if the "thisNutrients" document exists for that food added today then grab the values from the Database and send them to the Pop UP function!
                                     {
-                                        //TODO: Make it so when you click on a recyclerview card, it updates like when you check appointments
-                                        String value = "Phos : " + this_food_nutrient_values.get("phosphorus").toString();
-                                        value = value + " , Protein: " + this_food_nutrient_values.get("protein").toString();
-                                        value = value + " , Potas: " + this_food_nutrient_values.get("potassium").toString();
-                                        Toast.makeText(patient_nutrition_page.this, value + ", Okay?", Toast.LENGTH_SHORT).show();
+                                        // First check if these objects are not null (that means that adding the food didn't change a nutrient value)
+                                        // If these objects are not null, THEN we can create strings of the nutrient values!
+                                        Object obj_phos_value = this_food_nutrient_values.get("phosphorus");
+
+                                        if(obj_phos_value != null)
+                                        {
+                                            phos_value = this_food_nutrient_values.get("phosphorus").toString();
+                                        }
+
+                                        Object obj_protein_value = this_food_nutrient_values.get("protein");
+
+                                        if(obj_protein_value != null)
+                                        {
+                                             protein_value = this_food_nutrient_values.get("protein").toString();
+                                        }
+
+                                        Object obj_potassium_value = this_food_nutrient_values.get("potassium");
+
+                                        if(obj_potassium_value != null)
+                                        {
+                                             potassium_value = this_food_nutrient_values.get("potassium").toString();
+                                        }
+
+                                        if(obj_phos_value == null || obj_protein_value == null || obj_potassium_value == null) // Was there a problem getting nutrients?
+                                        {
+                                            Toast.makeText(patient_nutrition_page.this, "Error obtaining nutrient value from DB", Toast.LENGTH_LONG).show();
+                                        }
+
+                                        else {
+                                            showPopUp(foodNameForPopUP, phos_value, potassium_value, protein_value);
+                                        }
+                                       // TextView test = findViewById(R.id.text_view_card_phosphorus);
+                                        //String value = "Phos : " + this_food_nutrient_values.get("phosphorus").toString();
+                                        //test.setText(value); // should print 37
+                                        //test.setVisibility(View.VISIBLE);
+                                        //value = value + " , Protein: " + this_food_nutrient_values.get("protein").toString();
+                                        //value = value + " , Potas: " + this_food_nutrient_values.get("potassium").toString();
+                                       // String value = "Phos: " + phos_value + " Prot: " + protein_value + " Potas: " + potassium_value + " !";
+                                        //Toast.makeText(patient_nutrition_page.this, value + "!", Toast.LENGTH_SHORT).show();
 
                                     }
                                 }
@@ -191,5 +236,35 @@ public class patient_nutrition_page extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    // Create a Pop-Up for food nutrients
+    public void showPopUp(String food_name, String string_phos, String string_potassium, String string_protein)
+    {
+        // Set the pop up window title using the food name
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(food_name + " Nutrients: ");
+
+        // Grab the .xml elements and show the values
+        View popUp = getLayoutInflater().inflate(R.layout.custom_food_added_nutrient_layout, null);
+        TextView phos = popUp.findViewById(R.id.text_view_recycler_card_food_added_phos);
+        TextView prot = popUp.findViewById(R.id.text_view_recycler_card_food_added_prot);
+        TextView potassium = popUp.findViewById(R.id.text_view_recycler_card_food_added_pot);
+        phos.setText("Phosphorus Amount: " + string_phos);
+        prot.setText("Protein Amount: " + string_protein);
+        potassium.setText("Potassium Amount: " + string_potassium);
+
+        builder.setView(popUp);
+
+        // Create an exit button
+        builder.setPositiveButton("Exit Nutrient Pop-Up", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Don't really need this so ignore
+            }
+        });
+
+        builder.show(); // Show the pop up!
+
     }
 }
