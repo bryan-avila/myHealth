@@ -115,14 +115,43 @@ public class patient_nutrition_page extends AppCompatActivity {
                                 if (task.isSuccessful())
                                 {
                                     DocumentSnapshot this_food_nutrient_values = task.getResult();
+                                    String phos_value = "";
+                                    String protein_value = "";
+                                    String potassium_value = "";
 
-                                    if(this_food_nutrient_values.exists()) // if the "thisNutrients" document exists for that food added today
+                                    if(this_food_nutrient_values.exists()) // if the "thisNutrients" document exists for that food added today then grab the values from the Database and send them to the Pop UP function!
                                     {
-                                        // then grab the values from the Database and send them to the Pop UP function!
-                                        String phos_value = this_food_nutrient_values.get("phosphorus").toString();
-                                        String protein_value = this_food_nutrient_values.get("protein").toString();
-                                        String potassium_value = this_food_nutrient_values.get("potassium").toString();
-                                        showPopUp(foodNameForPopUP, phos_value, potassium_value, protein_value);
+                                        // First check if these objects are not null (that means that adding the food didn't change a nutrient value)
+                                        // If these objects are not null, THEN we can create strings of the nutrient values!
+                                        Object obj_phos_value = this_food_nutrient_values.get("phosphorus");
+
+                                        if(obj_phos_value != null)
+                                        {
+                                            phos_value = this_food_nutrient_values.get("phosphorus").toString();
+                                        }
+
+                                        Object obj_protein_value = this_food_nutrient_values.get("protein");
+
+                                        if(obj_protein_value != null)
+                                        {
+                                             protein_value = this_food_nutrient_values.get("protein").toString();
+                                        }
+
+                                        Object obj_potassium_value = this_food_nutrient_values.get("potassium");
+
+                                        if(obj_potassium_value != null)
+                                        {
+                                             potassium_value = this_food_nutrient_values.get("potassium").toString();
+                                        }
+
+                                        if(obj_phos_value == null || obj_protein_value == null || obj_potassium_value == null) // Was there a problem getting nutrients?
+                                        {
+                                            Toast.makeText(patient_nutrition_page.this, "Error obtaining nutrient value from DB", Toast.LENGTH_LONG).show();
+                                        }
+
+                                        else {
+                                            showPopUp(foodNameForPopUP, phos_value, potassium_value, protein_value);
+                                        }
                                        // TextView test = findViewById(R.id.text_view_card_phosphorus);
                                         //String value = "Phos : " + this_food_nutrient_values.get("phosphorus").toString();
                                         //test.setText(value); // should print 37
