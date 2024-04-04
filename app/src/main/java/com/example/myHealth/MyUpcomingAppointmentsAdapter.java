@@ -92,16 +92,16 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             @Override
             public void onClick(View v) {
                 //take to page to edit date and time
-                //appointmentManager.editAppointment();
-                Log.d("edit", "success");
+                appointmentManager.editAppointment(appointments.get(position).getDocumentPath());
+                Log.d("edit button", "clicked");
             }
         });
         holder.delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //deletes appointment
-                //appointmentManager.deleteAppointment();
-                Log.d("delete", "success");
+                appointmentManager.deleteAppointment(appointments.get(position).getDocumentPath());
+                Log.d("delete button", "clicked");
             }
         });
 
@@ -110,8 +110,17 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
         holder.date.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.start_and_end_times.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.recurring.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.edit_button.setVisibility(isExpanded?View.VISIBLE:View.GONE);
-        holder.delete_button.setVisibility(isExpanded?View.VISIBLE:View.GONE);
+
+        if (appointments.get(position).getComplete() && isExpanded) {
+            holder.edit_button.setVisibility(View.GONE);
+            holder.delete_button.setVisibility(View.GONE);
+        } else if (!appointments.get(position).getComplete() && isExpanded) {
+            holder.edit_button.setVisibility(View.VISIBLE);
+            holder.delete_button.setVisibility(View.VISIBLE);
+        } else {
+            holder.edit_button.setVisibility(View.GONE);
+            holder.delete_button.setVisibility(View.GONE);
+        }
 
         holder.itemView.setActivated(isExpanded);
 
