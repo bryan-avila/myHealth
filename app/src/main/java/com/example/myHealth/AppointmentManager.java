@@ -535,7 +535,6 @@ public class AppointmentManager {
                                                         double newtime = timeconverter.convertToDecimal(startTimeString);
                                                         Log.d("TAG", "Clinic: " + clinicId + ", Appointment Time: " + startTimeString);
 
-
                                                         makeSingleAppointment(clinicName, clinicId, futureDate, newtime, true);
                                                     }
                                                 })
@@ -558,13 +557,32 @@ public class AppointmentManager {
         });
     }
 
-    public void updateSingleAppointment() {
-
-    }
-
-    public void deleteAppointment(DocumentReference document) {
+    public void deleteAppointment(Appointment appointment, DocumentReference document) {
         CollectionReference appointments = document.getParent();
         DocumentReference date = appointments.getParent();
+        // Check if appointment is recurring
+        boolean recurring = appointment.getRecurring();
+        if (recurring) {
+            Calendar calendar = Calendar.getInstance();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate appointmentLocalDate = LocalDate.parse(appointment.getDate(), formatter);
+            Date appointmentDate = Date.from(appointmentLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            calendar.setTime(appointmentDate);
+            calendar.add(Calendar.MONTH, 6);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String futureDate = sdf.format(calendar.getTime());
+            Log.d("TAG", "Appointment was recurring. Next appointment date: " + futureDate);
+
+            // Retrieve clinic and appointment time from the appointment document
+            String clinicName = appointment.getClinicName();
+            String clinicId = document.getId();
+            String startTimeString = appointment.getStartTime();
+            TimeConverter timeconverter = new TimeConverter();
+            double newtime = timeconverter.convertToDecimal(startTimeString);
+            Log.d("TAG", "Clinic: " + clinicId + ", Appointment Time: " + startTimeString);
+
+            makeSingleAppointment(clinicName, clinicId, futureDate, newtime, true);
+        }
         // Delete the document
         document.delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -584,7 +602,6 @@ public class AppointmentManager {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
                                                         Log.d("deleteAppointment", "Date document deleted!");
-
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {
@@ -611,7 +628,7 @@ public class AppointmentManager {
                 });
     }
 
-    public void editAppointment(DocumentReference documentPath) {
+    public void editAppointment(Appointment appointment, DocumentReference documentPath) {
 
     }
 }

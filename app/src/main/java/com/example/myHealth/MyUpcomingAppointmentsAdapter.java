@@ -92,7 +92,7 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             @Override
             public void onClick(View v) {
                 //take to page to edit date and time
-                appointmentManager.editAppointment(appointments.get(position).getDocumentPath());
+                appointmentManager.editAppointment(appointments.get(position), appointments.get(position).getDocumentPath());
                 Log.d("edit button", "clicked");
             }
         });
@@ -100,7 +100,7 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             @Override
             public void onClick(View v) {
                 //deletes appointment
-                appointmentManager.deleteAppointment(appointments.get(position).getDocumentPath());
+                appointmentManager.deleteAppointment(appointments.get(position), appointments.get(position).getDocumentPath());
                 Log.d("delete button", "clicked");
             }
         });
