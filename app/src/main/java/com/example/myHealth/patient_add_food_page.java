@@ -52,6 +52,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class patient_add_food_page extends AppCompatActivity {
 
     // Set up DB Stuff
+    Context context;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -60,15 +61,14 @@ public class patient_add_food_page extends AppCompatActivity {
     // Set Up List of Food Names
     private List<FoodNameFromList> foodNames = null;
 
+    private List<ImageButton> favFoods = null;
+
     // Set up RecyclerView/SearchView Stuff
     SearchView filterView;
     MyFoodListAdapter foodListAdapter;
 
-    MyFoodListAdapterFavorites foodListAdapterFavorites;
+    //MyFoodListAdapterFavorites foodListAdapterFavorites;
 
-
-
-    ImageButton favoriteFoodButtonUnchecked;
 
     // Global stuff for updating documents
     String todays_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -128,8 +128,11 @@ public class patient_add_food_page extends AppCompatActivity {
 
         // Initialize an empty list of food names
         foodNames = new ArrayList<>();
+        //favFoods = new ArrayList<>();
         FoodNameFromList f = new FoodNameFromList(""); // Create a new FoodNameFromList object with food_name as the argument
+        //ImageButton i = new ImageButton(context);
         foodNames.add(f); // Add to list
+        //favFoods.add(i);
         // Set the Adapter of the page with the list created in this thread
         foodListAdapter = new MyFoodListAdapter(getApplicationContext(), foodNames);
         recyclerView.setAdapter(foodListAdapter);
@@ -208,6 +211,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                 // Set the Adapter of the page with the list created in this thread
                                 foodListAdapter = new MyFoodListAdapter(getApplicationContext(), foodNames);
+                                //had favFoods as an argument
 
                                 // Let the food names that appear in the recycler view become clickable!
                                 foodListAdapter.setOnItemClickListener(new MyFoodListAdapter.OnItemClickListener() {
@@ -475,6 +479,12 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                         Toast.makeText(patient_add_food_page.this, "Successfully added food " + ("\u2705"), Toast.LENGTH_LONG).show();
                                     }
+                                    /*public void onClick(ImageButton fav_Buttons) {
+
+                                        //add to favorites on database
+                                        Toast.makeText(patient_add_food_page.this, "Successfully added to favorites", Toast.LENGTH_LONG). show();
+
+                                    }*/
                                 });
 
                                foodListAdapter.getFilter().filter(user_text); // Filter based off the text in the search view
@@ -514,6 +524,11 @@ public class patient_add_food_page extends AppCompatActivity {
 
                     }
 
+                    /*
+                    @Override
+                    public void onClick(ImageButton fav_Buttons) {
+                        Toast.makeText(patient_add_food_page.this, "Error adding to favorites", Toast.LENGTH_LONG).show();
+                    }*/
                 });
                 return true;
             }

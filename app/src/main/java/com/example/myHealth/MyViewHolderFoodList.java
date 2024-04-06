@@ -25,13 +25,21 @@ public class MyViewHolderFoodList extends RecyclerView.ViewHolder {
         favoriteFoodButtonUnchecked = itemView.findViewById(R.id.favorite_food_button_unchecked);
 
         //Set an onClick listener to change the color of the heart (user pressed the heart and it become red with the code below)
-        /*
+
         favoriteFoodButtonUnchecked.setOnClickListener(new View.OnClickListener() {
+            int check = 1;
             @Override
             public void onClick(View v) {
-                favoriteFoodButtonUnchecked.setImageResource(R.drawable.button_heart_red);
+                //for changing the background color of the button
+                if (check == 1) {
+                    favoriteFoodButtonUnchecked.setImageResource(R.drawable.button_heart_red);
+                    check = 0;
+                } else  {
+                    favoriteFoodButtonUnchecked.setImageResource(R.drawable.button_heart_shadow);
+                    check = 1;
+                }
             }
-        });*/
+        });
 
 
     }
