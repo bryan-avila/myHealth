@@ -1,5 +1,7 @@
 package com.example.myHealth;
 
+import static java.util.Objects.*;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -17,31 +19,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList> implements Filterable {
 
+    //ImageButton favorites_Buttons;
     Context context;
 
     List<FoodNameFromList> food_names;
 
-    ImageButton favorites_Btn;
-
-    ImageButton favorites_Buttons;
-
-    ImageButton favorite_Food_Button_Unchecked;
-
     List<FoodNameFromList> food_names_full;
+
+    List<ImageButton> fav_Buttons;
 
     private OnItemClickListener mListener;
 
-    //private View.OnClickListener mListenerImage;
+    private OnItemClickListener mListenerImage;
 
 
 
     public MyFoodListAdapter(Context context, List<FoodNameFromList> foodnames) {
         this.context = context;
         this.food_names = foodnames;
-        //this.favorites_Buttons = fav_Buttons;
+        //had List<ImageButton> favButtons as an argument
+        //this.fav_Buttons = favButtons;
         food_names_full = new ArrayList<>(foodnames); // A copy of the food list
 
         /*
@@ -67,22 +68,23 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderFoodList holder, int position) {
         holder.foodName.setText(food_names.get(position).getFood_name());
-        holder.favoriteFoodButtonUnchecked.setBackgroundResource(R.drawable.button_heart_shadow);
+        //requireNonNull(holder).favoriteFoodButtonUnchecked.setBackgroundResource(R.drawable.button_heart_shadow);
 
 
         // Set click listener
         holder.itemView.setOnClickListener(view -> {
             if (mListener != null) {
                 mListener.onItemClick(position, food_names.get(position));
+
             }
         });
 
         /*
         holder.itemView.setOnClickListener(v -> {
             if (mListenerImage != null) {
-                mListenerImage.onClick(v);
+                mListenerImage.onClick((ImageButton) fav_Buttons);
             }
-        }); */
+        });*/
 
         //delete later (working on favorites addition)
         /*
@@ -103,12 +105,13 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
+        //mListenerImage = listenerImage;
     }
 
 
-    /*public void setOnClickListener(View.OnClickListener listenerImage) {
+    /*public void setOnItemClickListener(OnItemClickListener listenerImage) {
        mListenerImage = listenerImage;
-    }    */
+    }*/
 
 
     public Filter getFilter() {
@@ -152,10 +155,12 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
 
     public interface OnItemClickListener {
         void onItemClick(int position, FoodNameFromList foodnames);
+
+        //void onClick (ImageButton favButtons);
     }
 
-    public interface OnClickListener {
-        void onClick(ImageButton favoritesButtons);
-    }
+    /*public interface OnClickListener {
+        void onClick(ImageButton favButtons);
+    }*/
 
 }
