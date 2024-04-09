@@ -40,11 +40,23 @@
         />
 
     <TextView
+        android:id="@+id/text_view_rec_phos_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PHOS_DEFAULT"
+        android:textColor="@color/redish"
+        android:layout_below="@id/text_view_rec_nutrient_limit_header"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="5sp"
+        />
+
+    <TextView
         android:id="@+id/text_view_rec_potas_limit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="POTASSIUM_DEFAULT"
+        android:text="POTAS_DEFAULT"
         android:textColor="@color/redish"
+        android:layout_toRightOf="@id/text_view_rec_phos_limit"
         android:layout_below="@id/text_view_rec_nutrient_limit_header"
         android:layout_marginLeft="15sp"
         android:layout_marginTop="5sp"
@@ -57,18 +69,6 @@
         android:text="PROTEIN_DEFAULT"
         android:textColor="@color/redish"
         android:layout_toRightOf="@id/text_view_rec_potas_limit"
-        android:layout_below="@id/text_view_rec_nutrient_limit_header"
-        android:layout_marginLeft="15sp"
-        android:layout_marginTop="5sp"
-        />
-
-    <TextView
-        android:id="@+id/text_view_rec_phos_limit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PHOS_DEFAULT"
-        android:textColor="@color/redish"
-        android:layout_toRightOf="@id/text_view_rec_prot_limit"
         android:layout_below="@id/text_view_rec_nutrient_limit_header"
         android:layout_marginLeft="15sp"
         android:layout_marginTop="5sp"

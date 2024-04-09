@@ -521,4 +521,11 @@ public class patient_add_food_page extends AppCompatActivity {
         });
 
     }
+
+    public void onAddFoodBackButton(View view)
+    {
+        //TODO Send back to patient_nutrition_page so that recycller view updates in time
+        Toast.makeText(patient_add_food_page.this, "Testing Back Button....", Toast.LENGTH_LONG).show();
+
+    }
 }

@@ -18,7 +18,10 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -190,15 +193,16 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                     // Initialize Data Set
                     BarDataSet barNutrientSet = new BarDataSet(barNutrientList, "Nutrients");
 
-                    // Customize data set according to if the user has reached the recommended limit
+                    // Change bar colors depending on how close patients are to limits
                     if(i_patient_protein >= rec_protein_value || i_patient_phosphorus >= rec_phos_value || i_patient_potassium >= rec_pot_value)
                     {
-                        //TODO Set it so only the affected nutrient's bar is changed to Red?
-                        barNutrientSet.setColors(Color.RED);
+                        //TODO Change colors based off if statements!
+                        barNutrientSet.setColors(new int[]{Color.RED, Color.RED, Color.RED});
                         barNutrientSet.setDrawValues(false);
                         Toast.makeText(patient_view_food_charts_page.this, "CAUTION. YOU HAVE EXCEEDED ONE OR MORE NUTRIENT LIMITS", Toast.LENGTH_LONG).show();
                     }
-                    else {
+                    else
+                    {
                         barNutrientSet.setColors(ColorTemplate.COLORFUL_COLORS);
                         barNutrientSet.setDrawValues(false);
                         Toast.makeText(patient_view_food_charts_page.this, "You are under your recommended limits.", Toast.LENGTH_SHORT).show();
@@ -215,6 +219,34 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                     barChart.animateY(2000);
                     barChart.getDescription().setText("Today's Nutrients");
                     barChart.getDescription().setTextColor(Color.MAGENTA);
+
+                    // Set OnClickListener for Bars in the graph
+                    barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                        @Override
+                        public void onValueSelected(Entry e, Highlight h) {
+
+                            // Tap on Phosphorus Bar
+                            if(e.getX() == 0.0)
+                            {
+                                Toast.makeText(patient_view_food_charts_page.this, "Current Phos: " + str_patient_phosphorus, Toast.LENGTH_LONG).show();
+                            }
+                            // Tap on Potassium Bar
+                            else if(e.getX() == 1.0)
+                            {
+                                Toast.makeText(patient_view_food_charts_page.this, "Current Potassium: " + str_patient_potassium, Toast.LENGTH_SHORT).show();
+
+                            }
+                            // Tap on Protein Bar
+                            else {
+                                Toast.makeText(patient_view_food_charts_page.this, "Current Protein: " + str_patient_protein, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected() {
+
+                        }
+                    });
 
                     // Display toast if user has yet to add any food for today, meaning all nutrients must be 0
                     if(i_patient_protein == 0 && i_patient_potassium == 0 && i_patient_phosphorus == 0)
