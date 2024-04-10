@@ -25,23 +25,28 @@
 
     <!-- Card that contains patients limits/current nutrients -->
     <androidx.cardview.widget.CardView
-        android:layout_width="300sp"
-        android:layout_height="85sp"
+        android:layout_width="350sp"
+        android:layout_height="95sp"
         android:layout_marginTop="98sp"
-        android:layout_marginLeft="55sp"
+        android:layout_marginLeft="30sp"
         android:background="@drawable/custom_purple_outline"
-        android:padding="100sp"
-        app:cardCornerRadius="10sp"
+        android:padding="1sp"
+        app:cardCornerRadius="20sp"
         app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Your Limits:"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textColor="@color/purple"
             android:textStyle="bold"
-            android:layout_marginLeft="3sp"
+            android:layout_marginLeft="50sp"
             />
 
         <TextView
@@ -49,8 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(Phos Amt : Phos Value)"
-            android:textSize="17sp"
-            android:layout_marginLeft="115sp"
+            android:textSize="16sp"
+            android:layout_marginLeft="7sp"
+            android:layout_marginTop="25sp"
             />
 
         <TextView
@@ -58,9 +64,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(Prot Amt : Prot Value)"
-            android:textSize="17sp"
-            android:layout_marginLeft="120sp"
-            android:layout_marginTop="30sp"
+            android:textSize="16sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="45sp"
             />
 
         <TextView
@@ -68,11 +74,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(Potas Amt : Potas Value)"
-            android:textSize="17sp"
-            android:layout_marginLeft="105sp"
-            android:layout_marginTop="60sp"
+            android:textSize="16sp"
+            android:layout_marginLeft="1sp"
+            android:layout_marginTop="65sp"
             />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Current Values:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple"
+                android:layout_marginLeft="185sp"
+                />
+
+            <TextView
+                android:id="@+id/text_view_current_phos_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25sp"
+                android:layout_marginLeft="230sp"
+                android:text="[Phos: Phos Val]"
+                />
+
+            <TextView
+                android:id="@+id/text_view_current_protein_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45sp"
+                android:layout_marginLeft="230sp"
+                android:text="[Protein: Prot Val]"
+                />
+
+            <TextView
+                android:id="@+id/text_view_current_potassium_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65sp"
+                android:layout_marginLeft="230sp"
+                android:text="[Potas Val]"
+                />
+
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
