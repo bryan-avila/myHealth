@@ -537,10 +537,16 @@ public class patient_add_food_page extends AppCompatActivity {
 
     }
 
+    // Function for when patients press the back button
     public void onAddFoodBackButton(View view)
     {
-        //TODO Send back to patient_nutrition_page so that recycller view updates in time
-        Toast.makeText(patient_add_food_page.this, "Testing Back Button....", Toast.LENGTH_LONG).show();
-
+        // Send them to the main nutrition "home" page with a 1 second delay to allow recycler view to update in time
+        Intent intent = new Intent(patient_add_food_page.this, patient_nutrition_page.class);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(intent);
+            }
+        }, 1000);
     }
 }
