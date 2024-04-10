@@ -76,6 +76,7 @@ public class pick_appointment_time extends AppCompatActivity {
         AppointmentManager appointmentmanager = new AppointmentManager();
         TimeConverter timeconverter = new TimeConverter();
 
+        //Implements
         timeAdapter.setOnItemClickListener(new TimeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String time) {
@@ -83,16 +84,44 @@ public class pick_appointment_time extends AppCompatActivity {
                 Log.d("SelectedTime", "Time " + ": " + time);
                 String startTime = time;
                 String date = selectedDate;
+
+                //initializes extra values to use for better formatting (see below explanation)
+                String meridian = "NULL";
+                int hour = 0;
+                String[] parts = time.split(":");
+
+                //Checks if "parts[0]" is greater than 12 (AKA following 24-hour time format)
+                    //If so, use modulus to convert to 12-hour format and assign meridian.
+                    //If not (ex: 05:00AM), keep meridian as is.
+
+                //TO-DO: Change calendar schedule time from 24-hour to 12-hour format.
+                try {
+                    if (Integer.parseInt(parts[0]) >= 12) {
+                        hour = (Integer.parseInt(parts[0])) % 12; //converts into 12-hour format
+                        meridian = "PM";
+                    }
+                    else {
+                        meridian = "AM";
+                    }
+                    int minute = Integer.parseInt(parts[1]);
+                    time = hour + ":" + String.format("%02d", minute);
+                    System.out.println("String " + date);
+                    System.out.println("Int " + "(" + hour + ":" + minute + ")");
+                }
+                catch (NumberFormatException e)
+                {
+                    Toast.makeText(pick_appointment_time.this, "SOMETHING WENT WRONG!", Toast.LENGTH_LONG).show();
+                }
+
                 Log.d("selectedDate", "selectedDate " + ": " + selectedDate);
 
                 double newtime = timeconverter.convertToDecimal(startTime);
 
                 appointmentmanager.makeSingleAppointment(clinic.getClinicName(), clinic.getID(), date, newtime, false);
-                Toast.makeText(pick_appointment_time.this, "appointment made for: " + time + " on: " + selectedDate, Toast.LENGTH_LONG).show();
+                Toast.makeText(pick_appointment_time.this, "appointment made for: " + time + meridian + " on: " + selectedDate, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(pick_appointment_time.this, patient_home_page.class);
                 startActivity(intent);
-
             }
         });
         recyclerView.setAdapter(timeAdapter);
