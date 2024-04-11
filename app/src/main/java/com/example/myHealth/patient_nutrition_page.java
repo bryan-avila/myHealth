@@ -78,7 +78,7 @@ public class patient_nutrition_page extends AppCompatActivity {
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
         date = simpleDateFormat.format(calendar.getTime()).toString();
-        header_and_date.setText("Nutrition - " + date);
+        header_and_date.setText("Nutrition Diary - " + date);
 
         // Set up the RecyclerView for medications
         RecyclerView food_added_recycler_view = findViewById(R.id.recycler_view_foods_added_today);

@@ -193,20 +193,41 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                     // Initialize Data Set
                     BarDataSet barNutrientSet = new BarDataSet(barNutrientList, "Nutrients");
 
-                    // Change bar colors depending on how close patients are to limits
-                    if(i_patient_protein >= rec_protein_value || i_patient_phosphorus >= rec_phos_value || i_patient_potassium >= rec_pot_value)
+                    // ----- START: Change bar colors depending on how close patients are to limits -----
+                    int lowPhos, lowPotassium, lowProtein;
+
+                    if(i_patient_phosphorus < rec_phos_value)
                     {
-                        //TODO Change colors based off if statements!
-                        barNutrientSet.setColors(new int[]{Color.RED, Color.RED, Color.RED});
-                        barNutrientSet.setDrawValues(false);
-                        Toast.makeText(patient_view_food_charts_page.this, "CAUTION. YOU HAVE EXCEEDED ONE OR MORE NUTRIENT LIMITS", Toast.LENGTH_LONG).show();
+                        lowPhos = Color.BLUE;
                     }
-                    else
+                    else {
+                        lowPhos = Color.RED;
+                    }
+
+                    if(i_patient_potassium < rec_pot_value)
                     {
-                        barNutrientSet.setColors(ColorTemplate.COLORFUL_COLORS);
-                        barNutrientSet.setDrawValues(false);
-                        Toast.makeText(patient_view_food_charts_page.this, "You are under your recommended limits.", Toast.LENGTH_SHORT).show();
+                        lowPotassium = Color.BLUE;
                     }
+                    else {
+                        lowPotassium = Color.RED;
+                    }
+
+                    if(i_patient_protein < rec_protein_value)
+                    {
+                        lowProtein = Color.BLUE;
+                    }
+                    else {
+                        lowProtein = Color.RED;
+                    }
+
+                    barNutrientSet.setColors(new int[]{lowPhos, lowPotassium, lowProtein});
+
+                    if(lowPhos == Color.RED && lowPotassium == Color.RED && lowProtein == Color.RED)
+                    {
+                        Toast.makeText(patient_view_food_charts_page.this, "CAUTION. YOU HAVE EXCEEDED ALL NUTRIENT LIMITS", Toast.LENGTH_LONG).show();
+                    }
+
+                    // ----- END: Change bar colors depending on how close patients are to limits -----
 
                     // Set Bar Data/Customize Bar Data
                     barChart.setData(new BarData(barNutrientSet));
@@ -228,17 +249,17 @@ public class patient_view_food_charts_page extends AppCompatActivity {
                             // Tap on Phosphorus Bar
                             if(e.getX() == 0.0)
                             {
-                                Toast.makeText(patient_view_food_charts_page.this, "Current Phos: " + str_patient_phosphorus, Toast.LENGTH_LONG).show();
+                                Toast.makeText(patient_view_food_charts_page.this, "Current Phos: " + (int) Float.parseFloat(str_patient_phosphorus) * 10 / 10f, Toast.LENGTH_LONG).show();
                             }
                             // Tap on Potassium Bar
                             else if(e.getX() == 1.0)
                             {
-                                Toast.makeText(patient_view_food_charts_page.this, "Current Potassium: " + str_patient_potassium, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(patient_view_food_charts_page.this, "Current Potassium: " + (int) Float.parseFloat(str_patient_potassium) * 10 / 10f, Toast.LENGTH_SHORT).show();
 
                             }
                             // Tap on Protein Bar
                             else {
-                                Toast.makeText(patient_view_food_charts_page.this, "Current Protein: " + str_patient_protein, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(patient_view_food_charts_page.this, "Current Protein: " + (int) Float.parseFloat(str_patient_protein) * 10 / 10f, Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -273,7 +294,7 @@ public class patient_view_food_charts_page extends AppCompatActivity {
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
         date = simpleDateFormat.format(calendar.getTime()).toString();
-        header_date.setText(date + "  Nutrient Chart");
+        header_date.setText("Nutrient Chart - " + date);
 
 
 

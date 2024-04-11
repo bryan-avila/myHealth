@@ -54,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="360sp"
             android:id="@+id/recycler_view_foods_added_today"
+            android:background="@drawable/custom_purple_outline"
             />
 
     </androidx.cardview.widget.CardView>

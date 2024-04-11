@@ -112,9 +112,9 @@ public class patient_dietary_plan_page extends AppCompatActivity {
                     TextView todayPhos = findViewById(R.id.text_view_current_phos_value);
                     TextView todayProt = findViewById(R.id.text_view_current_protein_value);
                     TextView todayPotas = findViewById(R.id.text_view_current_potassium_value);
-                    todayPhos.setText("Phos: " + str_patient_phosphorus);
-                    todayProt.setText("Protein: " + str_patient_protein);
-                    todayPotas.setText("Potassium " + str_patient_potassium);
+                    todayPhos.setText("Phos: " + (int) Float.parseFloat(str_patient_phosphorus));
+                    todayProt.setText("Protein: " + (int) Float.parseFloat(str_patient_protein) * 10 / 10f);
+                    todayPotas.setText("Potassium " + (int) Float.parseFloat(str_patient_potassium));
 
                     // Set up textviews to change
                     TextView header = findViewById(R.id.recommended_meals_title);
