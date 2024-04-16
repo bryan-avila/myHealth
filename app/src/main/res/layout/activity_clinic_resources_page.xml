@@ -21,6 +21,17 @@
             android:maxWidth="100dp"
             android:maxHeight="100dp"
             android:scaleType="fitCenter"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOTHING YET. DELETE OR WORK B4 4/29/24"
+            android:textSize="30sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginTop="250sp"
+            android:textColor="@color/black"
+            />
+
     </RelativeLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
