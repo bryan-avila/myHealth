@@ -96,7 +96,10 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             @Override
             public void onClick(View v) {
                 //take to page to edit date and time
-                appointmentManager.editAppointment(appointments.get(holder.getBindingAdapterPosition()), appointments.get(holder.getBindingAdapterPosition()).getDocumentPath());
+                Intent intent = new Intent(context, edit_appointment_page.class);
+                intent.putExtra("appointmentPath", appointments.get(holder.getBindingAdapterPosition()).getDocumentPath().getPath());
+                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
                 Log.d("edit button", "clicked");
             }
         });
