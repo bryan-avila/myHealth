@@ -127,7 +127,6 @@ public class edit_appointment_page extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(), edit_appointment_clinic_page.class);
         intent.putExtra("appointmentPath", appointmentPath);
-        intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
