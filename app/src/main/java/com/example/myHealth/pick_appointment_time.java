@@ -91,8 +91,8 @@ public class pick_appointment_time extends AppCompatActivity {
                 String[] parts = time.split(":");
 
                 //Checks if "parts[0]" is greater than 12 (AKA following 24-hour time format)
-                    //If so, use modulus to convert to 12-hour format and assign meridian.
-                    //If not (ex: 05:00AM), keep meridian as is.
+                //If so, use modulus to convert to 12-hour format and assign meridian.
+                //If not (ex: 05:00AM), keep meridian as is.
 
                 //TO-DO: Change calendar schedule time from 24-hour to 12-hour format.
                 try {
