@@ -43,7 +43,7 @@ public class patient_medical_history_page extends AppCompatActivity {
 
         // Set the top message to bold and underline
         top_message = findViewById(R.id.text_view_med_history_text);
-        top_message.setPaintFlags(top_message.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
+        top_message.setPaintFlags(top_message.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
