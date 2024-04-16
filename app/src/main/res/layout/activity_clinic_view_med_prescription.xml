@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/custom_searchview_outline"
-        android:queryHint="Search Patient"
+        android:queryHint="Search Patient to Prescribe them Med"
         android:iconifiedByDefault="false">
 
     </android.widget.SearchView>
@@ -49,7 +49,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    android:text="Select Patient to Prescribe Medication"
+                    android:text="Select Patient to Prescribe Medication to"
                     android:textColor="@color/purple"
                     android:textSize="25sp"
                     android:textStyle="bold" />

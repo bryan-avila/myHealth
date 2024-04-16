@@ -18,4 +18,14 @@
         Apple: 1 small\nCherry: 3/4 cup\nGrapefruit: 1/2 large
     </string>
 
+    <string name="nationalKidneyFoundation"><a href="https://www.kidney.org/atoz/content/dialysisinfo">National Kidney Foundation</a></string>
+
+    <string name="daVitaInfo"><a href="https://www.davita.com/education/kidney-disease">DaVita Dialysis Information</a></string>
+
+    <string name="kidneyFund"><a href="https://www.kidneyfund.org/all-about-kidneys/stages-kidney-disease">Kidney Fund CKD Stages</a></string>
+
+    <string name="nationalKidneyDiet"><a href="https://www.kidney.org/atoz/content/nutrikidfail_stage1-4">National Kidney Foundation Diets</a></string>
+
+
+
 </resources>

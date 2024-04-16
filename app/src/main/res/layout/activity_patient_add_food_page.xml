@@ -10,11 +10,11 @@
     <!-- Create Top Elements -->
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/white"
-        android:drawableLeft="@drawable/icon_notifs"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="75dp"
+        android:text="Back Button"
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="10dp"
+        android:onClick="onAddFoodBackButton"/>
 
     <ImageView
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         android:id="@+id/search_view_food_names"
         android:layout_width="match_parent"
         android:layout_height="75sp"
-        android:queryHint="Food Search"
+        android:queryHint="Enter a food to add to Nutrition Diary"
         android:iconifiedByDefault="false"
         android:layout_marginTop="90sp"
         android:layout_marginLeft="10sp"

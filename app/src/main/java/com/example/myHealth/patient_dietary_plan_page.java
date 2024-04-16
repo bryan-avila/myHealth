@@ -60,7 +60,7 @@ public class patient_dietary_plan_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_dietary_plan);
 
-        // Obtain the patient's nutrients limits from the DB
+        // ----- START: Obtain the patient's nutrients limits from the DB -----
         userL = patientNutrientsLimitDocumentRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot document, @Nullable FirebaseFirestoreException error) {
@@ -90,37 +90,78 @@ public class patient_dietary_plan_page extends AppCompatActivity {
             }
         });
 
+        // ----- END: Obtain the patient's nutrients limits from the DB -----
+
+
+        // ----- START: Obtain the patient's nutrient values for today & adjust plan accordingly -----
         userL = patientTodaysNutrientsDocumentRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot document, @Nullable FirebaseFirestoreException error) {
                 if(document.exists())
                 {
+                    // Obtain today's nutrient values and convert them to floats
                     String str_patient_phosphorus = document.get("phosphorus").toString();
                     String str_patient_potassium = document.get("potassium").toString();
                     String str_patient_protein = document.get("protein").toString();
+
                     i_patient_phosphorus = (float) Float.parseFloat(str_patient_phosphorus);
                     i_patient_potassium = (float) Float.parseFloat(str_patient_potassium);
                     i_patient_protein = (float) Float.parseFloat(str_patient_protein);
-                    TextView header = findViewById(R.id.recommended_meals_title);
 
+                    // Update the page to display today's nutrients
+                    TextView todayPhos = findViewById(R.id.text_view_current_phos_value);
+                    TextView todayProt = findViewById(R.id.text_view_current_protein_value);
+                    TextView todayPotas = findViewById(R.id.text_view_current_potassium_value);
+                    todayPhos.setText("Phos: " + (int) Float.parseFloat(str_patient_phosphorus));
+                    todayProt.setText("Protein: " + (int) Float.parseFloat(str_patient_protein) * 10 / 10f);
+                    todayPotas.setText("Potassium " + (int) Float.parseFloat(str_patient_potassium));
+
+                    // Set up textviews to change
+                    TextView header = findViewById(R.id.recommended_meals_title);
+                    TextView grains = findViewById(R.id.grains); // grains header
+                    TextView fruits = findViewById(R.id.fruits); // fruits header
+                    TextView grainsDescription = findViewById(R.id.grains_description);
+                    TextView fruitsDescription = findViewById(R.id.fruits_description);
+
+                    // Obtain nutrient limit halfway point
                     float halfway_rec_phos_value = rec_phos_value / 2;
                     float halfway_rec_potas_value = rec_pot_value / 2;
                     float halfway_rec_prot_value = rec_protein_value / 2;
 
-                    // Change Plan depending on if the patient has exceeded or is within, or is close to nutrient limits
+                    // 1) Low Level for all nutrients
                     if(i_patient_phosphorus < halfway_rec_phos_value && i_patient_potassium < halfway_rec_potas_value && i_patient_protein < halfway_rec_prot_value)
                     {
                         header.setText("Recommended Diet for Low Level Nutrients");
-                        // Grans and fruits can stay the same for now!
+                        grains.setText("Grains & Protein Options");
+                        grainsDescription.setText("1/3 cup Rice\n 1/2 Cup of Rice\n 1/3 cup of Pasta\n 1 egg\n 1/4 pound Hamburger patty");
+                        fruits.setText("Fruits and Vegetables Options");
+                        fruitsDescription.setText("1 Apple\n 10 Cherries\n 1/2 Cup of Cooked Broccoli\n 1/2 Cup of Carrots");
                     }
-                    if(i_patient_phosphorus > halfway_rec_phos_value)
+
+                    // 2) High Level for all nutrients
+                    else if(i_patient_phosphorus > halfway_rec_phos_value && i_patient_potassium > halfway_rec_potas_value && i_patient_protein > halfway_rec_prot_value)
                     {
-                        header.setText("Recommended Diet for High Phosphorus Level");
+                        header.setText("Recommended Diet for High Level Nutrients");
+                        grains.setText("Grains & Protein Options");
+                        grainsDescription.setText("- Consider One Serving Options for Grains due to High Phosphorus\n - Consider One Ounce Serving for Protein due to High Protein");
+                        fruits.setText("Fruits and Vegetables Options");
+                        fruitsDescription.setText("- Consider Small Fruit Serving Sizes due to High Potassium\n -Consider Low Servings for Veggies due to High Potassium");
                     }
-                    //TODO Change plans
+
+                    // 3) High Level Protein
+                    else if(i_patient_protein > halfway_rec_prot_value)
+                    {
+                        header.setText("Recommended Diet for High Protein");
+                        grains.setText("Grains & Protein Options");
+                        grainsDescription.setText("1 Slice White Bread\n 1/2 Cup of Cooked Rice\n 1/2 Cup Cooked Pasta\n An ounce of protein serving or less");
+                        fruits.setText("Fruits and Vegetables Options");
+                        fruitsDescription.setText("1 Apple\n 1/2 Cup of Berries\n 1/2 Cup of Cooked Broccoli\n 1/2 Cup of Carrots");
+                    }
                 }
             }
         });
+
+        // ----- END: Obtain the patient's nutrient values for today & adjust plan accordingly -----
 
         //Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

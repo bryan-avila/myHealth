@@ -602,6 +602,7 @@ public class AppointmentManager {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
                                                         Log.d("deleteAppointment", "Date document deleted!");
+                                                        
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {

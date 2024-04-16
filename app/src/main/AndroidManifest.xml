@@ -165,6 +165,9 @@
             android:name=".sign_up_activity"
             android:exported="false" />
         <activity
+            android:name=".edit_appointment_page"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">
