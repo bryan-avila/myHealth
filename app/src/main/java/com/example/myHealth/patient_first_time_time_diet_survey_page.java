@@ -163,9 +163,77 @@ public class patient_first_time_time_diet_survey_page extends AppCompatActivity 
                     TextView stage_4_message = findViewById(R.id.text_view_stage_4_warning);
                     TextView stage_5_message = findViewById(R.id.text_view_stage_5_warning);
 
+                    if(patient_stage.equals("Kidney Disease Stage 1"))
+                    {
+                     /*   // Load in general nutrient amounts and warning message
+                        EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+                        EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+                        EditText editTextProtein = findViewById(R.id.edit_text_protein);
+                        EditText editTextSodium = findViewById(R.id.edit_text_sodium);
+                        EditText editTextWater = findViewById(R.id.edit_text_water);
+                        EditText editTextCalories = findViewById(R.id.edit_text_calories);
+                        editTextPhosphorus.setText("900", TextView.BufferType.EDITABLE);
+                        editTextPotassium.setText("2500", TextView.BufferType.EDITABLE);
+                        editTextProtein.setText("46",TextView.BufferType.EDITABLE);
+                        editTextSodium.setText("2300", TextView.BufferType.EDITABLE);
+                        editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
+                        editTextCalories.setText("2000", TextView.BufferType.EDITABLE);*/
+                        chosen_stage = "1";
+                        stage_4_message.setVisibility(View.VISIBLE);
+                        autofill_btn = findViewById(R.id.button_patient_diet_auto_fill);
+                        stage_4_message.setText("As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 1 Kidney Disease and the appropriate nutrition.");
+                        autofill_btn.setVisibility(View.VISIBLE);
+                        autofill_btn.setClickable(true);
+                    }
+
+                    if(patient_stage.equals("Kidney Disease Stage 2"))
+                    {
+                     /*   // Load in general nutrient amounts and warning message
+                        EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+                        EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+                        EditText editTextProtein = findViewById(R.id.edit_text_protein);
+                        EditText editTextSodium = findViewById(R.id.edit_text_sodium);
+                        EditText editTextWater = findViewById(R.id.edit_text_water);
+                        EditText editTextCalories = findViewById(R.id.edit_text_calories);
+                        editTextPhosphorus.setText("900", TextView.BufferType.EDITABLE);
+                        editTextPotassium.setText("2500", TextView.BufferType.EDITABLE);
+                        editTextProtein.setText("46",TextView.BufferType.EDITABLE);
+                        editTextSodium.setText("2300", TextView.BufferType.EDITABLE);
+                        editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
+                        editTextCalories.setText("2000", TextView.BufferType.EDITABLE);*/
+                        chosen_stage = "2";
+                        stage_4_message.setText("As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 2 Kidney Disease and the appropriate nutrition.");
+                        stage_4_message.setVisibility(View.VISIBLE);
+                        autofill_btn = findViewById(R.id.button_patient_diet_auto_fill);
+                        autofill_btn.setVisibility(View.VISIBLE);
+                        autofill_btn.setClickable(true);
+                    }
+
+                    if(patient_stage.equals("Kidney Disease Stage 3"))
+                    {
+                     /*   // Load in general nutrient amounts and warning message
+                        EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+                        EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+                        EditText editTextProtein = findViewById(R.id.edit_text_protein);
+                        EditText editTextSodium = findViewById(R.id.edit_text_sodium);
+                        EditText editTextWater = findViewById(R.id.edit_text_water);
+                        EditText editTextCalories = findViewById(R.id.edit_text_calories);
+                        editTextPhosphorus.setText("900", TextView.BufferType.EDITABLE);
+                        editTextPotassium.setText("2500", TextView.BufferType.EDITABLE);
+                        editTextProtein.setText("46",TextView.BufferType.EDITABLE);
+                        editTextSodium.setText("2300", TextView.BufferType.EDITABLE);
+                        editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
+                        editTextCalories.setText("2000", TextView.BufferType.EDITABLE);*/
+                        chosen_stage = "3";
+                        stage_4_message.setText("As an informational guideline, you may choose to autofill data by clicking the 'Autofill' button before you speak with a doctor about your Stage 3 Kidney Disease and the appropriate nutrition.");
+                        stage_4_message.setVisibility(View.VISIBLE);
+                        autofill_btn = findViewById(R.id.button_patient_diet_auto_fill);
+                        autofill_btn.setVisibility(View.VISIBLE);
+                        autofill_btn.setClickable(true);
+                    }
 
                     // Display different nutrient values depending on stage/med history/age
-                    if(patient_stage.equals("Kidney Disease Stage 4"))
+                    else if(patient_stage.equals("Kidney Disease Stage 4"))
                     {
                      /*   // Load in general nutrient amounts and warning message
                         EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
@@ -214,6 +282,51 @@ public class patient_first_time_time_diet_survey_page extends AppCompatActivity 
 
     public void onAutoFillClick(View view)
     {
+
+        if("1".equals(chosen_stage)) {
+            EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+            EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+            EditText editTextProtein = findViewById(R.id.edit_text_protein);
+            EditText editTextSodium = findViewById(R.id.edit_text_sodium);
+            EditText editTextWater = findViewById(R.id.edit_text_water);
+            EditText editTextCalories = findViewById(R.id.edit_text_calories);
+            editTextPhosphorus.setText("1300", TextView.BufferType.EDITABLE);
+            editTextPotassium.setText("3000", TextView.BufferType.EDITABLE);
+            editTextProtein.setText("55", TextView.BufferType.EDITABLE);
+            editTextSodium.setText("2600", TextView.BufferType.EDITABLE);
+            editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
+            editTextCalories.setText("2600", TextView.BufferType.EDITABLE);
+        }
+
+        if("2".equals(chosen_stage)) {
+            EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+            EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+            EditText editTextProtein = findViewById(R.id.edit_text_protein);
+            EditText editTextSodium = findViewById(R.id.edit_text_sodium);
+            EditText editTextWater = findViewById(R.id.edit_text_water);
+            EditText editTextCalories = findViewById(R.id.edit_text_calories);
+            editTextPhosphorus.setText("1200", TextView.BufferType.EDITABLE);
+            editTextPotassium.setText("3000", TextView.BufferType.EDITABLE);
+            editTextProtein.setText("50", TextView.BufferType.EDITABLE);
+            editTextSodium.setText("2500", TextView.BufferType.EDITABLE);
+            editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
+            editTextCalories.setText("2500", TextView.BufferType.EDITABLE);
+        }
+
+        if("3".equals(chosen_stage)) {
+            EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);
+            EditText editTextPotassium = findViewById(R.id.edit_text_potassium);
+            EditText editTextProtein = findViewById(R.id.edit_text_protein);
+            EditText editTextSodium = findViewById(R.id.edit_text_sodium);
+            EditText editTextWater = findViewById(R.id.edit_text_water);
+            EditText editTextCalories = findViewById(R.id.edit_text_calories);
+            editTextPhosphorus.setText("1000", TextView.BufferType.EDITABLE);
+            editTextPotassium.setText("2900", TextView.BufferType.EDITABLE);
+            editTextProtein.setText("50", TextView.BufferType.EDITABLE);
+            editTextSodium.setText("2500", TextView.BufferType.EDITABLE);
+            editTextWater.setText("N/A", TextView.BufferType.EDITABLE);
+            editTextCalories.setText("2100", TextView.BufferType.EDITABLE);
+        }
 
         if("4".equals(chosen_stage)) {
             EditText editTextPhosphorus = findViewById(R.id.edit_text_phosphorus);

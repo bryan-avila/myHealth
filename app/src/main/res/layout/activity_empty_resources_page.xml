@@ -8,11 +8,6 @@
     tools:context=".empty_resourcesPage"
     android:background="@drawable/background_final_app_theme">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,14 +16,80 @@
             android:maxWidth="100dp"
             android:maxHeight="100dp"
             android:scaleType="fitCenter"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TO DO?"
-            android:textSize="50sp"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="300sp"
-            />
-    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="380sp"
+        android:layout_height="430sp"
+        android:layout_marginTop="120sp"
+        android:layout_marginLeft="17sp"
+        app:cardCornerRadius="20sp"
+        app:cardElevation="20sp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/custom_searchview_outline">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="15sp"
+                android:drawableRight="@drawable/baseline_resource_img"
+                android:text="Resources"
+                android:textColor="@color/purple"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_view_nat_kidney_found_hyperlink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="90sp"
+                android:text="@string/nationalKidneyFoundation"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/text_view_davita_hyperlink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="160sp"
+                android:text="@string/daVitaInfo"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/text_view_kidneyfund_hyperlink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="230sp"
+                android:text="@string/kidneyFund"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/text_view_nat_kidneydiets_hpyerlink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="300sp"
+                android:text="@string/nationalKidneyDiet"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_items"
+        app:itemRippleColor="@color/lightpurple"
+        app:itemIconTint="@color/bottom_nav_menu_icons_color"
+        app:itemTextColor="@color/lightpurple"/>
 
 </RelativeLayout>
