@@ -55,10 +55,10 @@
                         android:layout_centerInParent="true"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="-30dp"
-                        android:text="My Medical History"
+                        android:layout_marginBottom="-32dp"
+                        android:text="My Medical Info"
                         android:textColor="@color/purple"
-                        android:textSize="25dp"
+                        android:textSize="30dp"
                         android:textStyle="bold" />
 
                     <TextView

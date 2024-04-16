@@ -1,5 +1,7 @@
 package com.example.myHealth;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -71,13 +74,13 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
 
     @Override
     public void onBindViewHolder(@NonNull UpcomingAppointmentViewholder holder, int position) {
-        String title = appointments.get(position).getClinicName() + " (" + appointments.get(position).getDate() + ")";
+        String title = appointments.get(holder.getBindingAdapterPosition()).getClinicName() + " (" + appointments.get(holder.getBindingAdapterPosition()).getDate() + ")";
         holder.bind(title);
 
-        holder.clinicName.setText("Clinic: " + appointments.get(position).getClinicName());
-        holder.date.setText("Date: " + appointments.get(position).getDate());
-        holder.start_and_end_times.setText("Time: " + appointments.get(position).getStartTime() + " - " + appointments.get(position).getEndTime());
-        if (appointments.get(position).getRecurring())
+        holder.clinicName.setText("Clinic: " + appointments.get(holder.getBindingAdapterPosition()).getClinicName());
+        holder.date.setText("Date: " + appointments.get(holder.getBindingAdapterPosition()).getDate());
+        holder.start_and_end_times.setText("Time: " + appointments.get(holder.getBindingAdapterPosition()).getStartTime() + " - " + appointments.get(holder.getBindingAdapterPosition()).getEndTime());
+        if (appointments.get(holder.getBindingAdapterPosition()).getRecurring())
             holder.recurring.setText("Recurring: Yes");
         else
             holder.recurring.setText("Recurring: No");
@@ -88,15 +91,12 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
         holder.recurring.setPaintFlags(holder.recurring.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         AppointmentManager appointmentManager = new AppointmentManager();
-        DocumentReference documentPath = appointments.get(position).getDocumentPath();
+        DocumentReference documentPath = appointments.get(holder.getBindingAdapterPosition()).getDocumentPath();
         holder.edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //take to page to edit date and time
-                Intent intent = new Intent(context, edit_appointment_page.class);
-                intent.putExtra("appointmentPath", appointments.get(position).getDocumentPath().getPath());
-                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                appointmentManager.editAppointment(appointments.get(holder.getBindingAdapterPosition()), appointments.get(holder.getBindingAdapterPosition()).getDocumentPath());
                 Log.d("edit button", "clicked");
             }
         });
@@ -104,21 +104,24 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             @Override
             public void onClick(View v) {
                 //deletes appointment
-                appointmentManager.deleteAppointment(appointments.get(position), appointments.get(position).getDocumentPath());
+                appointmentManager.deleteAppointment(appointments.get(holder.getBindingAdapterPosition()), appointments.get(holder.getBindingAdapterPosition()).getDocumentPath());
                 Log.d("delete button", "clicked");
+                //refresh recyclerview
+                appointments.remove(holder.getBindingAdapterPosition());
+                notifyItemRemoved(holder.getBindingAdapterPosition());
             }
         });
 
-        final boolean isExpanded = position == mExpandedPosition;
+        final boolean isExpanded = holder.getBindingAdapterPosition() == mExpandedPosition;
         holder.clinicName.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.date.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.start_and_end_times.setVisibility(isExpanded?View.VISIBLE:View.GONE);
         holder.recurring.setVisibility(isExpanded?View.VISIBLE:View.GONE);
 
-        if (appointments.get(position).getComplete() && isExpanded) {
+        if (appointments.get(holder.getBindingAdapterPosition()).getComplete() && isExpanded) {
             holder.edit_button.setVisibility(View.GONE);
             holder.delete_button.setVisibility(View.GONE);
-        } else if (!appointments.get(position).getComplete() && isExpanded) {
+        } else if (!appointments.get(holder.getBindingAdapterPosition()).getComplete() && isExpanded) {
             holder.edit_button.setVisibility(View.VISIBLE);
             holder.delete_button.setVisibility(View.VISIBLE);
         } else {
@@ -129,13 +132,13 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
         holder.itemView.setActivated(isExpanded);
 
         if (isExpanded)
-            previousExpandedPosition = position;
+            previousExpandedPosition = holder.getBindingAdapterPosition();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mExpandedPosition = isExpanded ? -1:position;
+                mExpandedPosition = isExpanded ? -1:holder.getBindingAdapterPosition();
                 notifyItemChanged(previousExpandedPosition);
-                notifyItemChanged(position);
+                notifyItemChanged(holder.getBindingAdapterPosition());
             }
         });
     }
