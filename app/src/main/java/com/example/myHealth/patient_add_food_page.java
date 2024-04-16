@@ -61,11 +61,17 @@ public class patient_add_food_page extends AppCompatActivity {
     // Set Up List of Food Names
     private List<FoodNameFromList> foodNames = null;
 
-    private List<ImageButton> favFoods = null;
+    private List<ImageButton> favButtons = null;
+
+    //private List<ImageButton> favFoods = null;
 
     // Set up RecyclerView/SearchView Stuff
     SearchView filterView;
     MyFoodListAdapter foodListAdapter;
+
+    MyFoodListAdapterFavorites foodListAdapterFavorites;
+
+    ImageButton favFoodsButton;
 
     //MyFoodListAdapterFavorites foodListAdapterFavorites;
 
@@ -137,6 +143,9 @@ public class patient_add_food_page extends AppCompatActivity {
         foodListAdapter = new MyFoodListAdapter(getApplicationContext(), foodNames);
         recyclerView.setAdapter(foodListAdapter);
 
+        foodListAdapterFavorites = new MyFoodListAdapterFavorites(getApplicationContext(), favFoodsButton);
+        recyclerView.setAdapter(foodListAdapter);
+
         // Set up filterview
         filterView = findViewById(R.id.search_view_food_names);
         filterView.clearFocus();
@@ -190,6 +199,9 @@ public class patient_add_food_page extends AppCompatActivity {
                             // Initialize an empty list of food names
                             foodNames = new ArrayList<>();
 
+                            //favButtons = new ArrayList<>();
+
+
                             // Access the list of foods
                             JSONArray foods = (JSONArray) jsonResponse.get("foods");
 
@@ -211,7 +223,8 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                 // Set the Adapter of the page with the list created in this thread
                                 foodListAdapter = new MyFoodListAdapter(getApplicationContext(), foodNames);
-                                //had favFoods as an argument
+
+                                //foodListAdapterFavorites = new MyFoodListAdapterFavorites(getApplicationContext(), favFoodsButton);
 
                                 // Let the food names that appear in the recycler view become clickable!
                                 foodListAdapter.setOnItemClickListener(new MyFoodListAdapter.OnItemClickListener() {
@@ -489,6 +502,7 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                foodListAdapter.getFilter().filter(user_text); // Filter based off the text in the search view
                                 recyclerView.setAdapter(foodListAdapter);
+                                //recyclerView.setAdapter(foodListAdapterFavorites);
                             });
 
                             // Disconnect the connection
@@ -500,6 +514,39 @@ public class patient_add_food_page extends AppCompatActivity {
                         }
                     }
                 }).start();
+
+                /*new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String endpoint = user_text;
+                            URL url = new URL(endpoint);
+                            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                            foodListAdapterFavorites = new MyFoodListAdapterFavorites(getApplicationContext(), favFoodsButton);
+                            foodListAdapterFavorites.setOnClickListener(new MyFoodListAdapterFavorites.OnClickListener() {
+                                int check = 1;
+                                @Override
+                                public void onClick(ImageButton favorites_Btn) {
+                                    if (check == 1) {
+                                        favFoodsButton.setImageResource(R.drawable.button_heart_red);
+                                        check = 0;
+                                        if (check == 0) {
+                                            Toast.makeText(patient_add_food_page.this, "Success adding to favorites ", Toast.LENGTH_LONG).show();
+                                        }
+                                    } else {
+                                        favFoodsButton.setImageResource(R.drawable.button_heart_shadow);
+                                        check = 1;
+                                    }
+                                }
+                            });
+                            connection.disconnect();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("sad", "didnt work");
+                        }
+                    }
+                }).start();*/
+
 
                 //************************END OF 2ND THREAD**********************************************
                 return true;
@@ -529,6 +576,13 @@ public class patient_add_food_page extends AppCompatActivity {
                     public void onClick(ImageButton fav_Buttons) {
                         Toast.makeText(patient_add_food_page.this, "Error adding to favorites", Toast.LENGTH_LONG).show();
                     }*/
+                });
+
+                foodListAdapterFavorites.setOnClickListener(new MyFoodListAdapterFavorites.OnClickListener() {
+                    @Override
+                    public void onClick(ImageButton favoritesBtn) {
+                        Toast.makeText(patient_add_food_page.this, "Error adding food to favorites", Toast.LENGTH_LONG).show();
+                    }
                 });
                 return true;
             }

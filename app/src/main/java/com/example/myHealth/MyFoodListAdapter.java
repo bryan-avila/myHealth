@@ -160,7 +160,7 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
     }
 
     /*public interface OnClickListener {
-        void onClick(ImageButton favButtons);
+        void onClick(View v);
     }*/
 
 }

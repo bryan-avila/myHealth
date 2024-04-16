@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ public class MyViewHolderFoodList extends RecyclerView.ViewHolder {
     TextView foodName;
     ImageButton favoriteFoodButtonUnchecked;
 
+
     public MyViewHolderFoodList(@NonNull View itemView){
         super(itemView);
         foodName = itemView.findViewById(R.id.text_view_food_name);
@@ -26,7 +28,7 @@ public class MyViewHolderFoodList extends RecyclerView.ViewHolder {
 
         //Set an onClick listener to change the color of the heart (user pressed the heart and it become red with the code below)
 
-        favoriteFoodButtonUnchecked.setOnClickListener(new View.OnClickListener() {
+        /*favoriteFoodButtonUnchecked.setOnClickListener(new View.OnClickListener() {
             int check = 1;
             @Override
             public void onClick(View v) {
@@ -39,8 +41,7 @@ public class MyViewHolderFoodList extends RecyclerView.ViewHolder {
                     check = 1;
                 }
             }
-        });
-
+        });*/
 
     }
 
