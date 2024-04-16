@@ -1,6 +1,7 @@
 package com.example.myHealth;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -92,7 +93,10 @@ public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomi
             @Override
             public void onClick(View v) {
                 //take to page to edit date and time
-                appointmentManager.editAppointment(appointments.get(position), appointments.get(position).getDocumentPath());
+                Intent intent = new Intent(context, edit_appointment_page.class);
+                intent.putExtra("appointmentPath", appointments.get(position).getDocumentPath().getPath());
+                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
                 Log.d("edit button", "clicked");
             }
         });
