@@ -4,6 +4,7 @@ import static com.example.myHealth.TimeConverter.convertToDecimal;
 import static com.example.myHealth.TimeConverter.convertToString;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -443,15 +444,43 @@ public class AppointmentManager {
                     Log.d("Clinic Info", "clinic start time: " + clinicStartHour);
                     Log.d("Clinic Info", "clinic end  time: " + clinicFinalHour);
 
+                    String meridian = "NULL";
+
                     //Make an array to add all current appointments to
                     int dayArraySize = (clinicFinalHour - clinicStartHour) * 2;
                     Log.d("TAG", "day array size: " + dayArraySize);
                     int[] dailyAppointmentSchedule = new int[dayArraySize];
                     for (int i = clinicStartHour * 60; i < clinicFinalHour * 60; i += 30) {
+
+                        //initializes values (hours, minutes) and creates calculations
                         int hours = i / 60;
                         int minutes = i % 60;
+
+                        //Check if "hours" is greater than or EQUAL TO 12
+                        //If so, apply modulus and change meridian value
+                        try{
+                            if (hours >= 12) {
+                                if (hours == 12) {
+                                    meridian = "PM";
+                                }
+                                if (hours > 12) {
+                                    hours = hours % 12;
+                                    meridian = "PM";
+                                }
+                            }
+                            else {
+                                meridian = "AM";
+                            }
+                        }
+                        //Catch and print Toast Notification if error is found
+                        catch (NumberFormatException e){
+                            //TO-DO: FIGURE OUT TOAST NOTIFICAAAATIOOOOON!!!!!!!
+                            //Toast.makeText(AppointmentManager.dayTimes.this, "SOMETHING WENT WRONG!", Toast.LENGTH_LONG).show();
+                        }
+
+                        //Prints the calculations in a predetermined format
                         String timeSlot = String.format("%02d:%02d", hours, minutes);
-                        Log.d("TAG", "timeslot: " + timeSlot);
+                        Log.d("TAG", "timeslot: " + timeSlot + " " + meridian);
                         timeSlots.add(timeSlot);
                     }
                     Log.d("ArrayListInfo", "Size of timeslots: " + timeSlots.size());
@@ -459,7 +488,7 @@ public class AppointmentManager {
                     // Log all elements in the ArrayList
                     if (timeSlots.size() > 0) {
                         for (int i = 0; i < timeSlots.size(); i++) {
-                            Log.d("ArrayListInfo", "Element " + i + ": " + timeSlots.get(i));
+                            Log.d("ArrayListInfo", "Element " + i + ": " + timeSlots.get(i) + " " + meridian);
                         }
                         if (listener != null) {
                             listener.onDataReady(timeSlots);
@@ -481,7 +510,7 @@ public class AppointmentManager {
         // Log all elements in the ArrayList
         if (timeSlots.size() > 0) {
             for (int i = 0; i < timeSlots.size(); i++) {
-                Log.d("ArrayListInfo", "Element " + i + ": " + timeSlots.get(i));
+                Log.d("ArrayListInfo", "Element " + i + ": " + timeSlots.get(i) + " " + meridian);
             }
         } else {
             Log.d("ArrayListInfo", "timeslots is Empty");
@@ -602,7 +631,7 @@ public class AppointmentManager {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
                                                         Log.d("deleteAppointment", "Date document deleted!");
-                                                        
+
                                                     }
                                                 })
                                                 .addOnFailureListener(new OnFailureListener() {

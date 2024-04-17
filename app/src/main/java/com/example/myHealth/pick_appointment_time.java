@@ -90,7 +90,7 @@ public class pick_appointment_time extends AppCompatActivity {
                 int hour = 0;
                 String[] parts = time.split(":");
 
-                //Checks if "parts[0]" is greater than 12 (AKA following 24-hour time format)
+                //Checks if "parts[0]" is greater than or EQUAL TO 12 (to convert from 24-hour to 12-hour time format)
                 //If so, use modulus to convert to 12-hour format and assign meridian.
                 //If not (ex: 05:00AM), keep meridian as is.
 
@@ -118,7 +118,7 @@ public class pick_appointment_time extends AppCompatActivity {
                 double newtime = timeconverter.convertToDecimal(startTime);
 
                 appointmentmanager.makeSingleAppointment(clinic.getClinicName(), clinic.getID(), date, newtime, false);
-                Toast.makeText(pick_appointment_time.this, "appointment made for: " + time + meridian + " on: " + selectedDate, Toast.LENGTH_LONG).show();
+                Toast.makeText(pick_appointment_time.this, "appointment made for " + time + meridian + " on: " + selectedDate, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(pick_appointment_time.this, patient_home_page.class);
                 startActivity(intent);

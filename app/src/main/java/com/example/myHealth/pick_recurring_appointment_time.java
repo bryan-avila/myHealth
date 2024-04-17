@@ -101,8 +101,6 @@ public class pick_recurring_appointment_time extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(timeAdapter);
-
-
     }
 
 
