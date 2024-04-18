@@ -510,7 +510,7 @@ public class AppointmentManager {
         // Log all elements in the ArrayList
         if (timeSlots.size() > 0) {
             for (int i = 0; i < timeSlots.size(); i++) {
-                Log.d("ArrayListInfo", "Element " + i + ": " + timeSlots.get(i) + " " + meridian);
+                Log.d("ArrayListInfo", "Element " + i + ": " + timeSlots.get(i));
             }
         } else {
             Log.d("ArrayListInfo", "timeslots is Empty");
