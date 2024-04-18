@@ -168,6 +168,12 @@
             android:name=".edit_appointment_page"
             android:exported="false" />
         <activity
+            android:name=".edit_appointment_clinic_page"
+            android:exported="false" />
+        <activity
+            android:name=".edit_appointment_date_page"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">
