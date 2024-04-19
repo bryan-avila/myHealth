@@ -91,10 +91,10 @@
                 android:layout_below="@id/clinic_name_text"/>
 
             <TextView
-                android:id="@+id/appointment_time_text"
+                android:id="@+id/appointment_start_time_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Appointment Time"
+                android:text="Start Time"
                 android:textAlignment="center"
                 android:textColor="@color/grey"
                 android:textStyle="bold"
@@ -103,6 +103,20 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_below="@id/appointment_date_text"/>
+
+            <TextView
+                android:id="@+id/appointment_end_time_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="End Time"
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_below="@id/appointment_start_time_text"/>
 
             <Button
                 android:id="@+id/button_edit_appointment_clinic"
@@ -116,7 +130,7 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:onClick="onEditClinicClick"
-                android:layout_below="@id/appointment_time_text"
+                android:layout_below="@id/appointment_end_time_text"
                 />
 
             <Button

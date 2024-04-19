@@ -25,7 +25,8 @@ public class edit_appointment_page extends AppCompatActivity {
     Clinic clinic;
     String clinicName;
     String date;
-    String time;
+    String startTime;
+    String endTime;
 
     public void onBackPressed()
     {
@@ -92,16 +93,21 @@ public class edit_appointment_page extends AppCompatActivity {
                             // DocumentSnapshot contains the data
                             clinicName = documentSnapshot.getString("clinicName");
                             date = documentSnapshot.getString("date");
-                            time = documentSnapshot.getString("startTime");
+                            startTime = documentSnapshot.getString("startTime");
+                            endTime = documentSnapshot.getString("endTime");
                             Log.d("TAG", "clinic name: " + clinicName);
                             Log.d("TAG", "date: " + date);
-                            Log.d("TAG", "time: " + time);
+                            Log.d("TAG", "start time: " + startTime);
+                            Log.d("TAG", "end time: " + endTime);
                             TextView appointmentClinic = (TextView) findViewById(R.id.clinic_name_text);
                             TextView appointmentDate = (TextView) findViewById(R.id.appointment_date_text);
-                            TextView appointmentTime = (TextView) findViewById(R.id.appointment_time_text);
+                            TextView appointmentStartTime = (TextView) findViewById(R.id.appointment_start_time_text);
+                            TextView appointmentEndTime = (TextView) findViewById(R.id.appointment_end_time_text);
                             appointmentClinic.setText(clinicName);
                             appointmentDate.setText(date);
-                            appointmentTime.setText(time);
+                            appointmentStartTime.setText("Start Time: " + startTime);
+                            appointmentEndTime.setText("End Time: " + endTime);
+
 
                             // Use the data as needed
                         } else {
@@ -117,12 +123,15 @@ public class edit_appointment_page extends AppCompatActivity {
                 });
 
         String clinicID = appointmentDocument.getId();
+        Log.d("TAG", "clinicID: " + clinicID);
         CollectionReference clinicsRef = db.collection("clinic");
         clinicsRef.document(clinicID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     clinic = documentSnapshot.toObject(Clinic.class);
+                    clinic.setID(clinicID);
+                    Log.d("TAG", "clinic: " + clinic);
                 } else {
                     // Document does not exist
                 }
@@ -158,7 +167,12 @@ public class edit_appointment_page extends AppCompatActivity {
 
     public void onEditTimeClick(View view)
     {
-        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
-
+        Intent intent = new Intent(getApplicationContext(), edit_appointment_time_page.class);
+        Log.d("timebutton", "clicked");
+        Log.d("TAG", "clinicID: " + clinic.getID());
+        intent.putExtra("appointmentPath", appointmentPath);
+        intent.putExtra("clinic", clinic);
+        intent.putExtra("date", date);
+        startActivity(intent);
     }
 }
