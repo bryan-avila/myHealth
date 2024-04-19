@@ -12,6 +12,11 @@ public class Appointment implements Serializable {
     String clinicName;
     Boolean complete;
     DocumentReference documentPath;
+    // FOR CLINIC SIDE:
+    String email;
+    String firstName;
+    String lastName;
+    String phone;
 
     public Appointment() {}
     public Appointment(String date, String startTime, String endTime, Boolean recurring) {
@@ -84,5 +89,37 @@ public class Appointment implements Serializable {
 
     public DocumentReference getDocumentPath() { return documentPath; }
     public void setDocumentPath(DocumentReference documentPath) { this.documentPath = documentPath; }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
 }

@@ -36,7 +36,7 @@
             android:layout_marginTop="130dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="30dp"
-            app:cardCornerRadius="30dp"
+            app:cardCornerRadius="15dp"
             app:cardElevation="20dp">
 
 
@@ -48,7 +48,9 @@
                 <TextView
                     android:id="@+id/text_view_recycler_view_heading_clinic"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6sp"
+                    android:paddingBottom="6dp"
                     android:text="Upcoming Appointments"
                     android:gravity="center"
                     android:textSize="25dp"
@@ -60,8 +62,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_view_recycler_view_heading_clinic"
+                    android:layout_marginTop="10dp"
                     android:overScrollMode="never"
-                    android:scrollbars="vertical"/>
+                    android:scrollbars="vertical" />
 
             </RelativeLayout>
 
