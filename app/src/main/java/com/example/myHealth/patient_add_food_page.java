@@ -86,7 +86,6 @@ public class patient_add_food_page extends AppCompatActivity {
     DocumentReference patientNutrientRef = db.collection("users").document(currentUser.getUid()).collection("nutrients").document(todays_date);
     CollectionReference patientFoodAddedRef = db.collection("users").document(currentUser.getUid()).collection("foodsAdded").document(todays_date).collection("foodsAddedToday");
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -254,7 +253,6 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                     else // Document doesn't exist? Create foodAddedToday document in DB with the quantity initialized to 1!
                                                     {
-                                                        //Toast.makeText(patient_add_food_page.this, food_names.getFood_name().toString(), Toast.LENGTH_SHORT).show();
                                                         Map<String, Object> foodsAdded = new HashMap<>();
                                                         foodsAdded.put("foodName", food_names.getFood_name().toString());
                                                         foodsAdded.put("quantity", "1");
@@ -460,9 +458,9 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                         }
 
-                                                                        // TODO: Add the other nutrient values, potassium and protein
                                                                         // Update the added food to show the nutrient values
                                                                         patientFoodAddedRef.document(food_names.getFood_name().toString()).collection("nutrients").document("thisNutrients").set(this_food_nutrients_hashmap);
+                                                                        food_names.setFavoriteFoodNutrientInfo((HashMap<String, Object>) this_food_nutrients_hashmap);
                                                                         // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------
                                                                         // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------
                                                                         // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------

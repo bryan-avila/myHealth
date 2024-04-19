@@ -43,6 +43,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="20dp"
+                android:onClick="onGrayHeartClick"
                 >
 
             </ImageButton>

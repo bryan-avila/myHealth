@@ -1,17 +1,10 @@
 package com.example.myHealth;
 
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
 
-public class FoodNameFromList implements Serializable {
+public class FavoriteFoodNameFromList {
 
     String food_name;
-
-    String food_id;
-
-    boolean isHeartRed = false; // default is food is NOT favorited
-
     HashMap<String, Object> favoriteFoodNutrientInfo = new HashMap<>();
 
     public FoodNameFromList()
@@ -47,13 +40,6 @@ public class FoodNameFromList implements Serializable {
 
     public void setHeartRed(boolean value){
         this.isHeartRed = value;
-    }
-
-    public HashMap<String, Object> getFavoriteFoodNutrientInfo() {return this.favoriteFoodNutrientInfo;}
-
-    public void setFavoriteFoodNutrientInfo(HashMap<String, Object> favFoodInfo)
-    {
-        this.favoriteFoodNutrientInfo = favFoodInfo;
     }
 
 }

@@ -17,8 +17,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList> implements Filterable {
@@ -35,6 +42,10 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
     private OnItemClickListener mListener;
 
     private OnItemClickListener mListenerImage;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
 
 
 
@@ -68,8 +79,6 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderFoodList holder, int position) {
         holder.foodName.setText(food_names.get(position).getFood_name());
-        //requireNonNull(holder).favoriteFoodButtonUnchecked.setBackgroundResource(R.drawable.button_heart_shadow);
-
 
         // Set click listener
         holder.itemView.setOnClickListener(view -> {
@@ -79,22 +88,32 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
             }
         });
 
-        /*
-        holder.itemView.setOnClickListener(v -> {
-            if (mListenerImage != null) {
-                mListenerImage.onClick((ImageButton) fav_Buttons);
-            }
-        });*/
 
-        //delete later (working on favorites addition)
-        /*
+        // The heart button will change from gray to red. It will also
         holder.favoriteFoodButtonUnchecked.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                holder.favoriteFoodButtonUnchecked.setBackgroundResource(R.drawable.button_heart_red);
-                //Toast.makeText(MyFoodListAdapter.this,"Successfully added food ", Toast.LENGTH_LONG).show();
+
+            public void onClick(View view) {
+                // Set up collection to hold documents that will be the list of foods
+                CollectionReference patientFavoriteFoodsRef = db.collection("users").document(currentUser.getUid()).collection("favoriteFoods");
+
+                if(food_names.get(position).checkHeartStatus() == false)
+                {
+                    holder.favoriteFoodButtonUnchecked.setImageResource(R.drawable.button_heart_red);
+                    Toast.makeText(view.getContext(), food_names.get(position).getFood_name() + " testing lol", Toast.LENGTH_SHORT).show();
+                    Map<String, Object> favoriteFoodAdded = new HashMap<>();
+                    favoriteFoodAdded.put("phosphorus", 0);
+                    favoriteFoodAdded.put("protein", 0);
+                    favoriteFoodAdded.put("potassium", 0);
+                    patientFavoriteFoodsRef.document(food_names.get(position).getFood_name()).set(favoriteFoodAdded);
+                }
+
+                else {
+                    holder.favoriteFoodButtonUnchecked.setImageResource(R.drawable.button_heart_shadow);
+                    Toast.makeText(view.getContext(), food_names.get(position).getFood_id() + " removed lol", Toast.LENGTH_SHORT).show();
+                }
             }
-        });*/
+        });
     }
 
 
@@ -105,13 +124,9 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
-        //mListenerImage = listenerImage;
     }
 
 
-    /*public void setOnItemClickListener(OnItemClickListener listenerImage) {
-       mListenerImage = listenerImage;
-    }*/
 
 
     public Filter getFilter() {
@@ -155,12 +170,6 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
 
     public interface OnItemClickListener {
         void onItemClick(int position, FoodNameFromList foodnames);
-
-        //void onClick (ImageButton favButtons);
     }
-
-    /*public interface OnClickListener {
-        void onClick(View v);
-    }*/
 
 }
