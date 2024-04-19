@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -49,34 +50,36 @@ public class clinic_appointments_page extends AppCompatActivity {
 
         // Set up the RecyclerView
         RecyclerView recyclerViewClinicAppointments = findViewById(R.id.recycler_view_upcoming_appointments_clinic);
-
         recyclerViewClinicAppointments.setLayoutManager(new LinearLayoutManager(this));
 
         // Get correct database path for appointments
-        CollectionReference clinicAppointmentRef = db.collection("clinic").document(currentClinic.getUid()).collection("days").document("monday").collection("appointments");
-
-        clinicAppointmentRef.get().addOnCompleteListener(task -> {
+        CollectionReference clinicAppointmentDateRef = db.collection("clinic").document(currentClinic.getUid()).collection("dates");
+        Log.d("TAG", "Collection Reference: " + clinicAppointmentDateRef.getPath());
+        clinicAppointmentDateRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                List<Appointment> appointmentsList = new ArrayList<>();
+                List<Appointment> appointments = new ArrayList<>();
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    //Appointment appointment = document.toObject(PrescribedMedications.class); //get appointment information
-                    //appointmentsList.add(appointment);
+                    CollectionReference appointments_collection = clinicAppointmentDateRef.document(document.getId()).collection("appointments");
+                    appointments_collection.get().addOnCompleteListener(task2 -> {
+                        if (task2.isSuccessful()) {
+                            for (QueryDocumentSnapshot document2 : task2.getResult()) {
+                                DocumentReference userDocument = db.collection("users").document(document2.getId());
+                                userDocument.get().addOnCompleteListener(task3 -> {
+                                    if (task3.isSuccessful()) {
+                                        DocumentSnapshot userDocumentFields = task3.getResult();
+                                        Log.d("TAG", "Document data: " + userDocumentFields.getData());
+                                        Appointment clinicAppointment = userDocumentFields.toObject(Appointment.class);
+                                        Log.d("TAG", "FINAL: " + clinicAppointment);
+                                        appointments.add(clinicAppointment);
+                                    }
+                                    Log.d("TAG", "AMOUNT OF APPOINTMENTS FOUND: " + appointments.size());
+                                    MyClinicAppointmentsAdapter myAdapter = new MyClinicAppointmentsAdapter(getApplicationContext(), appointments, recyclerViewClinicAppointments);
+                                    recyclerViewClinicAppointments.setAdapter(myAdapter);
+                                });
+                            }
+                        }
+                    });
                 }
-                Log.d("TAG", "Medications size: " + appointmentsList.size()); // Check the size of the clinics list
-                // Set the adapter (you'll create and set the adapter in later steps)
-                //MyPrescribedMedAdapter myAdapter = new MyPrescribedMedAdapter(getApplicationContext(), appointmentsList);
-                //med_recycle_view.setAdapter(myAdapter);
-
-               /* myAdapter.setOnItemClickListener(new MyPrescribedMedAdapter().OnItemClickListener() {
-                    //this sends the user to the clinic's specific appointment page
-                    @Override
-                    public void onItemClick(int position, PrescribedMedications pMedications) {
-                        // Handle the item click here
-                        Intent intent = new Intent(patient_prescribed_med_page.this, patient_appointments_view.class);
-                        startActivity(intent);
-                    }
-                });
-*/
             }
             else {
                 // Handle the error
