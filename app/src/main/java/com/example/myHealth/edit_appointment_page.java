@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,8 +22,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class edit_appointment_page extends AppCompatActivity {
     FirebaseFirestore db = MyFirestore.getDBInstance();
     String appointmentPath;
-    DocumentReference appointmentDocument;
-    String clinic;
+    Clinic clinic;
+    String clinicName;
     String date;
     String time;
 
@@ -89,16 +90,16 @@ public class edit_appointment_page extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
                             // DocumentSnapshot contains the data
-                            clinic = documentSnapshot.getString("clinicName");
+                            clinicName = documentSnapshot.getString("clinicName");
                             date = documentSnapshot.getString("date");
                             time = documentSnapshot.getString("startTime");
-                            Log.d("TAG", "clinic name: " + clinic);
+                            Log.d("TAG", "clinic name: " + clinicName);
                             Log.d("TAG", "date: " + date);
                             Log.d("TAG", "time: " + time);
                             TextView appointmentClinic = (TextView) findViewById(R.id.clinic_name_text);
                             TextView appointmentDate = (TextView) findViewById(R.id.appointment_date_text);
                             TextView appointmentTime = (TextView) findViewById(R.id.appointment_time_text);
-                            appointmentClinic.setText(clinic);
+                            appointmentClinic.setText(clinicName);
                             appointmentDate.setText(date);
                             appointmentTime.setText(time);
 
@@ -115,6 +116,23 @@ public class edit_appointment_page extends AppCompatActivity {
                     }
                 });
 
+        String clinicID = appointmentDocument.getId();
+        CollectionReference clinicsRef = db.collection("clinic");
+        clinicsRef.document(clinicID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    clinic = documentSnapshot.toObject(Clinic.class);
+                } else {
+                    // Document does not exist
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle errors
+            }
+        });
     }
 
     public void onStart() {
@@ -132,7 +150,10 @@ public class edit_appointment_page extends AppCompatActivity {
 
     public void onEditDateClick(View view)
     {
-        startActivity(new Intent(getApplicationContext(), patient_home_page.class));
+        Intent intent = new Intent(getApplicationContext(), edit_appointment_date_page.class);
+        intent.putExtra("appointmentPath", appointmentPath);
+        intent.putExtra("clinicData", clinic);
+        startActivity(intent);
     }
 
     public void onEditTimeClick(View view)
