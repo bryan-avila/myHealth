@@ -2,6 +2,8 @@ package com.example.myHealth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,22 +36,26 @@ public class patients_view_food_favorites_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_view_food_favorites_page);
 
+        RecyclerView favorite_foods_recycler_view = findViewById(R.id.recycler_view_food_favorites);
+        favorite_foods_recycler_view.setLayoutManager(new LinearLayoutManager(this));
+
         patientFoodAddedRef.get().addOnCompleteListener(task -> {
 
-            //TODO change foodsAdded to FavoriteFoods
-            List<FavoriteFoodNameFromList> foodsAddedList = new ArrayList<>();
-            // Obtain the document, which are named the food added that day
-            for (QueryDocumentSnapshot document : task.getResult())
+            if(task.isSuccessful())
             {
-                FavoriteFoodNameFromList food_added_doc = document.toObject(FavoriteFoodNameFromList.class);
-                foodsAddedList.add(food_added_doc);
+                List<FavoriteFoodNameFromList> favoriteFoodsList = new ArrayList<>();
+
+                for(QueryDocumentSnapshot document : task.getResult())
+                {
+                    FavoriteFoodNameFromList fav_food_doc = document.toObject(FavoriteFoodNameFromList.class);
+                    favoriteFoodsList.add(fav_food_doc);
+                }
+
+                MyFavoriteFoodNameFromListAdapter myFavFoodsAdapter = new MyFavoriteFoodNameFromListAdapter(getApplicationContext(), favoriteFoodsList);
+                System.out.println(myFavFoodsAdapter.getItemCount() + " LOL!");
+                favorite_foods_recycler_view.setAdapter(myFavFoodsAdapter);
+
             }
-
-            //Log.d("TAG", "---------- Today's Foods Added is of size: " + foodsAddedList.size()); // Check the size of the foods list
-
-            //MyFoodsAddedAdapter myFoodsAddedAdapter = new MyFoodsAddedAdapter(getApplicationContext(), foodsAddedList);
-            //food_added_recycler_view.setAdapter(myFoodsAddedAdapter);
-
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

@@ -102,9 +102,8 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
                     holder.favoriteFoodButtonUnchecked.setImageResource(R.drawable.button_heart_red);
                     Toast.makeText(view.getContext(), food_names.get(position).getFood_name() + " testing lol", Toast.LENGTH_SHORT).show();
                     Map<String, Object> favoriteFoodAdded = new HashMap<>();
-                    favoriteFoodAdded.put("phosphorus", 0);
-                    favoriteFoodAdded.put("protein", 0);
-                    favoriteFoodAdded.put("potassium", 0);
+                    favoriteFoodAdded.put("favorite", food_names.get(position).getFood_name());
+                    favoriteFoodAdded.put("test", food_names.get(position).getFood_name());
                     patientFavoriteFoodsRef.document(food_names.get(position).getFood_name()).set(favoriteFoodAdded);
                 }
 

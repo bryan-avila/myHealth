@@ -61,13 +61,12 @@
 
     <!-- Favorite items are sent to this recycler view. Might need to add a delete button on this items-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_favorites"
+        android:id="@+id/recycler_view_food_favorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/search_view_favorite_food_names"
         android:layout_marginTop="25dp">
-
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

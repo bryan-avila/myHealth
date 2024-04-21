@@ -31,15 +31,25 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
-                android:textSize="30dp"
-                tools:text="foodName"/>
+                android:textSize="10dp"
+                tools:text="favoriteFoodName"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[test]"
+                android:textSize="10sp"
+                android:id="@+id/text_view_test"
+                android:layout_below="@id/text_view_food_name_favorite"
+                android:layout_centerHorizontal="true"
+                />
 
             <!-- Each food gets its own heart to click. onClick defined in MyFoodListAdapter -->
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/favorite_food_button_checked"
-                android:src="@drawable/button_heart_red"
+                android:src="@drawable/button_heart_shadow"
                 android:background="@color/transparent"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
