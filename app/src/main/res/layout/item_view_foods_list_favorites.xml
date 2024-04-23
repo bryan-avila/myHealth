@@ -24,15 +24,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_view_food_name_favorite"
-                android:padding="7sp"
+                android:padding="0sp"
+                android:text="[FOOD NAME]"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/black"
-                android:textSize="30dp"
-                tools:text="foodName"/>
+                android:textSize="30dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"

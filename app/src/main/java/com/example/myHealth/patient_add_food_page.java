@@ -460,7 +460,6 @@ public class patient_add_food_page extends AppCompatActivity {
 
                                                                         }
 
-                                                                        // TODO: Add the other nutrient values, potassium and protein
                                                                         // Update the added food to show the nutrient values
                                                                         patientFoodAddedRef.document(food_names.getFood_name().toString()).collection("nutrients").document("thisNutrients").set(this_food_nutrients_hashmap);
                                                                         // ---------- You have reached the end of adding new nutrient values and updating nutrient values! Hooray! ----------

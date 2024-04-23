@@ -17,8 +17,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList> implements Filterable {
@@ -36,6 +44,10 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
 
     private OnItemClickListener mListenerImage;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+    private CollectionReference favFoodCollectionRef = db.collection("users").document(currentUser.getUid()).collection("favFoods");
 
 
     public MyFoodListAdapter(Context context, List<FoodNameFromList> foodnames) {
@@ -77,6 +89,18 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
                 mListener.onItemClick(position, food_names.get(position));
 
             }
+        });
+
+        // When a user clicks on the heart, send the food name they just clicked to food favorites!
+        holder.favoriteFoodButtonUnchecked.setOnClickListener(view -> {
+            Toast.makeText(context.getApplicationContext(), food_names.get(position).getFood_name(), Toast.LENGTH_LONG).show();
+            holder.favoriteFoodButtonUnchecked.setImageResource(R.drawable.button_heart_red);
+
+            Map<String, Object> favFoodStuff = new HashMap<>();
+            favFoodStuff.put("favFood", food_names.get(position).getFood_name().toString());
+            favFoodStuff.put("favFood", food_names.get(position).getFood_name().toString());
+            favFoodCollectionRef.document(food_names.get(position).getFood_name()).set(favFoodStuff);
+
         });
 
         /*
