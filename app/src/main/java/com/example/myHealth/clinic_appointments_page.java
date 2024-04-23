@@ -112,16 +112,16 @@ public class clinic_appointments_page extends AppCompatActivity {
                 //check id
                 if (id == R.id.appointmentIdClinic) {
                     return true;
-                } else if (id == R.id.homeIdCLinic) {
+                } else if (id == R.id.homeIdClinic) {
                     startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.medicalHistIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
+                } else if (id == R.id.medicationsIdClinic) {
+                    startActivity(new Intent(getApplicationContext(), clinic_medications_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.resourcesIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), resources_page_clinic.class));
+                } else if (id == R.id.patientRecordsIdClinic) {
+                    startActivity(new Intent(getApplicationContext(), clinic_patient_records_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileIdClinic) {

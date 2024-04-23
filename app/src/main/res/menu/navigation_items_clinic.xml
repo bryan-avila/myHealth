@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/homeIdCLinic"
+    <item android:id="@+id/homeIdClinic"
         android:icon="@drawable/icon_home"
         android:title="Home"/>
 
@@ -9,13 +9,13 @@
         android:icon="@drawable/icon_appointment"
         android:title="Visits"/>
 
-    <item android:id="@+id/medicalHistIdClinic"
+    <item android:id="@+id/medicationsIdClinic"
         android:icon="@drawable/icon_medicalhistory"
-        android:title="Records"/>
+        android:title="Medications"/>
 
-    <item android:id="@+id/resourcesIdClinic"
-        android:icon="@drawable/icon_resources"
-        android:title="Resources"/>
+    <item android:id="@+id/patientRecordsIdClinic"
+        android:icon="@drawable/icon_records"
+        android:title="Records"/>
 
     <item android:id="@+id/profileIdClinic"
         android:icon="@drawable/icon_account"

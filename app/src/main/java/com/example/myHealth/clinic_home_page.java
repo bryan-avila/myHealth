@@ -64,7 +64,7 @@ public class clinic_home_page extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
 
         //Set home selected
-        bottomNavigationView.setSelectedItemId(R.id.homeIdCLinic);
+        bottomNavigationView.setSelectedItemId(R.id.homeIdClinic);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -76,15 +76,15 @@ public class clinic_home_page extends AppCompatActivity {
                     a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(a);
                     return true;
-                } else if (id == R.id.homeIdCLinic) {
+                } else if (id == R.id.homeIdClinic) {
                     return true;
-                } else if (id == R.id.medicalHistIdClinic) {
-                    Intent a = new Intent(getApplicationContext(), clinic_medical_records_page.class);
+                } else if (id == R.id.medicationsIdClinic) {
+                    Intent a = new Intent(getApplicationContext(), clinic_medications_page.class);
                     a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(a);
                     return true;
-                } else if (id == R.id.resourcesIdClinic) {
-                    Intent a = new Intent(getApplicationContext(), resources_page_clinic.class);
+                } else if (id == R.id.patientRecordsIdClinic) {
+                    Intent a = new Intent(getApplicationContext(), clinic_patient_records_page.class);
                     a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(a);
                     return true;

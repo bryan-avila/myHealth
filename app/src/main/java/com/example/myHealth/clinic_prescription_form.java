@@ -254,7 +254,7 @@ public class clinic_prescription_form extends AppCompatActivity {
                 Toast.makeText(clinic_prescription_form.this, "Please fill out any empty fields.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(clinic_prescription_form.this, "Medication Prescribed.", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
+                startActivity(new Intent(getApplicationContext(), clinic_medications_page.class));
                 finish(); //so user cannot go back
             }
         }
