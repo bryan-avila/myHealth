@@ -49,7 +49,6 @@ public class MyClinicAppointmentsAdapter extends RecyclerView.Adapter<MyClinicAp
             vh.date.setVisibility(View.VISIBLE);
             vh.start_and_end_times.setVisibility(View.VISIBLE);
         } else {
-            vh.patientName.setVisibility(View.GONE);
             vh.phone.setVisibility(View.GONE);
             vh.email.setVisibility(View.GONE);
             vh.date.setVisibility(View.GONE);
@@ -66,7 +65,8 @@ public class MyClinicAppointmentsAdapter extends RecyclerView.Adapter<MyClinicAp
 
     @Override
     public void onBindViewHolder(@NonNull ClinicAppointmentViewholder holder, int position) {
-        String title = appointments.get(holder.getBindingAdapterPosition()).getFirstName() + " " + appointments.get(holder.getBindingAdapterPosition()).getLastName() + " (" + appointments.get(holder.getBindingAdapterPosition()).getPhone() + ")";
+        String title = appointments.get(holder.getBindingAdapterPosition()).getFirstName() + " " + appointments.get(holder.getBindingAdapterPosition()).getLastName() + "\n(" + appointments.get(holder.getBindingAdapterPosition()).getDate() + ")";
+        holder.patientName.setPaintFlags(holder.patientName.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
         holder.bind(title);
 
         holder.phone.setText(appointments.get(holder.getBindingAdapterPosition()).getPhone());
@@ -74,7 +74,7 @@ public class MyClinicAppointmentsAdapter extends RecyclerView.Adapter<MyClinicAp
         holder.date.setText("Date: " + appointments.get(holder.getBindingAdapterPosition()).getDate());
         holder.start_and_end_times.setText("Time: " + appointments.get(holder.getBindingAdapterPosition()).getStartTime() + " - " + appointments.get(holder.getBindingAdapterPosition()).getEndTime());
 
-        holder.phone.setPaintFlags(holder.phone.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
+        holder.phone.setPaintFlags(holder.phone.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         holder.email.setPaintFlags(holder.email.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         holder.date.setPaintFlags(holder.date.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         holder.start_and_end_times.setPaintFlags(holder.start_and_end_times.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);

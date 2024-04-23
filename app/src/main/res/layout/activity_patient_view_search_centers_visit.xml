@@ -51,7 +51,7 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:padding="5sp"
-                        android:text="Dialysis Centers Search"
+                        android:text="Choose Dialysis Center:"
                         android:textSize="25sp"
                         android:textColor="@color/purple"
                         android:textStyle="bold" />

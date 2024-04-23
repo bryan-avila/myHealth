@@ -10,15 +10,23 @@ public class Appointment implements Serializable {
     String endTime;
     Boolean recurring;
     String clinicName;
+    String firstName;
+    String lastName;
     Boolean complete;
     DocumentReference documentPath;
     // FOR CLINIC SIDE:
     String email;
-    String firstName;
-    String lastName;
     String phone;
 
     public Appointment() {}
+    public Appointment(String date, String startTime, String endTime, Boolean recurring, String firstName, String lastName) {
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.recurring = recurring;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
     public Appointment(String date, String startTime, String endTime, Boolean recurring) {
         this.date = date;
         this.startTime = startTime;
