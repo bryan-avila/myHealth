@@ -87,13 +87,13 @@
             android:name=".clinic_view_med_prescription"
             android:exported="false" />
         <activity
-            android:name=".resources_page_clinic"
+            android:name=".clinic_patient_records_page"
             android:exported="false" />
         <activity
             android:name=".clinic_profile_page"
             android:exported="false" />
         <activity
-            android:name=".clinic_medical_records_page"
+            android:name=".clinic_medications_page"
             android:exported="false" />
         <activity
             android:name=".clinic_appointments_page"

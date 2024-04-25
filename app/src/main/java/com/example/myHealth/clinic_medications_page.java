@@ -11,7 +11,7 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class clinic_medical_records_page extends AppCompatActivity {
+public class clinic_medications_page extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
@@ -29,7 +29,7 @@ public class clinic_medical_records_page extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation2);
 
         //Set medical hist selected
-        bottomNavigationView.setSelectedItemId(R.id.medicalHistIdClinic);
+        bottomNavigationView.setSelectedItemId(R.id.medicationsIdClinic);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -41,14 +41,14 @@ public class clinic_medical_records_page extends AppCompatActivity {
                             clinic_appointments_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.homeIdCLinic) {
+                } else if (id == R.id.homeIdClinic) {
                     startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.medicalHistIdClinic) {
+                } else if (id == R.id.medicationsIdClinic) {
                     return true;
-                } else if (id == R.id.resourcesIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), resources_page_clinic.class));
+                } else if (id == R.id.patientRecordsIdClinic) {
+                    startActivity(new Intent(getApplicationContext(), clinic_patient_records_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileIdClinic) {
@@ -59,10 +59,6 @@ public class clinic_medical_records_page extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    public void onMyPatientRecordsClick(View view) {
-        startActivity(new Intent(getApplicationContext(), clinic_view_patients_medical_records.class));
     }
 
     public void onMedicationsPrescriptionsClick(View view) {

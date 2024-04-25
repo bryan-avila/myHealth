@@ -32,7 +32,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="70dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="90dp"
             app:cardCornerRadius="30dp"
             app:cardElevation="20dp">
 
@@ -70,5 +70,15 @@
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation_items_clinic"
+        app:itemRippleColor="@color/lightpurple"
+        app:itemIconTint="@color/bottom_nav_menu_icons_color"
+        app:itemTextColor="@color/lightpurple"/>
 
 </RelativeLayout>

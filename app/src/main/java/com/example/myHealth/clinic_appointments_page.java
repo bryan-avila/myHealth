@@ -66,15 +66,24 @@ public class clinic_appointments_page extends AppCompatActivity {
                                 DocumentReference userDocument = db.collection("users").document(document2.getId());
                                 userDocument.get().addOnCompleteListener(task3 -> {
                                     if (task3.isSuccessful()) {
-                                        DocumentSnapshot userDocumentFields = task3.getResult();
-                                        Log.d("TAG", "Document data: " + userDocumentFields.getData());
-                                        Appointment clinicAppointment = userDocumentFields.toObject(Appointment.class);
-                                        Log.d("TAG", "FINAL: " + clinicAppointment);
-                                        appointments.add(clinicAppointment);
+                                        DocumentReference apptDocument = appointments_collection.document(document2.getId());
+                                        apptDocument.get().addOnCompleteListener(task4 -> {
+                                            if (task4.isSuccessful()) {
+                                                DocumentSnapshot userDocumentFields = task3.getResult();
+                                                DocumentSnapshot apptDocumentFields = task4.getResult();
+                                                Log.d("TAG", "Document data: " + userDocumentFields.getData());
+                                                Appointment clinicAppointment = userDocumentFields.toObject(Appointment.class);
+                                                Log.d("TAG", "FINAL: " + clinicAppointment);
+                                                clinicAppointment.setDate(apptDocumentFields.getString("date"));
+                                                clinicAppointment.setStartTime(apptDocumentFields.getString("startTime"));
+                                                clinicAppointment.setEndTime(apptDocumentFields.getString("endTime"));
+                                                appointments.add(clinicAppointment);
+                                            }
+                                            Log.d("TAG", "AMOUNT OF APPOINTMENTS FOUND: " + appointments.size());
+                                            MyClinicAppointmentsAdapter myAdapter = new MyClinicAppointmentsAdapter(getApplicationContext(), appointments, recyclerViewClinicAppointments);
+                                            recyclerViewClinicAppointments.setAdapter(myAdapter);
+                                        });
                                     }
-                                    Log.d("TAG", "AMOUNT OF APPOINTMENTS FOUND: " + appointments.size());
-                                    MyClinicAppointmentsAdapter myAdapter = new MyClinicAppointmentsAdapter(getApplicationContext(), appointments, recyclerViewClinicAppointments);
-                                    recyclerViewClinicAppointments.setAdapter(myAdapter);
                                 });
                             }
                         }
@@ -103,16 +112,16 @@ public class clinic_appointments_page extends AppCompatActivity {
                 //check id
                 if (id == R.id.appointmentIdClinic) {
                     return true;
-                } else if (id == R.id.homeIdCLinic) {
+                } else if (id == R.id.homeIdClinic) {
                     startActivity(new Intent(getApplicationContext(), clinic_home_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.medicalHistIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), clinic_medical_records_page.class));
+                } else if (id == R.id.medicationsIdClinic) {
+                    startActivity(new Intent(getApplicationContext(), clinic_medications_page.class));
                     finish();
                     return true;
-                } else if (id == R.id.resourcesIdClinic) {
-                    startActivity(new Intent(getApplicationContext(), resources_page_clinic.class));
+                } else if (id == R.id.patientRecordsIdClinic) {
+                    startActivity(new Intent(getApplicationContext(), clinic_patient_records_page.class));
                     finish();
                     return true;
                 } else if (id == R.id.profileIdClinic) {

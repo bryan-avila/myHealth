@@ -14,7 +14,7 @@
         android:title="myHealth"/>
 
     <item android:id="@+id/resourcesId"
-        android:icon="@drawable/icon_resources"
+        android:icon="@drawable/icon_records"
         android:title="Nutrition"/>
 
     <item android:id="@+id/profileId"

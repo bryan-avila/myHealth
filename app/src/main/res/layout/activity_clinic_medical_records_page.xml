@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".clinic_medical_records_page"
+    tools:context=".clinic_medications_page"
     android:background="@drawable/clinic_background_final">
 
     <RelativeLayout
@@ -45,19 +45,6 @@
         android:layout_centerVertical="true">
 
         <Button
-            android:id="@+id/records_button_clinic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Patient Records"
-            android:backgroundTint="@color/purple"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:onClick="onMyPatientRecordsClick"/>
-
-        <Button
             android:id="@+id/medications_button_clinic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +52,7 @@
             android:backgroundTint="@color/purple"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="20dp"
@@ -78,7 +65,7 @@
             android:backgroundTint="@color/purple"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="80dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="20dp"

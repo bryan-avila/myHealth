@@ -35,7 +35,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="130dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="85dp"
             app:cardCornerRadius="15dp"
             app:cardElevation="20dp">
 
