@@ -58,6 +58,13 @@
         android:translationZ="-10sp"
         />
         -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_nutrition_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_view_favorite_food_names"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp">
 
     <!-- Favorite items are sent to this recycler view. Might need to add a delete button on this items-->
     <androidx.recyclerview.widget.RecyclerView
@@ -65,10 +72,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/search_view_favorite_food_names"
         android:layout_marginTop="25dp">
-
     </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.cardview.widget.CardView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

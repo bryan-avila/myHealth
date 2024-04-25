@@ -35,27 +35,32 @@ public class patients_view_food_favorites_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_view_food_favorites_page);
 
-
-        //TODO Add recycler view stuff for favorite foods here
+        // Set up recyler view stuff
         RecyclerView fav_food_recycler_view = findViewById(R.id.recycler_view_favorites);
+
         fav_food_recycler_view.setLayoutManager(new LinearLayoutManager(this));
+
+        // Using a collection reference from the DB....
         favFoodCollectionRef.get().addOnCompleteListener(task -> {
             if(task.isSuccessful())
             {
-                List<FavoriteFoods> favoriteFoods = new ArrayList<>();
+                List<FavoriteFoods> favoriteFoods = new ArrayList<>(); // if collection exists, create an array to populate recycler view
 
                 for(QueryDocumentSnapshot document : task.getResult())
                 {
                     FavoriteFoods fav_food_doc = document.toObject(FavoriteFoods.class);
-                    favoriteFoods.add(fav_food_doc);
+                    String food_name = (String) document.get("favFood"); // Ignore the top line? Just get the food's name from the document
+                    FavoriteFoods food = new FavoriteFoods(food_name); // Create a new FavoriteFoods object, passing the food name in the parameter
+                    favoriteFoods.add(food); // Add the newly created FavoriteFoods object to the recycler view list
                 }
 
+                // Set up adapter to have your list of favorited foods
                 MyAdapterFavoriteFoods myFavFoodAdapter = new MyAdapterFavoriteFoods(getApplicationContext(), favoriteFoods);
+                System.out.println(" ATTN: ------------ " + favoriteFoods.size() + " is the # of favorited foods. --------------");
                 fav_food_recycler_view.setAdapter(myFavFoodAdapter);
                 myFavFoodAdapter.setOnItemClickListener(new MyAdapterFavoriteFoods.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position, FavoriteFoods favoriteFoods) {
-                        //Toast.makeText(patients_view_food_favorites_page.this, favoriteFoods.getFoodName().toString(), Toast.LENGTH_LONG).show();
                     }
                 });
 

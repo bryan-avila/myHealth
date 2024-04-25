@@ -15,7 +15,7 @@ public class MyAdapterFavoriteFoods extends RecyclerView.Adapter<MyViewHolderFav
     // Global stuff
     Context context;
     List<FavoriteFoods> favoriteFoods;
-    private MyAdapterFavoriteFoods.OnItemClickListener mListener;
+    MyAdapterFavoriteFoods.OnItemClickListener mListener;
 
     public MyAdapterFavoriteFoods(Context context, List<FavoriteFoods> favoriteFoods)
     {

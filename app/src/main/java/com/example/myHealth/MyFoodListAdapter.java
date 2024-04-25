@@ -93,11 +93,10 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<MyViewHolderFoodList
 
         // When a user clicks on the heart, send the food name they just clicked to food favorites!
         holder.favoriteFoodButtonUnchecked.setOnClickListener(view -> {
-            Toast.makeText(context.getApplicationContext(), food_names.get(position).getFood_name(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(context.getApplicationContext(), food_names.get(position).getFood_name(), Toast.LENGTH_LONG).show();
             holder.favoriteFoodButtonUnchecked.setImageResource(R.drawable.button_heart_red);
 
             Map<String, Object> favFoodStuff = new HashMap<>();
-            favFoodStuff.put("favFood", food_names.get(position).getFood_name().toString());
             favFoodStuff.put("favFood", food_names.get(position).getFood_name().toString());
             favFoodCollectionRef.document(food_names.get(position).getFood_name()).set(favFoodStuff);
 
