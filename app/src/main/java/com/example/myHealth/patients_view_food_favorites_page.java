@@ -41,6 +41,7 @@ public class patients_view_food_favorites_page extends AppCompatActivity {
         fav_food_recycler_view.setLayoutManager(new LinearLayoutManager(this));
 
         // Using a collection reference from the DB....
+        // test...
         favFoodCollectionRef.get().addOnCompleteListener(task -> {
             if(task.isSuccessful())
             {
