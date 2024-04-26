@@ -24,6 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -586,47 +587,108 @@ public class AppointmentManager {
         });
     }
 
-    public void deleteAppointment(Appointment appointment, DocumentReference document) {
-        CollectionReference appointments = document.getParent();
-        DocumentReference date = appointments.getParent();
-        // Check if appointment is recurring
+    public void deleteAppointment(Appointment appointment, DocumentReference appointmentDocument) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userId = currentUser.getUid();
+        String clinicId = appointmentDocument.getId();
+        String appointmentDateString = appointment.getDate();
+        DocumentReference clinicAppointmentDocument = db.collection("clinic").document(clinicId).collection("dates").document(appointmentDateString).collection("appointments").document(userId);
+
         boolean recurring = appointment.getRecurring();
         if (recurring) {
-            Calendar calendar = Calendar.getInstance();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate appointmentLocalDate = LocalDate.parse(appointment.getDate(), formatter);
-            Date appointmentDate = Date.from(appointmentLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            calendar.setTime(appointmentDate);
-            calendar.add(Calendar.MONTH, 6);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String futureDate = sdf.format(calendar.getTime());
-            Log.d("TAG", "Appointment was recurring. Next appointment date: " + futureDate);
+            String futureDateString = null;
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date appointmentDate = sdf.parse(appointmentDateString);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(appointmentDate);
+                calendar.add(Calendar.MONTH, 6);
+                Date futureDate = calendar.getTime();
+                // Convert Date to LocalDate
+                Instant instant = futureDate.toInstant();
+                LocalDate futureLocalDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+                // Format LocalDate as a string
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                futureDateString = futureLocalDate.format(formatter);
+                Log.d("TAG", "Appointment was recurring. Next appointment date: " + futureDateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Log.d("TAG", "Appointment was recurring. Next appointment date: " + futureDateString);
 
             // Retrieve clinic and appointment time from the appointment document
             String clinicName = appointment.getClinicName();
-            String clinicId = document.getId();
+            clinicId = appointmentDocument.getId();
             String startTimeString = appointment.getStartTime();
             TimeConverter timeconverter = new TimeConverter();
             double newtime = timeconverter.convertToDecimal(startTimeString);
             Log.d("TAG", "Clinic: " + clinicId + ", Appointment Time: " + startTimeString);
 
-            makeSingleAppointment(clinicName, clinicId, futureDate, newtime, true);
+            makeSingleAppointment(clinicName, clinicId, futureDateString, newtime, true);
         }
         // Delete the document
-        document.delete()
+        CollectionReference patientAppointments = appointmentDocument.getParent();
+        DocumentReference patientDate = patientAppointments.getParent();
+        appointmentDocument.delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("deleteAppointment", "DocumentSnapshot successfully deleted!");
 
                         // Check if the parent collection is empty
-                        appointments.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        patientAppointments.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     if (task.getResult().isEmpty()) {
                                         // Delete the parent collection if it is empty
-                                        date.delete()
+                                        patientDate.delete()
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.d("deleteAppointment", "Date document deleted!");
+
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w("deleteAppointment", "Error deleting date document", e);
+                                                        // Handle errors or notify the user about the failure
+                                                    }
+                                                });
+                                    }
+                                } else {
+                                    Log.d("deleteAppointment", "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("deleteAppointment", "Error deleting document", e);
+                        // Handle errors or notify the user about the failure
+                    }
+                });
+
+        CollectionReference clinicAppointments = clinicAppointmentDocument.getParent();
+        DocumentReference clinicDate = clinicAppointments.getParent();
+        clinicAppointmentDocument.delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("deleteAppointment", "DocumentSnapshot successfully deleted!");
+
+                        // Check if the parent collection is empty
+                        clinicAppointments.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    if (task.getResult().isEmpty()) {
+                                        // Delete the parent collection if it is empty
+                                        clinicDate.delete()
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {

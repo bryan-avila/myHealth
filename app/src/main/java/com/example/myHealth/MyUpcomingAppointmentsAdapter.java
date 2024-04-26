@@ -17,7 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Document;
 
@@ -25,6 +28,9 @@ import java.util.List;
 
 // MyAdapter.java
 public class MyUpcomingAppointmentsAdapter extends RecyclerView.Adapter<MyUpcomingAppointmentsAdapter.UpcomingAppointmentViewholder>{
+    FirebaseFirestore db = MyFirestore.getDBInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
     Context context;
     List<Appointment> appointments;
     RecyclerView recyclerView;

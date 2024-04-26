@@ -15,8 +15,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -24,8 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class edit_appointment_clinic_page extends AppCompatActivity{
+    Appointment appointment;
     String appointmentPath;
+    String clinicAppointmentPath;
+    String appointmentDate;
+    String appointmentTime;
     DocumentReference appointmentDocument;
+    DocumentReference clinicAppointmentDocument;
     // Inside your activity or fragment
     @Override
     public void onBackPressed()
@@ -41,8 +49,14 @@ public class edit_appointment_clinic_page extends AppCompatActivity{
         Intent intent = getIntent();
         if (intent != null) {
             appointmentPath = (String) intent.getSerializableExtra("appointmentPath");
+            clinicAppointmentPath = (String) intent.getSerializableExtra("clinicAppointmentPath");
+            appointmentDate = (String) intent.getSerializableExtra("appointmentDate");
+            appointmentTime = (String) intent.getSerializableExtra("appointmentTime");
         } else {
             appointmentPath = null;
+            clinicAppointmentPath = null;
+            appointmentDate = null;
+            appointmentTime = null;
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_appointment_clinic_page);
@@ -86,7 +100,31 @@ public class edit_appointment_clinic_page extends AppCompatActivity{
 
         //list of items
         FirebaseFirestore db = MyFirestore.getDBInstance();
+        FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String userId = currentUser.getUid();
+
         CollectionReference clinicsRef = db.collection("clinic");
+
+        appointmentDocument = db.document(appointmentPath);
+        appointmentDocument.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    // Convert document snapshot data to your Java class
+                    appointment = documentSnapshot.toObject(Appointment.class);
+                    // Now you can use the object of your class as needed
+                    // For example, you can pass it to a method or display its data in the UI
+                } else {
+                    // Document does not exist
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle errors
+            }
+        });
 
         clinicsRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -109,21 +147,19 @@ public class edit_appointment_clinic_page extends AppCompatActivity{
                         // Handle the item click here
                         // change the clinic in the appointment
                         appointmentDocument = db.document(appointmentPath);
-                        appointmentDocument.update("clinicName", clinic.getClinicName())
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d("TAG", "DocumentSnapshot successfully updated!");
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.w("TAG", "Error updating document", e);
-                                    }
-                                });
-                        Intent intent = new Intent(edit_appointment_clinic_page.this, edit_appointment_page.class);
-                        intent.putExtra("appointmentPath", appointmentPath);
+                        clinicAppointmentDocument = db.document(clinicAppointmentPath);
+                        TimeConverter timeConverter = new TimeConverter();
+                        AppointmentManager appointmentManager = new AppointmentManager();
+                        double startTime = timeConverter.convertToDecimal(appointmentTime);
+                        appointmentManager.deleteAppointment(appointment, appointmentDocument);
+                        appointmentManager.makeSingleAppointment(clinic.getClinicName(), clinic.getID(), appointmentDate, startTime, false);
+
+                        DocumentReference newAppointmentDocument = db.collection("user").document(userId).collection("dates").document(appointmentDate).collection("appointments").document(clinic.getID());
+                        String newAppointmentPath = newAppointmentDocument.getPath();
+
+                        //Intent intent = new Intent(edit_appointment_clinic_page.this, edit_appointment_page.class);
+                        //intent.putExtra("appointmentPath", newAppointmentPath);
+                        Intent intent = new Intent(edit_appointment_clinic_page.this, patient_home_page.class);
                         startActivity(intent);
                     }
                 });

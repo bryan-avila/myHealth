@@ -33,7 +33,9 @@ public class edit_appointment_time_page extends AppCompatActivity {
     String date;
     Clinic clinic;
     String appointmentPath;
+    String clinicAppointmentPath;
     DocumentReference appointmentDocument;
+    DocumentReference clinicAppointmentDocument;
     // Inside your activity or fragment
 
     @Override
@@ -48,11 +50,13 @@ public class edit_appointment_time_page extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             appointmentPath = (String) intent.getStringExtra("appointmentPath");
+            clinicAppointmentPath = (String) intent.getSerializableExtra("clinicAppointmentPath");
             clinic = (Clinic) intent.getSerializableExtra("clinic");
             date = (String) intent.getStringExtra("date");
 
         } else {
             appointmentPath = null;
+            clinicAppointmentPath = null;
             clinic = null;
             date = null;
         }
@@ -94,7 +98,6 @@ public class edit_appointment_time_page extends AppCompatActivity {
                         FirebaseFirestore db = MyFirestore.getDBInstance();
 
                         TimeAdapter timeAdapter = new TimeAdapter(availableTimesList);
-                        AppointmentManager appointmentmanager = new AppointmentManager();
                         TimeConverter timeconverter = new TimeConverter();
 
                         //Implements
@@ -145,6 +148,7 @@ public class edit_appointment_time_page extends AppCompatActivity {
 
                                 FirebaseFirestore db = MyFirestore.getDBInstance();
                                 appointmentDocument = db.document(appointmentPath);
+                                clinicAppointmentDocument = db.document(clinicAppointmentPath);
                                 appointmentDocument.update(updates)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
@@ -159,8 +163,23 @@ public class edit_appointment_time_page extends AppCompatActivity {
                                             }
                                         });
 
-                                Intent intent = new Intent(edit_appointment_time_page.this, edit_appointment_page.class);
-                                intent.putExtra("appointmentPath", appointmentPath);
+                                clinicAppointmentDocument.update(updates)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d("TAG", "DocumentSnapshot successfully updated!");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("TAG", "Error updating document", e);
+                                            }
+                                        });
+
+                                //Intent intent = new Intent(edit_appointment_time_page.this, edit_appointment_page.class);
+                                //intent.putExtra("appointmentPath", appointmentPath);
+                                Intent intent = new Intent(edit_appointment_time_page.this, patient_home_page.class);
                                 startActivity(intent);
                             }
                         });

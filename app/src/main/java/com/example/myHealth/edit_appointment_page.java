@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -21,9 +23,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class edit_appointment_page extends AppCompatActivity {
     FirebaseFirestore db = MyFirestore.getDBInstance();
+    FirebaseAuth mAuth = MyFirestore.getmAuthInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+    String userId = currentUser.getUid();
     String appointmentPath;
+    String clinicAppointmentPath;
     Clinic clinic;
     String clinicName;
+    String clinicId;
     String date;
     String startTime;
     String endTime;
@@ -92,10 +99,12 @@ public class edit_appointment_page extends AppCompatActivity {
                         if (documentSnapshot.exists()) {
                             // DocumentSnapshot contains the data
                             clinicName = documentSnapshot.getString("clinicName");
+                            clinicId = documentSnapshot.getString("clinicId");
                             date = documentSnapshot.getString("date");
                             startTime = documentSnapshot.getString("startTime");
                             endTime = documentSnapshot.getString("endTime");
                             Log.d("TAG", "clinic name: " + clinicName);
+                            Log.d("TAG", "clinic id: " + clinicId);
                             Log.d("TAG", "date: " + date);
                             Log.d("TAG", "start time: " + startTime);
                             Log.d("TAG", "end time: " + endTime);
@@ -108,7 +117,10 @@ public class edit_appointment_page extends AppCompatActivity {
                             appointmentStartTime.setText("Start Time: " + startTime);
                             appointmentEndTime.setText("End Time: " + endTime);
 
-
+                            DocumentReference clinicAppointmentDocument = db.collection("clinic").document(clinicId).collection("dates").document(date).collection("appointments").document(userId);
+                            Log.d("clinic document", clinicAppointmentDocument.toString());
+                            clinicAppointmentPath = clinicAppointmentDocument.getPath();
+                            Log.d("clinic path", clinicAppointmentPath);
                             // Use the data as needed
                         } else {
                             // Document does not exist
@@ -121,6 +133,8 @@ public class edit_appointment_page extends AppCompatActivity {
                         // Handle errors
                     }
                 });
+
+
 
         String clinicID = appointmentDocument.getId();
         Log.d("TAG", "clinicID: " + clinicID);
@@ -154,6 +168,9 @@ public class edit_appointment_page extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(), edit_appointment_clinic_page.class);
         intent.putExtra("appointmentPath", appointmentPath);
+        intent.putExtra("clinicAppointmentPath", clinicAppointmentPath);
+        intent.putExtra("appointmentDate", date);
+        intent.putExtra("appointmentTime", startTime);
         startActivity(intent);
     }
 
@@ -161,7 +178,9 @@ public class edit_appointment_page extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(), edit_appointment_date_page.class);
         intent.putExtra("appointmentPath", appointmentPath);
+        intent.putExtra("clinicAppointmentPath", clinicAppointmentPath);
         intent.putExtra("clinicData", clinic);
+        intent.putExtra("appointmentTime", startTime);
         startActivity(intent);
     }
 
@@ -171,6 +190,7 @@ public class edit_appointment_page extends AppCompatActivity {
         Log.d("timebutton", "clicked");
         Log.d("TAG", "clinicID: " + clinic.getID());
         intent.putExtra("appointmentPath", appointmentPath);
+        intent.putExtra("clinicAppointmentPath", clinicAppointmentPath);
         intent.putExtra("clinic", clinic);
         intent.putExtra("date", date);
         startActivity(intent);

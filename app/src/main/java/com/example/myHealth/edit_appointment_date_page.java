@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -25,8 +26,12 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class edit_appointment_date_page extends AppCompatActivity {
+    Appointment appointment;
     String appointmentPath;
+    String clinicAppointmentPath;
     DocumentReference appointmentDocument;
+    DocumentReference clinicAppointmentDocument;
+    String appointmentTime;
     CalendarView calendarview;
     Calendar calendar;
 
@@ -51,6 +56,8 @@ public class edit_appointment_date_page extends AppCompatActivity {
         if (intent != null) {
             clinic = (Clinic) intent.getSerializableExtra("clinicData");
             appointmentPath = (String) intent.getSerializableExtra("appointmentPath");
+            clinicAppointmentPath = (String) intent.getSerializableExtra("clinicAppointmentPath");
+            appointmentTime = (String) intent.getSerializableExtra("appointmentTime");
 
             // Now you can use 'clinic' to update your UI or perform other operations
             if (clinic != null) {
@@ -69,14 +76,36 @@ public class edit_appointment_date_page extends AppCompatActivity {
         } else {
             clinic = null;
             appointmentPath = null;
+            clinicAppointmentPath = null;
+            appointmentTime = null;
         }
-        calendarview.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        FirebaseFirestore db = MyFirestore.getDBInstance();
+        appointmentDocument = db.document(appointmentPath);
+        clinicAppointmentDocument = db.document(clinicAppointmentPath);
 
+        appointmentDocument.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    // Convert document snapshot data to your Java class
+                    appointment = documentSnapshot.toObject(Appointment.class);
+                    Log.d("appointment time",  appointment.getDate());
+                    // Now you can use the object of your class as needed
+                    // For example, you can pass it to a method or display its data in the UI
+                } else {
+                    // Document does not exist
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle errors
+            }
+        });
+
+        calendarview.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                FirebaseFirestore db = MyFirestore.getDBInstance();
-                appointmentDocument = db.document(appointmentPath);
-
                 Calendar selectedDate = Calendar.getInstance();
                 selectedDate.set(year, month, day);
                 Calendar sixMonthsLater = Calendar.getInstance();
@@ -94,21 +123,15 @@ public class edit_appointment_date_page extends AppCompatActivity {
                     Log.d("TAG", "selectedDate:" + selectedDate);
                     Log.d("TAG", "clinic id:" + clinic.getID());
 
-                    appointmentDocument.update("date", selectedDateString)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d("TAG", "DocumentSnapshot successfully updated!");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w("TAG", "Error updating document", e);
-                                }
-                            });
-                    Intent intent = new Intent(edit_appointment_date_page.this, edit_appointment_page.class);
-                    intent.putExtra("appointmentPath", appointmentPath);
+                    TimeConverter timeConverter = new TimeConverter();
+                    AppointmentManager appointmentManager = new AppointmentManager();
+                    double startTime = timeConverter.convertToDecimal(appointmentTime);
+                    appointmentManager.deleteAppointment(appointment, appointmentDocument);
+                    appointmentManager.makeSingleAppointment(clinic.getClinicName(), clinic.getID(), selectedDateString, startTime, false);
+
+                    //Intent intent = new Intent(edit_appointment_date_page.this, edit_appointment_page.class);
+                    //intent.putExtra("appointmentPath", appointmentPath);
+                    Intent intent = new Intent(edit_appointment_date_page.this, patient_home_page.class);
                     startActivity(intent);
                 }
             }
